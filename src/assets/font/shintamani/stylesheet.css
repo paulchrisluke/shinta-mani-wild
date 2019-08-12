@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'shintamani condensed';
+    src: url('shintamani-condensed-regular.eot');
+    src: url('shintamani-condensed-regular.eot?#iefix') format('embedded-opentype'),
+        url('shintamani-condensed-regular.woff2') format('woff2'),
+        url('shintamani-condensed-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'shintamani';
+    src: url('shintamani-regular.eot');
+    src: url('shintamani-regular.eot?#iefix') format('embedded-opentype'),
+        url('shintamani-regular.woff2') format('woff2'),
+        url('shintamani-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'shintamani';
+    src: url('shintamani.eot');
+    src: url('shintamani.eot?#iefix') format('embedded-opentype'),
+        url('shintamani.woff2') format('woff2'),
+        url('shintamani.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
