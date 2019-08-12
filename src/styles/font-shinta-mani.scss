@@ -1,10 +1,14 @@
 @font-face {
   font-family: 'shintamani condensed';
   src: url('#{$font-path}/shintamani/shintamani-condensed-regular.eot');
-  src: url('#{$font-path}/shintamani/shintamani-condensed-regular.eot?#iefix') format('embedded-opentype'),
-      url('#{$font-path}/shintamani/shintamani-condensed-regular.woff2') format('woff2'),
-      url('#{$font-path}/shintamani/shintamani-condensed-regular.woff') format('woff'),
-      url('#{$font-path}/shintamani/shintamani-condensed-regular.ttf') format("truetype");
+  src: url('#{$font-path}/shintamani/shintamani-condensed-regular.eot?#iefix')
+    format('embedded-opentype'),
+    url('#{$font-path}/shintamani/shintamani-condensed-regular.woff2')
+    format('woff2'),
+    url('#{$font-path}/shintamani/shintamani-condensed-regular.woff')
+    format('woff'),
+    url('#{$font-path}/shintamani/shintamani-condensed-regular.ttf')
+    format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -12,10 +16,11 @@
 @font-face {
   font-family: 'shintamani';
   src: url('#{$font-path}/shintamani/shintamani-regular.eot');
-  src: url('#{$font-path}/shintamani/shintamani-regular.eot?#iefix') format('embedded-opentype'),
-      url('#{$font-path}/shintamani/shintamani-regular.woff2') format('woff2'),
-      url('#{$font-path}/shintamani/shintamani-regular.woff') format('woff'),
-      url('#{$font-path}/shintamani/shintamani-regular.ttf') format("truetype");
+  src: url('#{$font-path}/shintamani/shintamani-regular.eot?#iefix')
+    format('embedded-opentype'),
+    url('#{$font-path}/shintamani/shintamani-regular.woff2') format('woff2'),
+    url('#{$font-path}/shintamani/shintamani-regular.woff') format('woff'),
+    url('#{$font-path}/shintamani/shintamani-regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,11 +28,11 @@
 @font-face {
   font-family: 'shintamani';
   src: url('#{$font-path}/shintamani/shintamani.eot');
-  src: url('#{$font-path}/shintamani/shintamani.eot?#iefix') format('embedded-opentype'),
-      url('#{$font-path}/shintamani/shintamani.woff2') format('woff2'),
-      url('#{$font-path}/shintamani/shintamani.woff') format('woff'),
-      url('#{$font-path}/shintamani/shintamani.ttf') format("truetype");
+  src: url('#{$font-path}/shintamani/shintamani.eot?#iefix')
+    format('embedded-opentype'),
+    url('#{$font-path}/shintamani/shintamani.woff2') format('woff2'),
+    url('#{$font-path}/shintamani/shintamani.woff') format('woff'),
+    url('#{$font-path}/shintamani/shintamani.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
-

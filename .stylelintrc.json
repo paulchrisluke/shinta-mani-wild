@@ -30,9 +30,12 @@
     "property-no-unknown": true,
     "declaration-block-no-duplicate-properties": true,
     "declaration-block-no-shorthand-property-overrides": true,
-    "comment-empty-line-before": [ "always", {
-      "ignore": ["stylelint-commands", "after-comment"]
-    } ],
+    "comment-empty-line-before": [
+      "always",
+      {
+        "ignore": ["stylelint-commands", "after-comment"]
+      }
+    ],
     "declaration-colon-space-after": "always",
     "selector-list-comma-newline-after": "always",
     "indentation": 2,
@@ -41,6 +44,5 @@
     "selector-type-case": "lower",
     "selector-list-comma-space-before": "always-single-line",
     "unit-whitelist": ["em", "rem", "%", "px", "ms", "deg"]
-
   }
 }
