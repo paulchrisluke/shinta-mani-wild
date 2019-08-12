@@ -3,7 +3,8 @@
     src: url('shintamani-condensed-regular.eot');
     src: url('shintamani-condensed-regular.eot?#iefix') format('embedded-opentype'),
         url('shintamani-condensed-regular.woff2') format('woff2'),
-        url('shintamani-condensed-regular.woff') format('woff');
+        url('shintamani-condensed-regular.woff') format('woff'),
+        url('shintamani-condensed-regular.ttf') format("truetype");
     font-weight: normal;
     font-style: normal;
 }
@@ -13,7 +14,8 @@
     src: url('shintamani-regular.eot');
     src: url('shintamani-regular.eot?#iefix') format('embedded-opentype'),
         url('shintamani-regular.woff2') format('woff2'),
-        url('shintamani-regular.woff') format('woff');
+        url('shintamani-regular.woff') format('woff'),
+        url('shintamani-regular.ttf') format("truetype");
     font-weight: normal;
     font-style: normal;
 }
@@ -23,7 +25,8 @@
     src: url('shintamani.eot');
     src: url('shintamani.eot?#iefix') format('embedded-opentype'),
         url('shintamani.woff2') format('woff2'),
-        url('shintamani.woff') format('woff');
+        url('shintamani.woff') format('woff'),
+        url('shintamani.ttf') format("truetype");
     font-weight: 500;
     font-style: normal;
 }
