@@ -1,5 +1,9 @@
 # shinta-mani-wild
 
+## Preview URL (netlify)
+
+https://cocky-boyd-093ab8.netlify.com/
+
 ## Project setup
 ```
 yarn install
