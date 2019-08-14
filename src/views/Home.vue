@@ -1,5 +1,5 @@
 <template>
-  <div class="home">This is bootstrap...</div>
+  <div class="home text-primary">This is bootstrap...</div>
 </template>
 
 <script lang="ts">
