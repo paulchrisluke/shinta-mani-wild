@@ -1,8 +1,52 @@
+
+/*
+* ===============================
+* CUSTOMIZE
+* ===============================
+*/
+
+// stylelint-disable
+
+$font-path: '~@/assets/font';
+
+// colors
+$primary: #525200;
+// $secondary: ;
+
+// $success: ;
+// $info: ;
+// $warning: ;
+// $danger: ;
+
+$light: #ffffff;
+// $dark: ;
+// $dark-less: ;
+// $gray-60: ;
+
+// $brand-1: ;
+// $brand-2: ;
+// $brand-3: ;
+// $brand-4: ;
+
+$body-bg: #fff;
+// $body-color: ;
+// $link-color: ;
+// $link-hover-color: darken($link-color, 15%);
+
+// spacings
+$grid-gutter-width: rem(16px);
+
+// typography
+// $font-family-sans-serif: 'Open Sans', sans-serrif;
+
+// general
+$enable-shadows: true;
+
 /* 
  * =====================================================
  * IMPORTANT!
  * PLEASE DON'T MODIFY BELOW VARIABLES
- * COPY THEM TO THE END SECTION (CUSTOMIZE), THEN MODIFY
+ * COPY THEM TO THE TOP SECTION (CUSTOMIZE), THEN MODIFY
  * =====================================================
 */
 
@@ -1130,44 +1174,4 @@ $positions: static, relative, absolute, fixed, sticky !default;
 $print-page-size:                   a3 !default;
 $print-body-min-width:              map-get($grid-breakpoints, "lg") !default;
 
-
-/*
- * ===============================
- * CUSTOMIZE
- * ===============================
-*/
-
-$font-path: 'assets/font';
-
-// colors
-// $primary: green;
-// $secondary: ;
-
-// $success: ;
-// $info: ;
-// $warning: ;
-// $danger: ;
-
-// $light: ;
-// $dark: ;
-// $dark-less: ;
-// $gray-60: ;
-
-// $brand-1: ;
-// $brand-2: ;
-// $brand-3: ;
-// $brand-4: ;
-
-$body-bg: $white;
-// $body-color: ;
-// $link-color: ;
-// $link-hover-color: darken($link-color, 15%);
-
-// spacings
-$grid-gutter-width: rem(16px);
-
-// typography
-// $font-family-sans-serif: 'Open Sans', sans-serrif;
-
-// general
-$enable-shadows: true;
+// stylelint-enable
