@@ -4,7 +4,7 @@
       class="d-block mx-auto"
       width="1322"
       height="744"
-      :src="`${source}?controls=0&rel=0`"
+      :src="`${source}?rel=0`"
       frameborder="0"
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
