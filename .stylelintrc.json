@@ -43,6 +43,17 @@
     "unit-no-unknown": true,
     "selector-type-case": "lower",
     "selector-list-comma-space-before": "always-single-line",
-    "unit-whitelist": ["em", "rem", "%", "px", "ms", "deg"]
+    "unit-whitelist": [
+      "em",
+      "rem",
+      "%",
+      "px",
+      "ms",
+      "deg",
+      "vh",
+      "vw",
+      "vmin",
+      "vmax"
+    ]
   }
 }

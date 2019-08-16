@@ -41,10 +41,10 @@
 <style lang="scss" scoped>
 .page-header {
   background: $primary;
-  height: rem(56px);
+  height: rem($header-height);
 }
 .page-header--inner {
-  height: rem(56px);
+  height: rem($header-height);
 }
 .page-header--nav {
   font-size: rem(20px);
