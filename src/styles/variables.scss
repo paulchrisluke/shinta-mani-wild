@@ -23,12 +23,12 @@ $light: #ffffff;
 // $dark-less: ;
 // $gray-60: ;
 
-// $brand-1: ;
-// $brand-2: ;
+$brand-1: #EEE9D6;
+$brand-2: #FFFFF0;
 // $brand-3: ;
 // $brand-4: ;
 
-$body-bg: #fff;
+$body-bg: $brand-1;
 // $body-color: ;
 // $link-color: ;
 // $link-hover-color: darken($link-color, 15%);
@@ -38,7 +38,7 @@ $grid-gutter-width: rem(16px);
 $header-height: 56px;
 
 // typography
-$font-family-sans-serif: 'Open Sans', sans-serif;
+$font-family-sans-serif: 'Roboto', sans-serif;
 $serif-font-size-correction: 1.25;
 
 // general

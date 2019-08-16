@@ -7,12 +7,17 @@
         "ignoreAtRules": ["tailwind"]
       }
     ],
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": ["v-deep"]
+      }
+    ],
     "block-no-empty": true,
     "color-no-invalid-hex": true,
     "color-named": "never",
     "color-no-hex": true,
     "font-family-no-duplicate-names": true,
-    "selector-pseudo-element-no-unknown": true,
     "selector-type-no-unknown": true,
     "media-feature-name-no-unknown": true,
     "comment-no-empty": true,
