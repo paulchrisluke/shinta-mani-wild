@@ -1,3 +1,4 @@
+@import '~sass-rem';
 @import '~bootstrap/scss/functions';
 @import './variables.scss';
 @import '~bootstrap/scss/mixins';
@@ -6,13 +7,13 @@
 
 // Typography
 .font-serif {
-  font-family: "shintamani", arial, serif;
+  font-family: 'shintamani', arial, serif;
 }
 .font-serif-condensed {
-  font-family: "shintamani condensed", arial, serif;
+  font-family: 'shintamani condensed', arial, serif;
 }
 .font-sans-serif {
-  font-family: "Roboto", 'Segoe UI', Tahoma, sans-serif;
+  font-family: 'Roboto', 'Segoe UI', Tahoma, sans-serif;
 }
 
 body {
