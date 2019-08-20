@@ -1,7 +1,6 @@
 <template>
   <button
     @click="onClick($event)"
-    :style="style"
     class="d-flex justify-content-center align-items-center button button-frame"
     :aria-label="text"
   ></button>

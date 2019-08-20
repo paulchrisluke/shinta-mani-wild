@@ -14,19 +14,10 @@
     <div class="container is-small">
       <div class="row my-5">
         <div class="column-12">
-          <base-card>
-            <template v-slot:image>
-              <div class="card-image-wrapper position-relative">
-                <img
-                  class="card-image is-right-skew position-relative"
-                  src="~@/assets/media/home-card-1.jpg"
-                  alt
-                />
-              </div>
-            </template>
+          <base-card :image="cardImage1">
             <template v-slot:text>
               <div class="card-content">
-                <h2 class="h1 font-serif text-uppercase mb-4">
+                <h2 class="h1 font-serif text-uppercase mb-4 text-center text-xl-left">
                   <span class="border-bottom border-dark pb-2">All Inclusive</span>
                 </h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laudantium excepturi ipsa aliquid aliquam ab perspiciatis. Incidunt architecto et ea illum placeat. Distinctio aliquam tempore eaque adipisci ipsa libero optio.</p>
@@ -47,6 +38,8 @@ import PageHeader from '@/components/PageHeader.vue'
 import VideoPlayer from '@/components/VideoPlayer.vue'
 import BaseCard from '@/components/BaseCard.vue'
 import BaseButton from '@/components/BaseButton.vue'
+const cardImage = require('@/assets/media/home-card-1.jpg')
+const cardImageXs = require('@/assets/media/home-card-1--mobile.jpg')
 
 export default Vue.extend({
   name: 'home',
@@ -58,7 +51,16 @@ export default Vue.extend({
   },
   data() {
     return {
-      shouldShowIntroVideo: false
+      shouldShowIntroVideo: false,
+      cardImage1: {
+        alt: "All Inclusive",
+        xl: {
+          src: cardImage
+        },
+        default: {
+          src: cardImageXs
+        }
+      }
     }
   },
   methods: {
@@ -88,30 +90,8 @@ export default Vue.extend({
     cursor: pointer;
   }
 }
-.card-image-wrapper {
-  &::before {
-    top: 0;
-    right: rem(4px);
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    content: '';
-    background: rgba($black, 0.2);
-    transform: rotate(5.5deg) translateX(16px) translateY(20px) skewX(2deg)
-      skewY(-4deg);
-    border-radius: rem(10px);
-    filter: blur(2px);
-    box-shadow: 0 0 4.5rem rgba($black, 0.2);
-  }
-}
-.card-image {
-  // box-shadow: 0px 24px 5px rgba($black, 0.1);
-  border-radius: rem(10px);
-  transform: matrix(0.99, 0.04, -0.11, 1, 0, 0);
-  left: rem(32px);
-}
 .container.is-small {
-  max-width: rem(900px);
+  max-width: rem($container-small);
 }
 .card-content::v-deep .button-frame {
   width: rem(190px);
