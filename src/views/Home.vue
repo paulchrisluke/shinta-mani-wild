@@ -44,6 +44,22 @@
           </div>
         </div>
       </div>
+
+      <!-- TODO: fullwidth booking image -->
+
+      <div class="shift-down position-relative">
+        <base-heading :type="'h2'" :class-name="'h1 text-center'">Our Tents</base-heading>
+
+        <section class="container">
+          <base-quote :image="quoteImage2">
+            <p class="mb-0">
+              “I discovered a version of luxury travel I could live with: a rare and extravagant feast of the senses hidden deep within the jungle; an unexpected, delightful conversation named Shinta Mani Wild…”
+            </p>
+            <p>- Charles Graeber, Travel+Leisure - The IT List 2019</p>
+          </base-quote>
+        </section>
+      </div>
+      
     </div>
   </div>
 </template>
@@ -59,6 +75,7 @@ import BaseQuote from '@/components/BaseQuote.vue'
 const cardImage = require('@/assets/media/home-card-1.jpg')
 const cardImageXs = require('@/assets/media/home-card-1--mobile.jpg')
 const quoteImage1 = require('@/assets/media/home/dog-bubble-1.png')
+const quoteImage2 = require('@/assets/media/home/dog-bubble-2.png')
 
 export default Vue.extend({
   name: 'home',
@@ -85,6 +102,11 @@ export default Vue.extend({
       quoteImage1: {
         default: {
           src: quoteImage1
+        }
+      },
+      quoteImage2: {
+        default: {
+          src: quoteImage2
         }
       }
     }
