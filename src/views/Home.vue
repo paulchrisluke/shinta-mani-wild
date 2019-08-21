@@ -13,7 +13,7 @@
 
     <div class="pattern-area-1 py-5 pt-xl-2 position-relative">
       <div class="shift-down position-relative">
-        <base-heading :type="'h1'" :class-name="'h1 text-center'">Shinta Mani Wild</base-heading>
+        <base-heading :type="'h1'" :class-name="'h1 text-dark text-center'">Shinta Mani Wild</base-heading>
 
         <section class="container">
           <base-quote :image="quoteImage1">
@@ -27,14 +27,14 @@
       </div>
 
       <div class="container is-small">
-        <div class="row">
+        <div class="row mb-5">
           <div class="column-12">
             <base-card :image="cardImage1">
               <template v-slot:text>
                 <div class="card-content">
                   <base-heading
                     :type="'h2'"
-                    :class-name="'h2 text-center text-xl-left'"
+                    :class-name="'h2 text-dark text-center text-xl-left'"
                   >All Inclusive</base-heading>
                   <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation spearheads our conservation and community outreach programmes.</p>
                   <base-button @click="bookNow" :text="'Book Now'"></base-button>
@@ -45,10 +45,15 @@
         </div>
       </div>
 
-      <!-- TODO: fullwidth booking image -->
+      <base-banner-action :image="bannerImage1">
+        <div class="d-flex flex-column">
+          <div>Adventures</div>
+          <div>Await ...</div>
+        </div>
+      </base-banner-action>
 
       <div class="shift-down position-relative">
-        <base-heading :type="'h2'" :class-name="'h1 text-center'">Our Tents</base-heading>
+        <base-heading :type="'h2'" :class-name="'h1 text-dark text-center'">Our Tents</base-heading>
 
         <section class="container">
           <base-quote :image="quoteImage2">
@@ -59,7 +64,6 @@
           </base-quote>
         </section>
       </div>
-      
     </div>
   </div>
 </template>
@@ -71,11 +75,13 @@ import VideoPlayer from '@/components/VideoPlayer.vue'
 import BaseCard from '@/components/BaseCard.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
+import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 const cardImage = require('@/assets/media/home-card-1.jpg')
 const cardImageXs = require('@/assets/media/home-card-1--mobile.jpg')
 const quoteImage1 = require('@/assets/media/home/dog-bubble-1.png')
 const quoteImage2 = require('@/assets/media/home/dog-bubble-2.png')
+const bannerImage1 = require('@/assets/media/home/banner-1.jpg')
 
 export default Vue.extend({
   name: 'home',
@@ -85,7 +91,8 @@ export default Vue.extend({
     BaseCard,
     BaseButton,
     BaseHeading,
-    BaseQuote
+    BaseQuote,
+    BaseBannerAction
   },
   data() {
     return {
@@ -107,6 +114,11 @@ export default Vue.extend({
       quoteImage2: {
         default: {
           src: quoteImage2
+        }
+      },
+      bannerImage1: {
+        default: {
+          src: bannerImage1
         }
       }
     }

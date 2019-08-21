@@ -1,7 +1,9 @@
 <template>
-  <component :is="type" :class="className" class="text-dark text-uppercase font-serif">
+  <component :is="type" :class="className" class="text-uppercase font-serif">
     <span class="d-block mb-4">
-      <span class="border-bottom border-dark pb-2 d-inline-flex"><slot /></span>
+      <span :class="borderClass" class="pb-2 d-inline-flex">
+        <slot />
+      </span>
     </span>
   </component>
 </template>
@@ -9,7 +11,7 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  name: "base-heading",
+  name: 'base-heading',
   props: {
     type: {
       type: String,
@@ -18,6 +20,10 @@ export default Vue.extend({
     className: {
       type: String,
       default: ''
+    },
+    borderClass: {
+      type: String,
+      default: 'border-bottom border-dark'
     }
   }
 })
