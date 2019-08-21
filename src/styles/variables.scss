@@ -11,17 +11,13 @@ $font-path: '~@/assets/font';
 
 // colors
 $primary: #525200;
-// $secondary: ;
-
-// $success: ;
-// $info: ;
-// $warning: ;
-// $danger: ;
-
+// $secondary:     $gray-600 !default;
+// $success:       $green !default;
+// $info:          $cyan !default;
+// $warning:       $yellow !default;
+// $danger:        $red !default;
 $light: #ffffff;
-// $dark: ;
-// $dark-less: ;
-// $gray-60: ;
+$dark: #444;
 
 $brand-1: #EEE9D6;
 $brand-2: #FFFFF0;
@@ -41,6 +37,8 @@ $container-small: 900px;
 // typography
 $font-family-sans-serif: 'Roboto', sans-serif;
 $serif-font-size-correction: 1.25;
+$h1-font-size: 3rem;
+$h2-font-size: 2rem;
 
 // general
 $enable-shadows: true;

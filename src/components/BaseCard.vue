@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="position-relative">
     <div class="ghost-wrapper px-3 d-xl-none">
       <picture class="ghost-card-image d-table mx-auto px-3">
         <source :srcset="image.xl.src" :media="`(min-width: ${gridBreakpoints.xl})`" />
