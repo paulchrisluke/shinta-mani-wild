@@ -17,6 +17,19 @@
 }
 
 // layout
+html,
+body,
+.app,
+.page {
+  min-height: 100vh;
+}
 .container.is-small {
   max-width: rem($container-small);
+}
+.page {
+  display: flex;
+  flex-direction: column;
+}
+.page--content {
+  flex-grow: 1;
 }

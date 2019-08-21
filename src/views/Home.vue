@@ -3,7 +3,8 @@
 
   <div class="page page--home">
 
-    <!-- header -->
+    <div class="page--content">
+      <!-- header -->
     <page-header></page-header>
 
     <!-- player -->
@@ -109,6 +110,9 @@
       </div>
 
     </div>
+    </div>
+
+    <page-footer></page-footer>
   </div>
 </template>
 
@@ -122,6 +126,7 @@ import BaseHeading from '@/components/BaseHeading.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import BaseGalleryList from '@/components/BaseGalleryList.vue'
+import PageFooter from '@/components/PageFooter.vue'
 const cardImage = require('@/assets/media/home-card-1.jpg')
 const cardImageXs = require('@/assets/media/home-card-1--mobile.jpg')
 const quoteImage1 = require('@/assets/media/home/dog-bubble-1.png')
@@ -140,7 +145,8 @@ export default Vue.extend({
     BaseHeading,
     BaseQuote,
     BaseBannerAction,
-    BaseGalleryList
+    BaseGalleryList,
+    PageFooter
   },
   data() {
     return {
