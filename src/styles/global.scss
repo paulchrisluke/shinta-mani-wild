@@ -15,3 +15,8 @@
 .font-sans-serif {
   font-family: 'Roboto', 'Segoe UI', Tahoma, sans-serif;
 }
+
+// layout
+.container.is-small {
+  max-width: rem($container-small);
+}

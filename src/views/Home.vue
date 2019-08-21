@@ -45,25 +45,29 @@
         </div>
       </div>
 
-      <base-banner-action :image="bannerImage1">
-        <div class="d-flex flex-column">
-          <div>Adventures</div>
-          <div>Await ...</div>
-        </div>
-      </base-banner-action>
+      <div class="mb-5">
+        <base-banner-action :image="bannerImage1">
+          <div class="d-flex flex-column">
+            <div>Adventures</div>
+            <div>Await ...</div>
+          </div>
+        </base-banner-action>
+      </div>
 
-      <div class="shift-down position-relative">
+      <div class="position-relative">
         <base-heading :type="'h2'" :class-name="'h1 text-dark text-center'">Our Tents</base-heading>
 
         <section class="container">
           <base-quote :image="quoteImage2">
-            <p class="mb-0">
-              “I discovered a version of luxury travel I could live with: a rare and extravagant feast of the senses hidden deep within the jungle; an unexpected, delightful conversation named Shinta Mani Wild…”
-            </p>
+            <p
+              class="mb-0"
+            >“I discovered a version of luxury travel I could live with: a rare and extravagant feast of the senses hidden deep within the jungle; an unexpected, delightful conversation named Shinta Mani Wild…”</p>
             <p>- Charles Graeber, Travel+Leisure - The IT List 2019</p>
           </base-quote>
         </section>
       </div>
+
+      <base-gallery-list :images="galleryImages" />
     </div>
   </div>
 </template>
@@ -77,11 +81,14 @@ import BaseButton from '@/components/BaseButton.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
+import BaseGalleryList from '@/components/BaseGalleryList.vue'
 const cardImage = require('@/assets/media/home-card-1.jpg')
 const cardImageXs = require('@/assets/media/home-card-1--mobile.jpg')
 const quoteImage1 = require('@/assets/media/home/dog-bubble-1.png')
 const quoteImage2 = require('@/assets/media/home/dog-bubble-2.png')
 const bannerImage1 = require('@/assets/media/home/banner-1.jpg')
+const galleryImage1 = require('@/assets/media/home/gallery-item-1.png')
+const galleryImage2 = require('@/assets/media/home/gallery-item-2.png')
 
 export default Vue.extend({
   name: 'home',
@@ -92,7 +99,8 @@ export default Vue.extend({
     BaseButton,
     BaseHeading,
     BaseQuote,
-    BaseBannerAction
+    BaseBannerAction,
+    BaseGalleryList
   },
   data() {
     return {
@@ -120,7 +128,19 @@ export default Vue.extend({
         default: {
           src: bannerImage1
         }
-      }
+      },
+      galleryImages: [
+        {
+          id: 1,
+          title: 'Wild<br>Tents',
+          src: galleryImage1
+        },
+        {
+          id: 2,
+          title: 'Waterfall<br>Tents',
+          src: galleryImage2
+        }
+      ]
     }
   },
   methods: {
@@ -149,9 +169,6 @@ export default Vue.extend({
     height: rem(800px - $header-height);
     cursor: pointer;
   }
-}
-.container.is-small {
-  max-width: rem($container-small);
 }
 .card-content::v-deep .button-frame {
   width: rem(190px);

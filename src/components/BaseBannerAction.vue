@@ -45,7 +45,4 @@ export default Vue.extend({
   background: url('~@/assets/img/button-book-now-light.png');
   background-size: rem(190px 88px);
 }
-.container.is-small {
-  width: rem(900px);
-}
 </style>
