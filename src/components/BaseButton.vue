@@ -1,6 +1,7 @@
 <template>
   <button
     @click="onClick($event)"
+    :class="className"
     class="d-flex justify-content-center align-items-center button button-frame"
     :aria-label="text"
   ></button>
@@ -11,6 +12,10 @@ import Vue from 'vue'
 export default Vue.extend({
   props: {
     text: {
+      type: String,
+      default: ''
+    },
+    className: {
       type: String,
       default: ''
     },

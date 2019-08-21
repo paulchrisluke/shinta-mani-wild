@@ -2,7 +2,11 @@
   <!-- design file: https://www.figma.com/file/SiFZE7hhRKx2fWmrfZ3uy2RO/Shinta-Mani-Wild -->
 
   <div class="page page--home">
+
+    <!-- header -->
     <page-header></page-header>
+
+    <!-- player -->
     <div @click="showIntroVideo()" :class="{'has-image': !shouldShowIntroVideo}" class="hero">
       <!-- https://www.youtube.com/watch?v=SUWpCjzeMb4 -->
       <video-player
@@ -11,7 +15,9 @@
       ></video-player>
     </div>
 
-    <div class="pattern-area-1 py-5 pt-xl-2 position-relative">
+    <div class="pattern-area-1 pt-5 pt-xl-2 position-relative">
+
+      <!-- quote -->
       <div class="shift-down position-relative">
         <base-heading :type="'h1'" :class-name="'h1 text-dark text-center'">Shinta Mani Wild</base-heading>
 
@@ -26,6 +32,7 @@
         </section>
       </div>
 
+      <!-- card -->
       <div class="container is-small">
         <div class="row mb-5">
           <div class="column-12">
@@ -45,6 +52,7 @@
         </div>
       </div>
 
+      <!-- banner action -->
       <div class="mb-5">
         <base-banner-action :image="bannerImage1">
           <div class="d-flex flex-column">
@@ -54,6 +62,7 @@
         </base-banner-action>
       </div>
 
+      <!-- quote tents -->
       <div class="position-relative">
         <base-heading :type="'h2'" :class-name="'h1 text-dark text-center'">Our Tents</base-heading>
 
@@ -67,15 +76,38 @@
         </section>
       </div>
 
+      <!-- gallery -->
       <div class="mb-5">
         <base-gallery-list :images="galleryImages" />
       </div>
 
+      <!-- press banner -->
       <div class="mb-5">
         <section class="press-banner">
           <a class="press-banner--link d-block h-100" href=""></a>
         </section>
       </div>
+
+      <!-- card -->
+      <div class="container is-small">
+        <div class="row mb-5">
+          <div class="column-12">
+            <base-card :image="cardImage1" :is-left="true">
+              <template v-slot:text>
+                <div class="card-content">
+                  <base-heading
+                    :type="'h2'"
+                    :class-name="'h2 text-dark text-center text-xl-left'"
+                  >Conservation</base-heading>
+                  <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation...</p>
+                  <base-button :class-name="'ml-xl-auto'" @click="bookNow" :text="'Book Now'"></base-button>
+                </div>
+              </template>
+            </base-card>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
