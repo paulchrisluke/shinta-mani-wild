@@ -67,7 +67,15 @@
         </section>
       </div>
 
-      <base-gallery-list :images="galleryImages" />
+      <div class="mb-5">
+        <base-gallery-list :images="galleryImages" />
+      </div>
+
+      <div class="mb-5">
+        <section class="press-banner">
+          <a class="press-banner--link d-block h-100" href=""></a>
+        </section>
+      </div>
     </div>
   </div>
 </template>
@@ -196,5 +204,11 @@ export default Vue.extend({
   @include media-breakpoint-up(xl) {
     top: rem(40px);
   }
+}
+.press-banner {
+  height: rem(227px);
+}
+.press-banner--link {
+  background: url('~@/assets/media/home/press-banner.png') left;
 }
 </style>
