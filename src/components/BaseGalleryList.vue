@@ -6,6 +6,7 @@
           <a class="position-relative gallery-item">
             <img :src="image.src" :alt="image.title" />
             <div class="heading position-absolute">
+              <!-- TODO: use a simple heading element instead base-heading -->
               <base-heading
                 v-html="image.title"
                 :type="'h3'"
