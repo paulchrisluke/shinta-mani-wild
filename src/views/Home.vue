@@ -20,7 +20,7 @@
 
       <!-- quote -->
       <div class="shift-down position-relative">
-        <base-heading :type="'h1'" :class-name="'h1 text-dark text-center'" :border-art="true">Shinta Mani Wild</base-heading>
+        <base-heading :text="'Shinta Mani Wild'" :type="'h1'" :class-name="'h1 text-dark text-center'" :border-art="true" ></base-heading>
 
         <section class="container">
           <base-quote :image="quoteImage1">
@@ -41,10 +41,11 @@
               <template v-slot:text>
                 <div class="card-content">
                   <base-heading
+                    :text="'All Inclusive'"
                     :type="'h2'"
                     :class-name="'h2 text-dark text-center text-xl-left'"
                     :border-dark="true"
-                  >All Inclusive</base-heading>
+                  ></base-heading>
                   <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation spearheads our conservation and community outreach programmes.</p>
                   <base-button @click="bookNow" :text="'Book Now'"></base-button>
                 </div>
@@ -66,7 +67,7 @@
 
       <!-- quote tents -->
       <div class="position-relative">
-        <base-heading :type="'h2'" :class-name="'h1 text-dark text-center'" :border-art="true">Our Tents</base-heading>
+        <base-heading :text="'Our Tents'" :type="'h2'" :class-name="'h1 text-dark text-center'" :border-art="true"></base-heading>
 
         <section class="container">
           <base-quote :image="quoteImage2">
@@ -98,10 +99,11 @@
               <template v-slot:text>
                 <div class="card-content">
                   <base-heading
+                    :text="'Conservation'"
                     :type="'h2'"
                     :class-name="'h2 text-dark text-center text-xl-left'"
                     :border-dark="true"
-                  >Conservation</base-heading>
+                  ></base-heading>
                   <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation...</p>
                   <base-button :class-name="'ml-xl-auto'" @click="bookNow" :text="'Book Now'"></base-button>
                 </div>
@@ -204,7 +206,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .hero {
-  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: $box-shadow-md, $box-shadow-sm;
   background: $black;
   iframe {
     max-width: 100%;
@@ -212,7 +214,7 @@ export default Vue.extend({
   }
 
   &.has-image {
-    background: url('~@/assets/img/home-hero.jpg') no-repeat;
+    background: $linear-gradient-md, url('~@/assets/img/home-hero.jpg') no-repeat;
     background-size: cover;
     height: rem(800px - $header-height);
     cursor: pointer;

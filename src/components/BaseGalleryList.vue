@@ -43,7 +43,7 @@ export default Vue.extend({
 }
 .gallery-item-image {
   border-radius: rem(10px);
-  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: $box-shadow-md, $box-shadow-sm;
 }
 .heading {
   top: 50%;
