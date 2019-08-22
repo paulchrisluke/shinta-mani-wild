@@ -5,7 +5,7 @@
         :class="{'border-bottom border-dark': borderDark, 'border-bottom border-light': borderLight}"
         class="pb-2 d-inline-flex"
       >
-        <slot />
+        {{text}}
       </span>
       <div v-if="borderArt" class="border-art"></div>
     </span>
@@ -17,6 +17,10 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'base-heading',
   props: {
+    text: {
+      type: String,
+      default: ''
+    },
     type: {
       type: String,
       required: true
