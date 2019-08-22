@@ -1,6 +1,6 @@
 <template>
   <div class="quote mx-auto" :style="{'background-image': `url(${image.default.src})`}">
-    <div class="quote-text text-center font-weight-light font-italic text-dark">
+    <div class="quote-text text-center text-dark">
       <slot />
     </div>
   </div>

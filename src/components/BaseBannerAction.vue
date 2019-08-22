@@ -3,7 +3,7 @@
     <div class="container is-small h-100">
       <div class="row h-100 align-items-center">
         <div class="col-4">
-          <base-heading :type="'h2'" :class-name="'h1 text-center text-xl-left text-light'" :border-class="'border-bottom border-light'">
+          <base-heading :type="'h2'" :class-name="'h1 text-center text-xl-left text-light'" :border-light="true">
             <slot />
           </base-heading>
           <base-button :text="'Book Now'"></base-button>

@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-6" v-for="image in images" :key="image.id">
           <a class="position-relative gallery-item">
-            <img :src="image.src" :alt="image.title" />
+            <img class="gallery-item-image" :src="image.src" :alt="image.title" />
             <div class="heading position-absolute">
               <!-- TODO: use a simple heading element instead base-heading -->
               <base-heading
@@ -40,6 +40,10 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .gallery-item {
   cursor: pointer;
+}
+.gallery-item-image {
+  border-radius: rem(10px);
+  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .heading {
   top: 50%;

@@ -20,15 +20,15 @@
 
       <!-- quote -->
       <div class="shift-down position-relative">
-        <base-heading :type="'h1'" :class-name="'h1 text-dark text-center'">Shinta Mani Wild</base-heading>
+        <base-heading :type="'h1'" :class-name="'h1 text-dark text-center'" :border-art="true">Shinta Mani Wild</base-heading>
 
         <section class="container">
           <base-quote :image="quoteImage1">
-            <p class="mb-0">
+            <p class="mb-0 font-italic font-weight-light">
               “A game-changing luxury tented camp built along a river valley in the waterfall-laced Cambodian rainforest. With an ethos of eco, Wild’s funds are used to preserve its surrounding private nature sanctuary from poaching, mining and logging - a stay will
               make you feel like you’re at the front line of conservation.”
             </p>
-            <p>Stephanie Cavagnaro, The Telegraph UK</p>
+            <p class="font-weight-bold">Stephanie Cavagnaro, The Telegraph UK</p>
           </base-quote>
         </section>
       </div>
@@ -43,6 +43,7 @@
                   <base-heading
                     :type="'h2'"
                     :class-name="'h2 text-dark text-center text-xl-left'"
+                    :border-dark="true"
                   >All Inclusive</base-heading>
                   <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation spearheads our conservation and community outreach programmes.</p>
                   <base-button @click="bookNow" :text="'Book Now'"></base-button>
@@ -65,14 +66,14 @@
 
       <!-- quote tents -->
       <div class="position-relative">
-        <base-heading :type="'h2'" :class-name="'h1 text-dark text-center'">Our Tents</base-heading>
+        <base-heading :type="'h2'" :class-name="'h1 text-dark text-center'" :border-art="true">Our Tents</base-heading>
 
         <section class="container">
           <base-quote :image="quoteImage2">
             <p
-              class="mb-0"
+              class="mb-0 font-italic font-weight-light"
             >“I discovered a version of luxury travel I could live with: a rare and extravagant feast of the senses hidden deep within the jungle; an unexpected, delightful conversation named Shinta Mani Wild…”</p>
-            <p>- Charles Graeber, Travel+Leisure - The IT List 2019</p>
+            <p class="font-weight-bold">Charles Graeber, Travel+Leisure - The IT List 2019</p>
           </base-quote>
         </section>
       </div>
@@ -99,6 +100,7 @@
                   <base-heading
                     :type="'h2'"
                     :class-name="'h2 text-dark text-center text-xl-left'"
+                    :border-dark="true"
                   >Conservation</base-heading>
                   <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation...</p>
                   <base-button :class-name="'ml-xl-auto'" @click="bookNow" :text="'Book Now'"></base-button>
@@ -245,6 +247,7 @@ export default Vue.extend({
 }
 .press-banner {
   height: rem(227px);
+  box-shadow: 0 6px 8px rgba($black, 0.2), 0 -2px 8px rgba($black, 0.05);
 }
 .press-banner--link {
   background: url('~@/assets/media/home/press-banner.png') left;
