@@ -22,7 +22,7 @@ export default Vue.extend({
   box-shadow: $box-shadow-md, $box-shadow-sm;
 }
 .image {
-  background: no-repeat;
+  background: no-repeat center;
   background-size: cover;
 }
 </style>

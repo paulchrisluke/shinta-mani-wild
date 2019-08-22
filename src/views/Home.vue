@@ -81,7 +81,7 @@
 
       <!-- gallery -->
       <div class="mb-5">
-        <base-gallery-list :images="galleryImages" />
+        <base-gallery-list :images="galleryImages" :cover-texts="galeryCoverTexts" />
       </div>
 
       <!-- press banner -->
@@ -181,15 +181,15 @@ export default Vue.extend({
       },
       galleryImages: [
         {
-          id: 1,
-          title: 'Wild<br>Tents',
-          src: galleryImage1
+          url: galleryImage1
         },
         {
-          id: 2,
-          title: 'Waterfall<br>Tents',
-          src: galleryImage2
+          url: galleryImage2
         }
+      ],
+      galeryCoverTexts: [
+        'Wild<br>Tents',
+        'Waterfall<br>Tents'
       ]
     }
   },

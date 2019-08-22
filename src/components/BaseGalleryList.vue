@@ -2,13 +2,13 @@
   <section class="wrapper">
     <div class="container is-small">
       <div class="row">
-        <div class="col-6" v-for="image in images" :key="image.id">
+        <div class="col-6" v-for="(image, index) in images.slice(0, 2)" :key="index">
           <a class="position-relative gallery-item">
-            <img class="gallery-item-image" :src="image.src" :alt="image.title" />
+            <img class="gallery-item-image w-100" :src="image.url" alt />
             <div class="heading position-absolute">
               <!-- TODO: use a simple heading element instead base-heading -->
               <base-heading
-                v-html="image.title"
+                v-html="coverTexts[index]"
                 :type="'h3'"
                 :class-name="'h1 text-light text-center'"
               ></base-heading>
@@ -31,8 +31,12 @@ export default Vue.extend({
   props: {
     images: {
       type: Array,
-      required: true
-    }
+      default: () => []
+    },
+    coverTexts: {
+      type: Array,
+      default: () => ['', '']
+    },
   }
 })
 </script>
