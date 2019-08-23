@@ -1,4 +1,5 @@
 <template>
+  <!-- design file: https://www.figma.com/file/SiFZE7hhRKx2fWmrfZ3uy2RO/Shinta-Mani-Wild?node-id=553%3A4724 -->
   <div class="page page--listing">
     <div class="page--content">
       <!-- header -->
@@ -52,16 +53,15 @@
       <!-- quote -->
       <section class="container mb-5">
         <base-quote :class-name="'is-right'">
-          <p class="mb-0 font-italic font-weight-light">
-            “A game-changing luxury tented camp built along a river valley in the waterfall-laced Cambodian rainforest. With an ethos of eco, Wild’s funds are used to preserve its surrounding private nature sanctuary from poaching, mining and logging - a stay will
-            make you feel like you’re at the front line of conservation.”
-          </p>
-          <p class="font-weight-bold">Stephanie Cavagnaro, The Telegraph UK</p>
+          <p
+            class="mb-0 font-italic font-weight-light"
+          >“I discovered a version of luxury travel I could live with: a rare and extravagant feast of the senses hidden deep within the jungle; an unexpected, delightful conversation named Shinta Mani Wild…”</p>
+          <p class="font-weight-bold">Charles Graeber, Travel+Leisure - The IT List 2019</p>
         </base-quote>
       </section>
     </div>
 
-    
+    <base-action-bar :title="'The Bohemian Tent'" :price="1200"></base-action-bar>
 
     <page-footer></page-footer>
   </div>
@@ -77,6 +77,7 @@ import BaseGalleryList from '@/components/BaseGalleryList.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
+import BaseActionBar from '@/components/BaseActionBar.vue'
 export default Vue.extend({
   name: 'listing',
   components: {
@@ -87,7 +88,8 @@ export default Vue.extend({
     BaseGalleryList,
     BaseBannerAction,
     BaseArticlesList,
-    BaseQuote
+    BaseQuote,
+    BaseActionBar
   },
   data() {
     return {

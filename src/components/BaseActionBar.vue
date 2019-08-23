@@ -1,0 +1,62 @@
+<template>
+  <section class="wrapper px-5 py-1 mb-5">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <div class="logo mr-3">
+          <img class="w-100 h-100 d-block" src="~@/assets/img/logo-dark.png" alt />
+        </div>
+        <h2 class="title font-serif text-uppercase" v-text="title"></h2>
+      </div>
+      <div class="d-flex align-items-center">
+        <span class="pricing font-serif mr-5">
+          <span class="currency">$</span>
+          <span class="price" v-text="price"></span>
+          <sub class="postfix text-uppercase">/Night</sub>
+        </span>
+        <base-button :text="'Book Now'"></base-button>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script lang='ts'>
+import Vue from 'vue'
+import BaseButton from '@/components/BaseButton.vue'
+export default Vue.extend({
+  props: {
+    title: String,
+    price: Number
+  },
+  components: {
+    BaseButton
+  }
+})
+</script>
+
+<style lang='scss' scoped>
+.wrapper {
+  background-color: $secondary;
+  box-shadow: $box-shadow-sm;
+}
+.logo {
+  width: rem(48px);
+  height: rem(48px);
+}
+.title {
+  font-size: rem(40px);
+}
+::v-deep .button-frame {
+  $button-width: 172px;
+  $button-height: 72px;
+  width: rem($button-width);
+  height: rem($button-height);
+  background: url('~@/assets/img/button-book-now-light.png');
+  background-size: rem($button-width $button-height);
+}
+.pricing {
+  font-size: rem(32px);
+}
+.postfix {
+  font-size: 0.5em;
+}
+</style>
