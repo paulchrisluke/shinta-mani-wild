@@ -1,11 +1,10 @@
 @mixin line-clamp($line-count) {
   // stylelint-disable
   display: -webkit-box;
-  display: box;
   -webkit-line-clamp: $line-count;
   line-clamp: $line-count;
-  -webkit-box-orient: vertical;  
-  box-orient: vertical;  
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
   overflow: hidden;
   // stylelint-enable
 }
