@@ -58,10 +58,12 @@
       <!-- banner action -->
       <div class="mb-5">
         <base-banner-action :image="bannerImage1">
-          <div class="d-flex flex-column">
-            <div>Adventures</div>
-            <div>Await ...</div>
-          </div>
+          <h2 class="h1 text-uppercase font-serif text-light">
+              <div class="mb-3">
+                <div>Adventures</div>
+                <div class="border-bottom border-light pb-3 d-table">Await<small class="font-sans-serif">...</small></div>
+              </div>
+          </h2>
         </base-banner-action>
       </div>
 
@@ -135,7 +137,6 @@ const cardImage = require('@/assets/media/home-card-1.jpg')
 const cardImageXs = require('@/assets/media/home-card-1--mobile.jpg')
 const quoteImage1 = require('@/assets/media/home/dog-bubble-1.png')
 const quoteImage2 = require('@/assets/media/home/dog-bubble-2.png')
-const bannerImage1 = require('@/assets/media/home/banner-1.jpg')
 const galleryImage1 = require('@/assets/media/home/gallery-item-1.png')
 const galleryImage2 = require('@/assets/media/home/gallery-item-2.png')
 
@@ -175,9 +176,7 @@ export default Vue.extend({
         }
       },
       bannerImage1: {
-        default: {
-          src: bannerImage1
-        }
+        url: 'http://placehold.it/1440x400/3D5200'
       },
       galleryImages: [
         {
@@ -221,10 +220,12 @@ export default Vue.extend({
   }
 }
 .card-content::v-deep .button-frame {
-  width: rem(190px);
-  height: rem(88px);
+  $button-width: 172px;
+  $button-height: 72px;
+  width: rem($button-width);
+  height: rem($button-height);
   background: url('~@/assets/img/button-book-now.png');
-  background-size: rem(190px 88px);
+  background-size: rem($button-width $button-height);
 }
 .pattern-area-1 {
   @include media-breakpoint-up(xl) {
