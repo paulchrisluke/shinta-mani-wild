@@ -137,8 +137,8 @@ const cardImage = require('@/assets/media/home-card-1.jpg')
 const cardImageXs = require('@/assets/media/home-card-1--mobile.jpg')
 const quoteImage1 = require('@/assets/media/home/dog-bubble-1.png')
 const quoteImage2 = require('@/assets/media/home/dog-bubble-2.png')
-const galleryImage1 = require('@/assets/media/home/gallery-item-1.png')
-const galleryImage2 = require('@/assets/media/home/gallery-item-2.png')
+// const galleryImage1 = require('@/assets/media/home/gallery-item-1.png')
+// const galleryImage2 = require('@/assets/media/home/gallery-item-2.png')
 
 export default Vue.extend({
   name: 'home',
@@ -180,10 +180,10 @@ export default Vue.extend({
       },
       galleryImages: [
         {
-          url: galleryImage1
+          url: 'http://placehold.it/440x320/3D5200'
         },
         {
-          url: galleryImage2
+          url: 'http://placehold.it/440x320/3D5200'
         }
       ],
       galeryCoverTexts: [

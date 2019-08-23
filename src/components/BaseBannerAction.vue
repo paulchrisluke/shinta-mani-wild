@@ -3,8 +3,10 @@
     <div class="container is-small h-100">
       <div class="row h-100 align-items-center">
         <div class="col-4">
-          <slot />
-          <base-button :text="'Book Now'"></base-button>
+          <div class="px-5">
+            <slot />
+            <base-button :text="'Book Now'"></base-button>
+          </div>
         </div>
         <div class="col-8"></div>
       </div>
