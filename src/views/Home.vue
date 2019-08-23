@@ -23,7 +23,7 @@
         <base-heading :text="'Shinta Mani Wild'" :type="'h1'" :class-name="'h1 text-dark text-center'" :border-art="true" ></base-heading>
 
         <section class="container">
-          <base-quote :image="quoteImage1">
+          <base-quote :class-name="'is-left'">
             <p class="mb-0 font-italic font-weight-light">
               “A game-changing luxury tented camp built along a river valley in the waterfall-laced Cambodian rainforest. With an ethos of eco, Wild’s funds are used to preserve its surrounding private nature sanctuary from poaching, mining and logging - a stay will
               make you feel like you’re at the front line of conservation.”
@@ -72,7 +72,7 @@
         <base-heading :text="'Our Tents'" :type="'h2'" :class-name="'h1 text-dark text-center'" :border-art="true"></base-heading>
 
         <section class="container">
-          <base-quote :image="quoteImage2">
+          <base-quote :class-name="'is-right'">
             <p
               class="mb-0 font-italic font-weight-light"
             >“I discovered a version of luxury travel I could live with: a rare and extravagant feast of the senses hidden deep within the jungle; an unexpected, delightful conversation named Shinta Mani Wild…”</p>
@@ -135,8 +135,6 @@ import BaseGalleryList from '@/components/BaseGalleryList.vue'
 import PageFooter from '@/components/PageFooter.vue'
 const cardImage = require('@/assets/media/home-card-1.jpg')
 const cardImageXs = require('@/assets/media/home-card-1--mobile.jpg')
-const quoteImage1 = require('@/assets/media/home/dog-bubble-1.png')
-const quoteImage2 = require('@/assets/media/home/dog-bubble-2.png')
 // const galleryImage1 = require('@/assets/media/home/gallery-item-1.png')
 // const galleryImage2 = require('@/assets/media/home/gallery-item-2.png')
 
@@ -163,16 +161,6 @@ export default Vue.extend({
         },
         default: {
           src: cardImageXs
-        }
-      },
-      quoteImage1: {
-        default: {
-          src: quoteImage1
-        }
-      },
-      quoteImage2: {
-        default: {
-          src: quoteImage2
         }
       },
       bannerImage1: {

@@ -33,22 +33,35 @@
           <h2 class="h1 text-uppercase font-serif text-light">
             <div class="mb-3">
               <div>Full of</div>
-              <div class="pb-3 d-table">
-                Adventure
-              </div>
+              <div class="pb-3 d-table">Adventure</div>
             </div>
           </h2>
         </base-banner-action>
       </div>
 
       <!-- articles -->
-      <div class="container is-small">
-        <div class="mb-5">
-          <base-heading :type="'h2'" :class-name="'h3 text-dark text-center'" :text="`Explore our ${resort.title}`"></base-heading>
-          <base-articles-list :items="articlesList"></base-articles-list>
-        </div>
+      <div class="container is-small mb-6">
+        <base-heading
+          :type="'h2'"
+          :class-name="'h2 text-dark text-center'"
+          :text="`Explore our ${resort.title}`"
+        ></base-heading>
+        <base-articles-list :items="articlesList"></base-articles-list>
       </div>
+
+      <!-- quote -->
+      <section class="container mb-5">
+        <base-quote :class-name="'is-right'">
+          <p class="mb-0 font-italic font-weight-light">
+            “A game-changing luxury tented camp built along a river valley in the waterfall-laced Cambodian rainforest. With an ethos of eco, Wild’s funds are used to preserve its surrounding private nature sanctuary from poaching, mining and logging - a stay will
+            make you feel like you’re at the front line of conservation.”
+          </p>
+          <p class="font-weight-bold">Stephanie Cavagnaro, The Telegraph UK</p>
+        </base-quote>
+      </section>
     </div>
+
+    
 
     <page-footer></page-footer>
   </div>
@@ -63,6 +76,7 @@ import BaseHeading from '@/components/BaseHeading.vue'
 import BaseGalleryList from '@/components/BaseGalleryList.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
+import BaseQuote from '@/components/BaseQuote.vue'
 export default Vue.extend({
   name: 'listing',
   components: {
@@ -72,7 +86,8 @@ export default Vue.extend({
     BaseHeading,
     BaseGalleryList,
     BaseBannerAction,
-    BaseArticlesList
+    BaseArticlesList,
+    BaseQuote
   },
   data() {
     return {
@@ -88,35 +103,28 @@ export default Vue.extend({
           description:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!',
           url: '/link-to-article-one',
-          image: "http://placehold.it/210x210"
+          image: 'http://placehold.it/210x210'
         },
         {
           title: 'sample article two longer than normal',
           description:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!',
           url: '/link-to-article-one',
-          image: "http://placehold.it/210x210"
+          image: 'http://placehold.it/210x210'
         },
         {
           title: 'sample article three even more longer than beforeeee',
           description:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!',
           url: '/link-to-article-one',
-          image: "http://placehold.it/210x210"
+          image: 'http://placehold.it/210x210'
         },
         {
           title: 'sample article three even more longer than beforeeee',
           description:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!',
           url: '/link-to-article-one',
-          image: "http://placehold.it/210x210"
-        },
-        {
-          title: 'sample article three even more longer than beforeeee',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!',
-          url: '/link-to-article-one',
-          image: "http://placehold.it/210x210"
+          image: 'http://placehold.it/210x210'
         }
       ]
     }

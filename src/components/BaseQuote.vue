@@ -1,5 +1,8 @@
 <template>
-  <div class="quote mx-auto" :style="{'background-image': `url(${image.default.src})`}">
+  <div
+    :class="className"
+    class="quote mx-auto"
+  >
     <div class="quote-text text-center text-dark">
       <slot />
     </div>
@@ -11,9 +14,13 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'base-quote',
   props: {
-    image: {
-      type: Object,
-      required: true
+    className: {
+      type: String,
+      required: true,
+      validator: function(value: string) {
+        // The value must match one of these strings
+        return ['is-left', 'is-right'].indexOf(value) !== -1
+      }
     }
   }
 })
@@ -22,6 +29,12 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .quote {
   @include media-breakpoint-up(xl) {
+    &.is-left {
+      background-image: url('~@/assets/media/home/dog-bubble-1.png');
+    }
+    &.is-right {
+      background-image: url('~@/assets/media/home/dog-bubble-2.png');
+    }
     width: rem(1086px);
     height: rem(346px);
     background-repeat: no-repeat;
