@@ -17,6 +17,10 @@ export default new Router({
     {
       path: '/listing/:id',
       component: Listing
+    },
+    {
+      path: '/*/',
+      redirect: '/'
     }
   ]
 })

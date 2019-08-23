@@ -3,7 +3,7 @@
     <!-- <div id="nav">
       <router-link to="/">Home</router-link>|
     </div>-->
-    <router-view />
+    <router-view :key="$route.name + ($route.params.id || '')"/>
   </div>
 </template>
 
