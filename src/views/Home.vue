@@ -8,7 +8,7 @@
     <page-header></page-header>
 
     <!-- player -->
-    <div @click="showIntroVideo()" :class="{'has-image': !shouldShowIntroVideo}" class="hero">
+    <div @click="showIntroVideo()" :class="{'has-image': !shouldShowIntroVideo}" :style="getHeroStyle()" class="hero position-relative">
       <!-- https://www.youtube.com/watch?v=SUWpCjzeMb4 -->
       <video-player
         :is-visible="shouldShowIntroVideo"
@@ -24,11 +24,7 @@
 
         <section class="container">
           <base-quote :class-name="'is-left'">
-            <p class="mb-0 font-italic font-weight-light">
-              “A game-changing luxury tented camp built along a river valley in the waterfall-laced Cambodian rainforest. With an ethos of eco, Wild’s funds are used to preserve its surrounding private nature sanctuary from poaching, mining and logging - a stay will
-              make you feel like you’re at the front line of conservation.”
-            </p>
-            <p class="font-weight-bold">Stephanie Cavagnaro, The Telegraph UK</p>
+            <div class="quote w-100" v-html="resort.ctaText"></div>
           </base-quote>
         </section>
       </div>
@@ -73,17 +69,18 @@
 
         <section class="container">
           <base-quote :class-name="'is-right'">
-            <p
-              class="mb-0 font-italic font-weight-light"
-            >“I discovered a version of luxury travel I could live with: a rare and extravagant feast of the senses hidden deep within the jungle; an unexpected, delightful conversation named Shinta Mani Wild…”</p>
-            <p class="font-weight-bold">Charles Graeber, Travel+Leisure - The IT List 2019</p>
+            <div class="quote w-100">
+              <p
+              >“I discovered a version of luxury travel I could live with: a rare and extravagant feast of the senses hidden deep within the jungle; an unexpected, delightful conversation named Shinta Mani Wild…”</p>
+              <b>Charles Graeber, Travel+Leisure - The IT List 2019</b>
+            </div>
           </base-quote>
         </section>
       </div>
 
       <!-- gallery -->
       <div class="mb-5">
-        <base-gallery-list :images="galleryImages" :cover-texts="galeryCoverTexts" />
+        <base-gallery-list :items="galleryItems" />
       </div>
 
       <!-- press banner -->
@@ -135,8 +132,6 @@ import BaseGalleryList from '@/components/BaseGalleryList.vue'
 import PageFooter from '@/components/PageFooter.vue'
 const cardImage = require('@/assets/media/home-card-1.jpg')
 const cardImageXs = require('@/assets/media/home-card-1--mobile.jpg')
-// const galleryImage1 = require('@/assets/media/home/gallery-item-1.png')
-// const galleryImage2 = require('@/assets/media/home/gallery-item-2.png')
 
 export default Vue.extend({
   name: 'home',
@@ -166,23 +161,42 @@ export default Vue.extend({
       bannerImage1: {
         url: 'http://placehold.it/1440x400/3D5200'
       },
-      galleryImages: [
+      galleryItems: [
         {
-          url: 'http://placehold.it/440x320/3D5200'
+          url: 'http://placehold.it/440x320/3D5200',
+          link: '/listing/wild-tents',
+          title: 'Wild<br>Tents',
         },
         {
-          url: 'http://placehold.it/440x320/3D5200'
+          url: 'http://placehold.it/440x320/3D5200',
+          link: '/listing/waterfall-tents',
+          title: 'Waterfall<br>Tents'
         }
-      ],
-      galeryCoverTexts: [
-        'Wild<br>Tents',
-        'Waterfall<br>Tents'
       ]
     }
   },
+  mounted() {
+    this.init()
+  },
+  computed: {
+    resort(): any {
+      return this.$store.getters['resort/getResort']
+    }
+  },
   methods: {
+    init() {
+      this.$store.dispatch('resort/getItemBySlug', 'home')
+    },
     showIntroVideo() {
       this.shouldShowIntroVideo = true
+    },
+    getHeroStyle() {
+      if (!this.shouldShowIntroVideo) {
+        return {
+          'background-image': `url(${this.resort.featuredImage})`
+        }
+      }
+      return {}
     },
     bookNow() {
       console.log('book now...')
@@ -201,10 +215,20 @@ export default Vue.extend({
   }
 
   &.has-image {
-    background: $linear-gradient-md, url('~@/assets/img/home-hero.jpg') no-repeat;
     background-size: cover;
+    background-repeat: no-repeat;
     height: rem(800px - $header-height);
     cursor: pointer;
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      content: '';
+      display: block;
+      background: $linear-gradient-md;
+    }
   }
 }
 .card-content::v-deep .button-frame {
@@ -242,5 +266,16 @@ export default Vue.extend({
 }
 .press-banner--link {
   background: url('~@/assets/media/home/press-banner.png') left;
+}
+.quote::v-deep {
+  p {
+    margin-bottom: 0;
+    font-style: italic;
+    font-weight: 300;
+  }
+  b {
+    font-weight: bold;
+    display: block;
+  }
 }
 </style>

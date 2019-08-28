@@ -23,9 +23,9 @@
       </div>
 
       <!-- gallery -->
-      <section class="mb-5">
+      <section class="mb-5" v-if="resortImages">
         <base-heading :text="'Gallery'" :type="'h2'" :class-name="'h2 text-dark text-center'"></base-heading>
-        <base-gallery-list :images="resort.images" :cover-texts="galleryCoverTexts" />
+        <base-gallery-list :items="galleryItems" :cover-texts="galleryCoverTexts" />
       </section>
 
       <!-- banner action -->
@@ -47,16 +47,13 @@
           :class-name="'h2 text-dark text-center'"
           :text="`Explore our ${resort.title}`"
         ></base-heading>
-        <base-articles-list :items="articlesList"></base-articles-list>
+        <base-articles-list :items="resort.stories"></base-articles-list>
       </div>
 
       <!-- quote -->
       <section class="container mb-5">
         <base-quote :class-name="'is-right'">
-          <p
-            class="mb-0 font-italic font-weight-light"
-          >“I discovered a version of luxury travel I could live with: a rare and extravagant feast of the senses hidden deep within the jungle; an unexpected, delightful conversation named Shinta Mani Wild…”</p>
-          <p class="font-weight-bold">Charles Graeber, Travel+Leisure - The IT List 2019</p>
+          <div class="quote w-100" v-html="resort.ctaText"></div>
         </base-quote>
       </section>
     </div>
@@ -78,6 +75,8 @@ import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import BaseActionBar from '@/components/BaseActionBar.vue'
+import { GalleryImage } from '@/types.ts'
+
 export default Vue.extend({
   name: 'listing',
   components: {
@@ -97,43 +96,40 @@ export default Vue.extend({
       galleryCoverTexts: ['Exterior', 'Interior'],
       bannerImage: {
         url: 'http://placehold.it/1440x400/3D5200'
-      },
-      // TODO: replace by store data and move to computed
-      articlesList: [
-        {
-          title: 'sample article one',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!',
-          url: '/link-to-article-one',
-          image: 'http://placehold.it/210x210'
-        },
-        {
-          title: 'sample article two longer than normal',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!',
-          url: '/link-to-article-one',
-          image: 'http://placehold.it/210x210'
-        },
-        {
-          title: 'sample article three even more longer than beforeeee',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!',
-          url: '/link-to-article-one',
-          image: 'http://placehold.it/210x210'
-        },
-        {
-          title: 'sample article three even more longer than beforeeee',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!consectetur adipisicing elit. Tempore ducimus voluptates aliquam, magnam itaque sapiente error illo omnis numquam autem!',
-          url: '/link-to-article-one',
-          image: 'http://placehold.it/210x210'
-        }
-      ]
+      }
     }
   },
   computed: {
     resort(): any {
       return this.$store.getters['resort/getResort']
+    },
+    galleryItems() {
+      const images = this.resortImages
+      if (images.length === 0) {
+        return []
+      }
+
+      const items = [
+        {
+          link: '/comming-soon',
+          title: 'Interior',
+          url: ''
+        },
+        {
+          link: '/comming-soon',
+          title: 'Exterior',
+          url: ''
+        }
+      ]
+      
+      // merge images with other-props-array
+      return items.map((item, index) => {
+        item.url = images[index].url
+        return item
+      })
+    },
+    resortImages(): GalleryImage[] {
+      return this.$store.getters['resort/getImages']
     }
   },
   mounted() {
@@ -150,5 +146,16 @@ export default Vue.extend({
 <style lang="scss" scoped>
 ::v-deep .hero-image {
   height: rem(736px);
+}
+.quote::v-deep {
+  p {
+    margin-bottom: 0;
+    font-style: italic;
+    font-weight: 300;
+  }
+  b {
+    font-weight: bold;
+    display: block;
+  }
 }
 </style>

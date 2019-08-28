@@ -10,15 +10,15 @@
             <img class="w-100" :src="item.image" :alt="item.title" />
             <h3
               class="title h3 font-weight-normal font-serif my-3 d-flex align-items-center"
-              :title="item.title"
+              :title="item.ctaText"
             >
               <a
                 class="title-link text-dark stretched-link text-decoration-none"
-                :href="item.url"
-                v-text="item.title"
+                :href="item.ctaLink"
+                v-text="item.ctaText"
               ></a>
             </h3>
-            <p class="description" v-text="item.description"></p>
+            <p class="description" v-text="item.content"></p>
           </div>
         </article>
       </div>
