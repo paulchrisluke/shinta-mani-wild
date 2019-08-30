@@ -30,7 +30,7 @@
 
       <!-- banner action -->
       <div class="mb-5">
-        <base-banner-action :image="bannerImage">
+        <base-banner-action :image="resort.backgroundImage">
           <h2 class="h1 text-uppercase font-serif text-light">
             <div class="mb-3">
               <div>Full of</div>
@@ -93,10 +93,7 @@ export default Vue.extend({
   data() {
     return {
       slug: this.$route.params.id,
-      galleryCoverTexts: ['Exterior', 'Interior'],
-      bannerImage: {
-        url: 'http://placehold.it/1440x400/3D5200'
-      }
+      galleryCoverTexts: ['Exterior', 'Interior']
     }
   },
   computed: {

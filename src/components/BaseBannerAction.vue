@@ -1,5 +1,10 @@
 <template>
-  <section class="wrapper" :style="{'background-image': `url(${image.url})`}">
+  <section class="wrapper position-relative" :style="getWrapperStyle()">
+    <div class="position-absolute video-wrapper" v-if="video">
+      <video class="video mx-auto d-block" autoplay muted loop>
+        <source :src="video" type="video/mp4">
+      </video>
+    </div>
     <div class="container is-small h-100">
       <div class="row h-100 align-items-center">
         <div class="col-4">
@@ -26,8 +31,20 @@ export default Vue.extend({
   },
   props: {
     image: {
-      type: Object,
-      required: true
+      type: String
+    },
+    video: {
+      type: String
+    }
+  },
+  methods: {
+    getWrapperStyle () {      
+      if (!this.image) {
+        return
+      }
+      return {
+        'background-image': `url(${this.image})`
+      }
     }
   }
 })
@@ -36,10 +53,16 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .wrapper {
   height: rem(400px);
-  background: no-repeat center;
+  background: $black no-repeat center;
   background-size: cover;
 }
-.wrapper::v-deep .button-frame {
+.video-wrapper {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+::v-deep .button-frame {
   $button-width: 172px;
   $button-height: 72px;
   width: rem($button-width);

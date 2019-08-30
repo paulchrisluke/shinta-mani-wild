@@ -53,7 +53,7 @@
 
       <!-- banner action -->
       <div class="mb-5">
-        <base-banner-action :image="bannerImage1">
+        <base-banner-action :video="resort.backgroundImage">
           <h2 class="h1 text-uppercase font-serif text-light">
               <div class="mb-3">
                 <div>Adventures</div>
@@ -157,9 +157,6 @@ export default Vue.extend({
         default: {
           src: cardImageXs
         }
-      },
-      bannerImage1: {
-        url: 'http://placehold.it/1440x400/3D5200'
       },
       galleryItems: [
         {
