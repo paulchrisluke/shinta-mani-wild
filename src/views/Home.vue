@@ -251,7 +251,7 @@ export default Vue.extend({
 }
 .pattern-area-2 {
   @include media-breakpoint-up(xl) {
-    background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1566987433/Shinta%20Mani%20Wild/home/gibbon1_mbh3bg.png') no-repeat top right 5%;
+    // background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1566987433/Shinta%20Mani%20Wild/home/gibbon1_mbh3bg.png') no-repeat top right 5%;
   }
 }
 .shift-down {
