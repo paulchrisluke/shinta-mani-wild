@@ -8,8 +8,8 @@
               <a href="/" class="logo-link d-block" title="Home">
                 <img
                   class="w-100 h-100 d-block"
-                  src="~@/assets/img/logo-64.png"
-                  alt="shinta mani wild"
+                  src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png"
+                  alt="Shinta Mani Wild"
                 />
               </a>
             </div>

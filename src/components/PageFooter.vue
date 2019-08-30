@@ -6,7 +6,7 @@
           <div class="page-footer--logo px-4">
             <div class="d-table">
               <a href="/" class="logo-link mt-2 d-block" title="Home">
-                <img class="d-block mx-auto" src="~@/assets/img/logo-64.png" alt="shinta mani wild" />
+                <img class="d-block mx-auto" src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_64/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png" alt="shinta mani wild" />
               </a>
 
               <div class="text-light text-center my-2">

@@ -30,13 +30,13 @@ export default Vue.extend({
 .quote {
   @include media-breakpoint-up(xl) {
     &.is-left {
-      background-image: url('~@/assets/media/home/dog-bubble-1.png');
+      background-image: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1566988766/Shinta%20Mani%20Wild/home/Dog_Bubble2_c6civp.png');
     }
     &.is-right {
-      background-image: url('~@/assets/media/home/dog-bubble-2.png');
+      background-image: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/a_hflip/Shinta%20Mani%20Wild/home/Dog_Bubble2_c6civp.png');
     }
-    width: rem(1086px);
-    height: rem(346px);
+    width: rem(1100px);
+    height: rem(388px);
     background-repeat: no-repeat;
   }
 }
@@ -44,7 +44,7 @@ export default Vue.extend({
   font-size: rem(24px);
   line-height: 1.3;
   @include media-breakpoint-up(xl) {
-    padding: rem(40px 96px 0 96px);
+    padding: rem(56px 96px 0 96px);
   }
 }
 </style>

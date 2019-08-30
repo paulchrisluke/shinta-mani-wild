@@ -47,7 +47,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .border-art {
-  height: rem(21px);
-  background: url("~@/assets/img/border-art.png") no-repeat center;
+  height: rem(24px);
+  background: url("https://res.cloudinary.com/ddwsbpkzk/image/upload/h_24/Shinta%20Mani%20Wild/home/line_umnjaa.png") no-repeat center;
 }
 </style>
