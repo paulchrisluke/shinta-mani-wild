@@ -9,8 +9,15 @@
         <hero-image :image="resort.featuredImage"></hero-image>
       </div>
 
+      
       <div class="container is-small mb-5">
-        <article>
+        <div v-if="!resort.id">
+          <content-placeholders centered rounded>
+            <content-placeholders-heading class="mb-5"/>
+            <content-placeholders-text :lines="4" />
+          </content-placeholders>
+        </div>
+        <article v-else-if="resort.title">
           <base-heading
             :text="resort.title"
             :type="'h1'"
@@ -23,7 +30,7 @@
       </div>
 
       <!-- gallery -->
-      <section class="mb-5" v-if="resortImages">
+      <section class="mb-5" v-if="galleryItems.length > 0">
         <base-heading :text="'Gallery'" :type="'h2'" :class-name="'h2 text-dark text-center'"></base-heading>
         <base-gallery-list :items="galleryItems" :cover-texts="galleryCoverTexts" />
       </section>
@@ -141,8 +148,20 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-::v-deep .hero-image {
-  height: rem(736px);
+$hero-image-height: 736px;
+::v-deep {
+  .hero-image {
+    height: rem($hero-image-height);
+  }
+  .placeholder-image {
+    width: 100%;
+    height: 100%;
+    padding: rem(80px);
+  }
+  .vue-content-placeholders-img {
+    width: 100%;
+    height: rem($hero-image-height - 2 * 80px);
+  }
 }
 .quote::v-deep {
   p {
