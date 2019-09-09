@@ -1,5 +1,8 @@
 <template>
-  <component :is="type" :class="className" class="text-uppercase font-serif">
+  <content-placeholders v-if="showPlaceholder" class="mb-4" centered rounded>
+    <content-placeholders-heading />
+  </content-placeholders>
+  <component :is="type" v-else :class="className" class="text-uppercase font-serif">
     <span class="d-block mb-4">
       <span
         :class="{'border-bottom border-dark': borderDark, 'border-bottom border-light': borderLight}"
@@ -38,6 +41,10 @@ export default Vue.extend({
       default: false
     },
     borderArt: {
+      type: Boolean,
+      default: false
+    },
+    showPlaceholder: {
       type: Boolean,
       default: false
     }

@@ -9,23 +9,22 @@
         <hero-image :image="resort.featuredImage"></hero-image>
       </div>
 
-      
       <div class="container is-small mb-5">
-        <div v-if="!resort.id">
-          <content-placeholders centered rounded>
-            <content-placeholders-heading class="mb-5"/>
-            <content-placeholders-text :lines="4" />
-          </content-placeholders>
-        </div>
-        <article v-else-if="resort.title">
+        <article>
           <base-heading
+            :showPlaceholder="!resort.title"
             :text="resort.title"
             :type="'h1'"
             :class-name="'h1 text-dark text-center mb-5'"
             :border-art="true"
           ></base-heading>
 
-          <p class="mb-0" v-text="resort.description"></p>
+          <div v-if="!resort.description">
+            <content-placeholders centered rounded>
+              <content-placeholders-text :lines="4" />
+            </content-placeholders>
+          </div>
+          <p v-else class="mb-0" v-text="resort.description"></p>
         </article>
       </div>
 
@@ -50,6 +49,7 @@
       <!-- articles -->
       <div class="container is-small mb-6">
         <base-heading
+          :show-placeholder="!resort.id"
           :type="'h2'"
           :class-name="'h2 text-dark text-center'"
           :text="`Explore our ${resort.title}`"
@@ -59,8 +59,8 @@
 
       <!-- quote -->
       <section class="container mb-5">
-        <base-quote :class-name="'is-right'">
-          <div class="quote w-100" v-html="resort.ctaText"></div>
+        <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
+          <div class="quote w-100" v-html="resort.h2"></div>
         </base-quote>
       </section>
     </div>
@@ -125,7 +125,7 @@ export default Vue.extend({
           url: ''
         }
       ]
-      
+
       // merge images with other-props-array
       return items.map((item, index) => {
         item.url = images[index].url
@@ -152,15 +152,16 @@ $hero-image-height: 736px;
 ::v-deep {
   .hero-image {
     height: rem($hero-image-height);
-  }
-  .placeholder-image {
-    width: 100%;
-    height: 100%;
-    padding: rem(80px);
-  }
-  .vue-content-placeholders-img {
-    width: 100%;
-    height: rem($hero-image-height - 2 * 80px);
+
+    .placeholder-image {
+      width: 100%;
+      height: 100%;
+      padding: rem(80px);
+    }
+    .vue-content-placeholders-img {
+      width: 100%;
+      height: rem($hero-image-height - 2 * 80px);
+    }
   }
 }
 .quote::v-deep {

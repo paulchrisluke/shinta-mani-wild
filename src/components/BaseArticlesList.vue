@@ -1,7 +1,15 @@
 <template>
   <section class="wrapper">
     <div class="row">
-      <div class="col-3" v-for="(item, index) in items" :key="index">
+
+      <template v-if="!(items.length > 0)">
+        <content-placeholders class="col-3" rounded v-for="item in 4" :key="item">
+          <content-placeholders-img />
+          <content-placeholders-heading class="my-3"/>
+          <content-placeholders-text :lines="2" />
+        </content-placeholders>
+      </template>
+      <div v-else class="col-3" v-for="(item, index) in items" :key="index">
         <article class="item mb-3">
           <div class="content position-relative">
             <a class="like position-absolute">
