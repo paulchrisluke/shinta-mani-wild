@@ -23,8 +23,8 @@
         <base-heading :text="'Shinta Mani Wild'" :type="'h1'" :class-name="'h1 text-dark text-center'" :border-art="true" ></base-heading>
 
         <section class="container">
-          <base-quote :class-name="'is-left'">
-            <div class="quote w-100 h-100" v-html="resort.ctaText"></div>
+          <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+            <div class="quote w-100 h-100" v-html="resort.description"></div>
           </base-quote>
         </section>
       </div>
@@ -68,12 +68,8 @@
       <!-- quote tents -->
       <div class="position-relative">
         <section class="container">
-          <base-quote :class-name="'is-right'">
-            <div class="quote w-100 h-100">
-              <p
-              >“I discovered a version of luxury travel I could live with: a rare and extravagant feast of the senses hidden deep within the jungle; an unexpected, delightful conversation named Shinta Mani Wild…”</p>
-              <b>Charles Graeber, Travel+Leisure - The IT List 2019</b>
-            </div>
+          <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
+            <div class="quote w-100 h-100" v-html="resort.h2"></div>
           </base-quote>
         </section>
       </div>

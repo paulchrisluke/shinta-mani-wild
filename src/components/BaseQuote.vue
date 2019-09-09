@@ -4,7 +4,10 @@
     class="quote mx-auto"
   >
     <div class="quote-text text-center text-dark">
-      <slot />
+      <content-placeholders v-if="showPlaceholder" centered rounded>
+        <content-placeholders-text :lines="4" />
+      </content-placeholders>
+      <slot v-else />
     </div>
   </div>
 </template>
@@ -14,6 +17,10 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'base-quote',
   props: {
+    showPlaceholder: {
+      type: Boolean,
+      default: false
+    },
     className: {
       type: String,
       required: true,

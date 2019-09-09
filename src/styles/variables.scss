@@ -37,7 +37,6 @@ $nav-link-padding-y: rem(4px);
 
 $spacer: 1rem !default;
 $spacers: () !default;
-// stylelint-disable-next-line scss/dollar-variable-default
 $spacers: map-merge(
   (
     0: 0,
@@ -64,6 +63,15 @@ $linear-gradient-md: linear-gradient(180deg, rgba(0, 0, 0, 0) 80.56%, #000000 10
 
 // general
 $enable-shadows: true;
+
+// plugins
+
+// - vue content placeholders
+$vue-content-placeholders-primary-color: darken($brand-1, 30%);
+$vue-content-placeholders-secondary-color: darken($brand-1, 15%);
+$vue-content-placeholders-border-radius: 10px;
+$vue-content-placeholders-line-height: 16px;
+$vue-content-placeholders-spacing: 16px;
 
 /* 
  * =====================================================
