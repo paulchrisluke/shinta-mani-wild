@@ -43,7 +43,7 @@
                     :border-dark="true"
                   ></base-heading>
                   <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation spearheads our conservation and community outreach programmes.</p>
-                  <base-button @click="bookNow" :text="'Book Now'"></base-button>
+                  <base-button :link="resort.ctaLink" :text="'Book Now'"></base-button>
                 </div>
               </template>
             </base-card>
@@ -53,12 +53,11 @@
 
       <!-- banner action -->
       <div class="mb-5">
-        <base-banner-action :video="resort.backgroundImage">
+        <base-banner-action :image="resort.backgroundImage" :link="resort.ctaLink">
           <h2 class="h1 text-uppercase font-serif text-light">
-              <div class="mb-3">
-                <div>Adventures</div>
-                <div class="border-bottom border-light pb-3 d-table">Await<small class="font-sans-serif">...</small></div>
-              </div>
+            <div class="mb-3">
+              <div class="pb-3 d-table" v-text="resort.ctaText"></div>
+            </div>
           </h2>
         </base-banner-action>
       </div>
@@ -103,7 +102,7 @@
                     :border-dark="true"
                   ></base-heading>
                   <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation...</p>
-                  <base-button :class-name="'ml-xl-auto'" @click="bookNow" :text="'Book Now'"></base-button>
+                  <base-button :link="resort.ctaLink" :class-name="'ml-xl-auto'" :text="'Book Now'"></base-button>
                 </div>
               </template>
             </base-card>
@@ -185,19 +184,6 @@ export default Vue.extend({
     },
     showIntroVideo() {
       this.shouldShowIntroVideo = true
-    },
-    // getHeroStyle() {
-    //   if (!this.shouldShowIntroVideo) {
-    //     return {
-    //       'background-image': `url(https://res.cloudinary.com/ddwsbpkzk/image/upload/h_800/Shinta%20Mani%20Wild/home/Hero_Hero_aro2ji.jpg)`
-    //       // TODO: fix path in api and enable this:
-    //       // 'background-image': `url(${this.resort.featuredImage})`
-    //     }
-    //   }
-    //   return {}
-    // },
-    bookNow() {
-      console.log('book now...')
     }
   }
 })

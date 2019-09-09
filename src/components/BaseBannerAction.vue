@@ -1,19 +1,20 @@
 <template>
-  <section class="wrapper position-relative" :style="getWrapperStyle()">
+  <section
+    class="wrapper position-relative"
+    :class="{'has-image': image, 'has-video': video}"
+    :style="getWrapperStyle()"
+  >
     <div class="position-absolute video-wrapper" v-if="video">
       <video class="video mx-auto d-block" autoplay muted loop>
-        <source :src="video" type="video/mp4">
+        <source :src="video" type="video/mp4" />
       </video>
     </div>
-    <div class="container is-small h-100">
-      <div class="row h-100 align-items-center">
-        <div class="col-4">
-          <div class="px-5">
-            <slot />
-            <base-button :text="'Book Now'"></base-button>
-          </div>
+    <div class="container is-small h-100 image-wrapper position-relative">
+      <div class="h-100 d-flex align-items-center">
+        <div class="px-5">
+          <slot />
+          <base-button :text="'Book Now'" :href="link" target="_blank"></base-button>
         </div>
-        <div class="col-8"></div>
       </div>
     </div>
   </section>
@@ -35,10 +36,13 @@ export default Vue.extend({
     },
     video: {
       type: String
+    },
+    link: {
+      type: String
     }
   },
   methods: {
-    getWrapperStyle () {      
+    getWrapperStyle() {
       if (!this.image) {
         return
       }
@@ -61,6 +65,24 @@ export default Vue.extend({
   left: 0;
   right: 0;
   bottom: 0;
+}
+.has-image:not(.has-video) {
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(
+      270deg,
+      transparent 33.33%,
+      $black 100%
+    );
+    content: '';
+  }
+}
+.image-wrapper {
+  z-index: 1;
 }
 ::v-deep .button-frame {
   $button-width: 172px;

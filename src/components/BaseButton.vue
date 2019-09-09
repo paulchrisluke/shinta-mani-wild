@@ -1,10 +1,15 @@
 <template>
-  <button
+  <a
+    :class="className"
+    class="d-flex justify-content-center align-items-center button button-frame"
+    :aria-label="text"
+  ></a>
+  <!-- <button
     @click="onClick($event)"
     :class="className"
     class="d-flex justify-content-center align-items-center button button-frame"
     :aria-label="text"
-  ></button>
+  ></button>-->
 </template>
 
 <script lang="ts">
@@ -18,17 +23,13 @@ export default Vue.extend({
     className: {
       type: String,
       default: ''
-    },
-    callback: {
-      type: Function,
-      default: () => {}
-    }
-  },
-  methods: {
-    onClick(event: object) {
-      this.$emit('click', event)
     }
   }
+  // methods: {
+  //   onClick(event: object) {
+  //     this.$emit('click', event)
+  //   }
+  // }
 })
 </script>
 
