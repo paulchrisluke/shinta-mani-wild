@@ -40,3 +40,9 @@ body,
 .page--content {
   flex-grow: 1;
 }
+.shift-down {
+  @include media-breakpoint-up(xl) {
+    top: rem(40px);
+    z-index: -1;
+  }
+}

@@ -12,7 +12,7 @@
       <div class="container is-small mb-5">
         <article>
           <base-heading
-            :showPlaceholder="!resort.title"
+            :show-placeholder="!resort.id"
             :text="resort.title"
             :type="'h1'"
             :class-name="'h1 text-dark text-center mb-5'"
@@ -46,6 +46,15 @@
         </base-banner-action>
       </div>
 
+      <!-- quote -->
+      <div class="shift-down position-relative">
+        <section class="container">
+          <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
+            <div class="quote w-100 h-100" v-html="resort.h2"></div>
+          </base-quote>
+        </section>
+      </div>
+
       <!-- articles (stories) -->
       <div class="container is-small mb-6">
         <base-heading
@@ -54,15 +63,8 @@
           :class-name="'h2 text-dark text-center'"
           :text="`Explore our ${resort.title}`"
         ></base-heading>
-        <base-articles-list :items="resort.stories"></base-articles-list>
+        <base-articles-list :show-placeholder="!resort.id" :items="stories"></base-articles-list>
       </div>
-
-      <!-- quote -->
-      <section class="container mb-5">
-        <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
-          <div class="quote w-100" v-html="resort.h2"></div>
-        </base-quote>
-      </section>
     </div>
 
     <base-action-bar :title="'The Bohemian Tent'" :price="1200"></base-action-bar>
@@ -82,7 +84,8 @@ import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import BaseActionBar from '@/components/BaseActionBar.vue'
-import { GalleryImage } from '@/types.ts'
+import { GalleryImage, Story } from '@/types'
+import { get } from 'lodash-es'
 
 export default Vue.extend({
   name: 'listing',
@@ -105,6 +108,9 @@ export default Vue.extend({
   computed: {
     resort(): any {
       return this.$store.getters['resort/getResort']
+    },
+    stories(): Story[] {
+      return get(this.resort, 'stories', []).filter((item: Story) => item.order === 1)
     },
     galleryItems() {
       const images = this.resortImages

@@ -43,7 +43,7 @@
                     :border-dark="true"
                   ></base-heading>
                   <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation spearheads our conservation and community outreach programmes.</p>
-                  <base-button :link="resort.ctaLink" :text="'Book Now'"></base-button>
+                  <base-button :href="resort.ctaLink" :text="'Book Now'"></base-button>
                 </div>
               </template>
             </base-card>
@@ -102,7 +102,7 @@
                     :border-dark="true"
                   ></base-heading>
                   <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation...</p>
-                  <base-button :link="resort.ctaLink" :class-name="'ml-xl-auto'" :text="'Book Now'"></base-button>
+                  <base-button :href="resort.ctaLink" :class-name="'ml-xl-auto'" :text="'Book Now'"></base-button>
                 </div>
               </template>
             </base-card>
@@ -234,11 +234,6 @@ export default Vue.extend({
 .pattern-area-2 {
   @include media-breakpoint-up(xl) {
     // background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1566987433/Shinta%20Mani%20Wild/home/gibbon1_mbh3bg.png') no-repeat top right 5%;
-  }
-}
-.shift-down {
-  @include media-breakpoint-up(xl) {
-    top: rem(40px);
   }
 }
 .press-banner {
