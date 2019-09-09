@@ -35,11 +35,10 @@
 
       <!-- banner action -->
       <div class="mb-0">
-        <base-banner-action :image="resort.backgroundImage">
+        <base-banner-action :image="resort.backgroundImage" :link="resort.ctaLink">
           <h2 class="h1 text-uppercase font-serif text-light">
             <div class="mb-3">
-              <div>Full of</div>
-              <div class="pb-3 d-table">Adventure</div>
+              <div class="pb-3 d-table" v-text="resort.ctaText"></div>
             </div>
           </h2>
         </base-banner-action>
