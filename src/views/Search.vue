@@ -29,12 +29,12 @@
       </div>
 
       <!-- featured stories -->
-      <section class="container is-small mb-5">
+      <section class="container is-small mb-5 featured-stories">
         <base-articles-list  :items-per-row="2" :items="getStories(1)"></base-articles-list>
       </section>
 
       <!-- banner action -->
-      <div class="mb-5">
+      <div class="mb-0">
         <base-banner-action :image="resort.backgroundImage">
           <h2 class="h1 text-uppercase font-serif text-light">
             <div class="mb-3">
@@ -45,23 +45,19 @@
         </base-banner-action>
       </div>
 
-      <!-- articles (stories) -->
-      <div class="container is-small mb-6">
-        <base-heading
-          :show-placeholder="!resort.id"
-          :type="'h2'"
-          :class-name="'h2 text-dark text-center'"
-          :text="`Explore our ${resort.title}`"
-        ></base-heading>
-        <base-articles-list :items="getStories(2)"></base-articles-list>
+      <!-- quote -->
+      <div class="shift-down position-relative">
+        <section class="container">
+          <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+            <div class="quote w-100" v-html="resort.h2"></div>
+          </base-quote>
+        </section>
       </div>
 
-      <!-- quote -->
-      <section class="container mb-5">
-        <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
-          <div class="quote w-100" v-html="resort.h2"></div>
-        </base-quote>
-      </section>
+      <!-- articles (stories) -->
+      <div class="container is-small mb-6">
+        <base-articles-list :items="getStories(2)"></base-articles-list>
+      </div>
     </div>
 
     <base-action-bar :title="'The Bohemian Tent'" :price="1200"></base-action-bar>
@@ -153,6 +149,16 @@ $hero-image-height: 736px;
   b {
     font-weight: bold;
     display: block;
+  }
+}
+.featured-stories::v-deep {
+  .vue-content-placeholders-img {
+    height: rem(240px);
+  }
+}
+.shift-down {
+  @include media-breakpoint-up(xl) {
+    top: rem(40px);
   }
 }
 </style>
