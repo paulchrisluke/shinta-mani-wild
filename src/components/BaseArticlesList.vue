@@ -3,13 +3,13 @@
     <div class="row">
 
       <template v-if="!(items.length > 0)">
-        <content-placeholders class="col-3" rounded v-for="item in 4" :key="item">
+        <content-placeholders :class="`col-${12 / itemsPerRow}`" rounded v-for="item in itemsPerRow" :key="item">
           <content-placeholders-img />
           <content-placeholders-heading class="my-3"/>
           <content-placeholders-text :lines="2" />
         </content-placeholders>
       </template>
-      <div v-else class="col-3" v-for="(item, index) in items" :key="index">
+      <div v-else :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
         <article class="item mb-3">
           <div class="content position-relative">
             <a class="like position-absolute">
@@ -42,6 +42,10 @@ export default Vue.extend({
     items: {
       type: Array,
       default: () => []
+    },
+    itemsPerRow: {
+      type: Number,
+      default: 4
     }
   }
 })

@@ -77,7 +77,7 @@
       <!-- gallery -->
       <div class="mb-5">
         <base-heading :text="'Our Tents'" :type="'h2'" :class-name="'h1 text-dark text-center'" :border-art="true"></base-heading>
-        <base-gallery-list :items="galleryItems" />
+        <base-gallery-list :items="galleryItems.slice(0,2)" />
       </div>
 
       <!-- press banner -->
@@ -160,7 +160,7 @@ export default Vue.extend({
       galleryItems: [
         {
           url: 'http://placehold.it/440x320/3D5200',
-          link: '/listing/wild-tents',
+          link: '/search/wild-tents',
           title: 'Wild<br>Tents',
         },
         {
