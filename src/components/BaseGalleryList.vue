@@ -2,7 +2,12 @@
   <section class="wrapper">
     <div class="container is-small">
       <div class="row">
-        <div class="col-6" v-for="(item, index) in items.slice(0, 2)" :key="index">
+        <template v-if="!(items.length > 0)">
+          <content-placeholders :class="`col-${12 / itemsPerRow}`" rounded v-for="item in itemsPerRow" :key="item">
+            <content-placeholders-img />
+          </content-placeholders>
+        </template>
+        <div v-else :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
           <a class="position-relative gallery-item" :href="item.link">
             <img class="gallery-item-image w-100" :src="item.url" alt />
             <div class="heading position-absolute">
@@ -29,6 +34,10 @@ export default Vue.extend({
     BaseHeading
   },
   props: {
+    itemsPerRow: {
+      type: Number,
+      default: 2
+    },
     items: {
       type: Array,
       default: () => []
@@ -49,5 +58,8 @@ export default Vue.extend({
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+}
+.vue-content-placeholders-img {
+  height: rem(320px);
 }
 </style>

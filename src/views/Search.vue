@@ -1,6 +1,6 @@
 <template>
   <!-- design file: https://www.figma.com/file/SiFZE7hhRKx2fWmrfZ3uy2RO/Shinta-Mani-Wild?node-id=553%3A4724 -->
-  <div class="page page--listing">
+  <div class="page page--search">
     <div class="page--content">
       <!-- header -->
       <page-header></page-header>
@@ -28,10 +28,9 @@
         </article>
       </div>
 
-      <!-- gallery -->
-      <section class="mb-5">
-        <base-heading :text="'Gallery'" :type="'h2'" :class-name="'h2 text-dark text-center'"></base-heading>
-        <base-gallery-list :items="galleryItems.slice(0,2)" />
+      <!-- featured stories -->
+      <section class="container is-small mb-5">
+        <base-articles-list  :items-per-row="2" :items="getStories(1)"></base-articles-list>
       </section>
 
       <!-- banner action -->
@@ -54,7 +53,7 @@
           :class-name="'h2 text-dark text-center'"
           :text="`Explore our ${resort.title}`"
         ></base-heading>
-        <base-articles-list :items="resort.stories"></base-articles-list>
+        <base-articles-list :items="getStories(2)"></base-articles-list>
       </div>
 
       <!-- quote -->
@@ -77,12 +76,10 @@ import PageHeader from '@/components/PageHeader.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import HeroImage from '@/components/HeroImage.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
-import BaseGalleryList from '@/components/BaseGalleryList.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import BaseActionBar from '@/components/BaseActionBar.vue'
-import { GalleryImage } from '@/types.ts'
 
 export default Vue.extend({
   name: 'listing',
@@ -91,7 +88,6 @@ export default Vue.extend({
     PageFooter,
     HeroImage,
     BaseHeading,
-    BaseGalleryList,
     BaseBannerAction,
     BaseArticlesList,
     BaseQuote,
@@ -106,33 +102,8 @@ export default Vue.extend({
     resort(): any {
       return this.$store.getters['resort/getResort']
     },
-    galleryItems() {
-      const images = this.resortImages
-      if (images.length === 0) {
-        return []
-      }
-
-      const items = [
-        {
-          link: '/comming-soon',
-          title: 'Exterior',
-          url: ''
-        },
-        {
-          link: '/comming-soon',
-          title: 'Interior',
-          url: ''
-        }
-      ]
-
-      // merge images with other-props-array
-      return items.map((item, index) => {
-        item.url = images[index].url
-        return item
-      })
-    },
-    resortImages(): GalleryImage[] {
-      return this.$store.getters['resort/getImages']
+    stories(): any {
+      return (this.resort || {}).stories || []
     }
   },
   mounted() {
@@ -141,6 +112,16 @@ export default Vue.extend({
   methods: {
     init() {
       this.$store.dispatch('resort/getItemBySlug', this.slug)
+    },
+    getStories(part: number) {
+      switch (part) {
+        case 1:
+          return this.stories.slice(0, 2)
+          break;
+        case 2:
+          return this.stories.slice(2)
+          break;
+      }
     }
   }
 })

@@ -17,16 +17,16 @@
               <nav>
                 <ul class="nav font-serif">
                   <li class="nav-item">
-                    <a href="/listing/tents" class="nav-link text-light">Tents</a>
+                    <a href="/search/tents" class="nav-link text-light">Tents</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/listing/adventures" class="nav-link text-light">Adventures</a>
+                    <a href="/search/adventure" class="nav-link text-light">Adventures</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/listing/food-and-drink" class="nav-link text-light">Food and Drink</a>
+                    <a href="/search/food-and-drink" class="nav-link text-light">Food and Drink</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/listing/wellness" class="nav-link text-light">Wellness</a>
+                    <a href="/search/wellness" class="nav-link text-light">Wellness</a>
                   </li>
                 </ul>
               </nav>

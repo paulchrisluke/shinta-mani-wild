@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 const Home = () => import ('./views/Home.vue')
 const Listing = () => import ('./views/Listing.vue')
+const Search = () => import ('./views/Search.vue')
 
 Vue.use(Router)
 
@@ -17,6 +18,10 @@ export default new Router({
     {
       path: '/listing/:id',
       component: Listing
+    },
+    {
+      path: '/search/:id',
+      component: Search
     },
     {
       path: '/*/',
