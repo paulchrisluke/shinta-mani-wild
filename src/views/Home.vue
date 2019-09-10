@@ -161,7 +161,7 @@ export default Vue.extend({
       galleryItems: [
         {
           url: 'http://placehold.it/440x320/3D5200',
-          link: '/search/wild-tents',
+          link: '/listing/wild-tents',
           title: 'Wild<br>Tents',
         },
         {
