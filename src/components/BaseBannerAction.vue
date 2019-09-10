@@ -59,6 +59,7 @@ export default Vue.extend({
   height: rem(400px);
   background: $black no-repeat center;
   background-size: cover;
+  box-shadow: $box-shadow, $box-shadow-sm;
 }
 .video-wrapper {
   top: 0;

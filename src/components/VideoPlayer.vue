@@ -1,5 +1,8 @@
 <template>
-  <div v-show="isVisible">
+  <content-placeholders v-if="showPlaceholder" class="placeholder-image" centered rounded>
+    <content-placeholders-img />
+  </content-placeholders>
+  <div v-else v-show="isVisible">
     <iframe
       class="d-block mx-auto"
       width="1322"
@@ -16,6 +19,10 @@
 import Vue from 'vue'
 export default Vue.extend({
   props: {
+    showPlaceholder: {
+      type: Boolean,
+      default: false
+    },
     isVisible: {
       default: true,
       type: Boolean

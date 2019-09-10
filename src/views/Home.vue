@@ -8,20 +8,23 @@
     <page-header></page-header>
 
     <!-- player -->
-    <div @click="showIntroVideo()" :class="{'has-image': !shouldShowIntroVideo}" class="hero position-relative">
+    <div @click="showIntroVideo()" :style="styleOfHero" :class="{'has-image': resort.id && !shouldShowIntroVideo}" class="hero position-relative mb-5">
       <!-- https://www.youtube.com/watch?v=SUWpCjzeMb4 -->
       <video-player
+        :show-placeholder="!resort.id"
         :is-visible="shouldShowIntroVideo"
         source="https://www.youtube.com/embed/SUWpCjzeMb4"
       ></video-player>
     </div>
 
-    <div class="pattern-area-1 pt-5 pt-xl-2 position-relative">
+    <div class="pattern-area-1 pt-5 pt-xl-0 position-relative">
+
+      <div class="container is-small shift-down-upper">
+        <base-heading :show-placeholder="!resort.id" :text="'Shinta Mani Wild'" :type="'h1'" :class-name="'h1 is-huge text-dark text-center'" :border-art="true" ></base-heading>
+      </div>
 
       <!-- quote -->
       <div class="shift-down position-relative">
-        <base-heading :text="'Shinta Mani Wild'" :type="'h1'" :class-name="'h1 text-dark text-center'" :border-art="true" ></base-heading>
-
         <section class="container">
           <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
             <div class="quote w-100 h-100" v-html="resort.description"></div>
@@ -128,8 +131,7 @@ import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import BaseGalleryList from '@/components/BaseGalleryList.vue'
 import PageFooter from '@/components/PageFooter.vue'
-// const cardImage = require('@/assets/media/home-card-1.jpg')
-// const cardImageXs = require('@/assets/media/home-card-1--mobile.jpg')
+import { Resort } from '@/types.ts'
 
 export default Vue.extend({
   name: 'home',
@@ -174,8 +176,13 @@ export default Vue.extend({
     this.init()
   },
   computed: {
-    resort(): any {
+    resort(): Resort {
       return this.$store.getters['resort/getResort']
+    },
+    styleOfHero(): any {
+      return {
+        backgroundImage: !this.shouldShowIntroVideo ? `url(${this.resort.featuredImage})` : 'none'
+      }
     }
   },
   methods: {
@@ -191,19 +198,14 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .hero {
-  box-shadow: $box-shadow-md, $box-shadow-sm;
-  background: $black;
-  iframe {
-    max-width: 100%;
-    max-height: calc(100vh - #{$header-height});
-  }
-
+  height: rem($hero-height);
   &.has-image {
+    background: $black;
+    box-shadow: $box-shadow-md, $box-shadow-sm;
     @include media-breakpoint-up(xl) {
-      background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567147165/Shinta%20Mani%20Wild/home/Hero_Image_xns3mw_vkpdgg.jpg') no-repeat center bottom;
-      background-size: auto 100%;
+      background: no-repeat center bottom;
+      background-size: cover;
     }
-    height: rem(800px - $header-height);
     cursor: pointer;
     &::after {
       position: absolute;
@@ -215,6 +217,15 @@ export default Vue.extend({
       display: block;
       background: $linear-gradient-md;
     }
+  }
+
+  iframe {
+    max-width: 100%;
+    max-height: calc(100vh - #{$header-height});
+  }
+
+  ::v-deep {
+    @include hero-placeholder($hero-height);
   }
 }
 .card-content::v-deep .button-frame {
@@ -246,7 +257,7 @@ export default Vue.extend({
 }
 .press-banner--link {
   background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567397036/Shinta%20Mani%20Wild/home/Press_Banner_lvzdtx.jpg') center repeat-x;
-  background-size: contain;
+  background-size: auto 100%;
 }
 .quote::v-deep {
   p {

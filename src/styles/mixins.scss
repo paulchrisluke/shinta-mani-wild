@@ -8,3 +8,15 @@
   overflow: hidden;
   // stylelint-enable
 }
+
+@mixin hero-placeholder($hero-height) {
+  .placeholder-image {
+    width: 100%;
+    height: 100%;
+    padding: rem(80px);
+  }
+  .vue-content-placeholders-img {
+    width: 100%;
+    height: rem($hero-height - 2 * 80px);
+  }
+}
