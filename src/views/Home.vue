@@ -8,7 +8,7 @@
     <page-header></page-header>
 
     <!-- player -->
-    <div @click="showIntroVideo()" :style="styleOfHero" :class="{'has-image': resort.id && !shouldShowIntroVideo}" class="hero position-relative mb-5">
+    <div @click="showIntroVideo()" :style="styleOfHero" :class="{ 'background-black': shouldShowIntroVideo, 'has-image background-black': resort.id && !shouldShowIntroVideo}" class="hero position-relative mb-5">
       <!-- https://www.youtube.com/watch?v=SUWpCjzeMb4 -->
       <video-player
         :show-placeholder="!resort.id"
@@ -95,7 +95,7 @@
       <div class="container is-small">
         <div class="row mb-5">
           <div class="column-12">
-            <base-card :image="cardImage1" :is-left="true">
+            <base-card :image="cardImage2" :is-left="true">
               <template v-slot:text>
                 <div class="card-content">
                   <base-heading
@@ -131,7 +131,8 @@ import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import BaseGalleryList from '@/components/BaseGalleryList.vue'
 import PageFooter from '@/components/PageFooter.vue'
-import { Resort } from '@/types.ts'
+import { Resort, ResortImage } from '@/types.ts'
+import { get } from 'lodash-es'
 
 export default Vue.extend({
   name: 'home',
@@ -148,34 +149,27 @@ export default Vue.extend({
   },
   data() {
     return {
-      shouldShowIntroVideo: false,
-      cardImage1: {
-        alt: 'All Inclusive',
-        xl: {
-          src: 'https://res.cloudinary.com/ddwsbpkzk/image/upload/w_640,e_sharpen/Shinta%20Mani%20Wild/home/all_inclusive_ji6wpq.png'
-        },
-        default: {
-          src: 'https://res.cloudinary.com/ddwsbpkzk/image/upload/w_640,e_sharpen/Shinta%20Mani%20Wild/home/all_inclusive_ji6wpq.png'
-        }
-      },
-      galleryItems: [
-        {
-          url: 'http://placehold.it/440x320/3D5200',
-          link: '/listing/wild-tents',
-          title: 'Wild<br>Tents',
-        },
-        {
-          url: 'http://placehold.it/440x320/3D5200',
-          link: '/listing/waterfall-tents',
-          title: 'Waterfall<br>Tents'
-        }
-      ]
+      shouldShowIntroVideo: false
     }
   },
   mounted() {
     this.init()
   },
   computed: {
+    galleryItems(): object[] {
+      return [
+        {
+          url: this.getResortImage(2),
+          link: '/listing/wild-tents',
+          title: 'Wild<br>Tents',
+        },
+        {
+          url: this.getResortImage(3),
+          link: '/listing/waterfall-tents',
+          title: 'Waterfall<br>Tents'
+        }
+      ]
+    },
     resort(): Resort {
       return this.$store.getters['resort/getResort']
     },
@@ -183,7 +177,37 @@ export default Vue.extend({
       return {
         backgroundImage: !this.shouldShowIntroVideo ? `url(${this.resort.featuredImage})` : 'none'
       }
-    }
+    },
+    cardImage1(): object | undefined {
+      const image = this.getResortImage(1)
+      if (!image) {
+        return
+      }
+      return {
+        alt: 'All Inclusive',
+        xl: {
+          src: image
+        },
+        default: {
+          src: image
+        }
+      }
+    },
+    cardImage2(): object | undefined {
+      const image = this.getResortImage(4)
+      if (!image) {
+        return
+      }
+      return {
+        alt: 'Conservation',
+        xl: {
+          src: image
+        },
+        default: {
+          src: image
+        }
+      }
+    },
   },
   methods: {
     init() {
@@ -191,6 +215,14 @@ export default Vue.extend({
     },
     showIntroVideo() {
       this.shouldShowIntroVideo = true
+    },
+    getResortImage(order: number): string | undefined {
+      const images = get(this.resort, 'images', []);
+      const resultImage = images.find((item: ResortImage) => item.order === order);
+      if (!resultImage) {
+        return
+      }
+      return resultImage.url
     }
   }
 })
@@ -199,8 +231,10 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .hero {
   height: rem($hero-height);
-  &.has-image {
+  &.background-black {
     background: $black;
+  }
+  &.has-image {
     box-shadow: $box-shadow-md, $box-shadow-sm;
     @include media-breakpoint-up(xl) {
       background: no-repeat center bottom;

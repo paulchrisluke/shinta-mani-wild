@@ -10,39 +10,39 @@ export interface GalleryItem {
 }
 
 export interface Story {
-  order: Number,
-  content: String
-  ctaLink: String
-  ctaText: String
-  image: String
-  type: String
+  order: number,
+  content: string
+  ctaLink: string
+  ctaText: string
+  image: string
+  type: string
 }
 
 export interface ResortCategory {
-  id: Number
-  name: String
+  id: number
+  name: string
 }
 
 export interface ResortImage {
-  order: Number
-  url: String
+  order: number
+  url: string
 }
 
 export interface Resort {
-  backgroundImage: String
-  brand: String
+  backgroundImage: string
+  brand: string
   categories: ResortCategory[]
-  ctaLink: String
-  ctaText: String
+  ctaLink: string
+  ctaText: string
   custom: any
-  description: String
-  featuredImage: String
-  h2: String
-  id: Number
+  description: string
+  featuredImage: string
+  h2: string
+  id: number
   images: ResortImage[]
   modules: any,
-  name: String
-  slug: String
+  name: string
+  slug: string
   stories: Story[]
-  title: String
+  title: string
 }
