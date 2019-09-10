@@ -201,7 +201,7 @@ export default Vue.extend({
   &.has-image {
     @include media-breakpoint-up(xl) {
       background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567147165/Shinta%20Mani%20Wild/home/Hero_Image_xns3mw_vkpdgg.jpg') no-repeat center bottom;
-      background-size: auto 100%;
+      background-size: cover;
     }
     height: rem(800px - $header-height);
     cursor: pointer;
@@ -246,7 +246,7 @@ export default Vue.extend({
 }
 .press-banner--link {
   background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567397036/Shinta%20Mani%20Wild/home/Press_Banner_lvzdtx.jpg') center repeat-x;
-  background-size: contain;
+  background-size: auto 100%;
 }
 .quote::v-deep {
   p {
