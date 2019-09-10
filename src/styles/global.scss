@@ -17,6 +17,9 @@
 .text-decoration-underline {
   text-decoration: underline;
 }
+.is-huge {
+  font-size: rem(68px);
+}
 
 // layout
 html,
@@ -34,4 +37,7 @@ body,
 }
 .page--content {
   flex-grow: 1;
+}
+.shift-down-upper {
+  margin-bottom: rem(-40px);
 }
