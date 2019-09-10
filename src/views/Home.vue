@@ -82,7 +82,7 @@
       <!-- press banner -->
       <div class="mb-5">
         <section class="press-banner">
-          <a class="press-banner--link d-block h-100" href=""></a>
+          <a href="/search/press" target="_blank" class="press-banner--link d-block h-100" title="Press" aria-label="Press"></a>
         </section>
       </div>
 
@@ -201,7 +201,7 @@ export default Vue.extend({
   &.has-image {
     @include media-breakpoint-up(xl) {
       background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567147165/Shinta%20Mani%20Wild/home/Hero_Image_xns3mw_vkpdgg.jpg') no-repeat center bottom;
-      background-size: cover;
+      background-size: auto 100%;
     }
     height: rem(800px - $header-height);
     cursor: pointer;
@@ -242,11 +242,11 @@ export default Vue.extend({
   }
 }
 .press-banner {
-  height: rem(227px);
-  box-shadow: 0 6px 8px rgba($black, 0.2), 0 -2px 8px rgba($black, 0.05);
+  height: rem(300px);
 }
 .press-banner--link {
-  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567145281/Shinta%20Mani%20Wild/home/Press_Banner_pt7ae1.png') center repeat-x;
+  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567397036/Shinta%20Mani%20Wild/home/Press_Banner_lvzdtx.jpg') center repeat-x;
+  background-size: contain;
 }
 .quote::v-deep {
   p {
