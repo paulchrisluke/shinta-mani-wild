@@ -64,7 +64,7 @@ import BaseHeading from '@/components/BaseHeading.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
-import { Story } from '@/types'
+import { Story, Resort } from '@/types'
 import { get } from 'lodash-es'
 
 export default Vue.extend({
@@ -84,7 +84,7 @@ export default Vue.extend({
     }
   },
   computed: {
-    resort(): any {
+    resort(): Resort {
       return this.$store.getters['resort/getResort']
     },
     stories(): Story[] {
@@ -92,12 +92,7 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.init()
-  },
-  methods: {
-    init() {
-      this.$store.dispatch('resort/getItemBySlug', this.slug)
-    }
+    this.$store.dispatch('resort/getItemBySlug', this.slug)
   }
 })
 </script>

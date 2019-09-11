@@ -75,7 +75,7 @@ import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import BookingBar from '@/components/BookingBar.vue'
-import { GalleryImage, Story } from '@/types'
+import { GalleryImage, Story, Resort } from '@/types'
 import { get } from 'lodash-es'
 
 export default Vue.extend({
@@ -97,18 +97,17 @@ export default Vue.extend({
     }
   },
   computed: {
-    resort(): any {
+    resort(): Resort {
       return this.$store.getters['resort/getResort']
     },
     stories(): Story[] {
-      return get(this.resort, 'stories', [])
+      return get((this as any).resort, 'stories', [])
     },
     resortImages(): GalleryImage[] {
-      return get(this.resort, 'images', [])
+      return get((this as any).resort, 'images', [])
     },
     galleryItems() {
-      // @ts-ignore
-      const images = this.resortImages
+      const images = (this as any).resortImages
       if (images.length === 0) {
         return []
       }
@@ -129,12 +128,7 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.init()
-  },
-  methods: {
-    init() {
-      this.$store.dispatch('resort/getItemBySlug', this.slug)
-    }
+    this.$store.dispatch('resort/getItemBySlug', (this as any).slug)
   }
 })
 </script>
