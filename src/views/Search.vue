@@ -51,8 +51,6 @@
       </div>
     </div>
 
-    <base-action-bar :title="'The Bohemian Tent'" :price="1200"></base-action-bar>
-
     <page-footer></page-footer>
   </div>
 </template>
@@ -66,7 +64,6 @@ import BaseHeading from '@/components/BaseHeading.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
-import BaseActionBar from '@/components/BaseActionBar.vue'
 import { Story } from '@/types'
 import { get } from 'lodash-es'
 
@@ -79,8 +76,7 @@ export default Vue.extend({
     BaseHeading,
     BaseBannerAction,
     BaseArticlesList,
-    BaseQuote,
-    BaseActionBar
+    BaseQuote
   },
   data() {
     return {
