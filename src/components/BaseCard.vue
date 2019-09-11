@@ -1,7 +1,7 @@
 <template>
   <div class="position-relative">
     <div class="ghost-wrapper px-3 d-xl-none">
-      <picture class="ghost-card-image d-table mx-auto px-3">
+      <picture v-if="!showPlaceholder" class="ghost-card-image d-table mx-auto px-3">
         <source :srcset="image.xl.src" :media="`(min-width: ${gridBreakpoints.xl})`" />
         <img :src="image.default.src" :alt="image.alt" />
       </picture>
@@ -15,8 +15,11 @@
           <slot name="text"></slot>
         </div>
       </div>
-      <div class="image col-12 col-xl-6 order-1 order-xl-2 d-flex align-items-center" v-if="image">
-        <div class="px-3 px-xl-0 mx-auto">
+      <div class="image col-12 col-xl-6 order-1 order-xl-2 d-flex align-items-center">
+        <content-placeholders class="w-100 h-100 p-3" v-if="showPlaceholder" rounded>
+          <content-placeholders-img class="h-100" />
+        </content-placeholders>
+        <div v-else class="px-3 px-xl-0 mx-auto">
           <div
             :class="{'is-right-skew': !isLeft, 'is-left-skew': isLeft}"
             class="card-image-wrapper position-relative"
@@ -39,9 +42,13 @@ export default Vue.extend({
   props: {
     image: {
       type: Object,
-      required: true
+      default: null
     },
     isLeft: {
+      type: Boolean,
+      default: false
+    },
+    showPlaceholder: {
       type: Boolean,
       default: false
     }

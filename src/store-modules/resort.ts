@@ -26,9 +26,6 @@ export default {
   getters: {
     getResort(state: any) {
       return state.resort
-    },
-    getImages(state: any) {
-      return state.resort.images || []
     }
   }
 }

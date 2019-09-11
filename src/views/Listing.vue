@@ -12,7 +12,7 @@
       <div class="container is-small mb-5">
         <article>
           <base-heading
-            :showPlaceholder="!resort.title"
+            :show-placeholder="!resort.id"
             :text="resort.title"
             :type="'h1'"
             :class-name="'h1 is-huge text-dark text-center mb-5'"
@@ -31,20 +31,20 @@
       <!-- gallery -->
       <section class="mb-5">
         <base-heading :text="'Gallery'" :type="'h2'" :class-name="'h2 text-dark text-center'"></base-heading>
-        <base-gallery-list :items="galleryItems.slice(0,2)" />
+        <base-gallery-list :show-placeholder="!resort.id" :items="galleryItems.slice(0,2)" />
       </section>
 
       <!-- banner action -->
       <div class="mb-5">
-        <base-banner-action :image="resort.backgroundImage">
-          <h2 class="h1 text-uppercase font-serif text-light">
-            <div class="mb-3">
-              <div>Full of</div>
-              <div class="pb-3 d-table">Adventure</div>
-            </div>
-          </h2>
-        </base-banner-action>
+        <base-banner-action :image="resort.backgroundImage" :show-placeholder="!resort.id" :link="resort.ctaLink" :text="resort.ctaText"></base-banner-action>
       </div>
+
+      <!-- quote -->
+      <section class="container shift-down">
+        <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
+          <div class="quote w-100 h-100" v-html="resort.h2"></div>
+        </base-quote>
+      </section>
 
       <!-- articles (stories) -->
       <div class="container is-small mb-6">
@@ -54,15 +54,8 @@
           :class-name="'h2 text-dark text-center'"
           :text="`Explore our ${resort.title}`"
         ></base-heading>
-        <base-articles-list :items="resort.stories"></base-articles-list>
+        <base-articles-list :show-placeholder="!resort.id" :items="stories"></base-articles-list>
       </div>
-
-      <!-- quote -->
-      <section class="container mb-5">
-        <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
-          <div class="quote w-100" v-html="resort.h2"></div>
-        </base-quote>
-      </section>
     </div>
 
     <base-action-bar :title="'The Bohemian Tent'" :price="1200"></base-action-bar>
@@ -82,7 +75,8 @@ import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import BaseActionBar from '@/components/BaseActionBar.vue'
-import { GalleryImage } from '@/types.ts'
+import { GalleryImage, Story } from '@/types'
+import { get } from 'lodash-es'
 
 export default Vue.extend({
   name: 'listing',
@@ -106,7 +100,14 @@ export default Vue.extend({
     resort(): any {
       return this.$store.getters['resort/getResort']
     },
+    stories(): Story[] {
+      return get(this.resort, 'stories', [])
+    },
+    resortImages(): GalleryImage[] {
+      return get(this.resort, 'images', [])
+    },
     galleryItems() {
+      // @ts-ignore
       const images = this.resortImages
       if (images.length === 0) {
         return []
@@ -116,23 +117,15 @@ export default Vue.extend({
         {
           link: '/comming-soon',
           title: 'Exterior',
-          url: ''
+          url: get(images, '[0].url', '')
         },
         {
           link: '/comming-soon',
           title: 'Interior',
-          url: ''
+          url: get(images, '[1].url', '')
         }
       ]
-
-      // merge images with other-props-array
-      return items.map((item, index) => {
-        item.url = images[index].url
-        return item
-      })
-    },
-    resortImages(): GalleryImage[] {
-      return this.$store.getters['resort/getImages']
+      return items
     }
   },
   mounted() {

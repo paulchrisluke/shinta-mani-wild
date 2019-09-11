@@ -1,15 +1,21 @@
 <template>
   <section class="wrapper">
-    <div class="row">
-
-      <template v-if="!(items.length > 0)">
-        <content-placeholders :class="`col-${12 / itemsPerRow}`" rounded v-for="item in itemsPerRow" :key="item">
+    <template v-if="showPlaceholder">
+      <div class="row">
+        <content-placeholders
+          :class="`col-${12 / itemsPerRow}`"
+          rounded
+          v-for="item in itemsPerRow"
+          :key="item"
+        >
           <content-placeholders-img />
-          <content-placeholders-heading class="my-3"/>
+          <content-placeholders-heading class="my-3" />
           <content-placeholders-text :lines="2" />
         </content-placeholders>
-      </template>
-      <div v-else :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
+      </div>
+    </template>
+    <div v-else-if="items.length > 0" class="row">
+      <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
         <article class="item mb-3">
           <div class="content position-relative">
             <a class="like position-absolute">
@@ -31,6 +37,9 @@
         </article>
       </div>
     </div>
+    <p v-else class="mb-3 text-center">
+      <small>There are no items to show</small>
+    </p>
   </section>
 </template>
 
@@ -46,6 +55,10 @@ export default Vue.extend({
     itemsPerRow: {
       type: Number,
       default: 4
+    },
+    showPlaceholder: {
+      type: Boolean,
+      default: false
     }
   }
 })

@@ -83,6 +83,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .page-footer {
   background-color: $primary;
+  box-shadow: $box-shadow-sm-top, $box-shadow-md-top;
 }
 .links {
   font-size: rem(12px);

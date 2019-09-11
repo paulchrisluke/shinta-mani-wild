@@ -54,12 +54,15 @@ $spacers: map-merge(
 // typography
 $font-family-sans-serif: 'Roboto', sans-serif;
 $serif-font-size-correction: 1.25;
+$huge-font-size: 4.25rem;
 $h1-font-size: 3rem;
 $h2-font-size: 2rem;
 
 // effects
 $box-shadow-sm: 0px 4px 4px rgba(0, 0, 0, 0.25);
+$box-shadow-sm-top: 0px -4px 4px rgba(0, 0, 0, 0.25); 
 $box-shadow-md: 0px 9px 24px rgba(0, 0, 0, 0.25);
+$box-shadow-md-top: 0px -9px 24px rgba(0, 0, 0, 0.25);
 $linear-gradient-md: linear-gradient(180deg, rgba(0, 0, 0, 0) 80.56%, #000000 100%);
 
 // general

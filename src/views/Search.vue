@@ -12,7 +12,7 @@
       <div class="container is-small mb-5">
         <article>
           <base-heading
-            :showPlaceholder="!resort.title"
+            :show-placeholder="!resort.title"
             :text="resort.title"
             :type="'h1'"
             :class-name="'h1 is-huge text-dark text-center mb-5'"
@@ -30,32 +30,24 @@
 
       <!-- featured stories -->
       <section class="container is-small mb-5 featured-stories">
-        <base-articles-list  :items-per-row="2" :items="getStories(1)"></base-articles-list>
+        <base-articles-list :show-placeholder="!resort.id" :items-per-row="2" :items="stories.slice(0,2)"></base-articles-list>
       </section>
 
       <!-- banner action -->
-      <div class="mb-0">
-        <base-banner-action :image="resort.backgroundImage" :link="resort.ctaLink">
-          <h2 class="h1 text-uppercase font-serif text-light">
-            <div class="mb-3">
-              <div class="pb-3 d-table" v-text="resort.ctaText"></div>
-            </div>
-          </h2>
-        </base-banner-action>
+      <div class="mb-5">
+        <base-banner-action :image="resort.backgroundImage" :show-placeholder="!resort.id" :link="resort.ctaLink" :text="resort.ctaText"></base-banner-action>
       </div>
 
       <!-- quote -->
-      <div class="shift-down position-relative">
-        <section class="container">
-          <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
-            <div class="quote w-100" v-html="resort.h2"></div>
-          </base-quote>
-        </section>
-      </div>
+      <section class="container shift-down">
+        <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+          <div class="quote w-100 h-100" v-html="resort.h2"></div>
+        </base-quote>
+      </section>
 
       <!-- articles (stories) -->
       <div class="container is-small mb-6">
-        <base-articles-list :items="getStories(2)"></base-articles-list>
+        <base-articles-list :show-placeholder="!resort.id" :items="stories.slice(2)"></base-articles-list>
       </div>
     </div>
 
@@ -75,6 +67,8 @@ import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import BaseActionBar from '@/components/BaseActionBar.vue'
+import { Story } from '@/types'
+import { get } from 'lodash-es'
 
 export default Vue.extend({
   name: 'listing',
@@ -97,8 +91,8 @@ export default Vue.extend({
     resort(): any {
       return this.$store.getters['resort/getResort']
     },
-    stories(): any {
-      return (this.resort || {}).stories || []
+    stories(): Story[] {
+      return get(this.resort, 'stories', [])
     }
   },
   mounted() {
@@ -107,16 +101,6 @@ export default Vue.extend({
   methods: {
     init() {
       this.$store.dispatch('resort/getItemBySlug', this.slug)
-    },
-    getStories(part: number) {
-      switch (part) {
-        case 1:
-          return this.stories.slice(0, 2)
-          break;
-        case 2:
-          return this.stories.slice(2)
-          break;
-      }
     }
   }
 })
@@ -144,11 +128,6 @@ export default Vue.extend({
 .featured-stories::v-deep {
   .vue-content-placeholders-img {
     height: rem(240px);
-  }
-}
-.shift-down {
-  @include media-breakpoint-up(xl) {
-    top: rem(40px);
   }
 }
 </style>
