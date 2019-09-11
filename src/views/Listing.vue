@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <base-action-bar :title="'The Bohemian Tent'" :price="1200"></base-action-bar>
+    <booking-bar :title="'The Bohemian Tent'" :price="1200"></booking-bar>
 
     <page-footer></page-footer>
   </div>
@@ -74,7 +74,7 @@ import BaseGalleryList from '@/components/BaseGalleryList.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
-import BaseActionBar from '@/components/BaseActionBar.vue'
+import BookingBar from '@/components/BookingBar.vue'
 import { GalleryImage, Story } from '@/types'
 import { get } from 'lodash-es'
 
@@ -89,7 +89,7 @@ export default Vue.extend({
     BaseBannerAction,
     BaseArticlesList,
     BaseQuote,
-    BaseActionBar
+    BookingBar
   },
   data() {
     return {
