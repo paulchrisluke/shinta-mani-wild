@@ -2,7 +2,7 @@
   <content-placeholders v-if="showPlaceholder" class="mb-4" centered rounded>
     <content-placeholders-heading :class="classPlaceholder" />
   </content-placeholders>
-  <component :is="type" v-else :class="className" class="heading text-uppercase font-serif">
+  <component :is="type" v-else :class="className" class="base-heading text-uppercase font-serif">
     <span class="d-block mb-4">
       <span
         :class="{'border-bottom border-dark': borderDark, 'border-bottom border-light': borderLight}"
@@ -49,15 +49,14 @@ export default Vue.extend({
       default: false
     },
     classPlaceholder: {
-      type: String,
-      default: null
+      type: String
     }
   }
 })
 </script>
 
 <style lang="scss" scoped>
-.heading {
+.base-heading {
   margin-bottom: 0;
 }
 .border-art {

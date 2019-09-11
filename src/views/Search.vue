@@ -34,14 +34,8 @@
       </section>
 
       <!-- banner action -->
-      <div class="mb-0">
-        <base-banner-action :image="resort.backgroundImage" :link="resort.ctaLink">
-          <h2 class="h1 text-uppercase font-serif text-light">
-            <div class="mb-3">
-              <div class="pb-3 d-table" v-text="resort.ctaText"></div>
-            </div>
-          </h2>
-        </base-banner-action>
+      <div class="mb-5">
+        <base-banner-action :image="resort.backgroundImage" :show-placeholder="!resort.id" :link="resort.ctaLink" :text="resort.ctaText"></base-banner-action>
       </div>
 
       <!-- quote -->

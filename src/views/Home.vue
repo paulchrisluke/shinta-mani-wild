@@ -55,7 +55,7 @@
       <!-- banner action -->
       <div class="mb-5">
         <base-banner-action :image="resort.backgroundImage" :link="resort.ctaLink">
-          <h2 class="h1 text-uppercase font-serif text-light">
+          <h2 class="h1 text-uppercase font-serif text-light mb-0">
             <div class="mb-3">
               <div class="pb-3 d-table" v-text="resort.ctaText"></div>
             </div>

@@ -36,14 +36,7 @@
 
       <!-- banner action -->
       <div class="mb-5">
-        <base-banner-action :image="resort.backgroundImage">
-          <h2 class="h1 text-uppercase font-serif text-light">
-            <div class="mb-3">
-              <div>Full of</div>
-              <div class="pb-3 d-table">Adventure</div>
-            </div>
-          </h2>
-        </base-banner-action>
+        <base-banner-action :image="resort.backgroundImage" :show-placeholder="!resort.id" :link="resort.ctaLink" :text="resort.ctaText"></base-banner-action>
       </div>
 
       <!-- quote -->
