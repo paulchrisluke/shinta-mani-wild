@@ -18,7 +18,7 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        data: `@import "src/styles/global.scss";`
+        data: `@import "src/styles/global-ghost.scss";`
       }
     }
   }

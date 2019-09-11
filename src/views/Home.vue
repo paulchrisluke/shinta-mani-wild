@@ -8,20 +8,23 @@
     <page-header></page-header>
 
     <!-- player -->
-    <div @click="showIntroVideo()" :class="{'has-image': !shouldShowIntroVideo}" class="hero position-relative">
+    <div @click="showIntroVideo()" :style="styleOfHero" :class="{ 'background-black': shouldShowIntroVideo, 'has-image background-black': resort.id && !shouldShowIntroVideo}" class="hero position-relative mb-5">
       <!-- https://www.youtube.com/watch?v=SUWpCjzeMb4 -->
       <video-player
+        :show-placeholder="!resort.id"
         :is-visible="shouldShowIntroVideo"
         source="https://www.youtube.com/embed/SUWpCjzeMb4"
       ></video-player>
     </div>
 
-    <div class="pattern-area-1 pt-5 pt-xl-2 position-relative">
+    <div class="pattern-area-1 pt-5 pt-xl-0 position-relative">
+
+      <div class="container is-small shift-down-upper">
+        <base-heading :show-placeholder="!resort.id" :text="'Shinta Mani Wild'" :type="'h1'" :class-name="'h1 is-huge text-dark text-center'" :border-art="true" ></base-heading>
+      </div>
 
       <!-- quote -->
       <div class="shift-down position-relative">
-        <base-heading :text="'Shinta Mani Wild'" :type="'h1'" :class-name="'h1 text-dark text-center'" :border-art="true" ></base-heading>
-
         <section class="container">
           <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
             <div class="quote w-100 h-100" v-html="resort.description"></div>
@@ -82,7 +85,7 @@
       <!-- press banner -->
       <div class="mb-5">
         <section class="press-banner">
-          <a class="press-banner--link d-block h-100" href=""></a>
+          <a href="/search/press" target="_blank" class="press-banner--link d-block h-100" title="Press" aria-label="Press"></a>
         </section>
       </div>
 
@@ -92,7 +95,7 @@
       <div class="container is-small">
         <div class="row mb-5">
           <div class="column-12">
-            <base-card :image="cardImage1" :is-left="true">
+            <base-card :image="cardImage2" :is-left="true">
               <template v-slot:text>
                 <div class="card-content">
                   <base-heading
@@ -128,8 +131,8 @@ import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import BaseGalleryList from '@/components/BaseGalleryList.vue'
 import PageFooter from '@/components/PageFooter.vue'
-// const cardImage = require('@/assets/media/home-card-1.jpg')
-// const cardImageXs = require('@/assets/media/home-card-1--mobile.jpg')
+import { Resort, ResortImage } from '@/types.ts'
+import { get } from 'lodash-es'
 
 export default Vue.extend({
   name: 'home',
@@ -146,37 +149,65 @@ export default Vue.extend({
   },
   data() {
     return {
-      shouldShowIntroVideo: false,
-      cardImage1: {
-        alt: 'All Inclusive',
-        xl: {
-          src: 'https://res.cloudinary.com/ddwsbpkzk/image/upload/w_640,e_sharpen/Shinta%20Mani%20Wild/home/all_inclusive_ji6wpq.png'
-        },
-        default: {
-          src: 'https://res.cloudinary.com/ddwsbpkzk/image/upload/w_640,e_sharpen/Shinta%20Mani%20Wild/home/all_inclusive_ji6wpq.png'
-        }
-      },
-      galleryItems: [
-        {
-          url: 'http://placehold.it/440x320/3D5200',
-          link: '/search/wild-tents',
-          title: 'Wild<br>Tents',
-        },
-        {
-          url: 'http://placehold.it/440x320/3D5200',
-          link: '/listing/waterfall-tents',
-          title: 'Waterfall<br>Tents'
-        }
-      ]
+      shouldShowIntroVideo: false
     }
   },
   mounted() {
     this.init()
   },
   computed: {
-    resort(): any {
+    galleryItems(): object[] {
+      return [
+        {
+          url: this.getResortImage(2),
+          link: '/listing/wild-tents',
+          title: 'Wild<br>Tents',
+        },
+        {
+          url: this.getResortImage(3),
+          link: '/listing/waterfall-tents',
+          title: 'Waterfall<br>Tents'
+        }
+      ]
+    },
+    resort(): Resort {
       return this.$store.getters['resort/getResort']
-    }
+    },
+    styleOfHero(): any {
+      return {
+        backgroundImage: !this.shouldShowIntroVideo ? `url(${this.resort.featuredImage})` : 'none'
+      }
+    },
+    cardImage1(): object | undefined {
+      const image = this.getResortImage(1)
+      if (!image) {
+        return
+      }
+      return {
+        alt: 'All Inclusive',
+        xl: {
+          src: image
+        },
+        default: {
+          src: image
+        }
+      }
+    },
+    cardImage2(): object | undefined {
+      const image = this.getResortImage(4)
+      if (!image) {
+        return
+      }
+      return {
+        alt: 'Conservation',
+        xl: {
+          src: image
+        },
+        default: {
+          src: image
+        }
+      }
+    },
   },
   methods: {
     init() {
@@ -184,6 +215,14 @@ export default Vue.extend({
     },
     showIntroVideo() {
       this.shouldShowIntroVideo = true
+    },
+    getResortImage(order: number): string | undefined {
+      const images = get(this.resort, 'images', []);
+      const resultImage = images.find((item: ResortImage) => item.order === order);
+      if (!resultImage) {
+        return
+      }
+      return resultImage.url
     }
   }
 })
@@ -191,19 +230,16 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .hero {
-  box-shadow: $box-shadow-md, $box-shadow-sm;
-  background: $black;
-  iframe {
-    max-width: 100%;
-    max-height: calc(100vh - #{$header-height});
+  height: rem($hero-height);
+  &.background-black {
+    background: $black;
   }
-
   &.has-image {
+    box-shadow: $box-shadow-md, $box-shadow-sm;
     @include media-breakpoint-up(xl) {
-      background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567147165/Shinta%20Mani%20Wild/home/Hero_Image_xns3mw_vkpdgg.jpg') no-repeat center bottom;
+      background: no-repeat center bottom;
       background-size: cover;
     }
-    height: rem(800px - $header-height);
     cursor: pointer;
     &::after {
       position: absolute;
@@ -215,6 +251,15 @@ export default Vue.extend({
       display: block;
       background: $linear-gradient-md;
     }
+  }
+
+  iframe {
+    max-width: 100%;
+    max-height: calc(100vh - #{$header-height});
+  }
+
+  ::v-deep {
+    @include hero-placeholder($hero-height);
   }
 }
 .card-content::v-deep .button-frame {
@@ -237,11 +282,11 @@ export default Vue.extend({
   }
 }
 .press-banner {
-  height: rem(227px);
-  box-shadow: 0 6px 8px rgba($black, 0.2), 0 -2px 8px rgba($black, 0.05);
+  height: rem(300px);
 }
 .press-banner--link {
-  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567145281/Shinta%20Mani%20Wild/home/Press_Banner_pt7ae1.png') center repeat-x;
+  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567397036/Shinta%20Mani%20Wild/home/Press_Banner_lvzdtx.jpg') center repeat-x;
+  background-size: auto 100%;
 }
 .quote::v-deep {
   p {

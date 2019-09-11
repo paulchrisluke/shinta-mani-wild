@@ -15,7 +15,7 @@
             :show-placeholder="!resort.title"
             :text="resort.title"
             :type="'h1'"
-            :class-name="'h1 text-dark text-center mb-5'"
+            :class-name="'h1 is-huge text-dark text-center mb-5'"
             :border-art="true"
           ></base-heading>
 
@@ -115,20 +115,11 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-$hero-image-height: 736px;
 ::v-deep {
   .hero-image {
-    height: rem($hero-image-height);
+    height: rem($hero-height);
 
-    .placeholder-image {
-      width: 100%;
-      height: 100%;
-      padding: rem(80px);
-    }
-    .vue-content-placeholders-img {
-      width: 100%;
-      height: rem($hero-image-height - 2 * 80px);
-    }
+    @include hero-placeholder($hero-height);
   }
 }
 .quote::v-deep {

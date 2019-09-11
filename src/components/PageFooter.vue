@@ -3,7 +3,7 @@
     <div class="container is-large">
       <div class="row">
         <div class="col-4">
-          <div class="page-footer--logo px-4">
+          <div class="page-footer--logo">
             <div class="d-table">
               <a href="/" class="logo-link mt-2 d-block" title="Home">
                 <img class="d-block mx-auto" src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_64/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png" alt="shinta mani wild" />
@@ -19,7 +19,7 @@
         </div>
         <div class="col-8">
           <div class="row">
-            <div class="col-4 links is-discover">
+            <div class="col-6 links is-discover">
               <nav>
                 <h3 class="h3 font-serif text-uppercase text-light">Discover</h3>
                 <ul class="nav flex-column">
@@ -47,61 +47,24 @@
                 </ul>
               </nav>
             </div>
-            <div class="col-4 links is-connect">
+            <div class="col-6 links is-connect">
               <nav>
                 <h3 class="h3 font-serif text-uppercase text-light">Connect</h3>
                 <ul class="nav flex-column">
                   <li class="nav-item">
                     <a
-                      target="_blank"
-                      href="https://www.facebook.com/ShintaManiAngkor/"
+                      href="/contact"
                       class="nav-link font-weight-bold text-light text-decoration-underline"
-                    >Facebook</a>
+                    >Contact</a>
                   </li>
                   <li class="nav-item">
                     <a
-                      href="https://www.instagram.com/shintamani_angkor/"
-                      target="_blank"
-                      class="nav-link font-weight-bold text-light text-decoration-underline"
-                    >Instagram</a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      href="https://www.weibo.com/p/1006066222354993/home?from=page_100606&mod=TAB&is_all=1"
-                      target="_blank"
-                      class="nav-link font-weight-bold text-light text-decoration-underline"
-                    >Weibo</a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      target="_blank"
-                      href="https://www.tripadvisor.com/Hotel_Review-g297390-d612090-Reviews-Shinta_Mani_Resort-Siem_Reap_Siem_Reap_Province.html"
-                      class="nav-link font-weight-bold text-light text-decoration-underline"
-                    >TripAdvisor</a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      href
+                      href="/subscribe"
                       class="nav-link font-weight-bold text-light text-decoration-underline"
                     >Subscribe</a>
                   </li>
                 </ul>
               </nav>
-            </div>
-            <div class="col-4 links is-contact">
-              <h3 class="h3 font-serif text-uppercase text-light">Connect</h3>
-              <div class="text-light">
-                <address class="d-block mb-1">
-                  Hotel:
-                  <a class="text-light" href="tel:+85512223782">+855 12 223 782</a>
-                </address>
-                <address class="d-block mb-1">
-                  Reservation:
-                  <a class="text-light" href="tel:+85512223782">+855 12 223 782</a>
-                </address>
-                <address class="d-block mb-1">Bensley Street, Kirirom, Cambodia</address>
-                <a href class="text-light text-decoration-underline">View on Maps</a>
-              </div>
             </div>
           </div>
         </div>
