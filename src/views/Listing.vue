@@ -31,7 +31,7 @@
       <!-- gallery -->
       <section class="mb-5">
         <base-heading :text="'Gallery'" :type="'h2'" :class-name="'h2 text-dark text-center'"></base-heading>
-        <base-gallery-list :items="galleryItems.slice(0,2)" />
+        <base-gallery-list :show-placeholder="!resort.id" :items="galleryItems.slice(0,2)" />
       </section>
 
       <!-- banner action -->
@@ -47,13 +47,11 @@
       </div>
 
       <!-- quote -->
-      <div class="shift-down position-relative">
-        <section class="container">
-          <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
-            <div class="quote w-100 h-100" v-html="resort.h2"></div>
-          </base-quote>
-        </section>
-      </div>
+      <section class="container shift-down">
+        <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
+          <div class="quote w-100 h-100" v-html="resort.h2"></div>
+        </base-quote>
+      </section>
 
       <!-- articles (stories) -->
       <div class="container is-small mb-6">
@@ -110,9 +108,13 @@ export default Vue.extend({
       return this.$store.getters['resort/getResort']
     },
     stories(): Story[] {
-      return get(this.resort, 'stories', []).filter((item: Story) => item.order === 1)
+      return get(this.resort, 'stories', [])
+    },
+    resortImages(): GalleryImage[] {
+      return get(this.resort, 'images', [])
     },
     galleryItems() {
+      // @ts-ignore
       const images = this.resortImages
       if (images.length === 0) {
         return []
@@ -122,23 +124,15 @@ export default Vue.extend({
         {
           link: '/comming-soon',
           title: 'Exterior',
-          url: ''
+          url: get(images, '[0].url', '')
         },
         {
           link: '/comming-soon',
           title: 'Interior',
-          url: ''
+          url: get(images, '[1].url', '')
         }
       ]
-
-      // merge images with other-props-array
-      return items.map((item, index) => {
-        item.url = images[index].url
-        return item
-      })
-    },
-    resortImages(): GalleryImage[] {
-      return this.$store.getters['resort/getImages']
+      return items
     }
   },
   mounted() {

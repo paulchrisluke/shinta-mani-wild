@@ -1,25 +1,33 @@
 <template>
   <section class="wrapper">
     <div class="container is-small">
-      <div class="row">
-        <template v-if="!(items.length > 0)">
-          <content-placeholders :class="`col-${12 / itemsPerRow}`" rounded v-for="item in itemsPerRow" :key="item">
-            <content-placeholders-img />
-          </content-placeholders>
+        <template v-if="showPlaceholder">
+          <div class="row">
+            <content-placeholders :class="`col-${12 / itemsPerRow}`" rounded v-for="item in itemsPerRow" :key="item">
+              <content-placeholders-img />
+            </content-placeholders>
+          </div>
         </template>
-        <div v-else :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
-          <a class="position-relative gallery-item" :href="item.link">
-            <img class="gallery-item-image w-100" :src="item.url" alt />
-            <div class="heading position-absolute">
-              <!-- TODO: use a simple heading element instead base-heading -->
-              <base-heading
-                v-html="item.title"
-                :type="'h3'"
-                :class-name="'h1 text-light text-center'"
-              ></base-heading>
+        <template v-else-if="items.length > 0">
+          <div class="row">
+            <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
+              <a class="position-relative gallery-item" :href="item.link">
+                <img class="gallery-item-image w-100" :src="item.url" alt />
+                <div class="heading position-absolute">
+                  <!-- TODO: use a simple heading element instead base-heading -->
+                  <base-heading
+                    v-html="item.title"
+                    :type="'h3'"
+                    :class-name="'h1 text-light text-center'"
+                  ></base-heading>
+                </div>
+              </a>
             </div>
-          </a>
-        </div>
+          </div>
+        </template>
+        <p v-else class="mb-3 text-center">
+          <small>There are no items to show</small>
+        </p>
       </div>
     </div>
   </section>
@@ -41,6 +49,10 @@ export default Vue.extend({
     items: {
       type: Array,
       default: () => []
+    },
+    showPlaceholder: {
+      type: Boolean,
+      default: false
     }
   }
 })

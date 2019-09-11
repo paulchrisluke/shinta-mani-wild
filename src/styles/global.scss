@@ -18,7 +18,12 @@
   text-decoration: underline;
 }
 .is-huge {
-  font-size: rem(68px);
+  font-size: $huge-font-size;
+  line-height: 1;
+}
+.is-huge-placeholder {
+  // 24 + 8 is border-art height and margin
+  height: (1 * $huge-font-size) + rem(24px + 8px);
 }
 
 // layout
@@ -39,11 +44,5 @@ body,
   flex-grow: 1;
 }
 .shift-down {
-  @include media-breakpoint-up(xl) {
-    top: rem(40px);
-    z-index: -1;
-  }
-}
-.shift-down-upper {
   margin-bottom: rem(-40px);
 }

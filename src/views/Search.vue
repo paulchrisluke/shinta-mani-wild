@@ -45,13 +45,11 @@
       </div>
 
       <!-- quote -->
-      <div class="shift-down position-relative">
-        <section class="container">
-          <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
-            <div class="quote w-100 h-100" v-html="resort.h2"></div>
-          </base-quote>
-        </section>
-      </div>
+      <section class="container shift-down">
+        <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+          <div class="quote w-100 h-100" v-html="resort.h2"></div>
+        </base-quote>
+      </section>
 
       <!-- articles (stories) -->
       <div class="container is-small mb-6">

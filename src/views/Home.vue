@@ -19,24 +19,22 @@
 
     <div class="pattern-area-1 pt-5 pt-xl-0 position-relative">
 
-      <div class="container is-small shift-down-upper">
-        <base-heading :show-placeholder="!resort.id" :text="'Shinta Mani Wild'" :type="'h1'" :class-name="'h1 is-huge text-dark text-center'" :border-art="true" ></base-heading>
+      <div class="container is-small">
+        <base-heading :class-placeholder="'is-huge-placeholder'" :show-placeholder="!resort.id" :text="'Shinta Mani Wild'" :type="'h1'" :class-name="'h1 is-huge text-dark text-center'" :border-art="true" ></base-heading>
       </div>
 
       <!-- quote -->
-      <div class="shift-down position-relative">
-        <section class="container">
-          <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
-            <div class="quote w-100 h-100" v-html="resort.description"></div>
-          </base-quote>
-        </section>
-      </div>
+      <section class="container shift-down">
+        <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+          <div class="quote w-100 h-100" v-html="resort.description"></div>
+        </base-quote>
+      </section>
 
       <!-- card -->
       <div class="container is-small">
         <div class="row mb-5">
           <div class="column-12">
-            <base-card :image="cardImage1">
+            <base-card :show-placeholder="!resort.id" :image="cardImage1">
               <template v-slot:text>
                 <div class="card-content">
                   <base-heading
@@ -79,7 +77,7 @@
       <!-- gallery -->
       <div class="mb-5">
         <base-heading :text="'Our Tents'" :type="'h2'" :class-name="'h1 text-dark text-center'" :border-art="true"></base-heading>
-        <base-gallery-list :items="galleryItems.slice(0,2)" />
+        <base-gallery-list :show-placeholder="!resort.id" :items="galleryItems.slice(0,2)" />
       </div>
 
       <!-- press banner -->
@@ -95,7 +93,7 @@
       <div class="container is-small">
         <div class="row mb-5">
           <div class="column-12">
-            <base-card :image="cardImage2" :is-left="true">
+            <base-card :show-placeholder="!resort.id" :image="cardImage2" :is-left="true">
               <template v-slot:text>
                 <div class="card-content">
                   <base-heading

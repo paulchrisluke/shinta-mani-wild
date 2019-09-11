@@ -1,16 +1,16 @@
 <template>
   <content-placeholders v-if="showPlaceholder" class="mb-4" centered rounded>
-    <content-placeholders-heading />
+    <content-placeholders-heading :class="classPlaceholder" />
   </content-placeholders>
-  <component :is="type" v-else :class="className" class="text-uppercase font-serif">
+  <component :is="type" v-else :class="className" class="heading text-uppercase font-serif">
     <span class="d-block mb-4">
       <span
         :class="{'border-bottom border-dark': borderDark, 'border-bottom border-light': borderLight}"
-        class="pb-2 d-inline-flex"
+        class="d-inline-flex"
       >
         {{text}}
       </span>
-      <div v-if="borderArt" class="border-art"></div>
+      <div v-if="borderArt" class="border-art mt-2"></div>
     </span>
   </component>
 </template>
@@ -47,12 +47,19 @@ export default Vue.extend({
     showPlaceholder: {
       type: Boolean,
       default: false
+    },
+    classPlaceholder: {
+      type: String,
+      default: null
     }
   }
 })
 </script>
 
 <style lang="scss" scoped>
+.heading {
+  margin-bottom: 0;
+}
 .border-art {
   height: rem(24px);
   background: url("https://res.cloudinary.com/ddwsbpkzk/image/upload/h_24/Shinta%20Mani%20Wild/home/line_umnjaa.png") no-repeat center;
