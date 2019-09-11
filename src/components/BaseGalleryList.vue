@@ -16,7 +16,7 @@
       <template v-else-if="items.length > 0">
         <div class="row">
           <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
-            <a class="position-relative gallery-item" :href="item.link">
+            <a class="position-relative gallery-item d-block" :href="item.link">
               <img class="gallery-item-image w-100" :src="item.url" alt />
               <div class="heading position-absolute">
                 <!-- TODO: use a simple heading element instead base-heading -->
@@ -65,6 +65,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .gallery-item {
   cursor: pointer;
+  height: rem(320px);
 }
 .gallery-item-image {
   border-radius: rem(10px);
