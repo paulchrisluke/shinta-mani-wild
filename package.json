@@ -49,6 +49,7 @@
     "sass": "1.18.0",
     "sass-loader": "7.1.0",
     "sass-rem": "2.0.1",
+    "stylelint-config-idiomatic-order": "7.0.3",
     "stylelint-config-recommended": "2.2.0",
     "swagger-axios-codegen": "https://github.com/whynotearth/swagger-axios-codegen",
     "ts-jest": "23.0.0",
