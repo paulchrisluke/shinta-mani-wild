@@ -6,6 +6,7 @@ import './registerServiceWorker'
 import '@/connection/init'
 import './mixins.global'
 import './filters.global'
+import './directives.global'
 // @ts-ignore
 import VueContentPlaceholders from 'vue-content-placeholders'
 import 'vue-content-placeholders/src/styles.scss'

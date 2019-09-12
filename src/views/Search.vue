@@ -24,7 +24,7 @@
               <content-placeholders-text :lines="4" />
             </content-placeholders>
           </div>
-          <p v-else class="mb-0" v-text="resort.description"></p>
+          <p v-else class="mb-0" v-read-more="{lineHeight: 1.5, lines: 3, linkClass: 'd-block float-right'}" v-text="resort.description"></p>
         </article>
       </div>
 

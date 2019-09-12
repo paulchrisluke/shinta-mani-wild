@@ -1,10 +1,14 @@
 import Vue from 'vue'
 
-Vue.filter('truncate', function(text: string, length: number, clamp: string) {
-  text = text || ''
-  clamp = clamp || '...'
-  length = length || 30
+// NOTE: not in use
+// Vue.filter('truncate', truncateFn)
 
+// https://github.com/imcvampire/vue-truncate-filter
+function truncateFn(
+  text: string = '',
+  length: number = 30,
+  clamp: string = '...'
+) {
   if (text.length <= length) return text
 
   var tcText = text.slice(0, length - clamp.length)
@@ -15,8 +19,6 @@ Vue.filter('truncate', function(text: string, length: number, clamp: string) {
 
   // Fix for case when text dont have any `space`
   last = last || length - clamp.length
-
   tcText = tcText.slice(0, last)
-
   return tcText + clamp
-})
+}
