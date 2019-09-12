@@ -31,7 +31,7 @@
 
       <!-- featured stories -->
       <section class="container is-small mb-5 featured-stories">
-        <base-articles-list :show-placeholder="!resort.id" :items-per-row="2" :items="stories.slice(0,2)"></base-articles-list>
+        <base-articles-list :preview-lines-of-read-more="2" :show-placeholder="!resort.id" :items-per-row="2" :items="stories.slice(0,2)"></base-articles-list>
       </section>
 
       <!-- banner action -->

@@ -33,7 +33,7 @@
                 ></a>
               </h3>
             </div>
-            <p class="description mb-0" v-read-more="{lineHeight: 18, lines: 3, linkClass: 'd-block float-right'}" v-text="item.content"></p>
+            <p class="description mb-0" v-read-more="{lineHeight: 18, lines: previewLinesOfReadMore, linkClass: 'd-block float-right'}" v-text="item.content"></p>
           </div>
         </article>
       </div>
@@ -60,6 +60,10 @@ export default Vue.extend({
     showPlaceholder: {
       type: Boolean,
       default: false
+    },
+    previewLinesOfReadMore: {
+      type: Number,
+      default: 3
     }
   }
 })
