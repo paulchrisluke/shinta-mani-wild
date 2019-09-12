@@ -4,7 +4,13 @@ Vue.directive('readMore', {
   inserted(el, binding, vnode) {    
     const originalHeight = el.clientHeight
     el.setAttribute('original-height', String(originalHeight))
-    el.style.height = binding.value.lines * binding.value.lineHeight + 'rem'
+    
+    const newHeight = binding.value.lines * binding.value.lineHeight
+    if (originalHeight <= newHeight) {
+      return
+    }
+    
+    el.style.height = binding.value.lines * binding.value.lineHeight + 'px'
     el.style.overflowY = 'hidden'
     el.classList.add('read-more-content')
 
