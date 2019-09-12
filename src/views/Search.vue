@@ -9,28 +9,29 @@
         <hero-image :image="resort.featuredImage"></hero-image>
       </div>
 
-      <div class="container is-small mb-5">
+      <div class="container is-small mb-5 page-description">
         <article>
           <base-heading
-            :show-placeholder="!resort.title"
+            :show-placeholder="!resort.id"
             :text="resort.title"
             :type="'h1'"
+            :class-placeholder="'heading-placeholder mb-5'"
             :class-name="'h1 is-huge text-dark text-center mb-5'"
             :border-art="true"
           ></base-heading>
 
-          <div v-if="!resort.description">
-            <content-placeholders centered rounded>
-              <content-placeholders-text :lines="4" />
+          <div v-if="!resort.id">
+            <content-placeholders centered rounded class="description-placeholder">
+              <content-placeholders-text :lines="3" />
             </content-placeholders>
           </div>
-          <p v-else class="mb-0" v-text="resort.description"></p>
+          <p v-else class="mb-0" v-read-more="{lineHeight: 24, lines: 3, linkClass: 'd-block float-right'}" v-text="resort.description"></p>
         </article>
       </div>
 
       <!-- featured stories -->
       <section class="container is-small mb-5 featured-stories">
-        <base-articles-list :show-placeholder="!resort.id" :items-per-row="2" :items="stories.slice(0,2)"></base-articles-list>
+        <base-articles-list :preview-lines-of-read-more="2" :show-placeholder="!resort.id" :items-per-row="2" :items="stories.slice(0,2)"></base-articles-list>
       </section>
 
       <!-- banner action -->
@@ -103,6 +104,17 @@ export default Vue.extend({
     height: rem($hero-height);
 
     @include hero-placeholder($hero-height);
+  }
+}
+.page-description::v-deep {
+  .heading-placeholder {
+    height: rem(100px);
+  }
+  .vue-content-placeholders-heading {
+    height: 100%;
+  }
+  .description-placeholder {
+    height: rem(72px);
   }
 }
 .quote::v-deep {

@@ -9,7 +9,6 @@
           :key="item"
         >
           <content-placeholders-img />
-          <content-placeholders-heading class="my-3" />
           <content-placeholders-text :lines="2" />
         </content-placeholders>
       </div>
@@ -17,22 +16,24 @@
     <div v-else-if="items.length > 0" class="row">
       <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
         <article class="item mb-3">
-          <div class="content position-relative">
-            <a class="like position-absolute">
-              <img class="like-image d-block" src="~@/assets/img/icon-like.svg" alt />
-            </a>
-            <img class="w-100" :src="item.image" :alt="item.title" />
-            <h3
-              class="title h3 font-weight-normal font-serif my-3 d-flex align-items-center"
-              :title="item.ctaText"
-            >
-              <a
-                class="title-link text-dark stretched-link text-decoration-none"
-                :href="item.ctaLink"
-                v-text="item.ctaText"
-              ></a>
-            </h3>
-            <p class="description" v-text="item.content"></p>
+          <div class="content mb-3">
+            <div class="position-relative">
+              <a class="like position-absolute">
+                <img class="like-image d-block" src="~@/assets/img/icon-like.svg" alt />
+              </a>
+              <img class="w-100" :src="item.image" :alt="item.title" />
+              <h3
+                class="title h3 font-weight-normal font-serif my-3 d-flex align-items-center"
+                :title="item.ctaText"
+              >
+                <a
+                  class="title-link text-dark stretched-link text-decoration-none"
+                  :href="item.ctaLink"
+                  v-text="item.ctaText"
+                ></a>
+              </h3>
+            </div>
+            <p class="description mb-0" v-read-more="{lineHeight: 18, lines: previewLinesOfReadMore, linkClass: 'd-block float-right'}" v-text="item.content"></p>
           </div>
         </article>
       </div>
@@ -59,6 +60,10 @@ export default Vue.extend({
     showPlaceholder: {
       type: Boolean,
       default: false
+    },
+    previewLinesOfReadMore: {
+      type: Number,
+      default: 3
     }
   }
 })
@@ -75,8 +80,6 @@ export default Vue.extend({
 .description {
   font-size: rem(12px);
   line-height: $line-height-base;
-  height: rem(3 * $line-height-base * 12px);
-  @include line-clamp(3);
 }
 .like {
   top: rem(8px);
@@ -86,5 +89,13 @@ export default Vue.extend({
 .like-image {
   width: rem(32px);
   height: rem(32px);
+}
+::v-deep {
+  .vue-content-placeholders-text {
+    height: rem(54px);
+  }
+  .read-more-link {
+    font-size: rem(12px);
+  }
 }
 </style>

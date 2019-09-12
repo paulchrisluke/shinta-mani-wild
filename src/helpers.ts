@@ -5,18 +5,18 @@
 // }
 
 export function isPassiveEventsSupported() {
-  let supportsPassive = false;
+  let supportsPassive = false
   try {
     const opts = Object.defineProperty({}, 'passive', {
       get: function() {
-        supportsPassive = true;
+        supportsPassive = true
       }
-    });
+    })
     // @ts-ignore
-    window.addEventListener("testPassive", null, opts);
+    window.addEventListener('testPassive', null, opts)
     // @ts-ignore
-    window.removeEventListener("testPassive", null, opts);
+    window.removeEventListener('testPassive', null, opts)
   } catch (e) {}
-  
+
   return supportsPassive
 }
