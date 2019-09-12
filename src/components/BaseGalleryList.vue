@@ -18,7 +18,7 @@
           <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
             <a class="position-relative gallery-item d-block" :style="{'background-image': `url(${item.url})`}" :href="item.link">
               <div class="heading position-absolute">
-                <h3 class="base-heading text-uppercase font-serif h1 text-light text-center" v-text="item.title">Exterior</h3>
+                <h3 class="base-heading text-uppercase font-serif h1 text-light text-center" v-html="item.title">Exterior</h3>
               </div>
             </a>
           </div>
