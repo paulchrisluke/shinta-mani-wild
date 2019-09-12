@@ -1,5 +1,7 @@
 import Vue from 'vue'
 
+// TODO: handle on-resize
+// helpful article to rerender vue components: https://michaelnthiessen.com/force-re-render/
 Vue.directive('readMore', {
   inserted(el, binding, vnode) {    
     const originalHeight = el.clientHeight

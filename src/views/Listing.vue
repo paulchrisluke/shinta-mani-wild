@@ -9,19 +9,20 @@
         <hero-image :image="resort.featuredImage"></hero-image>
       </div>
 
-      <div class="container is-small mb-5">
+      <div class="container is-small mb-5 page-description">
         <article>
           <base-heading
             :show-placeholder="!resort.id"
             :text="resort.title"
             :type="'h1'"
+            :class-placeholder="'heading-placeholder mb-5'"
             :class-name="'h1 is-huge text-dark text-center mb-5'"
             :border-art="true"
           ></base-heading>
 
-          <div v-if="!resort.description">
-            <content-placeholders centered rounded>
-              <content-placeholders-text :lines="4" />
+          <div v-if="!resort.id">
+            <content-placeholders centered rounded class="description-placeholder">
+              <content-placeholders-text :lines="3" />
             </content-placeholders>
           </div>
           <p v-else class="mb-0" v-read-more="{lineHeight: 24, lines: 3, linkClass: 'd-block float-right'}" v-text="resort.description"></p>

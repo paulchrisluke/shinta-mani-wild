@@ -1,6 +1,6 @@
 <template>
-  <content-placeholders v-if="showPlaceholder" class="mb-4" centered rounded>
-    <content-placeholders-heading :class="classPlaceholder" />
+  <content-placeholders v-if="showPlaceholder" :class="classPlaceholder" centered rounded>
+    <content-placeholders-heading />
   </content-placeholders>
   <component :is="type" v-else :class="className" class="base-heading text-uppercase font-serif">
     <span class="d-block mb-4">

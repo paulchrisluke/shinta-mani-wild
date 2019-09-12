@@ -9,7 +9,6 @@
           :key="item"
         >
           <content-placeholders-img />
-          <content-placeholders-heading class="my-3" />
           <content-placeholders-text :lines="2" />
         </content-placeholders>
       </div>
@@ -88,6 +87,9 @@ export default Vue.extend({
   height: rem(32px);
 }
 ::v-deep {
+  .vue-content-placeholders-text {
+    height: rem(54px);
+  }
   .read-more-link {
     font-size: rem(12px);
   }
