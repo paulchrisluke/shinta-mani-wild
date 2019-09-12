@@ -16,15 +16,9 @@
       <template v-else-if="items.length > 0">
         <div class="row">
           <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
-            <a class="position-relative gallery-item d-block" :href="item.link">
-              <img class="gallery-item-image w-100" :src="item.url" alt />
+            <a class="position-relative gallery-item d-block" :style="{'background-image': `url(${item.url})`}" :href="item.link">
               <div class="heading position-absolute">
-                <!-- TODO: use a simple heading element instead base-heading -->
-                <base-heading
-                  v-html="item.title"
-                  :type="'h3'"
-                  :class-name="'h1 text-light text-center'"
-                ></base-heading>
+                <h3 class="base-heading text-uppercase font-serif h1 text-light text-center" v-text="item.title">Exterior</h3>
               </div>
             </a>
           </div>
@@ -66,10 +60,20 @@ export default Vue.extend({
 .gallery-item {
   cursor: pointer;
   height: rem(320px);
-}
-.gallery-item-image {
+  background: no-repeat center;
+  background-size: cover;
   border-radius: rem(10px);
   box-shadow: $box-shadow-md, $box-shadow-sm;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($black, 0.4);
+    border-radius: rem(10px);
+  }
 }
 .heading {
   top: 50%;
