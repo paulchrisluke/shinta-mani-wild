@@ -3,6 +3,7 @@ import Router from 'vue-router'
 const Home = () => import ('./views/Home.vue')
 const Listing = () => import ('./views/Listing.vue')
 const Search = () => import ('./views/Search.vue')
+const Contact = () => import ('./views/Contact.vue')
 
 Vue.use(Router)
 
@@ -22,6 +23,10 @@ export default new Router({
     {
       path: '/search/:id',
       component: Search
+    },
+    {
+      path: '/contact',
+      component: Contact
     },
     {
       path: '/*/',
