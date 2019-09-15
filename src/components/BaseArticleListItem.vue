@@ -12,7 +12,7 @@
         <div class="article-list-item--media">
 
           <!-- video preview -->
-          <div v-if="isHovered && item.image" class="aspect-ratio-box ratio-1-1">
+          <div v-if="isHovered && item.image" class="aspect-ratio-box" :class="imageBoxClass">
             <div class="aspect-ratio-box-inside">
               <video class="article-list-item--video d-block w-100" autoplay muted loop>
                 <source :src="item.image" type="video/mp4" />
