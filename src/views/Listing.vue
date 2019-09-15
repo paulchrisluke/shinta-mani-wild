@@ -59,7 +59,7 @@
       </div>
     </div>
 
-    <booking-bar :title="'The Bohemian Tent'" :price="1200"></booking-bar>
+    <booking-bar :title="resort.title" :price="1200"></booking-bar>
 
     <page-footer></page-footer>
   </div>
