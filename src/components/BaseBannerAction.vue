@@ -20,7 +20,7 @@
               <span v-text="text"></span>
             </h2>
           </template>
-          <base-button :text="'Book Now'" :href="link" target="_blank"></base-button>
+          <base-image-link :text="'Book Now'" :href="link" target="_blank"></base-image-link>
         </div>
       </div>
     </div>
@@ -29,12 +29,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import BaseButton from '@/components/BaseButton.vue'
+import BaseImageLink from '@/components/BaseImageLink.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
 export default Vue.extend({
   name: 'base-banner-action',
   components: {
-    BaseButton,
+    BaseImageLink,
     BaseHeading
   },
   props: {
