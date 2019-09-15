@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center">
         <div class="logo mr-3">
-          <img class="w-100 h-100 d-block" src="~@/assets/img/logo-dark.png" alt />
+          <img class="w-100 h-100 d-block" src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/general/logo-dark_i1vspg.png" alt />
         </div>
         <h2 class="title font-serif text-uppercase" v-text="title"></h2>
       </div>
@@ -47,7 +47,7 @@ export default Vue.extend({
   $button-height: 72px;
   width: rem($button-width);
   height: rem($button-height);
-  background: url('~@/assets/img/button-book-now-light.png');
+  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/h_72/Shinta%20Mani%20Wild/general/book-now-lite_ma33ou.png');
   background-size: rem($button-width $button-height);
 }
 .pricing {

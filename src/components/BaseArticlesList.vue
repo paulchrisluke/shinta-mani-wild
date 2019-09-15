@@ -19,7 +19,7 @@
           <div class="content mb-3">
             <div class="position-relative">
               <a class="like position-absolute">
-                <img class="like-image d-block" src="~@/assets/img/icon-like.svg" alt />
+                <img class="like-image d-block" src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568559589/Shinta%20Mani%20Wild/general/icon-like_bqhyu6.svg" alt />
               </a>
               <img class="w-100" :src="item.image" :alt="item.title" />
               <h3
