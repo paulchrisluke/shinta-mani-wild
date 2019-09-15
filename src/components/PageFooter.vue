@@ -25,22 +25,22 @@
                 <ul class="nav flex-column">
                   <li class="nav-item">
                     <a
-                      href="/bensleys-favorite-seasons/"
+                      href="/search/bensleys-favorite-seasons/"
                       class="nav-link font-weight-bold text-light"
                     >Bensley's Favorite Season</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/foundation/" class="nav-link font-weight-bold text-light">Foundation</a>
+                    <a href="/search/foundation/" class="nav-link font-weight-bold text-light">Foundation</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/conservation/" class="nav-link font-weight-bold text-light">Conservation</a>
+                    <a href="/search/conservation/" class="nav-link font-weight-bold text-light">Conservation</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/press/" class="nav-link font-weight-bold text-light">Press</a>
+                    <a href="/search/press/" class="nav-link font-weight-bold text-light">Press</a>
                   </li>
                   <li class="nav-item">
                     <a
-                      href="/visit-our-siem-reap-location/"
+                      href="/comming-soon"
                       class="nav-link font-weight-bold text-light"
                     >Visit Our Siem Reap Location</a>
                   </li>
