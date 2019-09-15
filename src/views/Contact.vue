@@ -57,30 +57,28 @@
               <input type="hidden" name="form-name" value="Contact"/>
               <input
                 placeholder="Name"
-                class="input-field"
+                class="input-field mb-4"
                 type="text"
               />
               <input
                 placeholder="E-mail"
-                class="input-field"
+                class="input-field mb-4"
                 type="email"
               />
               <input
                 placeholder="Subject"
-                class="input-field"
+                class="input-field mb-4"
                 type="text"
               />
               <textarea
                 placeholder="Message"
-                class="input-field"
+                class="input-field mb-4 d-block"
                 type="text"
               />
               <base-button
                 :text="'Submit'"
-                :href="'www.google.com'"
-                :type="'Submit'"
-                :class-name="'ml-xl-auto'"
-                class="submitButton"
+                :type="'submit'"
+                :class-name="'d-block btn-secondary mb-4'"
               >
               </base-button>
             </form>
