@@ -44,7 +44,7 @@
                     :border-dark="true"
                   ></base-heading>
                   <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation spearheads our conservation and community outreach programmes.</p>
-                  <base-button :href="resort.ctaLink" :text="'Book Now'"></base-button>
+                  <base-image-link :href="resort.ctaLink" :text="'Book Now'"></base-image-link>
                 </div>
               </template>
             </base-card>
@@ -103,7 +103,7 @@
                     :border-dark="true"
                   ></base-heading>
                   <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation...</p>
-                  <base-button :href="resort.ctaLink" :class-name="'ml-xl-auto'" :text="'Book Now'"></base-button>
+                  <base-image-link :href="resort.ctaLink" :class-name="'ml-xl-auto'" :text="'Book Now'"></base-image-link>
                 </div>
               </template>
             </base-card>
@@ -123,7 +123,7 @@ import Vue from 'vue'
 import PageHeader from '@/components/PageHeader.vue'
 import VideoPlayer from '@/components/VideoPlayer.vue'
 import BaseCard from '@/components/BaseCard.vue'
-import BaseButton from '@/components/BaseButton.vue'
+import BaseImageLink from '@/components/BaseImageLink.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
@@ -138,7 +138,7 @@ export default Vue.extend({
     PageHeader,
     VideoPlayer,
     BaseCard,
-    BaseButton,
+    BaseImageLink,
     BaseHeading,
     BaseQuote,
     BaseBannerAction,
