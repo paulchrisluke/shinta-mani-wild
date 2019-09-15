@@ -25,18 +25,34 @@
               <content-placeholders-text :lines="3" />
             </content-placeholders>
           </div>
-          <p v-else class="mb-0" v-read-more="{lineHeight: 24, lines: 3, linkClass: 'd-block float-right'}" v-text="resort.description"></p>
+          <p
+            v-else
+            class="mb-0"
+            v-read-more="{lineHeight: 24, lines: 3, linkClass: 'd-block float-right'}"
+            v-text="resort.description"
+          ></p>
         </article>
       </div>
 
       <!-- featured stories -->
       <section class="container is-small mb-5 featured-stories">
-        <base-articles-list :preview-lines-of-read-more="2" :show-placeholder="!resort.id" :items-per-row="2" :items="stories.slice(0,2)"></base-articles-list>
+        <base-articles-list
+          :image-box-class="'ratio-16-9'"
+          :preview-lines-of-read-more="2"
+          :show-placeholder="!resort.id"
+          :items-per-row="2"
+          :items="stories.slice(0,2)"
+        ></base-articles-list>
       </section>
 
       <!-- banner action -->
       <div class="mb-5">
-        <base-banner-action :image="resort.backgroundImage" :show-placeholder="!resort.id" :link="resort.ctaLink" :text="resort.ctaText"></base-banner-action>
+        <base-banner-action
+          :image="resort.backgroundImage"
+          :show-placeholder="!resort.id"
+          :link="resort.ctaLink"
+          :text="resort.ctaText"
+        ></base-banner-action>
       </div>
 
       <!-- quote -->
@@ -105,6 +121,9 @@ export default Vue.extend({
 
     @include hero-placeholder($hero-height);
   }
+  .featured-stories .article-list-item--image {
+    transform: translateY(-25%);
+  }
 }
 .page-description::v-deep {
   .heading-placeholder {
@@ -128,9 +147,12 @@ export default Vue.extend({
     display: block;
   }
 }
-.featured-stories::v-deep {
-  .vue-content-placeholders-img {
-    height: rem(240px);
+.featured-stories {
+  min-height: rem(356px);
+  &::v-deep {
+    .vue-content-placeholders-img {
+      height: rem(240px);
+    }
   }
 }
 </style>
