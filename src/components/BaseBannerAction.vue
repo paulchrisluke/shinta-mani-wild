@@ -1,6 +1,6 @@
 <template>
   <section
-    class="wrapper position-relative"
+    class="banner-action position-relative"
     :class="{'has-image': image, 'has-video': video}"
     :style="getWrapperStyle()"
   >
@@ -69,7 +69,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
+.banner-action {
   height: rem(400px);
   background: $black no-repeat center;
   background-size: cover;
@@ -101,14 +101,6 @@ export default Vue.extend({
 }
 .image-wrapper {
   z-index: 1;
-}
-::v-deep .button-frame {
-  $button-width: 172px;
-  $button-height: 72px;
-  width: rem($button-width);
-  height: rem($button-height);
-  background: url('~@/assets/img/button-book-now-light.png');
-  background-size: rem($button-width $button-height);
 }
 .placeholder-heading {
   min-height: rem(72px);

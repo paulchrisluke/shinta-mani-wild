@@ -265,7 +265,7 @@ export default Vue.extend({
   $button-height: 72px;
   width: rem($button-width);
   height: rem($button-height);
-  background: url('~@/assets/img/button-book-now.png');
+  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/h_72/Shinta%20Mani%20Wild/general/book-now-colorful_vfgh3k.png');
   background-size: rem($button-width $button-height);
 }
 .pattern-area-1 {
