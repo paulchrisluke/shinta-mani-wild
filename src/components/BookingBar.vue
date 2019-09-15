@@ -3,7 +3,7 @@
     <base-action-bar
       :title="title"
       :price="price"
-      :class="{'fixed-bottom mb-5': distance > thresholdDistance}"
+      :class="{'fixed-bottom': distance > thresholdDistance}"
     >
       <template slot="action-button">
         <base-button :text="'Book Now'"></base-button>
@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      thresholdDistance: footerHeight,
+      thresholdDistance: footerHeight + 48,
       distance: 0,
       isPassiveSupported: false
     }
