@@ -59,7 +59,7 @@
                 />
                 <div class="d-flex flex-column">
                   <p class="mb-0">Southern Cardamom National Park</p>
-                  <a href>
+                  <a href="https://www.google.com/maps/place/Bensley+Collection+-+Shinta+Mani+Wild/@11.189482,103.936634,11z/data=!4m8!3m7!1s0x0:0x84ce6d5a9dbf9706!5m2!4m1!1i2!8m2!3d11.1894822!4d103.9366345?hl=th" target="_blank">
                     <b>View on Maps</b>
                   </a>
                 </div>
