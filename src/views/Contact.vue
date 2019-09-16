@@ -1,81 +1,108 @@
 <template>
+  <!-- design: https://www.figma.com/file/SiFZE7hhRKx2fWmrfZ3uy2RO/Shinta-Mani-Wild?node-id=553%3A6283 -->
   <div class="page page--contact">
     <div class="page--content">
       <!-- header -->
       <page-header></page-header>
 
       <div class="mb-5">
-        <hero-image 
-          image="https://res.cloudinary.com/ddwsbpkzk/image/upload/q_auto:good/Shinta%20Mani%20Wild/home/Hero_Hero_aro2ji.jpg"
-        ></hero-image>
+        <hero-image :image="resort.featuredImage"></hero-image>
       </div>
 
-      <base-heading
-        :text="title"
-        :type="'h1'"
-        :class-placeholder="'heading-placeholder mb-5'"
-        :class-name="'h1 is-huge text-dark text-center mb-5'"
-        :border-art="true"
-      ></base-heading>
+      <div class="container is-small mb-6 page-description">
+        <article>
+          <base-heading
+            :show-placeholder="!resort.id"
+            :text="resort.title"
+            :type="'h1'"
+            :class-placeholder="'heading-placeholder mb-5'"
+            :class-name="'h1 is-huge text-dark text-center mb-5'"
+            :border-art="true"
+          ></base-heading>
 
-      <div class="container">
+          <div v-if="!resort.id">
+            <content-placeholders centered rounded class="description-placeholder">
+              <content-placeholders-text :lines="3" />
+            </content-placeholders>
+          </div>
+          <p
+            v-else
+            class="mb-0 px-5"
+            v-read-more="{lineHeight: 24, lines: 3, linkClass: 'd-block float-right'}"
+            v-text="resort.description"
+          ></p>
+        </article>
+      </div>
+
+      <div class="container is-small">
         <div class="row">
-          <div class="col"></div>
-          <div class="col">
-            <h1 class="font-serif text-dark mb-3 text-uppercase text-center">
-              Ask Us anything
-            </h1>
+          <div class="col-6">
+            <div class="mb-3">
+              <h2 class="font-serif text-dark text-uppercase">Call us</h2>
+              <div class="d-flex">
+                <img
+                  class="mx-3 align-middle"
+                  src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_32/Shinta%20Mani%20Wild/general/icon-phone_gcrzyg.png"
+                  alt="phone"
+                />
+                <a class="contact--phone" href="tel:+85512223782">+855 12 223 782</a>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <h2 class="font-serif text-dark text-uppercase">How to get here</h2>
+              <div class="d-flex">
+                <img
+                  class="mx-3 align-middle"
+                  src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_32/Shinta%20Mani%20Wild/general/icon-address_xsksp1.png"
+                  alt="map"
+                />
+                <div class="d-flex flex-column">
+                  <p class="mb-0">Southern Cardamom National Park</p>
+                  <a href="https://www.google.com/maps/place/Bensley+Collection+-+Shinta+Mani+Wild/@11.189482,103.936634,11z/data=!4m8!3m7!1s0x0:0x84ce6d5a9dbf9706!5m2!4m1!1i2!8m2!3d11.1894822!4d103.9366345?hl=th" target="_blank">
+                    <b>View on Maps</b>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact--content">
+              <p>The journey to Wild takes approximately 2 hours by road from Sihanoukville (KOS) Airport and 3 hours from Phnom Penh (PNH) Airport, and we can arrange pick up from both city centre vicinity if you are coming from coastal Cambodia and continuing to the capital. There are daily flights connecting the cultural heart of Siem Reap (REP) to both airports, and the flight time is approximately 50 mins.</p>
+
+              <p>Direct flight from Bangkok (DMK/BKK) to Sihanoukville (KOS) was launched this year with AirAsia and JC Airlines on selected day of week. Starting from 1st January 2020 Bangkok Airways will be flying daily between the two cities.</p>
+
+              <p>Wild is accessible by private helicopter from Phnom Penh, Sihanoukville and Siem Reap, information and cost available upon request.</p>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          </p>
-          <div class="mb-3">
-            <h1 class="font-serif text-dark text-uppercase">
-              Call us
-            </h1>
-            <a href="tel:+85512223782">
-              +855 12 223 782
-            </a>
-            <h1 class="font-serif text-dark text-uppercase">
-              How to get here
-            </h1>
-            Southern Cardamom National Park
-            <br>
-            <a href="">
-              View on Maps
-            </a>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-          </p>
-          </div>
-          <div class="col">
-            <form name="Contact" method="post" netlify ref="form" action="/thanks" data-netlify="true">
-              <input type="hidden" name="form-name" value="Contact"/>
-              <input
-                placeholder="Name"
-                class="input-field mb-4"
-                type="text"
-              />
+          <div class="col-6">
+            <form
+              name="Contact"
+              method="post"
+              netlify
+              ref="form"
+              action="/thanks"
+              data-netlify="true"
+            >
+              <h2 class="font-serif text-dark mb-3 text-uppercase text-center">Ask Us anything</h2>
+
+              <input type="hidden" name="form-name" value="Contact" />
+              <input placeholder="Name" class="contact--input-name input-field mb-4" type="text" />
               <input
                 placeholder="E-mail"
-                class="input-field mb-4"
+                class="contact--input-email input-field mb-4"
                 type="email"
               />
               <input
                 placeholder="Subject"
-                class="input-field mb-4"
+                class="contact--input-message input-field mb-4"
                 type="text"
               />
-              <textarea
-                placeholder="Message"
-                class="input-field mb-4 d-block"
-                type="text"
-              />
-              <base-image-link :class-name="'is-primary is-md mb-4 w-100'" :type="'submit'" :text="'Submit'"></base-image-link>
+              <textarea placeholder="Message" class="contact--input-text input-field mb-4 d-block" type="text" />
+              <base-image-link
+                :class-name="'is-primary is-md mb-4 w-100'"
+                :type="'submit'"
+                :text="'Submit'"
+              ></base-image-link>
             </form>
           </div>
         </div>
@@ -92,6 +119,7 @@ import PageFooter from '@/components/PageFooter.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
 import HeroImage from '@/components/HeroImage.vue'
 import BaseImageLink from '@/components/BaseImageLink.vue'
+import { Resort } from '../types'
 
 export default {
   name: 'contact',
@@ -100,56 +128,78 @@ export default {
     PageFooter,
     HeroImage,
     BaseHeading,
-    BaseImageLink,
+    BaseImageLink
   },
   data() {
     return {
+      slug: 'contact',
       title: 'Contact',
       name: '',
       email: '',
       phone: '',
-      message: '',
+      message: ''
     }
   },
+  computed: {
+    resort(): Resort {
+      return (this as any).$store.getters['resort/getResort']
+    }
+  },
+  mounted() {
+    (this as any).$store.dispatch('resort/getItemBySlug', (this as any).slug)
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-  ::v-deep {
-    .hero-image {
-      height: rem($hero-height);
+::v-deep {
+  .hero-image {
+    height: rem($hero-height);
 
-      @include hero-placeholder($hero-height);
-    }
+    @include hero-placeholder($hero-height);
   }
-  a {
-    text-decoration: none;
-    color: $black;
-    font-weight: bold;
-  }
-  form{
-    input {
-      background: transparent;
-      border: 1px solid $gray-2f;
-      box-sizing: border-box;
-      padding: rem(32px);
-      margin-bottom: rem(32px);
-      width: 100%;
-      height: 50px;
-    }
-    textarea {
-      background: transparent;
-      border: 1px solid $gray-2f;
-      box-sizing: border-box;
-      padding: rem(32px);
-      margin-bottom: rem(32px);
-      width: 100%;
-      height: rem(256px);
-    }
-  }
-  .submitButton {
+}
+a {
+  text-decoration: none;
+  color: $black;
+  font-weight: bold;
+}
+form {
+  input {
+    background: transparent;
+    border: 1px solid $gray-2f;
+    box-sizing: border-box;
+    padding: rem(32px);
     margin-bottom: rem(32px);
     width: 100%;
     height: 50px;
   }
+  textarea {
+    background: transparent;
+    border: 1px solid $gray-2f;
+    box-sizing: border-box;
+    padding: rem(32px);
+    margin-bottom: rem(32px);
+    width: 100%;
+    height: rem(256px);
+  }
+}
+.contact--phone {
+  line-height: rem(32px);
+}
+.contact--input-name {
+  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/h_64,q_auto:best/Shinta%20Mani%20Wild/general/icon-name_zo5gaf.png')
+    no-repeat right #{rem(16px)} center;
+  background-size: rem(32px);
+}
+.contact--input-email {
+  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/h_64,q_auto:best/Shinta%20Mani%20Wild/general/icon-email_erfxz7.png')
+    no-repeat right #{rem(16px)} center;
+  background-size: rem(32px);
+}
+.contact--input-message {
+  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/h_64,q_auto:best/Shinta%20Mani%20Wild/general/icon-message_jjsjja.png')
+    no-repeat right #{rem(16px)} center;
+  background-size: rem(32px);
+}
 </style>
