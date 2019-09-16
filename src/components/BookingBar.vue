@@ -6,7 +6,7 @@
       :class="{'fixed-bottom': distance > thresholdDistance}"
     >
       <template slot="action-button">
-        <base-image-link :text="'Book Now'"></base-image-link>
+        <base-image-link :class-name="'is-secondary is-md'" :text="'Book Now'"></base-image-link>
       </template>
     </base-action-bar>
   </div>
