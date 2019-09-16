@@ -75,12 +75,7 @@
                 class="input-field mb-4 d-block"
                 type="text"
               />
-              <base-button
-                :text="'Submit'"
-                :type="'submit'"
-                :class-name="'d-block btn-secondary mb-4'"
-              >
-              </base-button>
+              <base-image-link :class-name="'is-primary is-md mb-4 w-100'" :type="'submit'" :text="'Submit'"></base-image-link>
             </form>
           </div>
         </div>
@@ -96,7 +91,7 @@ import PageHeader from '@/components/PageHeader.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
 import HeroImage from '@/components/HeroImage.vue'
-import BaseButton from '@/components/BaseButton.vue'
+import BaseImageLink from '@/components/BaseImageLink.vue'
 
 export default {
   name: 'contact',
@@ -105,7 +100,7 @@ export default {
     PageFooter,
     HeroImage,
     BaseHeading,
-    BaseButton,
+    BaseImageLink,
   },
   data() {
     return {
@@ -129,31 +124,31 @@ export default {
   }
   a {
     text-decoration: none;
-    color: #000000;
+    color: $black;
     font-weight: bold;
   }
   form{
     input {
       background: transparent;
-      border: 0.5px solid #2F2F2F;
+      border: 1px solid $gray-2f;
       box-sizing: border-box;
-      padding: 30px;
-      margin-bottom: 30px;
+      padding: rem(32px);
+      margin-bottom: rem(32px);
       width: 100%;
       height: 50px;
     }
     textarea {
       background: transparent;
-      border: 0.5px solid #2F2F2F;
+      border: 1px solid $gray-2f;
       box-sizing: border-box;
-      padding: 30px;
-      margin-bottom: 30px;
+      padding: rem(32px);
+      margin-bottom: rem(32px);
       width: 100%;
-      height: 265px;
+      height: rem(256px);
     }
   }
   .submitButton {
-    margin-bottom: 30px;
+    margin-bottom: rem(32px);
     width: 100%;
     height: 50px;
   }
