@@ -19,7 +19,7 @@
 
     <div class="pattern-area-1 pt-5 pt-xl-0 position-relative">
 
-      <div class="container is-small">
+      <div class="container is-small mb-4">
         <base-heading :class-placeholder="'is-huge-placeholder'" :show-placeholder="!resort.id" :text="'Shinta Mani Wild'" :type="'h1'" :class-name="'h1 is-huge text-dark text-center'" :border-art="true" ></base-heading>
       </div>
 
