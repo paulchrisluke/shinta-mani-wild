@@ -135,6 +135,17 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.page-description::v-deep {
+  .heading-placeholder {
+    height: rem(100px);
+  }
+  .vue-content-placeholders-heading {
+    height: 100%;
+  }
+  .description-placeholder {
+    height: rem(72px);
+  }
+}
 ::v-deep {
   .hero-image {
     height: rem($hero-height);
