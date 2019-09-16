@@ -42,14 +42,6 @@ export default Vue.extend({
 .title {
   font-size: rem(40px);
 }
-::v-deep .button-frame {
-  $button-width: 172px;
-  $button-height: 72px;
-  width: rem($button-width);
-  height: rem($button-height);
-  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/h_72/Shinta%20Mani%20Wild/general/book-now-lite_ma33ou.png');
-  background-size: rem($button-width $button-height);
-}
 .pricing {
   font-size: rem(32px);
 }
