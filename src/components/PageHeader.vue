@@ -15,18 +15,39 @@
             </div>
             <div class="page-header--nav">
               <nav>
-                <ul class="nav font-serif">
-                  <li class="nav-item">
-                    <a href="/search/tents" class="nav-link text-light">Tents</a>
+                <ul class="nav font-serif user-select-none">
+                  <li class="nav-item dropdown mx-1" :class="{'show': isDropdownTentsOpen}">
+                    <a
+                      href="#"
+                      @click.prevent.stop="isDropdownTentsOpen = !isDropdownTentsOpen"
+                      class="nav-link dropdown-toggle text-light px-2"
+                      id="page-header--dropdown-1"
+                    >Tents</a>
+                    <div
+                      class="dropdown-menu"
+                      :class="{'show': isDropdownTentsOpen}"
+                      aria-labelledby="page-header--dropdown-1"
+                      aria-haspopup="true"
+                      :aria-expanded="isDropdownTentsOpen + ''"
+                    >
+                      <a class="dropdown-item" href="/search/tents">All Tents</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="/listing/waterfall-tents">Waterfall Tents</a>
+                      <a class="dropdown-item" href="/listing/wild-tents">Wild Tents</a>
+                      <a
+                        class="dropdown-item"
+                        href="/listing/wildlife-alliance-tents"
+                      >Wildlife Alliance Tents</a>
+                    </div>
                   </li>
-                  <li class="nav-item">
-                    <a href="/search/adventure" class="nav-link text-light">Adventures</a>
+                  <li class="nav-item mx-1">
+                    <a href="/search/adventure" class="nav-link text-light px-2">Adventures</a>
                   </li>
-                  <li class="nav-item">
-                    <a href="/search/food-and-drink" class="nav-link text-light">Food and Drink</a>
+                  <li class="nav-item mx-1">
+                    <a href="/search/food-and-drink" class="nav-link text-light px-2">Food and Drink</a>
                   </li>
-                  <li class="nav-item">
-                    <a href="/search/wellness" class="nav-link text-light">Wellness</a>
+                  <li class="nav-item mx-1">
+                    <a href="/search/wellness" class="nav-link text-light px-2">Wellness</a>
                   </li>
                 </ul>
               </nav>
@@ -60,5 +81,44 @@
 
 <script lang="ts">
 import Vue from 'vue'
-export default Vue.extend({})
+import { getPassiveEventConfig } from '@/helpers'
+
+export default Vue.extend({
+  data() {
+    return {
+      isDropdownTentsOpen: false
+    }
+  },
+  mounted() {
+    this.clickOutsideDropdownListener()
+  },
+  methods: {
+    clickOutsideDropdownListener() {
+      document.addEventListener(
+        'click',
+        this.onClickOutsideDropdown,
+        getPassiveEventConfig()
+      )
+    },
+    onClickOutsideDropdown() {
+      this.isDropdownTentsOpen = false
+    }
+  },
+  destroyed() {
+    document.removeEventListener('click', this.onClickOutsideDropdown)
+  }
+})
 </script>
+
+<style lang="scss" scoped>
+.dropdown-toggle {
+  &::after {
+    border: none;
+    margin-left: rem(8px);
+    background: no-repeat center url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4xMzMzIDBMOCA0Ljk3Mjk3TDEuODY2NjcgMEwwIDEuNTEzNTFMOCA4TDE2IDEuNTEzNTFMMTQuMTMzMyAwWiIgZmlsbD0iI0ZGRkZGMCIvPjwvc3ZnPg==);
+    width: rem(16px);
+    height: rem(16px);
+    vertical-align: -0.2rem;
+  }
+}
+</style>

@@ -36,6 +36,7 @@ $header-height: 56px;
 $hero-height: 800px - $header-height;
 $container-small: 912px;
 $nav-link-padding-y: rem(4px);
+$caret-vertical-align: 0.1em;
 
 $spacer: 1rem !default;
 $spacers: () !default;
@@ -58,6 +59,7 @@ $serif-font-size-correction: 1.25;
 $huge-font-size: 4.25rem;
 $h1-font-size: 3rem;
 $h2-font-size: 2rem;
+$dropdown-font-size: 1em;
 
 // effects
 $box-shadow-sm: 0px 4px 4px rgba(0, 0, 0, 0.25);
