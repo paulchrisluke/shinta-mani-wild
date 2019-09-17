@@ -24,12 +24,11 @@
         <div v-else class="px-3 px-xl-0 mx-auto">
           <div
             :class="{'is-right-skew': !isLeft, 'is-left-skew': isLeft}"
-            class="card-image-wrapper position-relative"
+            class="card-image-wrapper skew-effect position-relative"
           >
-            <picture class="card-image position-relative">
-              <source :srcset="image.xl.src" :media="`(min-width: ${gridBreakpoints.xl}px)`" />
+            <div class="card-image position-relative">
               <img :src="image.default.src" :alt="image.alt" />
-            </picture>
+            </div>
           </div>
         </div>
       </div>
@@ -60,6 +59,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 $card-border-top: 24px;
+$amount-of-card-image-inside-card-in-responsive: 80px;
 $shadow-small: $box-shadow-md, $box-shadow-sm;
 .wrapper-card {
   box-shadow: $shadow-small;
@@ -70,8 +70,31 @@ $shadow-small: $box-shadow-md, $box-shadow-sm;
 .card-image-wrapper {
   @include media-breakpoint-down(lg) {
     // the height of image inside card (in viewport < lg)
-    height: rem(80px);
+    height: rem($amount-of-card-image-inside-card-in-responsive);
   }
+}
+// for the space above card in mobile
+.ghost-card-image {
+  visibility: hidden;
+  img {
+    margin-top: rem(
+      -$amount-of-card-image-inside-card-in-responsive + -$card-border-top
+    );
+  }
+}
+
+.card-image {
+  img {
+    max-width: 100%;
+    border-radius: rem(10px);
+
+    @include media-breakpoint-down(lg) {
+      transform: translateY(-80%);
+      box-shadow: $shadow-small;
+    }
+  }
+}
+.skew-effect {
   @include media-breakpoint-up(xl) {
     transform: scale(1.15);
     &::before {
@@ -84,49 +107,44 @@ $shadow-small: $box-shadow-md, $box-shadow-sm;
       filter: blur(2px);
       box-shadow: 0 0 4.5rem rgba($black, 0.2);
     }
-    &.is-right-skew {
-      left: rem(96px);
-      &::before {
-        right: rem(4px);
-        left: 0;
-        transform: rotate(5.5deg) translateX(-16px) translateY(12px) skewX(2deg)
-          skewY(-4deg);
-      }
-    }
-    &.is-left-skew {
-      right: rem(96px);
-      &::before {
-        left: rem(4px);
-        right: 0;
-        transform: rotate(-5.5deg) translateX(16px) translateY(12px)
-          skewX(-2deg) skewY(4deg);
+    .card-image {
+      img {
+        .is-right-skew & {
+          transform: matrix(0.99, 0.04, -0.11, 1, 0, 0);
+        }
+        .is-left-skew & {
+          transform: matrix(0.99, -0.04, 0.11, 1, 0, 0);
+        }
       }
     }
   }
-}
-// for the space above card in mobile
-.ghost-card-image {
-  visibility: hidden;
-  img {
-    margin-top: rem(-80px + -$card-border-top);
-  }
-}
-.card-image {
-  img {
-    @include media-breakpoint-up(xl) {
-      .is-right-skew & {
+
+  &.is-right-skew {
+    left: rem(96px);
+    &::before {
+      right: rem(4px);
+      left: 0;
+      transform: rotate(5.5deg) translateX(-16px) translateY(12px) skewX(2deg)
+        skewY(-4deg);
+    }
+    .card-image {
+      img {
         transform: matrix(0.99, 0.04, -0.11, 1, 0, 0);
       }
-      .is-left-skew & {
+    }
+  }
+  &.is-left-skew {
+    right: rem(96px);
+    &::before {
+      left: rem(4px);
+      right: 0;
+      transform: rotate(-5.5deg) translateX(16px) translateY(12px) skewX(-2deg)
+        skewY(4deg);
+    }
+    .card-image {
+      img {
         transform: matrix(0.99, -0.04, 0.11, 1, 0, 0);
       }
-    }
-    max-width: 100%;
-    border-radius: rem(10px);
-
-    @include media-breakpoint-down(lg) {
-      transform: translateY(-80%);
-      box-shadow: $shadow-small;
     }
   }
 }
