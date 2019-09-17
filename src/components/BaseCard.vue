@@ -1,10 +1,12 @@
 <template>
   <div class="position-relative">
     <div class="ghost-wrapper px-3 d-xl-none">
-      <picture v-if="!showPlaceholder" class="ghost-card-image d-table mx-auto px-3">
-        <source :srcset="image.xl.src" :media="`(min-width: ${gridBreakpoints.xl})`" />
-        <img :src="image.default.src" :alt="image.alt" />
-      </picture>
+      <div v-if="!showPlaceholder" class="ghost-card-image d-table mx-auto px-3">
+        <picture>
+          <source :srcset="image.xl.src" :media="`(min-width: ${gridBreakpoints.xl})`" />
+          <img :src="image.default.src" :alt="image.alt" />
+        </picture>
+      </div>
     </div>
     <div :class="{'flex-row-reverse': isLeft}" class="wrapper-card row no-gutters mx-3 mx-xl-0">
       <div class="text col-12 col-xl-6 order-2 order-xl-1">
@@ -57,16 +59,18 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-$shadow-small: 0px 9px 24px rgba($black, 0.25), 0px 4px 4px rgba($black, 0.25);
+$card-border-top: 24px;
+$shadow-small: $box-shadow-md, $box-shadow-sm;
 .wrapper-card {
   box-shadow: $shadow-small;
   border-radius: rem(15px);
-  border-top: rem(24px) solid $primary;
+  border-top: rem($card-border-top) solid $primary;
   background: $brand-2;
 }
 .card-image-wrapper {
   @include media-breakpoint-down(lg) {
-    height: rem(64px);
+    // the height of image inside card (in viewport < lg)
+    height: rem(80px);
   }
   @include media-breakpoint-up(xl) {
     transform: scale(1.15);
@@ -104,8 +108,7 @@ $shadow-small: 0px 9px 24px rgba($black, 0.25), 0px 4px 4px rgba($black, 0.25);
 .ghost-card-image {
   visibility: hidden;
   img {
-    height: 82%;
-    margin-top: calc(-24px - 16px - 18%);
+    margin-top: rem(-80px + -$card-border-top);
   }
 }
 .card-image {
@@ -122,7 +125,7 @@ $shadow-small: 0px 9px 24px rgba($black, 0.25), 0px 4px 4px rgba($black, 0.25);
     border-radius: rem(10px);
 
     @include media-breakpoint-down(lg) {
-      transform: translateY(-82%);
+      transform: translateY(-80%);
       box-shadow: $shadow-small;
     }
   }

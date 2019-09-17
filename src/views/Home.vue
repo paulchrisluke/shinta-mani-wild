@@ -17,14 +17,14 @@
       ></video-player>
     </div>
 
-    <div class="pattern-area-1 pt-5 pt-xl-0 position-relative">
+    <div class="pattern-area-1 pt-0 position-relative">
 
       <div class="container is-small mb-4">
-        <base-heading :class-placeholder="'is-huge-placeholder'" :show-placeholder="!resort.id" :text="'Shinta Mani Wild'" :type="'h1'" :class-name="'h1 is-huge text-dark text-center'" :border-art="true" ></base-heading>
+        <base-heading :class-placeholder="'is-huge-placeholder'" :show-placeholder="!resort.id" :text="'Shinta Mani Wild'" :type="'h1'" :class-name="'h1 font-size-xl-huge text-dark text-center'" :border-art="true" ></base-heading>
       </div>
 
       <!-- quote -->
-      <section class="container shift-down">
+      <section class="container shift-xl-down home--quote-wrapper">
         <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
           <div class="quote w-100 h-100" v-html="resort.description"></div>
         </base-quote>
@@ -33,7 +33,7 @@
       <!-- card -->
       <div class="container is-small">
         <div class="row mb-5">
-          <div class="column-12">
+          <div class="col-12">
             <base-card :show-placeholder="!resort.id" :image="cardImage1">
               <template v-slot:text>
                 <div class="card-content">
@@ -53,15 +53,13 @@
       </div>
 
       <!-- banner action -->
-      <div class="mb-5">
-        <base-banner-action :image="resort.backgroundImage" :show-placeholder="!resort.id" :link="resort.ctaLink" :text="resort.ctaText">
-        </base-banner-action>
-      </div>
+      <base-banner-action :image="resort.backgroundImage" :show-placeholder="!resort.id" :link="resort.ctaLink" :text="resort.ctaText">
+      </base-banner-action>
 
-      <div class="pattern-area-2 position-relative">
+      <div class="pattern-area-2 position-relative pt-5">
 
       <!-- quote tents -->
-      <div class="position-relative">
+      <div class="position-relative shift-xl-down home--quote-wrapper">
         <section class="container">
           <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
             <div class="quote w-100 h-100" v-html="resort.h2"></div>
@@ -87,7 +85,7 @@
       <!-- card -->
       <div class="container is-small">
         <div class="row mb-5">
-          <div class="column-12">
+          <div class="col-12">
             <base-card :show-placeholder="!resort.id" :image="cardImage2" :is-left="true">
               <template v-slot:text>
                 <div class="card-content">
@@ -284,6 +282,11 @@ export default Vue.extend({
   b {
     font-weight: bold;
     display: block;
+  }
+}
+.home--quote-wrapper {
+  @include media-breakpoint-down(lg) {
+    margin-bottom: $spacer * 3;
   }
 }
 </style>
