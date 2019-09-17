@@ -51,6 +51,7 @@ export default {
       document.addEventListener(
         'scroll',
         this.onScrollPage,
+        // TODO: use getPassiveEventConfig()
         this.isPassiveSupported ? { passive: true } : false
       )
     },

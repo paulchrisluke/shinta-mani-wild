@@ -15,9 +15,24 @@
             </div>
             <div class="page-header--nav">
               <nav>
-                <ul class="nav font-serif">
-                  <li class="nav-item mx-1">
-                    <a href="/search/tents" class="nav-link text-light px-2">Tents</a>
+                <ul class="nav font-serif user-select-none">
+                  <li class="nav-item dropdown mx-1">
+                    <a
+                      @click.prevent.stop="isDropdownTentsOpen = !isDropdownTentsOpen"
+                      class="nav-link dropdown-toggle text-light px-2"
+                    >
+                      <span>Tents</span>
+                    </a>
+                    <div class="dropdown-menu d-block" v-if="isDropdownTentsOpen">
+                      <a class="dropdown-item" href="/search/tents">All Tents</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="/listing/waterfall-tents">Waterfall Tents</a>
+                      <a class="dropdown-item" href="/listing/wild-tents">Wild Tents</a>
+                      <a
+                        class="dropdown-item"
+                        href="/listing/wildlife-alliance-tents"
+                      >Wildlife Alliance Tents</a>
+                    </div>
                   </li>
                   <li class="nav-item mx-1">
                     <a href="/search/adventure" class="nav-link text-light px-2">Adventures</a>
@@ -60,5 +75,31 @@
 
 <script lang="ts">
 import Vue from 'vue'
-export default Vue.extend({})
+import { getPassiveEventConfig } from '@/helpers'
+
+export default Vue.extend({
+  data() {
+    return {
+      isDropdownTentsOpen: false
+    }
+  },
+  mounted() {
+    this.clickOutsideDropdownListener()
+  },
+  methods: {
+    clickOutsideDropdownListener() {
+      document.addEventListener(
+        'click',
+        this.onClickOutsideDropdown,
+        getPassiveEventConfig()
+      )
+    },
+    onClickOutsideDropdown() {
+      this.isDropdownTentsOpen = false
+    }
+  },
+  destroyed() {
+    document.removeEventListener('click', this.onClickOutsideDropdown)
+  }
+})
 </script>

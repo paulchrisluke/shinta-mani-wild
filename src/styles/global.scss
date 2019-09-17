@@ -26,6 +26,11 @@
   height: (1 * $huge-font-size) + rem(24px + 8px);
 }
 
+// utilities
+.user-select-none {
+  user-select: none;
+}
+
 // layout
 html,
 body,
