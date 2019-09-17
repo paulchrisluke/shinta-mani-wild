@@ -19,7 +19,7 @@
 
     <div class="pattern-area-1 pt-5 pt-xl-0 position-relative">
 
-      <div class="container is-small">
+      <div class="container is-small mb-4">
         <base-heading :class-placeholder="'is-huge-placeholder'" :show-placeholder="!resort.id" :text="'Shinta Mani Wild'" :type="'h1'" :class-name="'h1 is-huge text-dark text-center'" :border-art="true" ></base-heading>
       </div>
 
@@ -44,7 +44,7 @@
                     :border-dark="true"
                   ></base-heading>
                   <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation spearheads our conservation and community outreach programmes.</p>
-                  <base-image-link :href="resort.ctaLink" :text="'Book Now'"></base-image-link>
+                  <base-image-link :class-name="'is-primary is-md'" :href="resort.ctaLink" :text="'Book Now'"></base-image-link>
                 </div>
               </template>
             </base-card>
@@ -98,7 +98,9 @@
                     :border-dark="true"
                   ></base-heading>
                   <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation...</p>
-                  <base-image-link :href="resort.ctaLink" :class-name="'ml-xl-auto'" :text="'Book Now'"></base-image-link>
+                  <div class="d-flex">
+                    <base-image-link :class-name="'is-primary is-md ml-xl-auto'" :href="resort.ctaLink" :text="'Book Now'"></base-image-link>
+                  </div>
                 </div>
               </template>
             </base-card>
@@ -254,14 +256,6 @@ export default Vue.extend({
   ::v-deep {
     @include hero-placeholder($hero-height);
   }
-}
-.card-content::v-deep .button-frame {
-  $button-width: 172px;
-  $button-height: 72px;
-  width: rem($button-width);
-  height: rem($button-height);
-  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/h_72/Shinta%20Mani%20Wild/general/book-now-colorful_vfgh3k.png');
-  background-size: rem($button-width $button-height);
 }
 .pattern-area-1 {
   @include media-breakpoint-up(xl) {

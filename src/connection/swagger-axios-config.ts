@@ -6,6 +6,6 @@ codegen({
   methodNameMode: 'operationId',
   remoteUrl: `${BASE_API}/swagger/v0/swagger.json`,
   useStaticMethod: true,
-  outputDir: './src/connection/',
+  outputDir: './temp/',
   fileName: 'resources.ts'
 })
