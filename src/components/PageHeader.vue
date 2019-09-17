@@ -15,7 +15,7 @@
             </div>
             <div class="page-header--nav">
               <nav>
-                <ul class="nav font-serif user-select-none">
+                <ul class="nav font-serif user-select-none text-uppercase">
                   <li class="nav-item dropdown mx-1" :class="{'show': isDropdownTentsOpen}">
                     <a
                       href="#"
@@ -68,7 +68,7 @@
   height: rem($header-height);
 }
 .page-header--nav {
-  font-size: rem(20px);
+  font-size: rem(18px);
 }
 .logo-link {
   width: rem(44px);
@@ -118,7 +118,7 @@ export default Vue.extend({
     background: no-repeat center url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4xMzMzIDBMOCA0Ljk3Mjk3TDEuODY2NjcgMEwwIDEuNTEzNTFMOCA4TDE2IDEuNTEzNTFMMTQuMTMzMyAwWiIgZmlsbD0iI0ZGRkZGMCIvPjwvc3ZnPg==);
     width: rem(16px);
     height: rem(16px);
-    vertical-align: -0.2rem;
+    vertical-align: -0.1rem;
   }
 }
 </style>
