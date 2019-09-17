@@ -16,17 +16,17 @@
             <div class="page-header--nav">
               <nav>
                 <ul class="nav font-serif">
-                  <li class="nav-item">
-                    <a href="/search/tents" class="nav-link text-light">Tents</a>
+                  <li class="nav-item mx-1">
+                    <a href="/search/tents" class="nav-link text-light px-2">Tents</a>
                   </li>
-                  <li class="nav-item">
-                    <a href="/search/adventure" class="nav-link text-light">Adventures</a>
+                  <li class="nav-item mx-1">
+                    <a href="/search/adventure" class="nav-link text-light px-2">Adventures</a>
                   </li>
-                  <li class="nav-item">
-                    <a href="/search/food-and-drink" class="nav-link text-light">Food and Drink</a>
+                  <li class="nav-item mx-1">
+                    <a href="/search/food-and-drink" class="nav-link text-light px-2">Food and Drink</a>
                   </li>
-                  <li class="nav-item">
-                    <a href="/search/wellness" class="nav-link text-light">Wellness</a>
+                  <li class="nav-item mx-1">
+                    <a href="/search/wellness" class="nav-link text-light px-2">Wellness</a>
                   </li>
                 </ul>
               </nav>
