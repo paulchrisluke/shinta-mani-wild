@@ -57,9 +57,6 @@ export default Vue.extend({
 </script>
 
 <style lang='scss' scoped>
-.video {
-  //
-}
 ::v-deep {
   .vue-content-placeholders-text {
     height: rem(54px);
