@@ -2,6 +2,7 @@
   <article class="article-list-item">
     <div class="pb-3">
       <div @mouseover="onMouseOver" @mouseleave="onMouseLeave" class="position-relative">
+        <!-- like -->
         <a class="like position-absolute">
           <img
             class="like-image d-block"
@@ -9,13 +10,31 @@
             alt
           />
         </a>
+
         <div class="article-list-item--media">
-          <transition name="fade" mode="out-in">
+          <!-- image -->
+          <div
+            key="poster"
+            class="article-list-item--media-poster aspect-ratio-box"
+            :class="imageBoxClass"
+          >
+            <div class="aspect-ratio-box-inside">
+              <img
+                v-if="item.posterUrl"
+                class="article-list-item--image w-100"
+                :src="item.posterUrl"
+                :alt="item.ctaText"
+              />
+              <div v-else class="image-placeholder h-100 w-100"></div>
+            </div>
+          </div>
+
+          <transition name="fade" mode="in-out">
             <!-- video preview (item.image is mp4) -->
             <div
               v-if="isHovered && item.image"
               key="video"
-              class="aspect-ratio-box"
+              class="aspect-ratio-box article-list-item--media-inside position-absolute"
               :class="imageBoxClass"
             >
               <div class="aspect-ratio-box-inside">
@@ -24,21 +43,9 @@
                 </video>
               </div>
             </div>
-
-            <!-- image -->
-            <div v-else key="poster" class="aspect-ratio-box" :class="imageBoxClass">
-              <div class="aspect-ratio-box-inside">
-                <img
-                  v-if="item.posterUrl"
-                  class="article-list-item--image w-100"
-                  :src="item.posterUrl"
-                  :alt="item.ctaText"
-                />
-                <div v-else class="image-placeholder h-100 w-100"></div>
-              </div>
-            </div>
           </transition>
         </div>
+
         <h3
           class="title h3 font-weight-normal font-serif my-2 d-flex align-items-center"
           :title="item.ctaText"
@@ -121,20 +128,27 @@ export default Vue.extend({
 .article-list-item--video {
   transform: translateY(-25%);
 }
+.article-list-item--media-poster {
+  background-color: rgba($brand-2, 0.4);
+}
 .image-placeholder {
   background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/w_88/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png')
-    center rgba($brand-2, 0.4) no-repeat;
+    center no-repeat;
   background-size: rem(88px);
 }
-.fade-enter-active {
-  transition: opacity 300ms ease;
-}
+.fade-enter-active,
 .fade-leave-active {
-  transition: none;
+  transition: opacity 300ms ease;
 }
 
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+.article-list-item--media-inside {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 </style>
