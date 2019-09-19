@@ -34,8 +34,19 @@
         </article>
       </div>
 
+      <!-- accommodations -->
+      <section v-if="isTentsPage" class="container is-small mb-5 featured-stories">
+        <base-articles-list
+          :image-box-class="'ratio-16-9'"
+          :preview-lines-of-read-more="2"
+          :show-placeholder="!resort.id"
+          :items-per-row="3"
+          :items="accommodations.slice(0,3)"
+        ></base-articles-list>
+      </section>
+
       <!-- featured stories -->
-      <section class="container is-small mb-5 featured-stories">
+      <section v-else class="container is-small mb-5 featured-stories">
         <base-articles-list
           :image-box-class="'ratio-16-9'"
           :preview-lines-of-read-more="2"
@@ -82,7 +93,7 @@ import BaseHeading from '@/components/BaseHeading.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
-import { Story, Resort } from '@/types'
+import { Story, Resort, Category } from '@/types'
 import { get } from 'lodash-es'
 
 export default Vue.extend({
@@ -104,10 +115,18 @@ export default Vue.extend({
   },
   computed: {
     resort(): Resort {
-      return this.$store.getters['resort/getResort']
+      return this.$store.getters['resort/getItem']
+    },
+    categories(): Category[] {
+      return this.$store.getters['category/getItems']
+    },
+    accommodations() {
+      return get(this.categories, 'accommodations', [])
     },
     stories(): Story[] {
-      return get(this.resort, 'stories', []).filter((item: Story) => item.posterUrl)
+      return get(this.resort, 'stories', []).filter(
+        (item: Story) => item.posterUrl
+      )
     },
     bannerActionButtonText() {
       if (this.isTentsPage) {
@@ -119,6 +138,9 @@ export default Vue.extend({
   },
   mounted() {
     this.$store.dispatch('resort/getItemBySlug', this.slug)
+    if (this.isTentsPage) {
+      this.$store.dispatch('category/getItemsByName', 'accommodations')
+    }
   }
 })
 </script>

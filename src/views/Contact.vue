@@ -142,7 +142,7 @@ export default {
   },
   computed: {
     resort(): Resort {
-      return (this as any).$store.getters['resort/getResort']
+      return (this as any).$store.getters['resort/getItem']
     }
   },
   mounted() {

@@ -99,7 +99,7 @@ export default Vue.extend({
   },
   computed: {
     resort(): Resort {
-      return this.$store.getters['resort/getResort']
+      return this.$store.getters['resort/getItem']
     },
     stories(): Story[] {
       return get((this as any).resort, 'stories', []).filter((item: Story) => item.posterUrl)

@@ -166,7 +166,7 @@ export default Vue.extend({
       ]
     },
     resort(): Resort {
-      return this.$store.getters['resort/getResort']
+      return this.$store.getters['resort/getItem']
     },
     styleOfHero(): any {
       return {
