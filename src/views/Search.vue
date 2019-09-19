@@ -35,18 +35,17 @@
       </div>
 
       <!-- accommodations -->
-      <section v-if="isTentsPage" class="container is-small mb-5 featured-stories">
+      <section v-if="isTentsPage" class="container is-small mb-5 featured-items is-pages">
         <base-articles-list
           :image-box-class="'ratio-16-9'"
           :preview-lines-of-read-more="2"
           :show-placeholder="!resort.id"
           :items-per-row="3"
-          :items="accommodations.slice(0,3)"
+          :items="accommodationsAsStories.slice(0,3)"
         ></base-articles-list>
       </section>
-
       <!-- featured stories -->
-      <section v-else class="container is-small mb-5 featured-stories">
+      <section v-else class="container is-small mb-5 featured-items is-stories">
         <base-articles-list
           :image-box-class="'ratio-16-9'"
           :preview-lines-of-read-more="2"
@@ -95,6 +94,7 @@ import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import { Story, Resort, Category } from '@/types'
 import { get } from 'lodash-es'
+import { categoryToStoryBridge } from '@/helpers'
 
 export default Vue.extend({
   name: 'listing',
@@ -117,11 +117,15 @@ export default Vue.extend({
     resort(): Resort {
       return this.$store.getters['resort/getItem']
     },
-    categories(): Category[] {
+    categories(): any {
       return this.$store.getters['category/getItems']
     },
-    accommodations() {
+    accommodations(): Category[] {
       return get(this.categories, 'accommodations', [])
+    },
+    accommodationsAsStories() {
+      // @ts-ignore
+      return this.accommodations.map(categoryToStoryBridge)
     },
     stories(): Story[] {
       return get(this.resort, 'stories', []).filter(
@@ -152,7 +156,7 @@ export default Vue.extend({
 
     @include hero-placeholder($hero-height);
   }
-  .featured-stories .article-list-item--image {
+  .featured-items.is-stories .article-list-item--image {
     transform: translateY(-25%);
   }
 }
@@ -178,11 +182,16 @@ export default Vue.extend({
     display: block;
   }
 }
-.featured-stories {
-  min-height: rem(356px);
+.featured-items {
+  &.is-pages {
+    min-height: rem(288px);
+  }
+  &.is-stories {
+    min-height: rem(356px);
+  }
   &::v-deep {
     .vue-content-placeholders-img {
-      height: rem(240px);
+      height: rem(162px);
     }
   }
 }
