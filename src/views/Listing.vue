@@ -102,7 +102,7 @@ export default Vue.extend({
       return this.$store.getters['resort/getResort']
     },
     stories(): Story[] {
-      return get((this as any).resort, 'stories', [])
+      return get((this as any).resort, 'stories', []).filter((item: Story) => item.posterUrl)
     },
     resortImages(): GalleryImage[] {
       return get((this as any).resort, 'images', [])

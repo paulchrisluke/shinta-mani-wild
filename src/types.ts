@@ -10,12 +10,13 @@ export interface GalleryItem {
 }
 
 export interface Story {
-  order: number,
+  order: number
   content: string
   ctaLink: string
   ctaText: string
   image: string
   type: string
+  posterUrl: string
 }
 
 export interface ResortCategory {
@@ -40,7 +41,7 @@ export interface Resort {
   h2: string
   id: number
   images: ResortImage[]
-  modules: any,
+  modules: any
   name: string
   slug: string
   stories: Story[]
