@@ -1,6 +1,6 @@
 <template>
   <!-- design file: https://www.figma.com/file/SiFZE7hhRKx2fWmrfZ3uy2RO/Shinta-Mani-Wild?node-id=553%3A4724 -->
-  <div class="page page--search">
+  <div class="page page--tents">
     <div class="page--content">
       <!-- header -->
       <page-header></page-header>
@@ -34,14 +34,14 @@
         </article>
       </div>
 
-      <!-- featured stories -->
+      <!-- accommodations -->
       <section class="container is-small mb-5 featured-items">
         <base-articles-list
           :image-box-class="'ratio-16-9'"
           :preview-lines-of-read-more="2"
           :show-placeholder="!resort.id"
-          :items-per-row="2"
-          :items="stories.slice(0,2)"
+          :items-per-row="3"
+          :items="accommodationsAsStories.slice(0,3)"
         ></base-articles-list>
       </section>
 
@@ -52,7 +52,7 @@
           :show-placeholder="!resort.id"
           :link="resort.ctaLink"
           :text="resort.ctaText"
-          :button-text="'Book Now'"
+          :button-text="bannerActionButtonText"
         ></base-banner-action>
       </div>
 
@@ -62,11 +62,6 @@
           <div class="quote w-100 h-100" v-html="resort.h2"></div>
         </base-quote>
       </section>
-
-      <!-- articles (stories) -->
-      <div class="container is-small mb-6">
-        <base-articles-list :show-placeholder="!resort.id" :items="stories.slice(2)"></base-articles-list>
-      </div>
     </div>
 
     <page-footer></page-footer>
@@ -84,6 +79,7 @@ import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import { Story, Resort, Category } from '@/types'
 import { get } from 'lodash-es'
+import { categoryToStoryBridge } from '@/helpers'
 
 export default Vue.extend({
   name: 'listing',
@@ -98,21 +94,30 @@ export default Vue.extend({
   },
   data() {
     return {
-      slug: this.$route.params.id
+      slug: 'tents'
     }
   },
   computed: {
     resort(): Resort {
       return this.$store.getters['resort/getItem']
     },
-    stories(): Story[] {
-      return get(this.resort, 'stories', []).filter(
-        (item: Story) => item.posterUrl
-      )
+    categories(): any {
+      return this.$store.getters['category/getItems']
+    },
+    accommodations(): Category[] {
+      return get(this.categories, 'accommodations', [])
+    },
+    accommodationsAsStories() {
+      // @ts-ignore
+      return this.accommodations.map(categoryToStoryBridge)
+    },
+    bannerActionButtonText() {
+      return 'Contact Us'
     }
   },
   mounted() {
     this.$store.dispatch('resort/getItemBySlug', this.slug)
+    this.$store.dispatch('category/getItemsByName', 'accommodations')
   }
 })
 </script>
@@ -123,9 +128,6 @@ export default Vue.extend({
     height: rem($hero-height);
 
     @include hero-placeholder($hero-height);
-  }
-  .featured-items .article-list-item--image {
-    transform: translateY(-25%);
   }
 }
 .page-description::v-deep {
@@ -151,7 +153,7 @@ export default Vue.extend({
   }
 }
 .featured-items {
-  min-height: rem(356px);
+  min-height: rem(288px);
   &::v-deep {
     .vue-content-placeholders-img {
       height: rem(162px);
