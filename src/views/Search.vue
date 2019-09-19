@@ -52,6 +52,7 @@
           :show-placeholder="!resort.id"
           :link="resort.ctaLink"
           :text="resort.ctaText"
+          :button-text="bannerActionButtonText"
         ></base-banner-action>
       </div>
 
@@ -97,6 +98,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      isTentsPage: this.$route.params.id === 'tents',
       slug: this.$route.params.id
     }
   },
@@ -106,6 +108,13 @@ export default Vue.extend({
     },
     stories(): Story[] {
       return get(this.resort, 'stories', []).filter((item: Story) => item.posterUrl)
+    },
+    bannerActionButtonText() {
+      if (this.isTentsPage) {
+        return 'Contact Us'
+      } else {
+        return 'Book Now'
+      }
     }
   },
   mounted() {

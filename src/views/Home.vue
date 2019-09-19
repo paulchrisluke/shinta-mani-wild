@@ -54,7 +54,7 @@
 
       <!-- banner action -->
       <div class="mb-5">
-        <base-banner-action :image="resort.backgroundImage" :show-placeholder="!resort.id" :link="resort.ctaLink" :text="resort.ctaText">
+        <base-banner-action :image="resort.backgroundImage" :show-placeholder="!resort.id" :link="resort.ctaLink" :text="resort.ctaText" :button-text="'Book Now'">
         </base-banner-action>
       </div>
 
