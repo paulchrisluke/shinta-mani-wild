@@ -37,7 +37,7 @@
       <!-- accommodations -->
       <section class="container is-small mb-5 featured-items">
         <base-articles-list
-          :image-box-class="'ratio-16-9'"
+          :image-box-class="'ratio-3-2'"
           :preview-lines-of-read-more="2"
           :show-placeholder="!resort.id"
           :items-per-row="3"
@@ -208,9 +208,14 @@ export default Vue.extend({
     accommodations(): Category[] {
       return get(this.categories, 'accommodations', [])
     },
-    accommodationsAsStories() {
+    accommodationsAsStories(): Story[] {
       // @ts-ignore
-      return this.accommodations.map(categoryToStoryBridge)
+      return this.accommodations.map((category, index) => {
+        return {
+          ...categoryToStoryBridge(category),
+          posterUrl: get(this.resort, `images[${index}].url`, '')
+        }
+      })
     },
     cardImage1(): object | undefined {
       const image = 'http://placehold.it/500x400'
@@ -281,10 +286,10 @@ export default Vue.extend({
   }
 }
 .featured-items {
-  min-height: rem(288px);
+  min-height: rem(318px);
   &::v-deep {
     .vue-content-placeholders-img {
-      height: rem(162px);
+      height: rem(192px);
     }
   }
 }

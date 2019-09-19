@@ -24,7 +24,6 @@ export function isPassiveEventsSupported() {
 }
 
 export function categoryToStoryBridge(category: Category) {
-  const posterUrl = transformCloudinaryImage(category.featuredImage, 'w_400')
 
   return {
     // order,
@@ -33,7 +32,7 @@ export function categoryToStoryBridge(category: Category) {
     ctaText: category.title,
     // image,
     // type,
-    posterUrl
+    // posterUrl
   }
 }
 
