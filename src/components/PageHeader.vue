@@ -32,8 +32,8 @@
                     >
                       <a class="dropdown-item" href="/search/tents">All Tents</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="/listing/waterfall-tents">Waterfall Tents</a>
                       <a class="dropdown-item" href="/listing/wild-tents">Wild Tents</a>
+                      <a class="dropdown-item" href="/listing/waterfall-tents">Waterfall Tents</a>
                       <a
                         class="dropdown-item"
                         href="/listing/wildlife-alliance-tents"
@@ -120,5 +120,8 @@ export default Vue.extend({
     height: rem(16px);
     vertical-align: -0.1rem;
   }
+}
+.dropdown-menu {
+  margin-top: rem(8px);
 }
 </style>
