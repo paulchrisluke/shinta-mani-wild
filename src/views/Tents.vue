@@ -45,6 +45,13 @@
         ></base-articles-list>
       </section>
 
+      <!-- quote -->
+      <section class="container mb-5">
+        <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+          <div class="quote w-100 h-100" v-html="resort.h2"></div>
+        </base-quote>
+      </section>
+
       <!-- banner action -->
       <div class="mb-5">
         <base-banner-action
@@ -52,16 +59,108 @@
           :show-placeholder="!resort.id"
           :link="resort.ctaLink"
           :text="resort.ctaText"
-          :button-text="bannerActionButtonText"
+          :button-text="'Find Out'"
         ></base-banner-action>
       </div>
 
-      <!-- quote -->
-      <section class="container shift-down">
-        <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
-          <div class="quote w-100 h-100" v-html="resort.h2"></div>
-        </base-quote>
-      </section>
+      <!-- card -->
+      <div class="container is-small">
+        <div class="row mb-5">
+          <div class="column-12">
+            <base-card :show-placeholder="!resort.id" :image="cardImage1">
+              <template v-slot:text>
+                <div class="card-content">
+                  <base-heading
+                    :text="'All Inclusive'"
+                    :type="'h2'"
+                    :class-name="'h2 text-dark text-center text-xl-left'"
+                  ></base-heading>
+                  <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Fo on wildlife expeditions, foraging tours and more.</p>
+                </div>
+              </template>
+            </base-card>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pure text -->
+      <div class="container is-small px-5 mb-5">
+        <article>
+          <h2 class="h2 font-serif text-center mb-4 text-uppercase">Amenities and Treats</h2>
+          <p>
+            The bedrooms of your tent are climate controlled, your Butler
+            will show you the controls. For a more intimate jungle experience
+            on cooler evenings open the windows (leave the screens down)
+            and shut off your AC.
+          </p>
+          <p class="mb-5">
+            In an effort to reduce waste in such a pristine part of the world,
+            amenities such as a toothbrushes, soap or shampoo will not be
+            kept in your tent. However should you need them, please do not
+            hesitate to let your Adventure Butler know.
+            Have you forgotten to pack an important item? For your
+            convenience, we offer the following essentials to you with our
+            compliments, as well as variety of items for you to purchase or
+            borrow during your stay. Please contact the Bensley Butlers, and
+            we will deliver the requested item(s) to your tent.
+          </p>
+
+          <div class="row justify-content-center">
+            <div class="col-3">
+              <h3 class="h4 font-weight-light font-italic">Complimentary</h3>
+              <ul class="list-unstyled">
+                <li>Toothbrush</li>
+                <li>Toothpaste</li>
+                <li>Hand sanitizer</li>
+                <li>Razor</li>
+                <li>Tissues</li>
+                <li>Comb</li>
+              </ul>
+            </div>
+            <div class="col-3">
+              <h3 class="h4 font-weight-light font-italic">Borrow</h3>
+              <ul class="list-unstyled">
+                <li>Power adapter</li>
+                <li>Curling iron</li>
+                <li>Hair spray</li>
+                <li>Nail polish remover</li>
+                <li>Mosquito repellent</li>
+                <li>Sewing kit</li>
+                <li>Sunblock</li>
+              </ul>
+            </div>
+            <div class="col-3">
+              <h3 class="h4 font-weight-light font-italic">Purchase</h3>
+              <ul class="list-unstyled">
+                <li>Deodorant</li>
+                <li>Sanitary Supplies</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- card -->
+      <div class="container is-small">
+        <div class="row mb-5">
+          <div class="column-12">
+            <base-card :show-placeholder="!resort.id" :image="cardImage2" :is-left="true">
+              <template v-slot:text>
+                <div class="card-content">
+                  <base-heading
+                    :text="'Personal Bujler'"
+                    :type="'h2'"
+                    :class-name="'h2 text-dark text-center text-xl-left'"
+                  ></base-heading>
+                  <p>Great guests deserve great butlers — and you’ll find both here. Part guide, part friend, part valet, part mindreader: Shinta Mani Wild’s Bensley Butlers will anticipate your needs before you do.</p>
+                  <p>They’ll suggest unforgettable activities to suit your tastes and fitness, and accompany you on your adventures, from motorbike rides to boat trips. Your butler will also play the classic role of butler with aplomb, unpacking and packing your luggage and fulfilling your ad-hoc requests.</p>
+                  <p>Please note: although we understand the temptation, guests are not allowed to take their butler home.</p>
+                </div>
+              </template>
+            </base-card>
+          </div>
+        </div>
+      </div>
     </div>
 
     <page-footer></page-footer>
@@ -74,6 +173,7 @@ import PageHeader from '@/components/PageHeader.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import HeroImage from '@/components/HeroImage.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
+import BaseCard from '@/components/BaseCard.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
@@ -90,7 +190,8 @@ export default Vue.extend({
     BaseHeading,
     BaseBannerAction,
     BaseArticlesList,
-    BaseQuote
+    BaseQuote,
+    BaseCard
   },
   data() {
     return {
@@ -111,8 +212,35 @@ export default Vue.extend({
       // @ts-ignore
       return this.accommodations.map(categoryToStoryBridge)
     },
-    bannerActionButtonText() {
-      return 'Contact Us'
+    cardImage1(): object | undefined {
+      const image = 'http://placehold.it/500x400'
+      if (!image) {
+        return
+      }
+      return {
+        alt: 'All Inclusive',
+        xl: {
+          src: image
+        },
+        default: {
+          src: image
+        }
+      }
+    },
+    cardImage2(): object | undefined {
+      const image = 'http://placehold.it/500x400'
+      if (!image) {
+        return
+      }
+      return {
+        alt: 'Conservation',
+        xl: {
+          src: image
+        },
+        default: {
+          src: image
+        }
+      }
     }
   },
   mounted() {
@@ -158,6 +286,11 @@ export default Vue.extend({
     .vue-content-placeholders-img {
       height: rem(162px);
     }
+  }
+}
+.page--tents::v-deep {
+  .card-image img {
+    width: rem(384px);
   }
 }
 </style>

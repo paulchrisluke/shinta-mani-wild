@@ -30,7 +30,7 @@
                       aria-haspopup="true"
                       :aria-expanded="isDropdownTentsOpen + ''"
                     >
-                      <a class="dropdown-item" href="/search/tents">All Tents</a>
+                      <a class="dropdown-item" href="/tents">All Tents</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="/listing/wild-tents">Wild Tents</a>
                       <a class="dropdown-item" href="/listing/waterfall-tents">Waterfall Tents</a>
