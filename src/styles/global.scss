@@ -25,6 +25,12 @@
   // 24 + 8 is border-art height and margin
   height: (1 * $huge-font-size) + rem(24px + 8px);
 }
+.text-small-caps {
+  font-variant: small-caps;
+}
+.text-normal-caps {
+  font-variant: normal;
+}
 
 // utilities
 .user-select-none {
@@ -78,4 +84,9 @@ body,
 }
 .read-more-link {
   color: $brand-3;
+}
+
+// dropdown
+.dropdown-item {
+  font-weight: 300;
 }

@@ -13,9 +13,9 @@
                 />
               </a>
             </div>
-            <div class="page-header--nav">
+            <div class="page-header--nav d-flex align-items-center">
               <nav>
-                <ul class="nav font-serif user-select-none text-uppercase">
+                <ul class="nav user-select-none text-small-caps font-weight-light">
                   <li class="nav-item dropdown mx-1" :class="{'show': isDropdownTentsOpen}">
                     <a
                       href="#"
@@ -51,6 +51,15 @@
                   </li>
                 </ul>
               </nav>
+              <div
+                v-if="isViewTentsVisible"
+                class="ml-1">
+                <base-image-link
+                  :class-name="'is-secondary is-md ml-2'"
+                  :href="'/tents'"
+                  :text="'View Tents'"
+                ></base-image-link>
+              </div>
             </div>
           </div>
         </div>
@@ -82,8 +91,19 @@
 <script lang="ts">
 import Vue from 'vue'
 import { getPassiveEventConfig } from '@/helpers'
+import BaseImageLink from '@/components/BaseImageLink.vue'
 
 export default Vue.extend({
+  name: 'page-header',
+  components: {
+    BaseImageLink
+  },
+  props: {
+    isViewTentsVisible: {
+      type: Boolean,
+      default: true
+    }
+  },
   data() {
     return {
       isDropdownTentsOpen: false
@@ -122,6 +142,6 @@ export default Vue.extend({
   }
 }
 .dropdown-menu {
-  margin-top: rem(8px);
+  margin-top: rem(20px);
 }
 </style>
