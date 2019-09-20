@@ -36,8 +36,8 @@
                       <a class="dropdown-item" href="/listing/waterfall-tents">Waterfall Tents</a>
                       <a
                         class="dropdown-item"
-                        href="/listing/wildlife-alliance-tents"
-                      >Wildlife Alliance Tents</a>
+                        href="/listing/two-bedroom-tent"
+                      >Two Bedroom Tent</a>
                     </div>
                   </li>
                   <li class="nav-item mx-1">
