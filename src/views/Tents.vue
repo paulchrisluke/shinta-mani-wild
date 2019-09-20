@@ -3,7 +3,7 @@
   <div class="page page--tents">
     <div class="page--content">
       <!-- header -->
-      <page-header></page-header>
+      <page-header :is-view-tents-visible="false"></page-header>
 
       <div class="mb-5">
         <hero-image :image="resort.featuredImage"></hero-image>
