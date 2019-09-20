@@ -47,3 +47,22 @@ export interface Resort {
   stories: Story[]
   title: string
 }
+
+export interface Category {
+  id: number
+  brand: string
+  name: string
+  title: string
+  description: string
+  h2: string
+  backgroundImage: string
+  images: GalleryImage[]
+  ctaText: string
+  ctaLink: string
+  stories: Story[]
+  featuredImage: string
+  slug: string
+  // modules
+  // custom
+  // categories
+}

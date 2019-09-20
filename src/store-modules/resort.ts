@@ -1,7 +1,10 @@
 // @ts-ignore
 import { PageService } from '@/connection/resources.js'
+import Vue from 'vue'
 
-const defaultResort = {}
+const defaultResort = {
+  resort: {}
+}
 export default {
   namespaced: true,
   state: {
@@ -9,7 +12,7 @@ export default {
   },
   mutations: {
     update(state: any, payload: any) {
-      state.resort = payload
+      Vue.set(state, 'resort', payload)
     }
   },
   actions: {
@@ -24,7 +27,7 @@ export default {
     }
   },
   getters: {
-    getResort(state: any) {
+    getItem(state: any) {
       return state.resort
     }
   }

@@ -110,6 +110,8 @@ $shadow-small: 0px 9px 24px rgba($black, 0.25), 0px 4px 4px rgba($black, 0.25);
 }
 .card-image {
   img {
+    // NOTE: set a width for this element where ever you use this component
+
     @include media-breakpoint-up(xl) {
       .is-right-skew & {
         transform: matrix(0.99, 0.04, -0.11, 1, 0, 0);
