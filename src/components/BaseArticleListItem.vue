@@ -47,11 +47,12 @@
         </div>
 
         <h3
-          class="title h3 font-weight-normal font-serif my-2 d-flex align-items-center"
+          class="title font-sans-serif text-small-caps my-2 d-flex align-items-center"
+          :class="titleClass"
           :title="item.ctaText"
         >
           <a
-            class="title-link text-dark stretched-link text-decoration-none"
+            class="title-link text-black stretched-link text-decoration-none"
             :href="item.ctaLink"
             v-text="item.ctaText"
           ></a>
@@ -87,6 +88,10 @@ export default Vue.extend({
     imageBoxClass: {
       type: String,
       default: 'ratio-1-1'
+    },
+    titleClass: {
+      type: String,
+      default: 'h3 font-weight-light'
     }
   },
   methods: {
@@ -106,8 +111,14 @@ export default Vue.extend({
 
 <style lang='scss' scoped>
 .title {
-  line-height: rem(20px);
-  height: rem(40px);
+  line-height: 0.85;
+  height: rem(28px);
+}
+.featured-items {
+  .title {
+    line-height: 0.75;
+    height: rem(48px);
+  }
 }
 .title-link {
   @include line-clamp(2);

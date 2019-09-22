@@ -17,19 +17,25 @@
 .text-decoration-underline {
   text-decoration: underline;
 }
+.h1 {
+  line-height: 0.75;
+}
 .is-huge {
   font-size: $huge-font-size;
-  line-height: 1;
+  line-height: 0.75;
 }
 .is-huge-placeholder {
   // 24 + 8 is border-art height and margin
-  height: (1 * $huge-font-size) + rem(24px + 8px);
+  height: (0.75 * $huge-font-size) + rem(24px + 8px);
 }
 .text-small-caps {
   font-variant: small-caps;
 }
 .text-normal-caps {
   font-variant: normal;
+}
+.text-black {
+  color: $black;
 }
 
 // utilities

@@ -38,6 +38,7 @@
       <section class="container is-small mb-5 featured-items">
         <base-articles-list
           :image-box-class="'ratio-16-9'"
+          :title-class="'h2 font-weight-light'"
           :preview-lines-of-read-more="2"
           :show-placeholder="!resort.id"
           :items-per-row="2"

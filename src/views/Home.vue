@@ -47,11 +47,7 @@
               <base-card :show-placeholder="!resort.id" :image="cardImage1">
                 <template v-slot:text>
                   <div class="card-content">
-                    <base-heading
-                      :text="'All Inclusive'"
-                      :type="'h2'"
-                      :class-name="'h2 text-dark text-center text-xl-left'"
-                    ></base-heading>
+                    <h2 class="base-heading text-small-caps font-sans-serif font-weight-light h2 mb-3 text-dark text-center text-xl-left">All Inclusive</h2>
                     <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation spearheads our conservation and community outreach programmes.</p>
                     <base-image-link
                       :class-name="'is-primary is-md'"
@@ -118,11 +114,7 @@
               <base-card :show-placeholder="!resort.id" :image="cardImage2" :is-left="true">
                 <template v-slot:text>
                   <div class="card-content">
-                    <base-heading
-                      :text="'Conservation'"
-                      :type="'h2'"
-                      :class-name="'h2 text-dark text-center text-xl-left'"
-                    ></base-heading>
+                    <h2 class="base-heading text-small-caps font-sans-serif font-weight-light h2 mb-3 text-dark text-center text-xl-left">Conservation</h2>
                     <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation...</p>
                     <div class="d-flex">
                       <base-image-link
