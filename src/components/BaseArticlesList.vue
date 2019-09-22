@@ -15,7 +15,7 @@
     </template>
     <div v-else-if="items.length > 0" class="row">
       <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
-        <article-list-item :image-box-class="imageBoxClass" :preview-lines-of-read-more="previewLinesOfReadMore" :item="item" />
+        <article-list-item :image-box-class="imageBoxClass" :title-class="titleClass" :preview-lines-of-read-more="previewLinesOfReadMore" :item="item" />
       </div>
     </div>
     <p v-else class="mb-3 text-center">
@@ -45,12 +45,13 @@ export default Vue.extend({
       default: false
     },
     previewLinesOfReadMore: {
-      type: Number,
-      default: 3
+      type: Number
     },
     imageBoxClass: {
-      type: String,
-      default: 'ratio-1-1'
+      type: String
+    },
+    titleClass: {
+      type: String
     }
   }
 })
