@@ -48,7 +48,7 @@
                 <template v-slot:text>
                   <div class="card-content">
                     <h2 class="base-heading text-small-caps font-sans-serif font-weight-light h2 mb-3 text-dark text-center text-xl-left">All Inclusive</h2>
-                    <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation spearheads our conservation and community outreach programmes.</p>
+                    <p class="mb-xl-6">Shinta Mani Wild is the full package - in every sense of the word. Our rates are inclusive of a round trip private car transfer to/from Phnom Penh or Sihanoukville Airport and vicinity, as well as your personal Bensley Butler, all meals and beverages, privately guided activities to explore the Cardamom forest, luxury spa treatments, WiFi throughout the camp and of course daily laundry service.</p>
                     <base-image-link
                       :class-name="'is-primary is-md'"
                       :href="resort.ctaLink"
@@ -115,7 +115,7 @@
                 <template v-slot:text>
                   <div class="card-content">
                     <h2 class="base-heading text-small-caps font-sans-serif font-weight-light h2 mb-3 text-dark text-center text-xl-left">Conservation</h2>
-                    <p>Shinta Mani Wild is a radical new fusion of world-class design, hospitality and conservation. The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. The Shinta Mani Foundation...</p>
+                    <p>The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. A radical new fusion of world-class design, hospitality and conservation! Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. Join us on the front line of Conservation, and see your stay make a difference to protecting the lungs of Cambodia and it’s many unique and endangered species.</p>
                     <div class="d-flex">
                       <base-image-link
                         :class-name="'is-primary is-md ml-xl-auto'"
