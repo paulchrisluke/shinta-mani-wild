@@ -2,6 +2,10 @@
 
 Welcome to Shinta Mani Wild's new website project. Our tech stack:
 
+## Design File:
+
+https://www.figma.com/file/SiFZE7hhRKx2fWmrfZ3uy2RO/Shinta-Mani-Wild?node-id=394%3A3756
+
 ## Frontend:
 Vue with typescript and Bootstrap
 Along with Vuex for state management
