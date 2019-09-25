@@ -1,6 +1,6 @@
 <template>
-  <div class="page page--story">
-    <div class="container story-container py-5">
+  <div class="page page--story d-flex">
+    <div class="container story-container py-5 my-auto">
       <story-slider @on-click-back="onClickBack" :items="stories" :initial-story-index="initialStoryIndex" />
     </div>
   </div>
