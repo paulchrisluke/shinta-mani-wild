@@ -41,7 +41,7 @@
       </div>
 
       <!-- quote -->
-      <section class="container shift-down">
+      <section class="container shift-xl-down mb-5 mb-xl-0">
         <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
           <div class="quote w-100 h-100" v-html="resort.h2"></div>
         </base-quote>
