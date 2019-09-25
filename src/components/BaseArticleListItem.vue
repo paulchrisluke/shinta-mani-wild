@@ -51,11 +51,11 @@
           :class="titleClass"
           :title="item.ctaText"
         >
-          <a
+          <router-link
+            :to="{name: `${routeProps.name}Story`, params: {resortSlug: routeProps.params.id, storyIndex: itemIndex}}"
             class="title-link text-black stretched-link text-decoration-none"
-            :href="item.ctaLink"
             v-text="item.ctaText"
-          ></a>
+          ></router-link>
         </h3>
       </div>
       <p
@@ -92,6 +92,14 @@ export default Vue.extend({
     titleClass: {
       type: String,
       default: 'h3 font-weight-light'
+    },
+    itemIndex: {
+      type: Number,
+      default: 0
+    },
+    routeProps: {
+      type: Object,
+      required: true
     }
   },
   methods: {

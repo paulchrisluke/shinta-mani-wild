@@ -1,7 +1,7 @@
 <template>
   <div class="page page--story">
     <div class="container story-container py-5">
-      <story-slider @on-click-back="onClickBack" :items="stories" />
+      <story-slider @on-click-back="onClickBack" :items="stories" :initial-story-index="initialStoryIndex" />
     </div>
   </div>
 </template>
@@ -19,11 +19,12 @@ export default Vue.extend({
   },
   data() {
     return {
-      slug: this.$route.params.resortSlug
+      slug: this.$route.params.resortSlug,
+      initialStoryIndex: Number(this.$route.params.storyIndex)
     }
   },
   mounted() {
-    if (this.resort.slug !== this.slug) {
+    if (this.resort && this.resort.slug !== this.slug) {      
       this.$store.dispatch('resort/getItemBySlug', (this as any).slug)
     }
   },
@@ -54,9 +55,8 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .page--story {
   background-color: $brand-4;
-  // background-color: $white;
 }
 .story-container {
-  max-width: 1100px;
+  max-width: rem(1100px);
 }
 </style>

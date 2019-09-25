@@ -56,22 +56,37 @@
 </template>
 
 <script lang='ts'>
-// @ts-ignore
 import Swiper from 'swiper'
 import '@/styles/lib-swiper.scss'
 
 import Vue from 'vue'
 export default Vue.extend({
   name: 'story-slider',
+  data() {
+    return {
+      swiper: {} as Swiper
+    }
+  },
   props: {
     items: {
       type: Array,
       default: []
+    },
+    initialStoryIndex: {
+      type: Number,
+      default: 0
     }
+  },
+  mounted() {
+    if (!this.swiper.el && this.items.length > 0) {
+      this.initSlider()
+    }
+    setTimeout(() => {
+      console.log('mounted 3', this.swiper)
+    }, 1000)
   },
   watch: {
     items() {
-      // @ts-ignore
       this.$nextTick(this.initSlider)
     }
   },
@@ -80,7 +95,10 @@ export default Vue.extend({
       this.$emit('on-click-back')
     },
     initSlider(): void {
-      var swiper = new Swiper('.swiper-container', {
+      const that = this
+      // documentation: https://swiperjs.com/api
+      that.swiper = new Swiper('.swiper-container', {
+        initialSlide: this.initialStoryIndex,
         slidesPerView: 1,
         spaceBetween: 0,
         centeredSlides: true,
@@ -101,16 +119,16 @@ export default Vue.extend({
         },
         on: {
           slideChange() {
-            const activeVideo = swiper.slides[swiper.activeIndex].querySelector(
-              '.story--content.is-video'
-            )
+            const activeVideo = that.swiper.slides[
+              that.swiper.activeIndex
+            ].querySelector('.story--content.is-video')
             if (activeVideo) {
               activeVideo.play()
             }
 
-            const prevVideo = swiper.slides[swiper.previousIndex].querySelector(
-              '.story--content.is-video'
-            )
+            const prevVideo = that.swiper.slides[
+              that.swiper.previousIndex
+            ].querySelector('.story--content.is-video')
             if (prevVideo) {
               prevVideo.pause()
             }
@@ -119,9 +137,9 @@ export default Vue.extend({
       })
 
       // play initial slide
-      const activeVideo = swiper.slides[swiper.activeIndex].querySelector(
-        '.story--content.is-video'
-      )
+      const activeVideo = that.swiper.slides[
+        that.swiper.activeIndex
+      ].querySelector('.story--content.is-video')
       if (activeVideo) {
         activeVideo.play()
       }
@@ -146,8 +164,6 @@ export default Vue.extend({
   opacity: 1;
 }
 .story--content {
-  // background-color: rgba($brand-2, 0.4);
-  // background-color: $brand-2;
   width: auto;
   height: auto;
   max-width: 100%;
@@ -199,7 +215,7 @@ export default Vue.extend({
   }
 }
 .story--nav-inner {
-  width: rem(414px)
+  width: rem(414px);
 }
 // .story--back {}
 </style>

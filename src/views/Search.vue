@@ -37,6 +37,7 @@
       <!-- featured stories -->
       <section class="container is-small mb-5 featured-items">
         <base-articles-list
+          route-base="search"
           :image-box-class="'ratio-16-9'"
           :title-class="'h2 font-weight-light'"
           :preview-lines-of-read-more="2"
@@ -66,7 +67,7 @@
 
       <!-- articles (stories) -->
       <div class="container is-small mb-6">
-        <base-articles-list :show-placeholder="!resort.id" :items="stories.slice(2)"></base-articles-list>
+        <base-articles-list route-base="search" :show-placeholder="!resort.id" :items="stories.slice(2)"></base-articles-list>
       </div>
     </div>
 

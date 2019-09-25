@@ -34,12 +34,12 @@ export default new Router({
     },
     {
       name: 'listingStory',
-      path: '/listing/:resortSlug/story',
+      path: '/listing/:resortSlug/story/:storyIndex',
       component: Story
     },
     {
       name: 'searchStory',
-      path: '/search/:resortSlug/story',
+      path: '/search/:resortSlug/story/:storyIndex',
       component: Story
     },
     {

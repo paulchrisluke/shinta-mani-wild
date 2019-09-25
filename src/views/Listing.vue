@@ -55,7 +55,7 @@
           :class-name="'h2 text-dark text-center'"
           :text="`Explore our ${resort.title}`"
         ></base-heading>
-        <base-articles-list :show-placeholder="!resort.id" :items="stories"></base-articles-list>
+        <base-articles-list :route-props="{name: 'listing', params: $route.params}" :show-placeholder="!resort.id" :items="stories"></base-articles-list>
       </div>
     </div>
 
