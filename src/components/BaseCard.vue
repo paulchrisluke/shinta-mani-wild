@@ -77,6 +77,7 @@ $shadow-small: $box-shadow-md, $box-shadow-sm;
 .ghost-card-image {
   visibility: hidden;
   img {
+    max-width: 100%;
     margin-top: rem(
       -$amount-of-card-image-inside-card-in-responsive + -$card-border-top
     );
@@ -117,33 +118,33 @@ $shadow-small: $box-shadow-md, $box-shadow-sm;
         }
       }
     }
-  }
-
-  &.is-right-skew {
-    left: rem(96px);
-    &::before {
-      right: rem(4px);
-      left: 0;
-      transform: rotate(5.5deg) translateX(-16px) translateY(12px) skewX(2deg)
-        skewY(-4deg);
-    }
-    .card-image {
-      img {
-        transform: matrix(0.99, 0.04, -0.11, 1, 0, 0);
+    &.is-right-skew {
+      left: rem(96px);
+      &::before {
+        right: rem(4px);
+        left: 0;
+        transform: rotate(5.5deg) translateX(-16px) translateY(12px) skewX(2deg)
+          skewY(-4deg);
+      }
+      .card-image {
+        // NOTE: set a width for this element where ever you use this component
+        img {
+          transform: matrix(0.99, 0.04, -0.11, 1, 0, 0);
+        }
       }
     }
-  }
-  &.is-left-skew {
-    right: rem(96px);
-    &::before {
-      left: rem(4px);
-      right: 0;
-      transform: rotate(-5.5deg) translateX(16px) translateY(12px) skewX(-2deg)
-        skewY(4deg);
-    }
-    .card-image {
-      img {
-        transform: matrix(0.99, -0.04, 0.11, 1, 0, 0);
+    &.is-left-skew {
+      right: rem(96px);
+      &::before {
+        left: rem(4px);
+        right: 0;
+        transform: rotate(-5.5deg) translateX(16px) translateY(12px)
+          skewX(-2deg) skewY(4deg);
+      }
+      .card-image {
+        img {
+          transform: matrix(0.99, -0.04, 0.11, 1, 0, 0);
+        }
       }
     }
   }

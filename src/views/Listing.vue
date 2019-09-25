@@ -37,7 +37,7 @@
 
       <!-- banner action -->
       <div class="mb-5">
-        <base-banner-action :image="resort.backgroundImage" :show-placeholder="!resort.id" :link="resort.ctaLink" :text="resort.ctaText"></base-banner-action>
+        <base-banner-action :image="resort.backgroundImage" :show-placeholder="!resort.id" :link="resort.ctaLink" :text="resort.ctaText" :button-text="'Book Now'"></base-banner-action>
       </div>
 
       <!-- quote -->
@@ -99,10 +99,10 @@ export default Vue.extend({
   },
   computed: {
     resort(): Resort {
-      return this.$store.getters['resort/getResort']
+      return this.$store.getters['resort/getItem']
     },
     stories(): Story[] {
-      return get((this as any).resort, 'stories', [])
+      return get((this as any).resort, 'stories', []).filter((item: Story) => item.posterUrl)
     },
     resortImages(): GalleryImage[] {
       return get((this as any).resort, 'images', [])

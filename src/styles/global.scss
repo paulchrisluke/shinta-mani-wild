@@ -17,9 +17,12 @@
 .text-decoration-underline {
   text-decoration: underline;
 }
-.font-size-huge {
+.h1 {
+  line-height: 0.75;
+}
+.is-huge {
   font-size: $huge-font-size;
-  line-height: 1;
+  line-height: 0.75;
 }
 .font-size-xl-huge {
   @include media-breakpoint-up(xl) {
@@ -28,7 +31,16 @@
 }
 .is-huge-placeholder {
   // 24 + 8 is border-art height and margin
-  height: (1 * $huge-font-size) + rem(24px + 8px);
+  height: (0.75 * $huge-font-size) + rem(24px + 8px);
+}
+.text-small-caps {
+  font-variant: small-caps;
+}
+.text-normal-caps {
+  font-variant: normal;
+}
+.text-black {
+  color: $black;
 }
 
 // utilities
@@ -71,6 +83,9 @@ body,
   &.ratio-16-9 {
     padding-top: 56.25%;
   }
+  &.ratio-3-2 {
+    padding-top: 66.7%;
+  }
 }
 .aspect-ratio-box-inside {
   position: absolute;
@@ -85,4 +100,9 @@ body,
 }
 .read-more-link {
   color: $brand-3;
+}
+
+// dropdown
+.dropdown-item {
+  font-weight: 300;
 }
