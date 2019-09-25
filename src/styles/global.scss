@@ -24,6 +24,11 @@
   font-size: $huge-font-size;
   line-height: 0.75;
 }
+.font-size-xl-huge {
+  @include media-breakpoint-up(xl) {
+    font-size: $huge-font-size;
+  }
+}
 .is-huge-placeholder {
   // 24 + 8 is border-art height and margin
   height: (0.75 * $huge-font-size) + rem(24px + 8px);
@@ -62,6 +67,11 @@ body,
 }
 .shift-down {
   margin-bottom: rem(-40px);
+}
+.shift-xl-down {
+  @include media-breakpoint-up(xl) {
+    margin-bottom: rem(-40px);
+  }
 }
 .aspect-ratio-box {
   height: 0;
