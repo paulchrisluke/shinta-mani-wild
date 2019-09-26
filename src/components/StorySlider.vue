@@ -1,55 +1,57 @@
 <template>
-  <div class="story-slider">
-    <!-- Pagination -->
-    <div class="story--nav d-flex position-absolute">
-      <div class="story--nav-inner d-flex justify-content-between mx-auto">
-        <a class="story--back mt-1 ml-2" title="Back" href="#" @click.stop.prevent="onClickBack">
-          <img
-            src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402281/Shinta%20Mani%20Wild/general/arrow-left_xzk51z.svg"
-            alt
-          />
-        </a>
-        <div class="swiper-pagination swiper-pagination-white"></div>
-        <div class="empty"></div>
-      </div>
-    </div>
+  <div class="d-flex flex-grow-1">
+    <div class="story-slider mx-auto w-100 d-flex">
+      <!-- Pagination -->
+      <!-- <div class="story--nav d-flex position-absolute">
+        <div class="story--nav-inner d-flex justify-content-between mx-auto">
+          <a class="story--back mt-1 ml-2" title="Back" href="#" @click.stop.prevent="onClickBack">
+            <img
+              src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402281/Shinta%20Mani%20Wild/general/arrow-left_xzk51z.svg"
+              alt
+            />
+          </a>
+          <div class="swiper-pagination swiper-pagination-white"></div>
+          <div class="empty"></div>
+        </div>
+      </div> -->
 
-    <div class="swiper-container py-4">
-      <div class="swiper-wrapper">
-        <div
-          class="swiper-slide story d-flex align-items-center"
-          v-for="(item, index) in items"
-          :key="index"
-        >
-          <div class="story--inner position-relative w-100 mx-auto">
-            <div class="aspect-ratio-box ratio-9-16">
-              <div class="aspect-ratio-box-inside">
-                <!-- <img src="http://placehold.it/414x736/66f" class="story--content" /> -->
-                <!-- <img :src="item.posterUrl" class="story--content" /> -->
-                <video class="story--content is-video" muted loop>
-                  <source :src="item.image" type="video/mp4" />
-                </video>
+      <div class="swiper-container py-4 my-auto">
+        <div class="swiper-wrapper">
+          <div
+            class="swiper-slide story d-flex align-items-center"
+            v-for="(item, index) in items"
+            :key="index"
+          >
+            <div class="story--inner position-relative w-100 mx-auto">
+              <div class="aspect-ratio-box ratio-9-16">
+                <div class="aspect-ratio-box-inside">
+                  <!-- <img src="http://placehold.it/414x736/66f" class="story--content" /> -->
+                  <!-- <img :src="item.posterUrl" class="story--content" /> -->
+                  <video class="story--content is-video" muted loop>
+                    <source :src="item.image" type="video/mp4" />
+                  </video>
+                </div>
               </div>
-            </div>
 
-            <div class="story--details position-absolute px-3 d-flex">
-              <!-- like -->
-              <a @click.stop.prevent class="like ml-auto my-3" href="#">
-                <img
-                  class="like-image d-block"
-                  src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402128/Shinta%20Mani%20Wild/general/icon-like-outline_dlymsz.svg"
-                  alt
-                />
-              </a>
+              <div class="story--details position-absolute px-3 d-flex">
+                <!-- like -->
+                <a @click.stop.prevent class="like ml-auto my-3" href="#">
+                  <img
+                    class="like-image d-block"
+                    src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402128/Shinta%20Mani%20Wild/general/icon-like-outline_dlymsz.svg"
+                    alt
+                  />
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Navigation -->
-    <div class="swiper-button-next swiper-button-white"></div>
-    <div class="swiper-button-prev swiper-button-white"></div>
+      <!-- Navigation -->
+      <div class="swiper-button-next swiper-button-white"></div>
+      <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
   </div>
 </template>
 
@@ -147,6 +149,9 @@ export default Vue.extend({
 </script>
 
 <style lang='scss' scoped>
+.story-slider {
+  max-width: rem(1100px);
+}
 .swiper-container {
   width: 100%;
   box-sizing: content-box;
@@ -160,18 +165,6 @@ export default Vue.extend({
   opacity: 0.05;
   &:hover {
     opacity: 0.3;
-  }
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: 0px 7px 8px rgba(0, 0, 0, 0.2), 0px 5px 22px rgba(0, 0, 0, 0.12),
-      0px 12px 17px rgba(0, 0, 0, 0.14);
-    border-radius: rem(20px);
   }
 }
 .swiper-slide-active {
@@ -195,6 +188,18 @@ export default Vue.extend({
 .story--inner {
   max-width: 414px;
   max-height: 100%;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 0px 7px 8px rgba(0, 0, 0, 0.2), 0px 5px 22px rgba(0, 0, 0, 0.12),
+      0px 12px 17px rgba(0, 0, 0, 0.14);
+    border-radius: rem(20px);
+  }
 }
 .story--details {
   right: 0;

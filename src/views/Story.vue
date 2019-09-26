@@ -1,8 +1,10 @@
 <template>
-  <div class="page page--story d-flex">
-    <div class="container story-container py-5 my-auto">
-      <story-slider @on-click-back="onClickBack" :items="stories" :initial-story-index="initialStoryIndex" />
-    </div>
+  <div class="page page--story">
+    <story-slider
+      @on-click-back="onClickBack"
+      :items="stories"
+      :initial-story-index="initialStoryIndex"
+    />
   </div>
 </template>
 
@@ -24,7 +26,7 @@ export default Vue.extend({
     }
   },
   mounted() {
-    if (this.resort && this.resort.slug !== this.slug) {      
+    if (this.resort && this.resort.slug !== this.slug) {
       this.$store.dispatch('resort/getItemBySlug', (this as any).slug)
     }
   },
@@ -55,8 +57,5 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .page--story {
   // background-color: $brand-4;
-}
-.story-container {
-  max-width: rem(1100px);
 }
 </style>
