@@ -18,14 +18,10 @@
           </div>
 
           <div
-            class="story--details position-absolute px-3 d-flex align-items-center justify-content-center"
+            class="story--details position-absolute px-3 d-flex"
           >
-            <p
-              class="story--title flex-grow-1 text-left text-small-caps text-light mb-0"
-              v-text="item.ctaText"
-            ></p>
             <!-- like -->
-            <a @click.stop.prevent class="like ml-3" href="#">
+            <a @click.stop.prevent class="like ml-auto mt-auto mb-3" href="#">
               <img
                 class="like-image d-block"
                 src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402128/Shinta%20Mani%20Wild/general/icon-like-outline_dlymsz.svg"
@@ -182,7 +178,6 @@ export default Vue.extend({
   left: 0;
   bottom: 0;
   min-height: rem(96px);
-  padding-bottom: rem(32px);
   background: $easing-gradient-lg;
 }
 .story--title {
