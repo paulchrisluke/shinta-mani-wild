@@ -54,7 +54,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .page--story {
-  background-color: $brand-4;
+  // background-color: $brand-4;
 }
 .story-container {
   max-width: rem(1100px);
