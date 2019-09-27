@@ -1,5 +1,5 @@
 <template>
-  <div ref="wrapperGhost" class="wrapper-ghost mb-5">
+  <div ref="wrapperGhost" class="wrapper-ghost">
     <base-action-bar
       :title="title"
       :price="price"
@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      thresholdDistance: footerHeight + 48,
+      thresholdDistance: footerHeight,
       distance: 0,
       isPassiveSupported: false
     }
@@ -51,6 +51,7 @@ export default {
       document.addEventListener(
         'scroll',
         this.onScrollPage,
+        // TODO: use getPassiveEventConfig()
         this.isPassiveSupported ? { passive: true } : false
       )
     },

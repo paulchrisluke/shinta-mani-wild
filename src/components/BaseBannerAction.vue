@@ -20,7 +20,7 @@
               <span v-text="text"></span>
             </h2>
           </template>
-          <base-image-link :class-name="'is-secondary is-md'" :text="'Book Now'" :href="link" target="_blank"></base-image-link>
+          <base-image-link :class-name="'is-secondary is-md'" :text="buttonText" :href="link" target="_blank"></base-image-link>
         </div>
       </div>
     </div>
@@ -53,6 +53,10 @@ export default Vue.extend({
     showPlaceholder: {
       type: Boolean,
       default: false
+    },
+    buttonText: {
+      type: String,
+      required: true
     }
   },
   methods: {

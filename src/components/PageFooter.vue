@@ -40,7 +40,9 @@
                   </li>
                   <li class="nav-item">
                     <a
-                      href="/comming-soon"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://www.bensleycollection.com/shintamani-siem-reap/"
                       class="nav-link font-weight-bold text-light"
                     >Visit Our Siem Reap Location</a>
                   </li>
@@ -57,12 +59,12 @@
                       class="nav-link font-weight-bold text-light text-decoration-underline"
                     >Contact</a>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <a
                       href="/subscribe"
                       class="nav-link font-weight-bold text-light text-decoration-underline"
                     >Subscribe</a>
-                  </li>
+                  </li> -->
                 </ul>
               </nav>
             </div>

@@ -13,23 +13,53 @@
                 />
               </a>
             </div>
-            <div class="page-header--nav">
+            <div class="page-header--nav d-flex align-items-center">
               <nav>
-                <ul class="nav font-serif">
-                  <li class="nav-item">
-                    <a href="/search/tents" class="nav-link text-light">Tents</a>
+                <ul class="nav user-select-none text-small-caps font-weight-light">
+                  <li class="nav-item dropdown mx-1" :class="{'show': isDropdownTentsOpen}">
+                    <a
+                      href="#"
+                      @click.prevent.stop="isDropdownTentsOpen = !isDropdownTentsOpen"
+                      class="nav-link dropdown-toggle text-light px-2"
+                      id="page-header--dropdown-1"
+                    >Tents</a>
+                    <div
+                      class="dropdown-menu"
+                      :class="{'show': isDropdownTentsOpen}"
+                      aria-labelledby="page-header--dropdown-1"
+                      aria-haspopup="true"
+                      :aria-expanded="isDropdownTentsOpen + ''"
+                    >
+                      <a class="dropdown-item" href="/tents">All Tents</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="/listing/wild-tents">Wild Tents</a>
+                      <a class="dropdown-item" href="/listing/waterfall-tents">Waterfall Tents</a>
+                      <a
+                        class="dropdown-item"
+                        href="/listing/two-bedroom-tent"
+                      >Two Bedroom Tent</a>
+                    </div>
                   </li>
-                  <li class="nav-item">
-                    <a href="/search/adventure" class="nav-link text-light">Adventures</a>
+                  <li class="nav-item mx-1">
+                    <a href="/search/adventure" class="nav-link text-light px-2">Adventures</a>
                   </li>
-                  <li class="nav-item">
-                    <a href="/search/food-and-drink" class="nav-link text-light">Food and Drink</a>
+                  <li class="nav-item mx-1">
+                    <a href="/search/food-and-drink" class="nav-link text-light px-2">Food and Drink</a>
                   </li>
-                  <li class="nav-item">
-                    <a href="/search/wellness" class="nav-link text-light">Wellness</a>
+                  <li class="nav-item mx-1">
+                    <a href="/search/wellness" class="nav-link text-light px-2">Wellness</a>
                   </li>
                 </ul>
               </nav>
+              <div
+                v-if="isViewTentsVisible"
+                class="ml-1">
+                <base-image-link
+                  :class-name="'is-secondary is-md ml-2'"
+                  :href="'/tents'"
+                  :text="'View Tents'"
+                ></base-image-link>
+              </div>
             </div>
           </div>
         </div>
@@ -47,7 +77,7 @@
   height: rem($header-height);
 }
 .page-header--nav {
-  font-size: rem(20px);
+  font-size: rem(18px);
 }
 .logo-link {
   width: rem(44px);
@@ -60,5 +90,58 @@
 
 <script lang="ts">
 import Vue from 'vue'
-export default Vue.extend({})
+import { getPassiveEventConfig } from '@/helpers'
+import BaseImageLink from '@/components/BaseImageLink.vue'
+
+export default Vue.extend({
+  name: 'page-header',
+  components: {
+    BaseImageLink
+  },
+  props: {
+    isViewTentsVisible: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data() {
+    return {
+      isDropdownTentsOpen: false
+    }
+  },
+  mounted() {
+    this.clickOutsideDropdownListener()
+  },
+  methods: {
+    clickOutsideDropdownListener() {
+      document.addEventListener(
+        'click',
+        this.onClickOutsideDropdown,
+        getPassiveEventConfig()
+      )
+    },
+    onClickOutsideDropdown() {
+      this.isDropdownTentsOpen = false
+    }
+  },
+  destroyed() {
+    document.removeEventListener('click', this.onClickOutsideDropdown)
+  }
+})
 </script>
+
+<style lang="scss" scoped>
+.dropdown-toggle {
+  &::after {
+    border: none;
+    margin-left: rem(8px);
+    background: no-repeat center url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4xMzMzIDBMOCA0Ljk3Mjk3TDEuODY2NjcgMEwwIDEuNTEzNTFMOCA4TDE2IDEuNTEzNTFMMTQuMTMzMyAwWiIgZmlsbD0iI0ZGRkZGMCIvPjwvc3ZnPg==);
+    width: rem(16px);
+    height: rem(16px);
+    vertical-align: -0.1rem;
+  }
+}
+.dropdown-menu {
+  margin-top: rem(20px);
+}
+</style>

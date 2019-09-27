@@ -1,8 +1,10 @@
-// import { isArray } from 'lodash-es'
+import { Category } from './types'
 
-// export function isNotEmptyArray(array: object[] | undefined) {
-//   return isArray(array) && array.length > 0
-// }
+// https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
+export function getPassiveEventConfig() {
+  const isSupported = isPassiveEventsSupported()
+  return isSupported ? { passive: true } : false
+}
 
 export function isPassiveEventsSupported() {
   let supportsPassive = false
@@ -19,4 +21,27 @@ export function isPassiveEventsSupported() {
   } catch (e) {}
 
   return supportsPassive
+}
+
+export function categoryToStoryBridge(category: Category) {
+
+  return {
+    // order,
+    content: category.description,
+    ctaLink: `/listing/${category.slug}`,
+    ctaText: category.title,
+    // image,
+    // type,
+    // posterUrl
+  }
+}
+
+export function transformCloudinaryImage(
+  imageUrl: string,
+  transformations: string
+): string {
+  const urlParts = imageUrl.split('/')
+  const indexOfUpload = urlParts.indexOf('upload')
+  urlParts.splice(indexOfUpload + 1, 0, transformations)
+  return urlParts.join('/')
 }

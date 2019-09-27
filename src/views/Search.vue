@@ -35,9 +35,10 @@
       </div>
 
       <!-- featured stories -->
-      <section class="container is-small mb-5 featured-stories">
+      <section class="container is-small mb-5 featured-items">
         <base-articles-list
           :image-box-class="'ratio-16-9'"
+          :title-class="'h2 font-weight-light'"
           :preview-lines-of-read-more="2"
           :show-placeholder="!resort.id"
           :items-per-row="2"
@@ -52,11 +53,12 @@
           :show-placeholder="!resort.id"
           :link="resort.ctaLink"
           :text="resort.ctaText"
+          :button-text="'Book Now'"
         ></base-banner-action>
       </div>
 
       <!-- quote -->
-      <section class="container shift-down">
+      <section class="container shift-xl-down mb-5 mb-xl-0">
         <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
           <div class="quote w-100 h-100" v-html="resort.h2"></div>
         </base-quote>
@@ -81,7 +83,7 @@ import BaseHeading from '@/components/BaseHeading.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
-import { Story, Resort } from '@/types'
+import { Story, Resort, Category } from '@/types'
 import { get } from 'lodash-es'
 
 export default Vue.extend({
@@ -102,10 +104,12 @@ export default Vue.extend({
   },
   computed: {
     resort(): Resort {
-      return this.$store.getters['resort/getResort']
+      return this.$store.getters['resort/getItem']
     },
     stories(): Story[] {
-      return get(this.resort, 'stories', [])
+      return get(this.resort, 'stories', []).filter(
+        (item: Story) => item.posterUrl
+      )
     }
   },
   mounted() {
@@ -121,7 +125,7 @@ export default Vue.extend({
 
     @include hero-placeholder($hero-height);
   }
-  .featured-stories .article-list-item--image {
+  .featured-items .article-list-item--image {
     transform: translateY(-25%);
   }
 }
@@ -147,11 +151,11 @@ export default Vue.extend({
     display: block;
   }
 }
-.featured-stories {
+.featured-items {
   min-height: rem(356px);
   &::v-deep {
     .vue-content-placeholders-img {
-      height: rem(240px);
+      height: rem(162px);
     }
   }
 }

@@ -32,10 +32,11 @@ $body-bg: $brand-1;
 
 // spacings
 $grid-gutter-width: rem(16px);
-$header-height: 56px;
+$header-height: 80px;
 $hero-height: 800px - $header-height;
 $container-small: 912px;
 $nav-link-padding-y: rem(4px);
+$caret-vertical-align: 0.1em;
 
 $spacer: 1rem !default;
 $spacers: () !default;
@@ -58,6 +59,18 @@ $serif-font-size-correction: 1.25;
 $huge-font-size: 4.25rem;
 $h1-font-size: 3rem;
 $h2-font-size: 2rem;
+$h3-font-size: 1rem;
+
+// dropdown
+$dropdown-font-size: rem(18px);
+$dropdown-bg: $primary;
+$dropdown-link-color: $brand-2;
+$dropdown-link-hover-color: $primary;
+$dropdown-link-active-color: $primary;
+$dropdown-link-hover-bg: $brand-2;
+$dropdown-link-active-bg: $brand-2;
+$dropdown-link-disabled-color: lighten($primary, 30%);
+$dropdown-divider-bg: rgba($brand-2, 0.15);
 
 // effects
 $box-shadow-sm: 0px 4px 4px rgba(0, 0, 0, 0.25);
