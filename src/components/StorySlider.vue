@@ -54,9 +54,8 @@
 
     <!-- Pagination -->
     <div class="story--nav d-flex position-absolute">
-      <div class="story--nav-inner d-flex justify-content-between mx-auto">
+      <div class="story--nav-inner mx-auto">
         <div class="swiper-pagination swiper-pagination-white mx-auto"></div>
-        <div class="empty"></div>
       </div>
     </div>
   </div>
@@ -218,16 +217,26 @@ export default Vue.extend({
   font-size: rem(32px);
 }
 ::v-deep {
+  .swiper-pagination {
+    position: static;
+  }
   .swiper-pagination-bullet {
-    width: rem(32px);
-    border-radius: 0;
-    height: rem(2px);
+    width: rem(48px);
+    height: rem(4px);
+    border-radius: rem(4px);
     background: $white;
-    opacity: 0.5;
+    opacity: 1;
     margin: 0 rem(2px);
   }
   .swiper-pagination-bullet-active {
     opacity: 1;
+    ~ .swiper-pagination-bullet {
+      opacity: 0.4;
+    }
+  }
+  .swiper-button-white:focus {
+    outline: none;
+    user-select: none;
   }
 }
 .like-image {
@@ -239,9 +248,7 @@ export default Vue.extend({
   left: 0;
   right: 0;
   z-index: 10;
-  .swiper-pagination {
-    position: static;
-  }
+  height: rem(32px);
 }
 .story--nav-inner {
   width: rem(414px);
