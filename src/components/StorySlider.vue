@@ -1,20 +1,6 @@
 <template>
   <div class="d-flex flex-grow-1">
     <div class="story-slider mx-auto w-100 d-flex">
-      <!-- Pagination -->
-      <!-- <div class="story--nav d-flex position-absolute">
-        <div class="story--nav-inner d-flex justify-content-between mx-auto">
-          <a class="story--back mt-1 ml-2" title="Back" href="#" @click.stop.prevent="onClickBack">
-            <img
-              src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402281/Shinta%20Mani%20Wild/general/arrow-left_xzk51z.svg"
-              alt
-            />
-          </a>
-          <div class="swiper-pagination swiper-pagination-white"></div>
-          <div class="empty"></div>
-        </div>
-      </div> -->
-
       <div class="swiper-container py-4 my-auto">
         <div class="swiper-wrapper">
           <div
@@ -51,6 +37,27 @@
       <!-- Navigation -->
       <div class="swiper-button-next swiper-button-white"></div>
       <div class="swiper-button-prev swiper-button-white"></div>
+
+      <a
+        class="story--back position-absolute p-3"
+        title="Close"
+        href="#"
+        @click.stop.prevent="onClickBack"
+      >
+        <img
+          class="d-block"
+          src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569565108/Shinta%20Mani%20Wild/general/close_zs1pi4.svg"
+          alt
+        />
+      </a>
+    </div>
+
+    <!-- Pagination -->
+    <div class="story--nav d-flex position-absolute">
+      <div class="story--nav-inner d-flex justify-content-between mx-auto">
+        <div class="swiper-pagination swiper-pagination-white mx-auto"></div>
+        <div class="empty"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -98,6 +105,7 @@ export default Vue.extend({
       const that = this
       // documentation: https://swiperjs.com/api
       that.swiper = new Swiper('.swiper-container', {
+        keyboard: { onlyInViewport: true },
         initialSlide: this.initialStoryIndex,
         slidesPerView: 1,
         spaceBetween: 0,
@@ -227,10 +235,10 @@ export default Vue.extend({
   height: rem(32px);
 }
 .story--nav {
-  top: 0;
+  bottom: rem(32px);
+  left: 0;
+  right: 0;
   z-index: 10;
-  width: 100%;
-  max-width: 100%;
   .swiper-pagination {
     position: static;
   }
@@ -238,5 +246,12 @@ export default Vue.extend({
 .story--nav-inner {
   width: rem(414px);
 }
-// .story--back {}
+.story--back {
+  top: 0;
+  left: 0;
+  img {
+    width: rem(24px);
+    height: rem(24px);
+  }
+}
 </style>
