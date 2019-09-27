@@ -13,7 +13,11 @@
                 <div class="aspect-ratio-box-inside">
                   <!-- <img src="http://placehold.it/414x736/66f" class="story--content" /> -->
                   <!-- <img :src="item.posterUrl" class="story--content" /> -->
-                  <video class="story--content is-video" muted loop>
+                  <video
+                    @loadedmetadata="onLoadVideoMetadata($event, index)"
+                    class="story--content is-video"
+                    muted
+                  >
                     <source :src="item.image" type="video/mp4" />
                   </video>
                 </div>
@@ -70,7 +74,8 @@ export default Vue.extend({
   name: 'story-slider',
   data() {
     return {
-      swiper: {} as Swiper
+      swiper: {} as Swiper,
+      videoDurations: [] as number[]
     }
   },
   props: {
@@ -85,20 +90,51 @@ export default Vue.extend({
   },
   mounted() {
     if (!this.swiper.el && this.items.length > 0) {
-      this.initSlider()
+      this.init()
     }
-    setTimeout(() => {
-      console.log('mounted 3', this.swiper)
-    }, 1000)
   },
   watch: {
     items() {
-      this.$nextTick(this.initSlider)
+      this.$nextTick(this.init)
     }
   },
   methods: {
+    init() {
+      this.initSlider()
+      this.playActiveVideo()
+    },
+    saveVideoDuration(index: number, duration: number) {
+      this.videoDurations[index] = duration
+    },
+    onLoadVideoMetadata($event: any, index: number) {
+      const videoDuration = $event.target.duration
+      if (videoDuration > 0 && videoDuration < Infinity) {
+        this.saveVideoDuration(index, videoDuration)
+      }
+    },
+    setBulletTransition(index: number, duration: number) {
+      const $navBullets = document.querySelectorAll('.swiper-pagination-bullet')
+      const bullet = $navBullets[index] as HTMLElement
+      bullet.style.transition = `all ${duration * 1000}ms linear`
+    },
     onClickBack() {
       this.$emit('on-click-back')
+    },
+    playActiveVideo() {
+      const activeVideo = this.swiper.slides[
+        this.swiper.activeIndex
+      ].querySelector('.story--content.is-video')
+      if (activeVideo) {
+        activeVideo.play()
+      }
+    },
+    pausePrevVideo() {
+      const prevVideo = this.swiper.slides[
+        this.swiper.previousIndex
+      ].querySelector('.story--content.is-video')
+      if (prevVideo) {
+        prevVideo.pause()
+      }
     },
     initSlider(): void {
       const that = this
@@ -112,7 +148,7 @@ export default Vue.extend({
         pagination: {
           // dynamicBullets: true,
           el: '.swiper-pagination',
-          clickable: true
+          clickable: false
         },
         navigation: {
           nextEl: '.swiper-button-next',
@@ -126,30 +162,11 @@ export default Vue.extend({
         },
         on: {
           slideChange() {
-            const activeVideo = that.swiper.slides[
-              that.swiper.activeIndex
-            ].querySelector('.story--content.is-video')
-            if (activeVideo) {
-              activeVideo.play()
-            }
-
-            const prevVideo = that.swiper.slides[
-              that.swiper.previousIndex
-            ].querySelector('.story--content.is-video')
-            if (prevVideo) {
-              prevVideo.pause()
-            }
+            that.playActiveVideo()
+            that.pausePrevVideo()
           }
         }
       })
-
-      // play initial slide
-      const activeVideo = that.swiper.slides[
-        that.swiper.activeIndex
-      ].querySelector('.story--content.is-video')
-      if (activeVideo) {
-        activeVideo.play()
-      }
     }
   }
 })
@@ -224,14 +241,34 @@ export default Vue.extend({
     width: rem(48px);
     height: rem(4px);
     border-radius: rem(4px);
-    background: $white;
+    background: rgba($white, 0.4);
     opacity: 1;
     margin: 0 rem(2px);
+    position: relative;
+    overflow: hidden;
+    // default transition:
+    transition: all 15000ms linear;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transform: translateX(0%);
+      background: $white;
+      transition: inherit;
+    }
   }
   .swiper-pagination-bullet-active {
-    opacity: 1;
+    &::before {
+      transform: translateX(0%);
+    }
     ~ .swiper-pagination-bullet {
-      opacity: 0.4;
+      &::before {
+        transform: translateX(-100%);
+      }
     }
   }
   .swiper-button-white:focus {
@@ -244,7 +281,7 @@ export default Vue.extend({
   height: rem(32px);
 }
 .story--nav {
-  bottom: rem(32px);
+  bottom: rem(48px);
   left: 0;
   right: 0;
   z-index: 10;
