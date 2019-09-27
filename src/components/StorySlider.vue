@@ -15,6 +15,8 @@
                   <!-- <img :src="item.posterUrl" class="story--content" /> -->
                   <video
                     @loadedmetadata="onLoadVideoMetadata($event, index)"
+                    @playing="onVideoPlaying(index)"
+                    @ended="onVideoEnd(index)"
                     class="story--content is-video"
                     muted
                   >
@@ -70,6 +72,7 @@ import Swiper from 'swiper'
 import '@/styles/lib-swiper.scss'
 
 import Vue from 'vue'
+import { isNumber } from 'lodash-es'
 export default Vue.extend({
   name: 'story-slider',
   data() {
@@ -109,13 +112,37 @@ export default Vue.extend({
     onLoadVideoMetadata($event: any, index: number) {
       const videoDuration = $event.target.duration
       if (videoDuration > 0 && videoDuration < Infinity) {
-        this.saveVideoDuration(index, videoDuration)
+        this.saveVideoDuration(index, videoDuration * 1000)
       }
     },
-    setBulletTransition(index: number, duration: number) {
+    onVideoPlaying(index: number) {
+      console.log('on playing');
+      
+      this.setBulletTransition(this.swiper.activeIndex)
+    },
+    onVideoEnd(index: number) {
+      this.swiper.slideNext()
+    },
+    setBulletTransition(
+      index: number,
+      // @ts-ignore
+      duration: number = this.videoDurations[index]
+    ) {
       const $navBullets = document.querySelectorAll('.swiper-pagination-bullet')
       const bullet = $navBullets[index] as HTMLElement
-      bullet.style.transition = `all ${duration * 1000}ms linear`
+      this.setTransition(bullet, `all ${duration}ms linear`)
+      setTimeout(() => {
+        bullet.classList.add('is-playing')
+      }, 0);
+    },
+    resetBulletStyle(index: number) {
+      const $navBullets = document.querySelectorAll('.swiper-pagination-bullet')
+      const bullet = $navBullets[index] as HTMLElement
+      this.setTransition(bullet, 'none')
+      bullet.classList.remove('is-playing')
+    },
+    setTransition(element: HTMLElement, value: string) {
+      element.style.transition = value
     },
     onClickBack() {
       this.$emit('on-click-back')
@@ -134,6 +161,7 @@ export default Vue.extend({
       ].querySelector('.story--content.is-video')
       if (prevVideo) {
         prevVideo.pause()
+        prevVideo.currentTime = 0
       }
     },
     initSlider(): void {
@@ -164,6 +192,22 @@ export default Vue.extend({
           slideChange() {
             that.playActiveVideo()
             that.pausePrevVideo()
+          },
+          // reset left slide on go forward
+          slideNextTransitionStart() {
+            const leftIndex = that.swiper.activeIndex - 1
+            if (leftIndex >= 0) {
+              that.resetBulletStyle(leftIndex)
+            }
+          },
+          // reset right slide on go backward
+          slidePrevTransitionStart() {
+            const activeIndex = that.swiper.activeIndex
+
+            const rightIndex = that.swiper.activeIndex + 1
+            if (rightIndex <= that.swiper.slides.length) {
+              that.resetBulletStyle(rightIndex)
+            }
           }
         }
       })
@@ -238,6 +282,7 @@ export default Vue.extend({
     position: static;
   }
   .swiper-pagination-bullet {
+    $default-transition: 15000ms;
     width: rem(48px);
     height: rem(4px);
     border-radius: rem(4px);
@@ -246,8 +291,7 @@ export default Vue.extend({
     margin: 0 rem(2px);
     position: relative;
     overflow: hidden;
-    // default transition:
-    transition: all 15000ms linear;
+    transition: all $default-transition linear;
     &::before {
       content: '';
       display: block;
@@ -263,7 +307,14 @@ export default Vue.extend({
   }
   .swiper-pagination-bullet-active {
     &::before {
-      transform: translateX(0%);
+      transform: translateX(-100%);
+      transition: none
+    }
+    &.is-playing {
+      &::before {
+        transform: translateX(0%);
+        transition: inherit
+      }
     }
     ~ .swiper-pagination-bullet {
       &::before {
