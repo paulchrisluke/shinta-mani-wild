@@ -25,7 +25,9 @@
                 </div>
               </div>
 
-              <div class="story--details position-absolute px-3 d-flex">
+              <div class="story--details position-absolute px-3 d-flex justify-content-between align-items-center">
+                <!-- music bars -->
+                <music-bars />
                 <!-- like -->
                 <a @click.stop.prevent class="like ml-auto my-3" href="#">
                   <img
@@ -68,6 +70,7 @@
 </template>
 
 <script lang='ts'>
+import MusicBars from '@/components/BaseMusicBars.vue'
 import Swiper from 'swiper'
 import '@/styles/lib-swiper.scss'
 
@@ -75,6 +78,9 @@ import Vue from 'vue'
 import { isNumber } from 'lodash-es'
 export default Vue.extend({
   name: 'story-slider',
+  components: {
+    MusicBars
+  },
   data() {
     return {
       swiper: {} as Swiper,
@@ -368,6 +374,9 @@ export default Vue.extend({
     outline: none;
     user-select: none;
   }
+}
+.like {
+  user-select: none;
 }
 .like-image {
   width: rem(32px);
