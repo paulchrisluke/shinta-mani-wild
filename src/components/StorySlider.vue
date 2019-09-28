@@ -116,8 +116,6 @@ export default Vue.extend({
       }
     },
     onVideoPlaying(index: number) {
-      console.log('on playing');
-      
       this.setBulletTransition(this.swiper.activeIndex)
     },
     onVideoEnd(index: number) {
@@ -133,7 +131,7 @@ export default Vue.extend({
       this.setTransition(bullet, `all ${duration}ms linear`)
       setTimeout(() => {
         bullet.classList.add('is-playing')
-      }, 0);
+      }, 0)
     },
     resetBulletStyle(index: number) {
       const $navBullets = document.querySelectorAll('.swiper-pagination-bullet')
@@ -277,6 +275,50 @@ export default Vue.extend({
 .story--title {
   font-size: rem(32px);
 }
+.swiper-button-prev {
+  left: rem(40px);
+  &::after {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath style='fill:%23333' d='M15.7 22l-9.5-9.5L15.7 3l-3-3L.4 12.6 12.8 25'/%3E%3C/svg%3E")
+      no-repeat center;
+    transform: translate(-65%, -50%);
+  }
+  &:hover {
+    transform: translateX(#{rem(-8px)});
+  }
+}
+.swiper-button-next {
+  right: rem(40px);
+  &::after {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath style='fill:%23333' d='M.3 3l9.5 9.5L.3 22l3 3 12.4-12.5L3.2 0'/%3E%3C/svg%3E")
+      no-repeat center;
+    margin-right: rem(-4px);
+    transform: translate(-35%, -50%);
+  }
+  &:hover {
+    transform: translateX(#{rem(8px)});
+  }
+}
+.swiper-button-white {
+  width: rem(58px);
+  height: rem(58px);
+  border-radius: 100%;
+  &::after {
+    background-size: rem(12px);
+    width: rem(16px);
+    height: rem(28px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: '';
+  }
+
+  background: rgba($white, 0.4);
+  transition: all 1000ms ease;
+  &:hover {
+    background-color: $white;
+  }
+}
+
 ::v-deep {
   .swiper-pagination {
     position: static;
@@ -308,12 +350,12 @@ export default Vue.extend({
   .swiper-pagination-bullet-active {
     &::before {
       transform: translateX(-100%);
-      transition: none
+      transition: none;
     }
     &.is-playing {
       &::before {
         transform: translateX(0%);
-        transition: inherit
+        transition: inherit;
       }
     }
     ~ .swiper-pagination-bullet {
