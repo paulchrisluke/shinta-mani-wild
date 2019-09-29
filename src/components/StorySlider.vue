@@ -9,7 +9,11 @@
             :key="index"
           >
             <div class="story--inner position-relative w-100 mx-auto">
-              <div class="aspect-ratio-box ratio-9-16">
+              <div
+                @click="goToSlide(index)"
+                class="aspect-ratio-box ratio-9-16"
+                :class="{'cursor-pointer': index !== swiper.activeIndex}"
+              >
                 <div class="aspect-ratio-box-inside">
                   <!-- <img src="http://placehold.it/414x736/66f" class="story--content" /> -->
                   <!-- <img :src="item.posterUrl" class="story--content" /> -->
@@ -124,6 +128,9 @@ export default Vue.extend({
       this.initSlider()
       this.playActiveVideo()
     },
+    goToSlide(index: number) {
+      this.swiper.slideTo(index)
+    },
     saveVideoDuration(index: number, duration: number) {
       this.videoDurations[index] = duration
     },
@@ -137,8 +144,8 @@ export default Vue.extend({
       this.setBulletTransition(this.swiper.activeIndex)
     },
     onVideoEnd(index: number) {
-      console.log('ended');
-      
+      console.log('ended')
+
       this.swiper.slideNext()
     },
     setBulletTransition(
