@@ -42,6 +42,11 @@
 .user-select-none {
   user-select: none;
 }
+.cursor-pointer {
+  &:hover {
+    cursor: pointer;
+  }
+}
 
 // layout
 html,

@@ -20,7 +20,8 @@ export default Vue.extend({
 </script>
 
 <style lang='scss' scoped>
-$music-bar-height: 32px;
+$music-bar-height: 24px;
+$music-bar-bg: $white;
 .playing {
   height: rem($music-bar-height);
   overflow: hidden;
@@ -28,12 +29,13 @@ $music-bar-height: 32px;
 .now.playing .bar {
   bottom: 0;
   margin-right: rem(2px);
-  width: rem(3px);
+  width: rem(1px);
   height: rem($music-bar-height);
-  background: $white;
+  background: $music-bar-bg;
   animation-name: pulse;
   animation-duration: 1000ms;
   animation-iteration-count: infinite;
+  will-change: transform;
 }
 .paused.playing .bar {
   animation-iteration-count: 1;

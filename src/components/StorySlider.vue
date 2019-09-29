@@ -18,18 +18,20 @@
                     @playing="onVideoPlaying(index)"
                     @ended="onVideoEnd(index)"
                     class="story--content is-video"
-                    muted
+                    :muted="isMute"
                   >
                     <source :src="item.image" type="video/mp4" />
                   </video>
                 </div>
               </div>
 
-              <div class="story--details position-absolute px-3 d-flex justify-content-between align-items-center">
+              <div
+                class="story--details position-absolute px-3 d-flex justify-content-between align-items-center"
+              >
                 <!-- music bars -->
-                <music-bars />
+                <music-bars :paused="isMute || index !== swiper.activeIndex" />
                 <!-- like -->
-                <a @click.stop.prevent class="like ml-auto my-3" href="#">
+                <a @click.stop.prevent class="like my-3" href="#">
                   <img
                     class="like-image d-block"
                     src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402128/Shinta%20Mani%20Wild/general/icon-like-outline_dlymsz.svg"
@@ -47,9 +49,8 @@
       <div class="swiper-button-prev swiper-button-white"></div>
 
       <a
-        class="story--back position-absolute p-3"
+        class="story--back position-absolute p-3 cursor-pointer hover-button-bg"
         title="Close"
-        href="#"
         @click.stop.prevent="onClickBack"
       >
         <img
@@ -61,9 +62,19 @@
     </div>
 
     <!-- Pagination -->
-    <div class="story--nav d-flex position-absolute">
-      <div class="story--nav-inner mx-auto">
-        <div class="swiper-pagination swiper-pagination-white mx-auto"></div>
+    <div class="story--nav position-absolute">
+      <div class="d-flex">
+        <div class="d-flex mx-auto align-items-center">
+          <div class="story--nav-tools d-flex align-items-end h-100 mx-3">
+            <a
+              aria-label="Toggle Sound"
+              @click="isMute = !isMute"
+              class="mute-toggle d-block cursor-pointer hover-button-bg"
+              :class="{'is-mute': isMute, 'has-sound': !isMute}"
+            ></a>
+          </div>
+          <div class="swiper-pagination swiper-pagination-white mx-auto"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -84,7 +95,8 @@ export default Vue.extend({
   data() {
     return {
       swiper: {} as Swiper,
-      videoDurations: [] as number[]
+      videoDurations: [] as number[],
+      isMute: true
     }
   },
   props: {
@@ -125,6 +137,8 @@ export default Vue.extend({
       this.setBulletTransition(this.swiper.activeIndex)
     },
     onVideoEnd(index: number) {
+      console.log('ended');
+      
       this.swiper.slideNext()
     },
     setBulletTransition(
@@ -146,7 +160,9 @@ export default Vue.extend({
       bullet.classList.remove('is-playing')
     },
     setTransition(element: HTMLElement, value: string) {
-      element.style.transition = value
+      if (element) {
+        element.style.transition = value
+      }
     },
     onClickBack() {
       this.$emit('on-click-back')
@@ -260,18 +276,9 @@ export default Vue.extend({
 .story--inner {
   max-width: 414px;
   max-height: 100%;
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: 0px 7px 8px rgba(0, 0, 0, 0.2), 0px 5px 22px rgba(0, 0, 0, 0.12),
-      0px 12px 17px rgba(0, 0, 0, 0.14);
-    border-radius: rem(20px);
-  }
+  box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
+    rem(0px 5px 22px) rgba($black, 0.12), rem(0px 12px 17px) rgba($black, 0.14);
+  border-radius: rem(20px);
 }
 .story--details {
   right: 0;
@@ -305,8 +312,8 @@ export default Vue.extend({
   }
 }
 .swiper-button-white {
-  width: rem(58px);
-  height: rem(58px);
+  width: rem(56px);
+  height: rem(56px);
   border-radius: 100%;
   &::after {
     background-size: rem(12px);
@@ -320,7 +327,8 @@ export default Vue.extend({
 
   background: rgba($white, 0.4);
   transition: all 1000ms ease;
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: $white;
   }
 }
@@ -328,6 +336,7 @@ export default Vue.extend({
 ::v-deep {
   .swiper-pagination {
     position: static;
+    min-height: rem(32px);
   }
   .swiper-pagination-bullet {
     $default-transition: 15000ms;
@@ -383,21 +392,36 @@ export default Vue.extend({
   height: rem(32px);
 }
 .story--nav {
-  bottom: rem(48px);
+  bottom: rem(16px);
   left: 0;
   right: 0;
   z-index: 10;
-  height: rem(32px);
-}
-.story--nav-inner {
-  width: rem(414px);
 }
 .story--back {
-  top: 0;
-  left: 0;
+  top: rem(40px);
+  left: rem(40px);
   img {
     width: rem(24px);
     height: rem(24px);
+  }
+}
+.mute-toggle {
+  width: rem(56px);
+  height: rem(56px);
+  &.is-mute {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23FFF'%3E%3Cpath d='M16.5 12A4.5 4.5 0 0014 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0021 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E")
+      no-repeat center;
+  }
+  &.has-sound {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23FFF'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E")
+      no-repeat center;
+  }
+}
+.hover-button-bg {
+  &:hover {
+    background-color: rgba($black, 0.4);
+    border-radius: rem(100px);
+    transition: all 200ms ease;
   }
 }
 </style>
