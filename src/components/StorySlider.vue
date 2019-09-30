@@ -66,7 +66,7 @@
       <div class="swiper-button-prev swiper-button-white"></div>
 
       <a
-        class="story--back position-absolute p-3 cursor-pointer hover-button-bg"
+        class="story--back position-absolute p-2 p-md-3 cursor-pointer hover-button-bg"
         title="Close"
         @click.stop.prevent="onClickBack"
       >
@@ -90,7 +90,7 @@
               :class="{'is-mute': isMute, 'has-sound': !isMute}"
             ></a>
           </div>
-          <div class="swiper-pagination swiper-pagination-white mx-auto"></div>
+          <div class="swiper-pagination swiper-pagination-white ml-auto mr-3"></div>
         </div>
       </div>
     </div>
@@ -339,6 +339,9 @@ export default Vue.extend({
   &:hover {
     transform: translateX(#{rem(-8px)});
   }
+  @include media-breakpoint-down(md) {
+    left: 0;
+  }
 }
 .swiper-button-next {
   right: rem(40px);
@@ -350,6 +353,9 @@ export default Vue.extend({
   }
   &:hover {
     transform: translateX(#{rem(8px)});
+  }
+  @include media-breakpoint-down(md) {
+    right: 0;
   }
 }
 .swiper-button-white {
@@ -371,6 +377,17 @@ export default Vue.extend({
   &:hover,
   &:focus {
     background-color: $white;
+  }
+  @include media-breakpoint-down(md) {
+    opacity: 0;
+    width: rem(104px);
+    top: 25%;
+    bottom: 25%;
+    height: auto;
+    border-radius: 0;
+    &:hover {
+      transform: translateX(0);
+    }
   }
 }
 
@@ -439,11 +456,23 @@ export default Vue.extend({
   z-index: 10;
 }
 .story--back {
-  top: rem(40px);
-  left: rem(40px);
+  top: rem(24px);
+  left: rem(24px);
+  z-index: 11;
+  background-color: rgba($black, 0.2);
+  border-radius: rem(100px);
+  transition: all 200ms ease;
+  @include media-breakpoint-up(md) {
+    top: rem(40px);
+    left: rem(40px);
+  }
   img {
-    width: rem(24px);
-    height: rem(24px);
+    width: rem(16px);
+    height: rem(16px);
+    @include media-breakpoint-up(md) {
+      width: rem(24px);
+      height: rem(24px);
+    }
   }
 }
 .mute-toggle {
