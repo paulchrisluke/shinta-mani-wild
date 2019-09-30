@@ -22,6 +22,7 @@
                     @playing="onVideoPlaying(index)"
                     @ended="onVideoEnd(index)"
                     class="story--content is-video"
+                    :poster="getPosterImage(item.image)"
                     :muted="isMute"
                   >
                     <source :src="item.image" type="video/mp4" />
@@ -91,6 +92,7 @@ import '@/styles/lib-swiper.scss'
 
 import Vue from 'vue'
 import { isNumber } from 'lodash-es'
+import { changeUrlExtension, transformCloudinaryImage } from '../helpers'
 export default Vue.extend({
   name: 'story-slider',
   components: {
@@ -171,6 +173,15 @@ export default Vue.extend({
         element.style.transition = value
       }
     },
+    getPosterImage(videoUrl: string) {
+      const result = transformCloudinaryImage(
+        changeUrlExtension(videoUrl, 'jpg'),
+        'q_auto:good'
+      )
+      console.log('result', result)
+
+      return result
+    },
     onClickBack() {
       this.$emit('on-click-back')
     },
@@ -179,6 +190,7 @@ export default Vue.extend({
         this.swiper.activeIndex
       ].querySelector('.story--content.is-video')
       if (activeVideo) {
+        activeVideo.currentTime = 0
         activeVideo.play()
       }
     },
@@ -188,7 +200,6 @@ export default Vue.extend({
       ].querySelector('.story--content.is-video')
       if (prevVideo) {
         prevVideo.pause()
-        prevVideo.currentTime = 0
       }
     },
     initSlider(): void {
