@@ -196,7 +196,6 @@ export default Vue.extend({
       // documentation: https://swiperjs.com/api
       that.swiper = new Swiper('.swiper-container', {
         keyboard: { onlyInViewport: true },
-        initialSlide: this.initialStoryIndex,
         slidesPerView: 1,
         spaceBetween: 0,
         centeredSlides: true,

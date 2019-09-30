@@ -35,8 +35,12 @@ export default Vue.extend({
       return this.$store.getters['resort/getItem']
     },
     stories(): Story[] {
-      return get((this as any).resort, 'stories', []).filter(
+      const pageStoriesWithNoDuplicate = get((this as any).resort, 'stories', []).filter(
         (item: Story) => item.posterUrl
+      )
+      const selectedStory = pageStoriesWithNoDuplicate[this.initialStoryIndex]
+      return get((this as any).resort, 'stories', []).filter(
+        (item: Story) => item.ctaText === selectedStory.ctaText
       )
     }
   },
