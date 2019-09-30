@@ -56,3 +56,11 @@ export function transformCloudinaryUrl(
   urlParts.splice(indexOfUpload + 1, 0, transformations)
   return urlParts.join('/')
 }
+
+export function hasAudio(video: any) {
+  return (
+    video.mozHasAudio ||
+    Boolean(video.webkitAudioDecodedByteCount) ||
+    Boolean(video.audioTracks && video.audioTracks.length)
+  )
+}

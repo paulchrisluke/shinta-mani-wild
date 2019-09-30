@@ -39,7 +39,7 @@ $music-bar-bg: $white;
 }
 .paused.playing .bar {
   animation-iteration-count: 1;
-  transform: translateY(#{$music-bar-height - 1px})
+  transform: translateY(#{$music-bar-height - 1px});
 }
 .n1 {
   animation-delay: 500ms;
@@ -55,22 +55,22 @@ $music-bar-bg: $white;
 }
 @keyframes pulse {
   0% {
-    transform: translateY(0)
+    transform: translateY(0);
   }
   10% {
-    transform: translateY(#{rem($music-bar-height * 0.8)})
+    transform: translateY(#{rem($music-bar-height * 0.8)});
   }
   50% {
-    transform: translateY(#{rem($music-bar-height * 0.4)})
+    transform: translateY(#{rem($music-bar-height * 0.4)});
   }
   60% {
-    transform: translateY(#{rem($music-bar-height * 0.55)})
+    transform: translateY(#{rem($music-bar-height * 0.55)});
   }
   80% {
-    transform: translateY(#{rem($music-bar-height * 1.2)})
+    transform: translateY(#{rem($music-bar-height * 1.2)});
   }
   100% {
-    transform: translateY(0)
+    transform: translateY(0);
   }
 }
 </style>

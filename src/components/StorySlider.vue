@@ -23,9 +23,8 @@
                 :class="{'cursor-pointer': index !== swiper.activeIndex}"
               >
                 <div class="aspect-ratio-box-inside">
-                  <!-- <img src="http://placehold.it/414x736/66f" class="story--content" /> -->
-                  <!-- <img :src="item.posterUrl" class="story--content" /> -->
                   <video
+                    @loadeddata="onLoadedVideoData($event, index)"
                     @loadedmetadata="onLoadVideoMetadata($event, index)"
                     @playing="onVideoPlaying(index)"
                     @ended="onVideoEnd(index)"
@@ -34,10 +33,7 @@
                     :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25')"
                     :muted="isMute"
                   >
-                    <source
-                      :src="transformCloudinaryUrl(item.image, 'q_auto:good')"
-                      type="video/mp4"
-                    />
+                    <source :src="transformCloudinaryUrl(item.image, 'q_auto:good,ac_none')" type="video/mp4" />
                   </video>
                 </div>
               </div>
@@ -46,7 +42,10 @@
                 class="story--details position-absolute px-3 d-flex justify-content-between align-items-center"
               >
                 <!-- music bars -->
-                <music-bars :paused="isMute || index !== swiper.activeIndex" />
+                <music-bars
+                  v-if="swiper.activeIndex >= 0"
+                  :paused="videoHasNoSounds[index] || !shouldPlayMusicBars(index)"
+                />
                 <!-- like -->
                 <a @click.stop.prevent class="like my-3" href="#">
                   <img
@@ -103,7 +102,11 @@ import Swiper from 'swiper'
 import '@/styles/lib-swiper.scss'
 import Vue from 'vue'
 import { isNumber } from 'lodash-es'
-import { changeUrlExtension, transformCloudinaryUrl } from '../helpers'
+import {
+  changeUrlExtension,
+  transformCloudinaryUrl,
+  hasAudio
+} from '../helpers'
 export default Vue.extend({
   name: 'story-slider',
   components: {
@@ -113,6 +116,7 @@ export default Vue.extend({
     return {
       swiper: {} as Swiper,
       videoDurations: [] as number[],
+      videoHasNoSounds: [] as boolean[],
       isMute: true
     }
   },
@@ -141,11 +145,24 @@ export default Vue.extend({
       this.initSlider()
       this.playActiveVideo()
     },
+    shouldPlayMusicBars(index: number): boolean {
+      if (this.isMute) {
+        return false
+      }
+      if (index !== this.swiper.activeIndex) {
+        return false
+      }
+      return true
+    },
     goToSlide(index: number) {
       this.swiper.slideTo(index)
     },
     saveVideoDuration(index: number, duration: number) {
       this.videoDurations[index] = duration
+    },
+    onLoadedVideoData($event: any, index: number) {
+      const videoElement = $event.target
+      this.videoHasNoSounds[index] = !hasAudio(videoElement)
     },
     onLoadVideoMetadata($event: any, index: number) {
       const videoDuration = $event.target.duration
@@ -198,19 +215,18 @@ export default Vue.extend({
     onClickBack() {
       this.$emit('on-click-back')
     },
+    getVideoElementByIndex(index: number) {
+      return this.swiper.slides[index].querySelector('.story--content.is-video')
+    },
     playActiveVideo() {
-      const activeVideo = this.swiper.slides[
-        this.swiper.activeIndex
-      ].querySelector('.story--content.is-video')
+      const activeVideo = this.getVideoElementByIndex(this.swiper.activeIndex)
       if (activeVideo) {
         activeVideo.currentTime = 0
         activeVideo.play()
       }
     },
     pausePrevVideo() {
-      const prevVideo = this.swiper.slides[
-        this.swiper.previousIndex
-      ].querySelector('.story--content.is-video')
+      const prevVideo = this.getVideoElementByIndex(this.swiper.previousIndex)
       if (prevVideo) {
         prevVideo.pause()
       }
