@@ -5,57 +5,96 @@
       <!-- header -->
       <page-header></page-header>
 
-      <div class="mb-5">
+      <div>
         <hero-image :image="resort.featuredImage"></hero-image>
       </div>
 
-      <div class="container is-small mb-5 page-description">
-        <article>
-          <base-heading
-            :show-placeholder="!resort.id"
-            :text="resort.title"
-            :type="'h1'"
-            :class-placeholder="'heading-placeholder mb-5'"
-            :class-name="'h1 is-huge text-dark text-center mb-5'"
-            :border-art="true"
-          ></base-heading>
+      <div class="position-relative py-5">
+        <div class="container is-small page-description">
+          <article>
+            <base-heading
+              :show-placeholder="!resort.id"
+              :text="resort.title"
+              :type="'h1'"
+              :class-placeholder="'heading-placeholder mb-5'"
+              :class-name="'h1 is-huge text-dark text-center mb-5'"
+              :border-art="true"
+            ></base-heading>
 
-          <div v-if="!resort.id">
-            <content-placeholders centered rounded class="description-placeholder">
-              <content-placeholders-text :lines="3" />
-            </content-placeholders>
-          </div>
-          <p v-else class="mb-0" v-read-more="{lineHeight: 24, lines: 3, linkClass: 'd-block float-right'}" v-text="resort.description"></p>
-        </article>
+            <div v-if="!resort.id">
+              <content-placeholders centered rounded class="description-placeholder">
+                <content-placeholders-text :lines="3" />
+              </content-placeholders>
+            </div>
+            <p
+              v-else
+              class="mb-0"
+              v-read-more="{lineHeight: 24, lines: 3, linkClass: 'd-block float-right'}"
+              v-text="resort.description"
+            ></p>
+          </article>
+        </div>
+
+        <!-- gallery -->
+        <section class="mb-5">
+          <base-heading :text="'Gallery'" :type="'h2'" :class-name="'h2 text-dark text-center'"></base-heading>
+          <base-gallery-list :show-placeholder="!resort.id" :items="galleryItems.slice(0,2)" />
+        </section>
+
+        <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
+          <img
+            :class="`doodle doodle-item-0-${index} position-absolute`"
+            data-aos="fade-down"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            :key="index"
+            alt
+          />
+        </template>
       </div>
-
-      <!-- gallery -->
-      <section class="mb-5">
-        <base-heading :text="'Gallery'" :type="'h2'" :class-name="'h2 text-dark text-center'"></base-heading>
-        <base-gallery-list :show-placeholder="!resort.id" :items="galleryItems.slice(0,2)" />
-      </section>
 
       <!-- banner action -->
       <div class="mb-5">
-        <base-banner-action :image="resort.backgroundImage" :show-placeholder="!resort.id" :link="resort.ctaLink" :text="resort.ctaText" :button-text="'Book Now'"></base-banner-action>
+        <base-banner-action
+          :image="resort.backgroundImage"
+          :show-placeholder="!resort.id"
+          :link="resort.ctaLink"
+          :text="resort.ctaText"
+          :button-text="'Book Now'"
+        ></base-banner-action>
       </div>
 
-      <!-- quote -->
-      <section class="container shift-xl-down mb-5 mb-xl-0">
-        <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
-          <div class="quote w-100 h-100" v-html="resort.h2"></div>
-        </base-quote>
-      </section>
+      <div class="position-relative py-5">
+        <!-- quote -->
+        <section class="container shift-xl-down">
+          <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+            <div class="quote w-100 h-100" v-html="resort.h2"></div>
+          </base-quote>
+        </section>
 
-      <!-- articles (stories) -->
-      <div class="container is-small mb-6">
-        <base-heading
-          :show-placeholder="!resort.id"
-          :type="'h2'"
-          :class-name="'h2 text-dark text-center'"
-          :text="`Explore our ${resort.title}`"
-        ></base-heading>
-        <base-articles-list :route-props="{name: 'listing', params: $route.params}" :show-placeholder="!resort.id" :items="stories"></base-articles-list>
+        <!-- articles (stories) -->
+        <div class="container is-small mb-6">
+          <base-heading
+            :show-placeholder="!resort.id"
+            :type="'h2'"
+            :class-name="'h2 text-dark text-center'"
+            :text="`Explore our ${resort.title}`"
+          ></base-heading>
+          <base-articles-list
+            :route-props="{name: 'listing', params: $route.params}"
+            :show-placeholder="!resort.id"
+            :items="stories"
+          ></base-articles-list>
+        </div>
+
+        <template v-for="(doodle, index) in pageDoodles.slice(2, 5)">
+          <img
+            :class="`doodle doodle-item-0-${index} position-absolute`"
+            data-aos="fade-down"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            :key="index"
+            alt
+          />
+        </template>
       </div>
     </div>
 
@@ -78,9 +117,12 @@ import BaseQuote from '@/components/BaseQuote.vue'
 import BookingBar from '@/components/BookingBar.vue'
 import { GalleryImage, Story, Resort } from '@/types'
 import { get } from 'lodash-es'
+import doodles from '@/mixins/doodles'
+import 'aos/dist/aos.css'
 
 export default Vue.extend({
   name: 'listing',
+  mixins: [doodles],
   components: {
     PageHeader,
     PageFooter,
@@ -102,7 +144,9 @@ export default Vue.extend({
       return this.$store.getters['resort/getItem']
     },
     stories(): Story[] {
-      return get((this as any).resort, 'stories', []).filter((item: Story) => item.posterUrl)
+      return get((this as any).resort, 'stories', []).filter(
+        (item: Story) => item.posterUrl
+      )
     },
     resortImages(): GalleryImage[] {
       return get((this as any).resort, 'images', [])

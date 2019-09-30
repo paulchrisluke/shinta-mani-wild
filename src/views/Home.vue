@@ -11,7 +11,7 @@
         @click="showIntroVideo()"
         :style="styleOfHero"
         :class="{ 'background-black': shouldShowIntroVideo, 'has-image background-black': resort.id && !shouldShowIntroVideo}"
-        class="hero position-relative mb-5"
+        class="hero position-relative"
       >
         <!-- https://www.youtube.com/watch?v=SUWpCjzeMb4 -->
         <video-player
@@ -21,7 +21,7 @@
         ></video-player>
       </div>
 
-      <div class="pattern-area-1 pt-0 position-relative">
+      <div class="py-5 position-relative">
         <div class="container is-small mb-4">
           <base-heading
             :class-placeholder="'is-huge-placeholder'"
@@ -42,13 +42,17 @@
 
         <!-- card -->
         <div class="container is-small">
-          <div class="row mb-5">
+          <div class="row">
             <div class="col-12">
               <base-card :show-placeholder="!resort.id" :image="cardImage1">
                 <template v-slot:text>
                   <div class="card-content">
-                    <h2 class="base-heading text-small-caps font-sans-serif font-weight-light h2 mb-3 text-dark text-center text-xl-left">All Inclusive</h2>
-                    <p class="mb-xl-6">Shinta Mani Wild is the full package - in every sense of the word. Our rates are inclusive of a round trip private car transfer to/from Phnom Penh or Sihanoukville Airport and vicinity, as well as your personal Bensley Butler, all meals and beverages, privately guided activities to explore the Cardamom forest, luxury spa treatments, WiFi throughout the camp and of course daily laundry service.</p>
+                    <h2
+                      class="base-heading text-small-caps font-sans-serif font-weight-light h2 mb-3 text-dark text-center text-xl-left"
+                    >All Inclusive</h2>
+                    <p
+                      class="mb-xl-6"
+                    >Shinta Mani Wild is the full package - in every sense of the word. Our rates are inclusive of a round trip private car transfer to/from Phnom Penh or Sihanoukville Airport and vicinity, as well as your personal Bensley Butler, all meals and beverages, privately guided activities to explore the Cardamom forest, luxury spa treatments, WiFi throughout the camp and of course daily laundry service.</p>
                     <base-image-link
                       :class-name="'is-primary is-md'"
                       :href="resort.ctaLink"
@@ -61,60 +65,84 @@
           </div>
         </div>
 
-        <!-- banner action -->
-        <div class="mb-5">
-          <base-banner-action
-            :image="resort.backgroundImage"
-            :show-placeholder="!resort.id"
-            :link="resort.ctaLink"
-            :text="resort.ctaText"
-            :button-text="'Book Now'"
-          ></base-banner-action>
+        <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
+          <img
+            :class="`doodle doodle-item-0-${index} position-absolute`"
+            data-aos="fade-up"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            :key="index"
+            alt
+          />
+        </template>
+      </div>
+
+      <!-- banner action -->
+      <div>
+        <base-banner-action
+          :image="resort.backgroundImage"
+          :show-placeholder="!resort.id"
+          :link="resort.ctaLink"
+          :text="resort.ctaText"
+          :button-text="'Book Now'"
+        ></base-banner-action>
+      </div>
+
+      <div class="position-relative py-5">
+        <!-- quote tents -->
+        <div class="position-relative shift-xl-down home--quote-wrapper">
+          <section class="container">
+            <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
+              <div class="quote w-100 h-100" v-html="resort.h2"></div>
+            </base-quote>
+          </section>
         </div>
 
-        <div class="pattern-area-2 position-relative pt-5">
-          <!-- quote tents -->
-          <div class="position-relative shift-xl-down home--quote-wrapper">
-            <section class="container">
-              <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
-                <div class="quote w-100 h-100" v-html="resort.h2"></div>
-              </base-quote>
-            </section>
-          </div>
-
-          <!-- gallery -->
-          <div class="mb-5">
-            <base-heading
-              :text="'Our Tents'"
-              :type="'h2'"
-              :class-name="'h1 text-dark text-center'"
-              :border-art="true"
-            ></base-heading>
-            <base-gallery-list :show-placeholder="!resort.id" :items="galleryItems.slice(0,2)" />
-          </div>
-
-          <!-- press banner -->
-          <div class="mb-5">
-            <section class="press-banner">
-              <a
-                href="/search/press"
-                target="_blank"
-                class="press-banner--link d-block h-100"
-                title="Press"
-                aria-label="Press"
-              ></a>
-            </section>
-          </div>
+        <!-- gallery -->
+        <div>
+          <base-heading
+            :text="'Our Tents'"
+            :type="'h2'"
+            :class-name="'h1 text-dark text-center'"
+            :border-art="true"
+          ></base-heading>
+          <base-gallery-list :show-placeholder="!resort.id" :items="galleryItems.slice(0,2)" />
         </div>
 
+        <template v-for="(doodle, index) in pageDoodles.slice(2, 5)">
+          <img
+            :class="`doodle doodle-item-1-${index} position-absolute`"
+            data-aos="fade-up"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            :key="index"
+            alt
+          />
+        </template>
+      </div>
+
+      <!-- press banner -->
+      <div>
+        <section class="press-banner">
+          <a
+            href="/search/press"
+            target="_blank"
+            class="press-banner--link d-block h-100"
+            title="Press"
+            aria-label="Press"
+          ></a>
+        </section>
+      </div>
+
+      <div class="py-5 position-relative">
         <!-- card -->
         <div class="container is-small">
-          <div class="row mb-5">
+          <div class="row">
             <div class="col-12">
               <base-card :show-placeholder="!resort.id" :image="cardImage2" :is-left="true">
                 <template v-slot:text>
                   <div class="card-content">
-                    <h2 class="base-heading text-small-caps font-sans-serif font-weight-light h2 mb-3 text-dark text-center text-xl-left">Conservation</h2>
+                    <h2
+                      class="base-heading text-small-caps font-sans-serif font-weight-light h2 mb-3 text-dark text-center text-xl-left"
+                    >Conservation</h2>
                     <p>The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. A radical new fusion of world-class design, hospitality and conservation! Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. Join us on the front line of Conservation, and see your stay make a difference to protecting the lungs of Cambodia and it’s many unique and endangered species.</p>
                     <div class="d-flex">
                       <base-image-link
@@ -129,6 +157,16 @@
             </div>
           </div>
         </div>
+
+        <template v-for="(doodle, index) in pageDoodles.slice(5, 7)">
+          <img
+            :class="`doodle doodle-item-2-${index} position-absolute`"
+            data-aos="fade-down"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:good,o_50')"
+            :key="index"
+            alt
+          />
+        </template>
       </div>
     </div>
 
@@ -147,11 +185,14 @@ import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import BaseGalleryList from '@/components/BaseGalleryList.vue'
 import PageFooter from '@/components/PageFooter.vue'
-import { Resort, ResortImage } from '@/types.ts'
+import { Resort, ResortImage, GalleryImage } from '@/types.ts'
 import { get } from 'lodash-es'
+import doodles from '@/mixins/doodles'
+import 'aos/dist/aos.css'
 
 export default Vue.extend({
   name: 'home',
+  mixins: [doodles],
   components: {
     PageHeader,
     VideoPlayer,
@@ -280,20 +321,6 @@ export default Vue.extend({
 
   ::v-deep {
     @include hero-placeholder($hero-height);
-  }
-}
-.pattern-area-1 {
-  @include media-breakpoint-up(xl) {
-    background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1566989132/Shinta%20Mani%20Wild/home/Tigers1_ikytxj.png')
-        no-repeat top left,
-      url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1566989132/Shinta%20Mani%20Wild/home/Tigers2_r3lhhp.png')
-        no-repeat top right;
-    background-size: 28%;
-  }
-}
-.pattern-area-2 {
-  @include media-breakpoint-up(xl) {
-    // background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1566987433/Shinta%20Mani%20Wild/home/gibbon1_mbh3bg.png') no-repeat top right 5%;
   }
 }
 .press-banner {

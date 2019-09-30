@@ -64,3 +64,10 @@ export function hasAudio(video: any) {
     Boolean(video.audioTracks && video.audioTracks.length)
   )
 }
+
+export function getRandomsOf(items: any[]) {
+  if (!(items.length > 0)) {
+    return []
+  }
+  return items.sort(() => 0.5 - Math.random())
+}
