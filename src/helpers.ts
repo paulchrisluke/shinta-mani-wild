@@ -47,7 +47,7 @@ export function changeUrlExtension(url: string, newExtension: string): string {
   return urlParts.join('.')
 }
 
-export function transformCloudinaryImage(
+export function transformCloudinaryUrl(
   imageUrl: string,
   transformations: string
 ): string {

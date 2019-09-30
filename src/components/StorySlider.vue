@@ -1,6 +1,14 @@
 <template>
-  <div class="d-flex flex-grow-1">
-    <div class="story-slider mx-auto w-100 d-flex">
+  <div class="story-slider d-flex flex-grow-1 position-relative">
+    <!-- blurred background -->
+    <div
+      v-if="items.length > 0 && swiper.activeIndex >= 0"
+      class="story-slider--background position-absolute"
+      :style="{'background-image': `url(${items && getPosterImage(items[swiper.activeIndex].image, 'q_25')})`}"
+    ></div>
+    <div class="story-slider--background is-shade position-absolute"></div>
+
+    <div class="story-slider--inner mx-auto w-100 d-flex">
       <div class="swiper-container py-4 my-auto">
         <div class="swiper-wrapper">
           <div
@@ -22,10 +30,14 @@
                     @playing="onVideoPlaying(index)"
                     @ended="onVideoEnd(index)"
                     class="story--content is-video"
-                    :poster="getPosterImage(item.image)"
+                    preload="none"
+                    :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25')"
                     :muted="isMute"
                   >
-                    <source :src="item.image" type="video/mp4" />
+                    <source
+                      :src="transformCloudinaryUrl(item.image, 'q_auto:good')"
+                      type="video/mp4"
+                    />
                   </video>
                 </div>
               </div>
@@ -89,10 +101,9 @@
 import MusicBars from '@/components/BaseMusicBars.vue'
 import Swiper from 'swiper'
 import '@/styles/lib-swiper.scss'
-
 import Vue from 'vue'
 import { isNumber } from 'lodash-es'
-import { changeUrlExtension, transformCloudinaryImage } from '../helpers'
+import { changeUrlExtension, transformCloudinaryUrl } from '../helpers'
 export default Vue.extend({
   name: 'story-slider',
   components: {
@@ -146,8 +157,6 @@ export default Vue.extend({
       this.setBulletTransition(this.swiper.activeIndex)
     },
     onVideoEnd(index: number) {
-      console.log('ended')
-
       this.swiper.slideNext()
     },
     setBulletTransition(
@@ -173,14 +182,18 @@ export default Vue.extend({
         element.style.transition = value
       }
     },
-    getPosterImage(videoUrl: string) {
-      const result = transformCloudinaryImage(
-        changeUrlExtension(videoUrl, 'jpg'),
-        'q_auto:good'
+    shouldLoadVideoPoster(index: number) {
+      const maxVisibleSlides = 3
+      return (
+        // preload 2 images out of view
+        Math.abs(index - this.swiper.activeIndex) <= maxVisibleSlides / 2 + 2
       )
-      console.log('result', result)
-
-      return result
+    },
+    getPosterImage(videoUrl: string, transformations: string) {
+      return transformCloudinaryUrl(
+        changeUrlExtension(videoUrl, 'jpg'),
+        transformations
+      )
     },
     onClickBack() {
       this.$emit('on-click-back')
@@ -254,8 +267,17 @@ export default Vue.extend({
 </script>
 
 <style lang='scss' scoped>
-.story-slider {
+.story-slider--inner {
   max-width: rem(1100px);
+}
+.story-slider--background {
+  @include stick-around;
+  filter: blur(50px);
+  background-size: cover;
+  background-position: center;
+  &.is-shade {
+    background-color: rgba($black, 0.2);
+  }
 }
 .swiper-container {
   width: 100%;

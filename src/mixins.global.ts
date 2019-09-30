@@ -1,8 +1,8 @@
 import Vue from 'vue'
-// import connection from "@/mixins/connection";
+import { transformCloudinaryUrl } from '@/helpers'
 
 Vue.mixin({
   methods: {
-    // ...connection
+    transformCloudinaryUrl
   }
 })
