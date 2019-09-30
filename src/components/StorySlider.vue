@@ -240,8 +240,10 @@ export default Vue.extend({
         },
         on: {
           slideChange() {
-            that.playActiveVideo()
             that.pausePrevVideo()
+          },
+          slideChangeTransitionEnd() {
+            that.playActiveVideo()
           },
           // reset left slide on go forward
           slideNextTransitionStart() {
