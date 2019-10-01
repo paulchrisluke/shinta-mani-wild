@@ -37,6 +37,7 @@
       <!-- accommodations -->
       <section class="container is-small mb-5 featured-items">
         <base-articles-list
+          :route-props="{name: 'tents', params: $route.params}"
           :image-box-class="'ratio-3-2'"
           :preview-lines-of-read-more="2"
           :show-placeholder="!resort.id"
