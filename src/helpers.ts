@@ -24,19 +24,30 @@ export function isPassiveEventsSupported() {
 }
 
 export function categoryToStoryBridge(category: Category) {
-
   return {
     // order,
     content: category.description,
     ctaLink: `/listing/${category.slug}`,
-    ctaText: category.title,
+    ctaText: category.title
     // image,
     // type,
     // posterUrl
   }
 }
 
-export function transformCloudinaryImage(
+export function changeUrlExtension(url: string, newExtension: string): string {
+  const urlParts = url.split('.')
+  const oldExtension = urlParts[urlParts.length - 1]
+  if (oldExtension.length >= 5) {
+    console.log('changeUrlExtension: Probably url has no extension.')
+    return ''
+  }
+  const indexOfExtension = urlParts.length - 1
+  urlParts.splice(indexOfExtension, 1, newExtension)
+  return urlParts.join('.')
+}
+
+export function transformCloudinaryUrl(
   imageUrl: string,
   transformations: string
 ): string {
@@ -44,4 +55,12 @@ export function transformCloudinaryImage(
   const indexOfUpload = urlParts.indexOf('upload')
   urlParts.splice(indexOfUpload + 1, 0, transformations)
   return urlParts.join('/')
+}
+
+export function hasAudio(video: any) {
+  return (
+    video.mozHasAudio ||
+    Boolean(video.webkitAudioDecodedByteCount) ||
+    Boolean(video.audioTracks && video.audioTracks.length)
+  )
 }

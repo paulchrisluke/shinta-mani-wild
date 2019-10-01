@@ -23,7 +23,7 @@ $gray-2f: #2F2F2F;
 $brand-1: #EEE9D6;
 $brand-2: #FFFFF0;
 $brand-3: #8D2938;
-// $brand-4: ;
+$brand-4: #302F2B;
 
 $body-bg: $brand-1;
 // $body-color: ;
@@ -78,6 +78,25 @@ $box-shadow-sm-top: 0px -4px 4px rgba(0, 0, 0, 0.25);
 $box-shadow-md: 0px 9px 24px rgba(0, 0, 0, 0.25);
 $box-shadow-md-top: 0px -9px 24px rgba(0, 0, 0, 0.25);
 $linear-gradient-md: linear-gradient(180deg, rgba(0, 0, 0, 0) 80.56%, #000000 100%);
+$easing-gradient-lg: linear-gradient(
+  to top,
+  hsla(0, 0%, 0%, 0.85) 0%,
+  hsla(0, 0%, 0%, 0.839) 8.1%,
+  hsla(0, 0%, 0%, 0.809) 15.5%,
+  hsla(0, 0%, 0%, 0.762) 22.5%,
+  hsla(0, 0%, 0%, 0.701) 29%,
+  hsla(0, 0%, 0%, 0.63) 35.3%,
+  hsla(0, 0%, 0%, 0.551) 41.2%,
+  hsla(0, 0%, 0%, 0.467) 47.1%,
+  hsla(0, 0%, 0%, 0.383) 52.9%,
+  hsla(0, 0%, 0%, 0.299) 58.8%,
+  hsla(0, 0%, 0%, 0.22) 64.7%,
+  hsla(0, 0%, 0%, 0.149) 71%,
+  hsla(0, 0%, 0%, 0.088) 77.5%,
+  hsla(0, 0%, 0%, 0.041) 84.5%,
+  hsla(0, 0%, 0%, 0.011) 91.9%,
+  hsla(0, 0%, 0%, 0) 100%
+);
 
 // general
 $enable-shadows: true;
