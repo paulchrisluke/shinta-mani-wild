@@ -39,7 +39,7 @@
             >
               <div class="aspect-ratio-box-inside">
                 <video class="article-list-item--video d-block w-100" autoplay muted loop>
-                  <source :src="item.image" type="video/mp4" />
+                  <source :src="transformCloudinaryUrl(item.image, 'q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none')" type="video/mp4" />
                 </video>
               </div>
             </div>
@@ -49,7 +49,6 @@
         <h3
           class="title font-sans-serif text-small-caps my-2 d-flex align-items-center"
           :class="titleClass"
-          :title="item.ctaText"
         >
           <router-link
             :to="{name: `${routeProps.name}Story`, params: {resortSlug: routeProps.params.id, storyIndex: itemIndex}}"
@@ -143,9 +142,6 @@ export default Vue.extend({
 .like-image {
   width: rem(32px);
   height: rem(32px);
-}
-.article-list-item--video {
-  transform: translateY(-25%);
 }
 .article-list-item--media-poster {
   background-color: rgba($brand-2, 0.4);
