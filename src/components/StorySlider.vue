@@ -33,7 +33,10 @@
                     :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25')"
                     :muted="isMute"
                   >
-                    <source :src="transformCloudinaryUrl(item.image, 'q_auto:good,ac_none')" type="video/mp4" />
+                    <source
+                      :src="transformCloudinaryUrl(item.image, 'q_auto:good,ac_none')"
+                      type="video/mp4"
+                    />
                   </video>
                 </div>
               </div>
@@ -42,12 +45,14 @@
                 class="story--details position-absolute px-3 d-flex justify-content-between align-items-center"
               >
                 <!-- music bars -->
-                <music-bars
+                <div
                   v-if="swiper.activeIndex >= 0"
-                  :paused="videoHasNoSounds[index] || !shouldPlayMusicBars(index)"
-                />
+                  :class="{'d-none': videoHasNoSounds[index] || !shouldPlayMusicBars(index)}"
+                >
+                  <music-bars />
+                </div>
                 <!-- like -->
-                <a @click.stop.prevent class="like my-3" href="#">
+                <a @click.stop.prevent class="like my-3 ml-auto" href="#">
                   <img
                     class="like-image d-block"
                     src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402128/Shinta%20Mani%20Wild/general/icon-like-outline_dlymsz.svg"
