@@ -1,8 +1,10 @@
 <template>
   <a
     v-if="type === 'link'"
+    :href="href"
     :class="className"
     :aria-label="text"
+    v-bind="rest"
     class="image-link d-inline-flex justify-content-center align-items-center button-frame font-serif text-uppercase position-relative"
   >
     <div class="image-link--images-wrapper d-flex position-absolute">
@@ -37,6 +39,10 @@ export default Vue.extend({
       type: String,
       default: ''
     },
+    href: {
+      type: String,
+      default: '#'
+    },
     className: {
       type: String,
       default: ''
@@ -44,6 +50,10 @@ export default Vue.extend({
     type: {
       type: String,
       default: 'link'
+    },
+    rest: {
+      type: Object,
+      default: () => ({})
     }
   },
   methods: {

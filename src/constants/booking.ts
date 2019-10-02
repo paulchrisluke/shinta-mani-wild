@@ -1,0 +1,1 @@
+export const cloudbedsBookingLink = 'https://hotels.cloudbeds.com/reservation/pbZiT1'

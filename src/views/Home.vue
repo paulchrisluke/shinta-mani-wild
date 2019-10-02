@@ -55,8 +55,9 @@
                     >Shinta Mani Wild is the full package - in every sense of the word. Our rates are inclusive of a round trip private car transfer to/from Phnom Penh or Sihanoukville Airport and vicinity, as well as your personal Bensley Butler, all meals and beverages, privately guided activities to explore the Cardamom forest, luxury spa treatments, WiFi throughout the camp and of course daily laundry service.</p>
                     <base-image-link
                       :class-name="'is-primary is-md'"
-                      :href="resort.ctaLink"
                       :text="'Book Now'"
+                      :href="cloudbedsBookingLink"
+                      :rest="{target: '_blank'}"
                     ></base-image-link>
                   </div>
                 </template>
@@ -147,8 +148,9 @@
                     <div class="d-flex">
                       <base-image-link
                         :class-name="'is-primary is-md ml-xl-auto'"
-                        :href="resort.ctaLink"
                         :text="'Book Now'"
+                        :href="cloudbedsBookingLink"
+                        :rest="{target: '_blank'}"
                       ></base-image-link>
                     </div>
                   </div>
