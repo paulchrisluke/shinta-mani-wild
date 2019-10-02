@@ -55,7 +55,13 @@
           :class-name="'h2 text-dark text-center'"
           :text="`Explore our ${resort.title}`"
         ></base-heading>
-        <base-articles-list :route-props="{name: 'listing', params: $route.params}" :show-placeholder="!resort.id" :items="stories"></base-articles-list>
+        <base-articles-list
+          :route-props="{name: 'listing', params: $route.params}"
+          :show-placeholder="!resort.id"
+          :items="stories"
+          preview-transformations="q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none"
+          poster-transformations="q_auto:best,w_212,h_212,c_fill,g_auto"
+        ></base-articles-list>
       </div>
     </div>
 

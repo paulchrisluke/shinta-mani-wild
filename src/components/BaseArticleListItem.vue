@@ -22,7 +22,7 @@
               <img
                 v-if="item.posterUrl"
                 class="article-list-item--image w-100"
-                :src="item.posterUrl"
+                :src="transformCloudinaryUrl(item.posterUrl, posterTransformations)"
                 :alt="item.ctaText"
               />
               <div v-else class="image-placeholder h-100 w-100"></div>
@@ -39,7 +39,10 @@
             >
               <div class="aspect-ratio-box-inside">
                 <video class="article-list-item--video d-block w-100" autoplay muted loop>
-                  <source :src="transformCloudinaryUrl(item.image, 'q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none')" type="video/mp4" />
+                  <source
+                    :src="transformCloudinaryUrl(item.image, previewTransformations)"
+                    type="video/mp4"
+                  />
                 </video>
               </div>
             </div>
@@ -98,6 +101,14 @@ export default Vue.extend({
     },
     routeProps: {
       type: Object,
+      required: true
+    },
+    previewTransformations: {
+      type: String,
+      required: true
+    },
+    posterTransformations: {
+      type: String,
       required: true
     }
   },

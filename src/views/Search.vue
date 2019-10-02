@@ -43,7 +43,9 @@
           :preview-lines-of-read-more="2"
           :show-placeholder="!resort.id"
           :items-per-row="2"
-          :items="stories.slice(0,2)"
+          :items="stories.slice(0,featuredStoriesCount)"
+          preview-transformations='q_auto:low,e_preview:duration_10,w_440,h_248,c_fill,ar_16:9,ac_none'
+          poster-transformations='q_auto:good,w_440,h_248,c_fill,g_auto'
         ></base-articles-list>
       </section>
 
@@ -67,10 +69,14 @@
 
       <!-- articles (stories) -->
       <div class="container is-small mb-6">
+        <!-- NOTE: slice items from `items-offset` to end (because some of items are in use in featured section) -->
         <base-articles-list
           :route-props="{name: 'search', params: $route.params}"
           :show-placeholder="!resort.id"
-          :items="stories.slice(2)"
+          :items-offset="featuredStoriesCount"
+          :items="stories"
+          preview-transformations='q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none'
+          poster-transformations='q_auto:best,w_212,h_212,c_fill,g_auto'
         ></base-articles-list>
       </div>
     </div>
@@ -104,6 +110,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      featuredStoriesCount: 2,
       slug: this.$route.params.id
     }
   },
@@ -129,9 +136,6 @@ export default Vue.extend({
     height: rem($hero-height);
 
     @include hero-placeholder($hero-height);
-  }
-  .featured-items .article-list-item--image {
-    transform: translateY(-25%);
   }
 }
 .page-description::v-deep {

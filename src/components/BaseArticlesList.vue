@@ -14,11 +14,13 @@
       </div>
     </template>
     <div v-else-if="items.length > 0" class="row">
-      <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
+      <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items.slice(itemsOffset)" :key="index">
         <article-list-item
           @on-click-item="onClickItem(item, index)"
+          :preview-transformations="previewTransformations"
+          :poster-transformations="posterTransformations"
           :route-props="routeProps"
-          :item-index="index"
+          :item-index="index + itemsOffset"
           :image-box-class="imageBoxClass"
           :title-class="titleClass"
           :preview-lines-of-read-more="previewLinesOfReadMore"
@@ -44,6 +46,11 @@ export default Vue.extend({
       type: Array,
       default: () => []
     },
+    // NOTE: slice items from this offset to end
+    itemsOffset: {
+      type: Number,
+      default: 0
+    },
     itemsPerRow: {
       type: Number,
       default: 4
@@ -63,6 +70,14 @@ export default Vue.extend({
     },
     routeProps: {
       type: Object,
+      required: true
+    },
+    previewTransformations: {
+      type: String,
+      required: true
+    },
+    posterTransformations: {
+      type: String,
       required: true
     }
   }

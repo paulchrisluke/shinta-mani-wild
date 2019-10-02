@@ -36,13 +36,16 @@
 
       <!-- accommodations -->
       <section class="container is-small mb-5 featured-items">
+        <!-- NOTE: data has no video preview in this section -->
         <base-articles-list
           :route-props="{name: 'tents', params: $route.params}"
           :image-box-class="'ratio-3-2'"
           :preview-lines-of-read-more="2"
           :show-placeholder="!resort.id"
           :items-per-row="3"
-          :items="accommodationsAsStories.slice(0,3)"
+          :items="accommodationsAsStories.slice(0, 3)"
+          preview-transformations='q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none'
+          poster-transformations='q_auto:best,w_288,h_192,c_fill,g_auto'
         ></base-articles-list>
       </section>
 
@@ -210,11 +213,13 @@ export default Vue.extend({
       return get(this.categories, 'accommodations', [])
     },
     accommodationsAsStories(): Story[] {
-      // @ts-ignore
       return this.accommodations.map((category, index) => {
         return {
           ...categoryToStoryBridge(category),
-          posterUrl: get(this.resort, `images[${index}].url`, '')
+          posterUrl: get(this.resort, `images[${index}].url`, ''),
+          order: -1,
+          image: '',
+          type: ''
         }
       })
     },
