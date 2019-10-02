@@ -6,7 +6,12 @@
       :class="{'fixed-bottom': distance > thresholdDistance}"
     >
       <template slot="action-button">
-        <base-image-link :class-name="'is-secondary is-md'" :text="'Book Now'"></base-image-link>
+        <base-image-link
+          :class-name="'is-secondary is-md'"
+          :text="'Book Now'"
+          :href="cloudbedsBookingLink"
+          :rest="{target: '_blank'}"
+        ></base-image-link>
       </template>
     </base-action-bar>
   </div>
@@ -17,7 +22,6 @@ import { footerHeight } from '@/constants/layout'
 import BaseImageLink from '@/components/BaseImageLink.vue'
 import BaseActionBar from '@/components/BaseActionBar'
 import { isPassiveEventsSupported } from '@/helpers'
-
 export default {
   name: 'booking-bar',
   components: {
