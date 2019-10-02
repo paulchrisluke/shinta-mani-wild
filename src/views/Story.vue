@@ -21,7 +21,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      slug: this.$route.params.resortSlug,
+      slug: this.$route.params.resortId,
       initialStoryIndex: Number(this.$route.params.storyIndex)
     }
   },
@@ -46,13 +46,9 @@ export default Vue.extend({
   },
   methods: {
     onClickBack() {
-      const routeName = this.$route.name
-      const paramId = this.$route.fullPath.split('/')[2]
-      if (routeName === 'listingStory') {
-        this.$router.push({ name: 'listing', params: { id: paramId } })
-      } else {
-        this.$router.push({ name: 'search', params: { id: paramId } })
-      }
+      const returnTo: string = this.$route.query.returnTo as string || 'home'
+      const paramId = this.$route.params.resortId
+      this.$router.push({ name: returnTo, params: { id: paramId } })
     }
   }
 })

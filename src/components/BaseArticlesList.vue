@@ -16,11 +16,9 @@
     <div v-else-if="items.length > 0" class="row">
       <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items.slice(itemsOffset)" :key="index">
         <article-list-item
-          @on-click-item="onClickItem(item, index)"
+          :href="`/story/${routeProps.resortId}/${index + itemsOffset}?returnTo=${routeProps.returnTo}`"
           :preview-transformations="previewTransformations"
           :poster-transformations="posterTransformations"
-          :route-props="routeProps"
-          :item-index="index + itemsOffset"
           :image-box-class="imageBoxClass"
           :title-class="titleClass"
           :preview-lines-of-read-more="previewLinesOfReadMore"

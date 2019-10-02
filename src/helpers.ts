@@ -1,4 +1,4 @@
-import { Category } from './types'
+import { Category, Story } from './types'
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
 export function getPassiveEventConfig() {
@@ -23,15 +23,15 @@ export function isPassiveEventsSupported() {
   return supportsPassive
 }
 
-export function categoryToStoryBridge(category: Category) {
+export function categoryToStoryBridge(category: Category): Story {
   return {
-    // order,
     content: category.description,
     ctaLink: `/listing/${category.slug}`,
-    ctaText: category.title
-    // image,
-    // type,
-    // posterUrl
+    ctaText: category.title,
+    order: -1,
+    image: '',
+    type: '',
+    posterUrl: ''
   }
 }
 

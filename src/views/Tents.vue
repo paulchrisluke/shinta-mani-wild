@@ -36,17 +36,31 @@
 
       <!-- accommodations -->
       <section class="container is-small mb-5 featured-items">
-        <!-- NOTE: data has no video preview in this section -->
-        <base-articles-list
-          :route-props="{name: 'tents', params: $route.params}"
-          :image-box-class="'ratio-3-2'"
-          :preview-lines-of-read-more="2"
-          :show-placeholder="!resort.id"
-          :items-per-row="3"
-          :items="accommodationsAsStories.slice(0, 3)"
-          preview-transformations='q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none'
-          poster-transformations='q_auto:best,w_288,h_192,c_fill,g_auto'
-        ></base-articles-list>
+        <template v-if="!resort.id">
+          <div class="row">
+            <content-placeholders :class="`col-${12 / 3}`" rounded v-for="item in 3" :key="item">
+              <content-placeholders-img />
+              <content-placeholders-text :lines="2" />
+            </content-placeholders>
+          </div>
+        </template>
+        <div v-else class="row">
+          <div
+            :class="`col-${12 / 3}`"
+            v-for="(item, index) in accommodationsAsStories.slice(0, 3)"
+            :key="index"
+          >
+            <!-- NOTE: data has no video preview in this section -->
+            <article-list-item
+              :href="`/listing/${item.slug}`"
+              :preview-transformations="'q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none'"
+              :poster-transformations="'q_auto:best,w_288,h_192,c_fill,g_auto'"
+              :image-box-class="'ratio-3-2'"
+              :preview-lines-of-read-more="2"
+              :item="item"
+            />
+          </div>
+        </div>
       </section>
 
       <!-- quote -->
@@ -179,8 +193,8 @@ import HeroImage from '@/components/HeroImage.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
 import BaseCard from '@/components/BaseCard.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
-import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
+import articleListItem from '@/components/BaseArticleListItem.vue'
 import { Story, Resort, Category } from '@/types'
 import { get } from 'lodash-es'
 import { categoryToStoryBridge } from '@/helpers'
@@ -193,9 +207,9 @@ export default Vue.extend({
     HeroImage,
     BaseHeading,
     BaseBannerAction,
-    BaseArticlesList,
     BaseQuote,
-    BaseCard
+    BaseCard,
+    articleListItem
   },
   data() {
     return {
@@ -212,19 +226,18 @@ export default Vue.extend({
     accommodations(): Category[] {
       return get(this.categories, 'accommodations', [])
     },
-    accommodationsAsStories(): Story[] {
+    accommodationsAsStories(): Object[] {
       return this.accommodations.map((category, index) => {
         return {
           ...categoryToStoryBridge(category),
           posterUrl: get(this.resort, `images[${index}].url`, ''),
-          order: -1,
-          image: '',
-          type: ''
+          slug: category.slug
         }
       })
     },
     cardImage1(): object | undefined {
-      const image = 'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567747072/Shinta%20Mani%20Wild/Tents/All_Inclusive_-_Tent_Page_Shinta_Mani_Wild_kdfq4g.jpg'
+      const image =
+        'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567747072/Shinta%20Mani%20Wild/Tents/All_Inclusive_-_Tent_Page_Shinta_Mani_Wild_kdfq4g.jpg'
       if (!image) {
         return
       }
@@ -239,7 +252,8 @@ export default Vue.extend({
       }
     },
     cardImage2(): object | undefined {
-      const image = 'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568948083/Shinta%20Mani%20Wild/Tents/Head_Butler_Mac_-_Shinta_Mani_Wild_xxc4i9.jpg'
+      const image =
+        'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568948083/Shinta%20Mani%20Wild/Tents/Head_Butler_Mac_-_Shinta_Mani_Wild_xxc4i9.jpg'
       if (!image) {
         return
       }

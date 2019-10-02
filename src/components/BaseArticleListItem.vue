@@ -53,11 +53,11 @@
           class="title font-sans-serif text-small-caps my-2 d-flex align-items-center"
           :class="titleClass"
         >
-          <router-link
-            :to="{name: `${routeProps.name}Story`, params: {resortSlug: routeProps.params.id, storyIndex: itemIndex}}"
+          <a
+            :href="href"
             class="title-link text-black stretched-link text-decoration-none"
             v-text="item.ctaText"
-          ></router-link>
+          ></a>
         </h3>
       </div>
       <p
@@ -83,6 +83,10 @@ export default Vue.extend({
       type: Object,
       required: true
     },
+    href: {
+      type: String,
+      default: '#'
+    },
     previewLinesOfReadMore: {
       type: Number,
       default: 3
@@ -94,14 +98,6 @@ export default Vue.extend({
     titleClass: {
       type: String,
       default: 'h3 font-weight-light'
-    },
-    itemIndex: {
-      type: Number,
-      default: 0
-    },
-    routeProps: {
-      type: Object,
-      required: true
     },
     previewTransformations: {
       type: String,

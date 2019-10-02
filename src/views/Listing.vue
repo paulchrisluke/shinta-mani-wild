@@ -56,7 +56,7 @@
           :text="`Explore our ${resort.title}`"
         ></base-heading>
         <base-articles-list
-          :route-props="{name: 'listing', params: $route.params}"
+          :route-props="{ returnTo: 'listing', resortId: $route.params.id }"
           :show-placeholder="!resort.id"
           :items="stories"
           preview-transformations="q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none"

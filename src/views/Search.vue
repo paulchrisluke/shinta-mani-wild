@@ -37,7 +37,7 @@
       <!-- featured stories -->
       <section class="container is-small mb-5 featured-items">
         <base-articles-list
-          :route-props="{name: 'search', params: $route.params}"
+          :route-props="{ returnTo: 'search', resortId: $route.params.id }"
           :image-box-class="'ratio-16-9'"
           :title-class="'h2 font-weight-light'"
           :preview-lines-of-read-more="2"
@@ -71,7 +71,7 @@
       <div class="container is-small mb-6">
         <!-- NOTE: slice items from `items-offset` to end (because some of items are in use in featured section) -->
         <base-articles-list
-          :route-props="{name: 'search', params: $route.params}"
+          :route-props="{ returnTo: 'search', resortId: $route.params.id }"
           :show-placeholder="!resort.id"
           :items-offset="featuredStoriesCount"
           :items="stories"

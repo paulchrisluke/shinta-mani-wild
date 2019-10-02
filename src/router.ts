@@ -33,13 +33,8 @@ export default new Router({
       component: Search
     },
     {
-      name: 'listingStory',
-      path: '/listing/:resortSlug/story/:storyIndex',
-      component: Story
-    },
-    {
-      name: 'searchStory',
-      path: '/search/:resortSlug/story/:storyIndex',
+      name: 'story',
+      path: '/story/:resortId/:storyIndex',
       component: Story
     },
     {
