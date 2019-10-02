@@ -36,15 +36,17 @@
         </div>
 
         <!-- featured stories -->
-        <section class="container is-small mb-5 featured-items">
+        <section class="container is-small featured-items">
           <base-articles-list
-            :route-props="{name: 'search', params: $route.params}"
+            :route-props="{ returnTo: 'search', resortId: $route.params.id }"
             :image-box-class="'ratio-16-9'"
             :title-class="'h2 font-weight-light'"
             :preview-lines-of-read-more="2"
             :show-placeholder="!resort.id"
             :items-per-row="2"
-            :items="stories.slice(0,2)"
+            :items="stories.slice(0,featuredStoriesCount)"
+            preview-transformations="q_auto:low,e_preview:duration_10,w_440,h_248,c_fill,ar_16:9,ac_none"
+            poster-transformations="q_auto:good,w_440,h_248,c_fill,g_auto"
           ></base-articles-list>
         </section>
 
@@ -80,22 +82,26 @@
 
         <!-- articles (stories) -->
         <div class="container is-small">
+          <!-- NOTE: slice items from `items-offset` to end (because some of items are in use in featured section) -->
           <base-articles-list
-            :route-props="{name: 'search', params: $route.params}"
+            :route-props="{ returnTo: 'search', resortId: $route.params.id }"
             :show-placeholder="!resort.id"
-            :items="stories.slice(2)"
+            :items-offset="featuredStoriesCount"
+            :items="stories"
+            preview-transformations="q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none"
+            poster-transformations="q_auto:best,w_212,h_212,c_fill,g_auto"
           ></base-articles-list>
-        </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(2, 5)">
-          <img
-            :class="`doodle doodle-item-1-${index} position-absolute`"
-            data-aos="fade-down"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
-            :key="index"
-            alt
-          />
-        </template>
+          <template v-for="(doodle, index) in pageDoodles.slice(2, 5)">
+            <img
+              :class="`doodle doodle-item-1-${index} position-absolute`"
+              data-aos="fade-down"
+              :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+              :key="index"
+              alt
+            />
+          </template>
+        </div>
       </div>
     </div>
 
@@ -131,6 +137,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      featuredStoriesCount: 2,
       slug: this.$route.params.id
     }
   },
@@ -156,9 +163,6 @@ export default Vue.extend({
     height: rem($hero-height);
 
     @include hero-placeholder($hero-height);
-  }
-  .featured-items .article-list-item--image {
-    transform: translateY(-25%);
   }
 }
 .page-description::v-deep {

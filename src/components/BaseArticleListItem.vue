@@ -22,7 +22,7 @@
               <img
                 v-if="item.posterUrl"
                 class="article-list-item--image w-100"
-                :src="item.posterUrl"
+                :src="transformCloudinaryUrl(item.posterUrl, posterTransformations)"
                 :alt="item.ctaText"
               />
               <div v-else class="image-placeholder h-100 w-100"></div>
@@ -39,7 +39,10 @@
             >
               <div class="aspect-ratio-box-inside">
                 <video class="article-list-item--video d-block w-100" autoplay muted loop>
-                  <source :src="transformCloudinaryUrl(item.image, 'q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none')" type="video/mp4" />
+                  <source
+                    :src="transformCloudinaryUrl(item.image, previewTransformations)"
+                    type="video/mp4"
+                  />
                 </video>
               </div>
             </div>
@@ -50,11 +53,11 @@
           class="title font-sans-serif text-small-caps my-2 d-flex align-items-center"
           :class="titleClass"
         >
-          <router-link
-            :to="{name: `${routeProps.name}Story`, params: {resortSlug: routeProps.params.id, storyIndex: itemIndex}}"
+          <a
+            :href="href"
             class="title-link text-black stretched-link text-decoration-none"
             v-text="item.ctaText"
-          ></router-link>
+          ></a>
         </h3>
       </div>
       <p
@@ -80,6 +83,10 @@ export default Vue.extend({
       type: Object,
       required: true
     },
+    href: {
+      type: String,
+      default: '#'
+    },
     previewLinesOfReadMore: {
       type: Number,
       default: 3
@@ -92,12 +99,12 @@ export default Vue.extend({
       type: String,
       default: 'h3 font-weight-light'
     },
-    itemIndex: {
-      type: Number,
-      default: 0
+    previewTransformations: {
+      type: String,
+      required: true
     },
-    routeProps: {
-      type: Object,
+    posterTransformations: {
+      type: String,
       required: true
     }
   },

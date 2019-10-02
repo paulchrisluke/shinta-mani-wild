@@ -36,7 +36,7 @@
         </div>
 
         <!-- gallery -->
-        <section class="mb-5">
+        <section>
           <base-heading :text="'Gallery'" :type="'h2'" :class-name="'h2 text-dark text-center'"></base-heading>
           <base-gallery-list :show-placeholder="!resort.id" :items="galleryItems.slice(0,2)" />
         </section>
@@ -53,7 +53,7 @@
       </div>
 
       <!-- banner action -->
-      <div class="mb-5">
+      <div>
         <base-banner-action
           :image="resort.backgroundImage"
           :show-placeholder="!resort.id"
@@ -72,7 +72,7 @@
         </section>
 
         <!-- articles (stories) -->
-        <div class="container is-small mb-6">
+        <div class="container is-small">
           <base-heading
             :show-placeholder="!resort.id"
             :type="'h2'"
@@ -80,15 +80,17 @@
             :text="`Explore our ${resort.title}`"
           ></base-heading>
           <base-articles-list
-            :route-props="{name: 'listing', params: $route.params}"
+            :route-props="{ returnTo: 'listing', resortId: $route.params.id }"
             :show-placeholder="!resort.id"
             :items="stories"
+            preview-transformations="q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none"
+            poster-transformations="q_auto:best,w_212,h_212,c_fill,g_auto"
           ></base-articles-list>
         </div>
 
         <template v-for="(doodle, index) in pageDoodles.slice(2, 5)">
           <img
-            :class="`doodle doodle-item-0-${index} position-absolute`"
+            :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
             :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
             :key="index"
