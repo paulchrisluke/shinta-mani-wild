@@ -159,14 +159,15 @@ export default Vue.extend({
         return []
       }
 
+      const slug = (this as any).slug
       const items = [
         {
-          link: '/comming-soon',
+          link: `/gallery/${slug}/3?returnTo=listing`,
           title: 'Exterior',
           url: get(images, '[0].url', '')
         },
         {
-          link: '/comming-soon',
+          link: `/gallery/${slug}/4?returnTo=listing`,
           title: 'Interior',
           url: get(images, '[1].url', '')
         }

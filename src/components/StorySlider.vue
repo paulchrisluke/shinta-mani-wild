@@ -338,8 +338,16 @@ export default Vue.extend({
   box-sizing: content-box;
 }
 .swiper-slide {
-  transition: transform 300ms ease, opacity 300ms ease;
+  transition: transform 300ms ease;
   transform: scale(0.92);
+}
+.story--inner {
+  max-height: 100%;
+  box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
+    rem(0px 5px 22px) rgba($black, 0.12), rem(0px 12px 17px) rgba($black, 0.14);
+  border-radius: rem(20px);
+
+  transition: opacity 300ms ease;
   opacity: 0.05;
   &:hover {
     opacity: 0.3;
@@ -347,10 +355,13 @@ export default Vue.extend({
 }
 .swiper-slide-active {
   transform: scale(1);
-  opacity: 1;
   z-index: 1;
-  &:hover {
+
+  .story--inner {
     opacity: 1;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 .story--content {
@@ -362,12 +373,6 @@ export default Vue.extend({
   position: absolute;
   left: 50%;
   top: 50%;
-  border-radius: rem(20px);
-}
-.story--inner {
-  max-height: 100%;
-  box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
-    rem(0px 5px 22px) rgba($black, 0.12), rem(0px 12px 17px) rgba($black, 0.14);
   border-radius: rem(20px);
 }
 .story--details {

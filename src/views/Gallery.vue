@@ -73,6 +73,11 @@ export default Vue.extend({
     .story--inner {
       max-width: rem(618px);
     }
+    .swiper-pagination-bullet-active {
+      &::before {
+        transform: translateX(0) !important;
+      }
+    }
   }
 }
 </style>
