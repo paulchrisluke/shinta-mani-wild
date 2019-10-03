@@ -14,8 +14,16 @@
       </div>
     </template>
     <div v-else-if="items.length > 0" class="row">
-      <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
-        <article-list-item :image-box-class="imageBoxClass" :title-class="titleClass" :preview-lines-of-read-more="previewLinesOfReadMore" :item="item" />
+      <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items.slice(itemsOffset)" :key="index">
+        <article-list-item
+          :href="`/story/${routeProps.resortId}/${index + itemsOffset}?returnTo=${routeProps.returnTo}`"
+          :preview-transformations="previewTransformations"
+          :poster-transformations="posterTransformations"
+          :image-box-class="imageBoxClass"
+          :title-class="titleClass"
+          :preview-lines-of-read-more="previewLinesOfReadMore"
+          :item="item"
+        />
       </div>
     </div>
     <p v-else class="mb-3 text-center">
@@ -36,6 +44,11 @@ export default Vue.extend({
       type: Array,
       default: () => []
     },
+    // NOTE: slice items from this offset to end
+    itemsOffset: {
+      type: Number,
+      default: 0
+    },
     itemsPerRow: {
       type: Number,
       default: 4
@@ -52,6 +65,18 @@ export default Vue.extend({
     },
     titleClass: {
       type: String
+    },
+    routeProps: {
+      type: Object,
+      required: true
+    },
+    previewTransformations: {
+      type: String,
+      required: true
+    },
+    posterTransformations: {
+      type: String,
+      required: true
     }
   }
 })

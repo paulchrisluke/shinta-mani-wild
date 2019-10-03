@@ -5,6 +5,7 @@ const Listing = () => import ('./views/Listing.vue')
 const Search = () => import ('./views/Search.vue')
 const Contact = () => import ('./views/Contact.vue')
 const Tents = () => import ('./views/Tents.vue')
+const Story = () => import ('./views/Story.vue')
 
 Vue.use(Router)
 
@@ -22,12 +23,19 @@ export default new Router({
       component: Tents
     },
     {
+      name: 'listing',
       path: '/listing/:id',
       component: Listing
     },
     {
+      name: 'search',
       path: '/search/:id',
       component: Search
+    },
+    {
+      name: 'story',
+      path: '/story/:resortId/:storyIndex',
+      component: Story
     },
     {
       path: '/contact',
@@ -36,6 +44,6 @@ export default new Router({
     {
       path: '/*/',
       redirect: '/'
-    }
+    },
   ]
 })

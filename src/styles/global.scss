@@ -47,6 +47,11 @@
 .user-select-none {
   user-select: none;
 }
+.cursor-pointer {
+  &:hover {
+    cursor: pointer;
+  }
+}
 
 // layout
 html,
@@ -83,6 +88,9 @@ body,
   &.ratio-16-9 {
     padding-top: 56.25%;
   }
+  &.ratio-9-16 {
+    padding-top: 177.78%;
+  }
   &.ratio-3-2 {
     padding-top: 66.7%;
   }
@@ -105,4 +113,51 @@ body,
 // dropdown
 .dropdown-item {
   font-weight: 300;
+}
+
+// background doodle images
+.doodle {
+  max-width: rem(350px);
+  max-height: rem(350px);
+  z-index: -1;
+}
+.doodle-item-0-0 {
+  top: 30%;
+  left: 0;
+}
+.doodle-item-0-1 {
+  right: 5%;
+  bottom: 10%;
+}
+.doodle-item-0-2 {
+  top: 5%;
+  right: 15%;
+}
+.doodle-item-0-3 {
+  bottom: 0%;
+  right: 50%;
+}
+.doodle-item-1-0 {
+  top: 40%;
+  left: 5%;
+}
+.doodle-item-1-1 {
+  right: 5%;
+  top: 5%;
+}
+.doodle-item-1-2 {
+  bottom: 0;
+  right: 15%;
+}
+.doodle-item-1-3 {
+  bottom: 0%;
+  left: 5%;
+}
+.doodle-item-2-0 {
+  left: 5%;
+  top: 5%;
+}
+.doodle-item-2-1 {
+  bottom: 0;
+  right: 0;
 }

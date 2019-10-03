@@ -1,8 +1,14 @@
 import Vue from 'vue'
-// import connection from "@/mixins/connection";
+import { transformCloudinaryUrl } from '@/helpers'
+import { cloudbedsBookingLink } from '@/constants/booking'
 
 Vue.mixin({
+  data() {
+    return {
+      cloudbedsBookingLink
+    }
+  },
   methods: {
-    // ...connection
+    transformCloudinaryUrl
   }
 })

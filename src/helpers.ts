@@ -1,4 +1,4 @@
-import { Category } from './types'
+import { Category, Story } from './types'
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
 export function getPassiveEventConfig() {
@@ -23,20 +23,31 @@ export function isPassiveEventsSupported() {
   return supportsPassive
 }
 
-export function categoryToStoryBridge(category: Category) {
-
+export function categoryToStoryBridge(category: Category): Story {
   return {
-    // order,
     content: category.description,
     ctaLink: `/listing/${category.slug}`,
     ctaText: category.title,
-    // image,
-    // type,
-    // posterUrl
+    order: -1,
+    image: '',
+    type: '',
+    posterUrl: ''
   }
 }
 
-export function transformCloudinaryImage(
+export function changeUrlExtension(url: string, newExtension: string): string {
+  const urlParts = url.split('.')
+  const oldExtension = urlParts[urlParts.length - 1]
+  if (oldExtension.length >= 5) {
+    console.log('changeUrlExtension: Probably url has no extension.')
+    return ''
+  }
+  const indexOfExtension = urlParts.length - 1
+  urlParts.splice(indexOfExtension, 1, newExtension)
+  return urlParts.join('.')
+}
+
+export function transformCloudinaryUrl(
   imageUrl: string,
   transformations: string
 ): string {
@@ -44,4 +55,19 @@ export function transformCloudinaryImage(
   const indexOfUpload = urlParts.indexOf('upload')
   urlParts.splice(indexOfUpload + 1, 0, transformations)
   return urlParts.join('/')
+}
+
+export function hasAudio(video: any) {
+  return (
+    video.mozHasAudio ||
+    Boolean(video.webkitAudioDecodedByteCount) ||
+    Boolean(video.audioTracks && video.audioTracks.length)
+  )
+}
+
+export function getRandomsOf(items: any[]) {
+  if (!(items.length > 0)) {
+    return []
+  }
+  return items.sort(() => 0.5 - Math.random())
 }

@@ -22,7 +22,7 @@
               <img
                 v-if="item.posterUrl"
                 class="article-list-item--image w-100"
-                :src="item.posterUrl"
+                :src="transformCloudinaryUrl(item.posterUrl, posterTransformations)"
                 :alt="item.ctaText"
               />
               <div v-else class="image-placeholder h-100 w-100"></div>
@@ -39,7 +39,10 @@
             >
               <div class="aspect-ratio-box-inside">
                 <video class="article-list-item--video d-block w-100" autoplay muted loop>
-                  <source :src="item.image" type="video/mp4" />
+                  <source
+                    :src="transformCloudinaryUrl(item.image, previewTransformations)"
+                    type="video/mp4"
+                  />
                 </video>
               </div>
             </div>
@@ -49,11 +52,10 @@
         <h3
           class="title font-sans-serif text-small-caps my-2 d-flex align-items-center"
           :class="titleClass"
-          :title="item.ctaText"
         >
           <a
+            :href="href"
             class="title-link text-black stretched-link text-decoration-none"
-            :href="item.ctaLink"
             v-text="item.ctaText"
           ></a>
         </h3>
@@ -81,6 +83,10 @@ export default Vue.extend({
       type: Object,
       required: true
     },
+    href: {
+      type: String,
+      default: '#'
+    },
     previewLinesOfReadMore: {
       type: Number,
       default: 3
@@ -92,6 +98,14 @@ export default Vue.extend({
     titleClass: {
       type: String,
       default: 'h3 font-weight-light'
+    },
+    previewTransformations: {
+      type: String,
+      required: true
+    },
+    posterTransformations: {
+      type: String,
+      required: true
     }
   },
   methods: {
@@ -135,9 +149,6 @@ export default Vue.extend({
 .like-image {
   width: rem(32px);
   height: rem(32px);
-}
-.article-list-item--video {
-  transform: translateY(-25%);
 }
 .article-list-item--media-poster {
   background-color: rgba($brand-2, 0.4);
