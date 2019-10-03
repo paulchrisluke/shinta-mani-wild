@@ -9,7 +9,7 @@
         <hero-image :image="resort.featuredImage"></hero-image>
       </div>
 
-      <div class="position-relative py-5">
+      <div class="parallax-container position-relative py-5">
         <div class="container is-small mb-5 page-description">
           <article>
             <base-heading
@@ -73,9 +73,10 @@
 
         <template v-for="(doodle, index) in pageDoodles.slice(0, 3)">
           <img
-            :class="`doodle doodle-item-0-${index} position-absolute`"
-            data-aos="fade-up"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            :class="`doodle doodle-item-1-${index} position-absolute`"
+            data-aos="fade-down"
+            :data-rellax-speed="getRellaxSpeed()"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
             :key="index"
             alt
           />
@@ -93,7 +94,7 @@
         ></base-banner-action>
       </div>
 
-      <div class="position-relative py-5">
+      <div class="parallax-container position-relative py-5">
         <!-- card -->
         <div class="container is-small">
           <div class="row mb-5">
@@ -193,11 +194,12 @@
           </div>
         </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(3, 7)">
+        <template v-for="(doodle, index) in pageDoodles.slice(3, 6)">
           <img
             :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            :data-rellax-speed="getRellaxSpeed()"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
             :key="index"
             alt
           />
@@ -240,7 +242,8 @@ export default Vue.extend({
   },
   data() {
     return {
-      slug: 'tents'
+      slug: 'tents',
+      featuredStoriesCount: 0
     }
   },
   computed: {

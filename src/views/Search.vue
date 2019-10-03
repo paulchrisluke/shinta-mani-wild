@@ -9,7 +9,7 @@
         <hero-image :image="resort.featuredImage"></hero-image>
       </div>
 
-      <div class="position-relative py-5">
+      <div class="parallax-container position-relative py-5">
         <div class="container is-small page-description">
           <article>
             <base-heading
@@ -54,7 +54,8 @@
           <img
             :class="`doodle doodle-item-0-${index} position-absolute`"
             data-aos="fade-down"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            :data-rellax-speed="getRellaxSpeed()"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
             :key="index"
             alt
           />
@@ -72,7 +73,7 @@
         ></base-banner-action>
       </div>
 
-      <div class="position-relative py-5">
+      <div class="parallax-container position-relative py-5">
         <!-- quote -->
         <section class="container shift-xl-down mb-5 mb-xl-0">
           <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
@@ -91,17 +92,18 @@
             preview-transformations="q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none"
             poster-transformations="q_auto:best,w_212,h_212,c_fill,g_auto"
           ></base-articles-list>
-
-          <template v-for="(doodle, index) in pageDoodles.slice(2, 5)">
-            <img
-              :class="`doodle doodle-item-1-${index} position-absolute`"
-              data-aos="fade-down"
-              :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
-              :key="index"
-              alt
-            />
-          </template>
         </div>
+
+        <template v-for="(doodle, index) in pageDoodles.slice(2, (relativeDoodleAmount(stories.length, featuredStoriesCount, 2) || 4))">
+          <img
+            :class="`doodle doodle-item-1-${index} position-absolute`"
+            data-aos="fade-down"
+            :data-rellax-speed="getRellaxSpeed()"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
+            :key="index"
+            alt
+          />
+        </template>
       </div>
     </div>
 

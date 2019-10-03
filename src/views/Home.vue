@@ -21,7 +21,7 @@
         ></video-player>
       </div>
 
-      <div class="py-5 position-relative">
+      <div class="parallax-container position-relative py-5">
         <div class="container is-small mb-4">
           <base-heading
             :class-placeholder="'is-huge-placeholder'"
@@ -69,8 +69,9 @@
         <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
           <img
             :class="`doodle doodle-item-0-${index} position-absolute`"
-            data-aos="fade-up"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            data-aos="fade-down"
+            :data-rellax-speed="getRellaxSpeed()"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
             :key="index"
             alt
           />
@@ -88,7 +89,7 @@
         ></base-banner-action>
       </div>
 
-      <div class="position-relative py-5">
+      <div class="parallax-container position-relative py-5">
         <!-- quote tents -->
         <div class="position-relative shift-xl-down home--quote-wrapper">
           <section class="container">
@@ -109,11 +110,12 @@
           <base-gallery-list :show-placeholder="!resort.id" :items="galleryItems.slice(0,2)" />
         </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(2, 5)">
+        <template v-for="(doodle, index) in pageDoodles.slice(2, 4)">
           <img
             :class="`doodle doodle-item-1-${index} position-absolute`"
-            data-aos="fade-up"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            data-aos="fade-down"
+            :data-rellax-speed="getRellaxSpeed()"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
             :key="index"
             alt
           />
@@ -133,7 +135,7 @@
         </section>
       </div>
 
-      <div class="py-5 position-relative">
+      <div class="parallax-container position-relative py-5">
         <!-- card -->
         <div class="container is-small">
           <div class="row">
@@ -160,11 +162,12 @@
           </div>
         </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(5, 7)">
+        <template v-for="(doodle, index) in pageDoodles.slice(4, 6)">
           <img
             :class="`doodle doodle-item-2-${index} position-absolute`"
             data-aos="fade-down"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:good,o_50')"
+            :data-rellax-speed="getRellaxSpeed()"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:good,o_20')"
             :key="index"
             alt
           />
