@@ -2,6 +2,8 @@
 
 Welcome to Shinta Mani Wild's new website project. Our tech stack:
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4eda4789-8413-4278-bceb-146da2ff6a22/deploy-status)](https://app.netlify.com/sites/elegant-perlman-ff2d63/deploys)
+
 ## Design File:
 
 https://www.figma.com/file/SiFZE7hhRKx2fWmrfZ3uy2RO/Shinta-Mani-Wild?node-id=394%3A3756
