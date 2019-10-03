@@ -1,12 +1,18 @@
 <template>
-  <div class="story-slider d-flex flex-grow-1 position-relative">
+  <div
+    v-if="items.length > 0"
+    class="story-slider d-flex flex-grow-1 position-relative"
+    :class="[isImageItem(items[0]) ? 'is-gallery':'is-stories']"
+  >
     <!-- blurred background -->
-    <div
-      v-if="items.length > 0 && swiper.activeIndex >= 0"
-      class="story-slider--background position-absolute"
-      :style="{'background-image': `url(${items && getPosterImage(items[swiper.activeIndex].image, 'q_25')})`}"
-    ></div>
-    <div class="story-slider--background is-shade position-absolute"></div>
+    <div class="story-slider--background position-absolute overflow-hidden">
+      <div
+        v-if="items.length > 0 && swiper.activeIndex >= 0"
+        class="story-slider--layer position-absolute"
+        :style="{'background-image': `url(${getBlurredImage(swiper.activeIndex)})`}"
+      ></div>
+      <div class="story-slider--layer is-shade position-absolute"></div>
+    </div>
 
     <div class="story-slider--inner mx-auto w-100 d-flex">
       <div class="swiper-container py-4 my-auto">
@@ -19,11 +25,18 @@
             <div class="story--inner position-relative w-100 mx-auto">
               <div
                 @click="goToSlide(index)"
-                class="aspect-ratio-box ratio-9-16"
-                :class="{'cursor-pointer': index !== swiper.activeIndex}"
+                class="aspect-ratio-box"
+                :class="[{'cursor-pointer': index !== swiper.activeIndex}, custom.ratioBoxClass]"
               >
                 <div class="aspect-ratio-box-inside">
+                  <img
+                    class="story--content is-image"
+                    v-if="isImageItem(item)"
+                    :src="transformCloudinaryUrl(item.url, 'q_auto:best')"
+                    alt
+                  />
                   <video
+                    v-else
                     @loadeddata="onLoadedVideoData($event, index)"
                     @loadedmetadata="onLoadVideoMetadata($event, index)"
                     @playing="onVideoPlaying(index)"
@@ -112,6 +125,7 @@ import {
   transformCloudinaryUrl,
   hasAudio
 } from '../helpers'
+import { GalleryImage, Story } from '../types'
 export default Vue.extend({
   name: 'story-slider',
   components: {
@@ -130,9 +144,9 @@ export default Vue.extend({
       type: Array,
       default: []
     },
-    initialStoryIndex: {
-      type: Number,
-      default: 0
+    custom: {
+      type: Object,
+      default: {}
     }
   },
   mounted() {
@@ -158,6 +172,19 @@ export default Vue.extend({
         return false
       }
       return true
+    },
+    isImageItem(item: any) {
+      if (item.url) {
+        return true
+      }
+      return false
+    },
+    getBlurredImage(index: number) {
+      const item = this.items[index]
+      if (this.isImageItem(item)) {
+        return transformCloudinaryUrl((item as GalleryImage).url, 'q_auto:best')
+      }
+      return this.getPosterImage((item as Story).image, 'q_25')
     },
     goToSlide(index: number) {
       this.swiper.slideTo(index)
@@ -290,11 +317,15 @@ export default Vue.extend({
 </script>
 
 <style lang='scss' scoped>
-.story-slider--inner {
-  max-width: rem(1100px);
-}
 .story-slider--background {
   @include stick-around;
+}
+.story-slider--layer {
+  // minus is a fix for white margins on blur filter
+  top: rem(-100px);
+  left: rem(-100px);
+  right: rem(-100px);
+  bottom: rem(-100px);
   filter: blur(50px);
   background-size: cover;
   background-position: center;
@@ -305,9 +336,6 @@ export default Vue.extend({
 .swiper-container {
   width: 100%;
   box-sizing: content-box;
-  @include media-breakpoint-up(lg) {
-    max-height: rem(624px);
-  }
 }
 .swiper-slide {
   transition: transform 300ms ease, opacity 300ms ease;
@@ -320,6 +348,7 @@ export default Vue.extend({
 .swiper-slide-active {
   transform: scale(1);
   opacity: 1;
+  z-index: 1;
   &:hover {
     opacity: 1;
   }
@@ -336,7 +365,6 @@ export default Vue.extend({
   border-radius: rem(20px);
 }
 .story--inner {
-  max-width: 414px;
   max-height: 100%;
   box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
     rem(0px 5px 22px) rgba($black, 0.12), rem(0px 12px 17px) rgba($black, 0.14);
@@ -394,7 +422,7 @@ export default Vue.extend({
   }
 
   background: rgba($white, 0.4);
-  transition: all 1000ms ease;
+  transition: transform 1000ms ease, background-color 1000ms ease;
   &:hover,
   &:focus {
     background-color: $white;
