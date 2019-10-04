@@ -34,7 +34,7 @@
         </div>
 
         <!-- quote -->
-        <section class="container shift-xl-down home--quote-wrapper">
+        <section class="container is-small home--quote-wrapper mb-5">
           <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
             <div class="quote" v-html="resort.description"></div>
           </base-quote>
@@ -91,9 +91,9 @@
       </div>
 
       <div class="parallax-container position-relative py-5">
-        <!-- quote tents -->
-        <div class="position-relative shift-xl-down home--quote-wrapper">
-          <section class="container">
+        <!-- quote -->
+        <div class="position-relative home--quote-wrapper mb-5">
+          <section class="container is-small">
             <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
               <div class="quote" v-html="resort.h2"></div>
             </base-quote>
@@ -337,11 +337,6 @@ export default Vue.extend({
   background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567397036/Shinta%20Mani%20Wild/home/Press_Banner_lvzdtx.jpg')
     center repeat-x;
   background-size: auto 100%;
-}
-.home--quote-wrapper {
-  @include media-breakpoint-down(lg) {
-    margin-bottom: $spacer * 3;
-  }
 }
 .page--home::v-deep {
   .card-image img {

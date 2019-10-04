@@ -1,15 +1,15 @@
 <template>
   <div :class="className" class="base-quote mx-auto position-relative">
-    <div class="quote--wrapper text-dark p-4">
-      <div class="quote--line is-top mb-5"></div>
+    <div class="quote--wrapper text-dark px-5 py-4">
+      <div class="quote--line position-relative is-top mb-4"></div>
       <div class="quote--bird position-absolute"></div>
-      <div class="quote--text px-5">
+      <div class="quote--text position-relative pl-5">
         <content-placeholders v-if="showPlaceholder" centered rounded>
           <content-placeholders-text :lines="4" />
         </content-placeholders>
         <slot v-else />
       </div>
-      <div class="quote--line is-bottom mt-3"></div>
+      <div class="quote--line position-relative is-bottom mt-3"></div>
     </div>
   </div>
 </template>
@@ -37,14 +37,14 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .base-quote {
-  width: rem(768px);
+  width: 100%;
   max-width: 100%;
   border-radius: rem(20px);
-  &.is-left {
-    background-color: $brand-5;
-  }
+  background-color: $brand-5;
+  box-shadow: $box-shadow-md, $box-shadow-sm;
 }
 .quote--bird {
+  z-index: 2;
   width: rem(80px);
   height: rem(72px);
   background: no-repeat center $brand-5
@@ -55,6 +55,7 @@ export default Vue.extend({
 }
 .quote--line {
   height: rem(16px);
+  z-index: 1;
   &.is-top {
     background: repeat-x
         url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570216746/Shinta%20Mani%20Wild/general/line-thick_chyib1.svg')
@@ -74,6 +75,7 @@ export default Vue.extend({
 }
 .quote--text {
   font-size: rem(24px);
+  z-index: 3;
   &::v-deep {
     p {
       margin-bottom: 0;
@@ -84,8 +86,8 @@ export default Vue.extend({
       font-size: rem(20px);
       font-weight: bold;
       display: block;
-      margin-top: rem(16px);
       text-align: right;
+      margin-top: rem(8px);
     }
   }
 }

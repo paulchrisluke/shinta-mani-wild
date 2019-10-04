@@ -65,7 +65,7 @@
       </section>
 
         <!-- quote -->
-        <section class="container">
+        <section class="container is-small">
           <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
             <div class="quote" v-html="resort.h2"></div>
           </base-quote>
