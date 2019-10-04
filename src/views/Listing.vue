@@ -69,7 +69,7 @@
         <!-- quote -->
         <section class="container shift-xl-down">
           <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
-            <div class="quote w-100 h-100" v-html="resort.h2"></div>
+            <div class="quote" v-html="resort.h2"></div>
           </base-quote>
         </section>
 
@@ -204,17 +204,6 @@ export default Vue.extend({
     height: rem($hero-height);
 
     @include hero-placeholder($hero-height);
-  }
-}
-.quote::v-deep {
-  p {
-    margin-bottom: 0;
-    font-style: italic;
-    font-weight: 300;
-  }
-  b {
-    font-weight: bold;
-    display: block;
   }
 }
 </style>

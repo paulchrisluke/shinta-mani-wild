@@ -1,13 +1,15 @@
 <template>
-  <div
-    :class="className"
-    class="quote mx-auto"
-  >
-    <div class="quote-text text-center text-dark">
-      <content-placeholders v-if="showPlaceholder" centered rounded>
-        <content-placeholders-text :lines="4" />
-      </content-placeholders>
-      <slot v-else />
+  <div :class="className" class="base-quote mx-auto position-relative">
+    <div class="quote--wrapper text-dark p-4">
+      <div class="quote--line is-top mb-5"></div>
+      <div class="quote--bird position-absolute"></div>
+      <div class="quote--text px-5">
+        <content-placeholders v-if="showPlaceholder" centered rounded>
+          <content-placeholders-text :lines="4" />
+        </content-placeholders>
+        <slot v-else />
+      </div>
+      <div class="quote--line is-bottom mt-3"></div>
     </div>
   </div>
 </template>
@@ -34,24 +36,57 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.quote {
-  @include media-breakpoint-up(xl) {
-    &.is-left {
-      background-image: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1566988766/Shinta%20Mani%20Wild/home/Dog_Bubble2_c6civp.png');
-    }
-    &.is-right {
-      background-image: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/a_hflip/Shinta%20Mani%20Wild/home/Dog_Bubble2_c6civp.png');
-    }
-    width: rem(1100px);
-    height: rem(388px);
-    background-repeat: no-repeat;
+.base-quote {
+  width: rem(768px);
+  max-width: 100%;
+  border-radius: rem(20px);
+  &.is-left {
+    background-color: $brand-5;
   }
 }
-.quote-text {
+.quote--bird {
+  width: rem(80px);
+  height: rem(72px);
+  background: no-repeat center $brand-5
+    url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570202922/Shinta%20Mani%20Wild/general/quote-birds_jguoxi.svg');
+  background-size: rem(auto 72px);
+  top: rem(16px);
+  left: rem(24px);
+}
+.quote--line {
+  height: rem(16px);
+  &.is-top {
+    background: repeat-x
+        url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570216746/Shinta%20Mani%20Wild/general/line-thick_chyib1.svg')
+        center bottom,
+      repeat-x
+        url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570217027/Shinta%20Mani%20Wild/general/line-thin_agqmow.svg')
+        center top;
+  }
+  &.is-bottom {
+    background: repeat-x
+        url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570216746/Shinta%20Mani%20Wild/general/line-thick_chyib1.svg')
+        center top,
+      repeat-x
+        url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570217027/Shinta%20Mani%20Wild/general/line-thin_agqmow.svg')
+        center bottom;
+  }
+}
+.quote--text {
   font-size: rem(24px);
-  line-height: 1.3;
-  @include media-breakpoint-up(xl) {
-    padding: rem(56px 96px 0 96px);
+  &::v-deep {
+    p {
+      margin-bottom: 0;
+      font-style: italic;
+      font-weight: 300;
+    }
+    b {
+      font-size: rem(20px);
+      font-weight: bold;
+      display: block;
+      margin-top: rem(16px);
+      text-align: right;
+    }
   }
 }
 </style>

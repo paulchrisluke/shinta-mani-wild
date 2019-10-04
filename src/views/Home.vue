@@ -36,7 +36,7 @@
         <!-- quote -->
         <section class="container shift-xl-down home--quote-wrapper">
           <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
-            <div class="quote w-100 h-100" v-html="resort.description"></div>
+            <div class="quote" v-html="resort.description"></div>
           </base-quote>
         </section>
 
@@ -95,7 +95,7 @@
         <div class="position-relative shift-xl-down home--quote-wrapper">
           <section class="container">
             <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
-              <div class="quote w-100 h-100" v-html="resort.h2"></div>
+              <div class="quote" v-html="resort.h2"></div>
             </base-quote>
           </section>
         </div>
@@ -337,17 +337,6 @@ export default Vue.extend({
   background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567397036/Shinta%20Mani%20Wild/home/Press_Banner_lvzdtx.jpg')
     center repeat-x;
   background-size: auto 100%;
-}
-.quote::v-deep {
-  p {
-    margin-bottom: 0;
-    font-style: italic;
-    font-weight: 300;
-  }
-  b {
-    font-weight: bold;
-    display: block;
-  }
 }
 .home--quote-wrapper {
   @include media-breakpoint-down(lg) {
