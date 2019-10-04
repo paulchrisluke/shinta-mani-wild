@@ -1,0 +1,44 @@
+// NOTE: this is the summarized and modified version of aos/dist/aos.css
+$aos-duration: 1200;
+$fade-distance: 50;
+
+[data-aos][data-aos][data-aos-duration='#{$aos-duration}'],
+body[data-aos-duration='#{$aos-duration}'] [data-aos] {
+  transition-duration: #{$aos-duration}ms;
+}
+[data-aos][data-aos][data-aos-delay='#{$aos-duration}'],
+body[data-aos-delay='#{$aos-duration}'] [data-aos] {
+  transition-delay: 0ms;
+}
+[data-aos][data-aos][data-aos-delay='#{$aos-duration}'].aos-animate,
+body[data-aos-delay='#{$aos-duration}'] [data-aos].aos-animate {
+  transition-delay: #{$aos-duration}ms;
+}
+
+[data-aos] {
+  pointer-events: none;
+}
+[data-aos].aos-animate {
+  pointer-events: auto;
+}
+[data-aos][data-aos][data-aos-easing='ease-in-out'],
+body[data-aos-easing='ease-in-out'] [data-aos] {
+  transition-timing-function: ease-in-out;
+}
+
+@media screen {
+  html:not(.no-js) [data-aos^='fade'][data-aos^='fade'] {
+    opacity: 0;
+    transition-property: opacity, transform;
+  }
+  html:not(.no-js) [data-aos^='fade'][data-aos^='fade'].aos-animate {
+    opacity: 1;
+    transform: none;
+  }
+  html:not(.no-js) [data-aos='fade-up'] {
+    transform: translate3d(0, #{$fade-distance}px, 0);
+  }
+  html:not(.no-js) [data-aos='fade-down'] {
+    transform: translate3d(0, #{-$fade-distance}px, 0);
+  }
+}

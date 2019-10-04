@@ -68,6 +68,7 @@
 
         <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-0-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
@@ -112,6 +113,7 @@
 
         <template v-for="(doodle, index) in pageDoodles.slice(2, 4)">
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
@@ -164,6 +166,7 @@
 
         <template v-for="(doodle, index) in pageDoodles.slice(4, 6)">
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-2-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
@@ -193,7 +196,6 @@ import PageFooter from '@/components/PageFooter.vue'
 import { Resort, ResortImage, GalleryImage } from '@/types.ts'
 import { get } from 'lodash-es'
 import doodles from '@/mixins/doodles'
-import 'aos/dist/aos.css'
 
 export default Vue.extend({
   name: 'home',

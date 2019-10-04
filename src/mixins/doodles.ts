@@ -19,26 +19,31 @@ export default {
   },
   watch: {
     doodles() {
+      // @ts-ignore
+      this.initAOS()
+    }
+  },
+  methods: {
+    initAOS() {
       // documentation: https://github.com/michalsnik/aos
       // demo: https://michalsnik.github.io/aos/
       AOS.init({
         once: true,
-        duration: 800,
+        // NOTE: If you change duration, you should update lib-aos.scss
+        duration: 1200,
+        easing: 'ease-in-out',
         anchorPlacement: 'center-bottom'
       })
-
+    },
+    setItemParallax(event: any) {
       // documentation: https://github.com/dixonandmoe/rellax
-      new Rellax('.doodle', {
-        speed: -1,
-        // center: true,
+      new Rellax(event.target, {
         vertical: true,
         horizontal: false
       })
-    }
-  },
-  methods: {
+    },
     getRellaxSpeed() {
-      return -(0.1 + Math.random() * 0.2)
+      return -0.1
     },
     relativeDoodleAmount(
       itemsLength: number,

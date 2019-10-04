@@ -73,6 +73,7 @@
 
         <template v-for="(doodle, index) in pageDoodles.slice(0, 3)">
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
@@ -196,6 +197,7 @@
 
         <template v-for="(doodle, index) in pageDoodles.slice(3, 6)">
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
@@ -225,7 +227,6 @@ import { Story, Resort, Category } from '@/types'
 import { get } from 'lodash-es'
 import { categoryToStoryBridge } from '@/helpers'
 import doodles from '@/mixins/doodles'
-import 'aos/dist/aos.css'
 
 export default Vue.extend({
   name: 'listing',

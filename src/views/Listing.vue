@@ -43,6 +43,7 @@
 
         <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-0-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
@@ -93,6 +94,7 @@
           v-for="(doodle, index) in pageDoodles.slice(2, (relativeDoodleAmount(stories.length, featuredStoriesCount, 2) || 4))"
         >
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
@@ -124,7 +126,6 @@ import BookingBar from '@/components/BookingBar.vue'
 import { GalleryImage, Story, Resort } from '@/types'
 import { get } from 'lodash-es'
 import doodles from '@/mixins/doodles'
-import 'aos/dist/aos.css'
 
 export default Vue.extend({
   name: 'listing',

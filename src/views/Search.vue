@@ -52,6 +52,7 @@
 
         <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-0-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
@@ -94,8 +95,11 @@
           ></base-articles-list>
         </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(2, (relativeDoodleAmount(stories.length, featuredStoriesCount, 2) || 4))">
+        <template
+          v-for="(doodle, index) in pageDoodles.slice(2, (relativeDoodleAmount(stories.length, featuredStoriesCount, 2) || 4))"
+        >
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
@@ -123,7 +127,6 @@ import BaseQuote from '@/components/BaseQuote.vue'
 import { Story, Resort, Category } from '@/types'
 import { get } from 'lodash-es'
 import doodles from '@/mixins/doodles'
-import 'aos/dist/aos.css'
 
 export default Vue.extend({
   name: 'listing',
@@ -160,6 +163,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+
 ::v-deep {
   .hero-image {
     height: rem($hero-height);
