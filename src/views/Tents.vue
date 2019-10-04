@@ -71,7 +71,7 @@
           </base-quote>
         </section>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(0, 3)">
+        <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
           <img
             @load="setItemParallax($event)"
             :class="`doodle doodle-item-1-${index} position-absolute`"
@@ -195,7 +195,7 @@
           </div>
         </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(3, 6)">
+        <template v-for="(doodle, index) in pageDoodles.slice(2, 5)">
           <img
             @load="setItemParallax($event)"
             :class="`doodle doodle-item-1-${index} position-absolute`"
