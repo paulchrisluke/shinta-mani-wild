@@ -5,14 +5,14 @@
         <div class="logo mr-3">
           <img class="w-100 h-100 d-block" src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/general/logo-dark_i1vspg.png" alt />
         </div>
-        <h2 class="title font-serif text-uppercase" v-text="title"></h2>
+        <h2 class="title font-serif text-uppercase mb-0" v-text="title"></h2>
       </div>
       <div class="d-flex align-items-center">
-        <span class="pricing font-sans-serif font-weight-light mr-5">
+        <!-- <span class="pricing font-sans-serif font-weight-light mr-5">
           <span class="currency">$</span>
           <span class="price" v-text="price"></span>
           <sub class="postfix text-uppercase">/Night</sub>
-        </span>
+        </span> -->
         <slot name="action-button" />
       </div>
     </div>
