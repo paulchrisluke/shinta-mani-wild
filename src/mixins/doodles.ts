@@ -29,10 +29,8 @@ export default {
       // demo: https://michalsnik.github.io/aos/
       AOS.init({
         once: true,
-        // NOTE: If you change duration, you should update lib-aos.scss
-        duration: 0,
         easing: 'ease-in-out',
-        anchorPlacement: 'center-center'
+        anchorPlacement: 'center-bottom'
       })
     },
     setItemParallax(event: any) {
