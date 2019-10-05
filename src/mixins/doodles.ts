@@ -29,8 +29,6 @@ export default {
       // demo: https://michalsnik.github.io/aos/
       AOS.init({
         once: true,
-        // NOTE: If you change duration, you should update lib-aos.scss
-        duration: 3000,
         easing: 'ease-in-out',
         anchorPlacement: 'center-bottom'
       })
@@ -43,7 +41,7 @@ export default {
       })
     },
     getRellaxSpeed() {
-      return -0.1
+      return -2.5
     },
     relativeDoodleAmount(
       itemsLength: number,
