@@ -2,17 +2,13 @@
 $aos-duration: 1200;
 $fade-distance: 50;
 
-[data-aos][data-aos][data-aos-duration='#{$aos-duration}'],
-body[data-aos-duration='#{$aos-duration}'] [data-aos] {
+[data-aos][data-aos][data-aos-duration='3000'],
+body[data-aos-duration='3000'] [data-aos] {
   transition-duration: #{$aos-duration}ms;
 }
-[data-aos][data-aos][data-aos-delay='#{$aos-duration}'],
-body[data-aos-delay='#{$aos-duration}'] [data-aos] {
+[data-aos][data-aos][data-aos-delay='3000'],
+body[data-aos-delay='3000'] [data-aos] {
   transition-delay: 0ms;
-}
-[data-aos][data-aos][data-aos-delay='#{$aos-duration}'].aos-animate,
-body[data-aos-delay='#{$aos-duration}'] [data-aos].aos-animate {
-  transition-delay: #{$aos-duration}ms;
 }
 
 [data-aos] {

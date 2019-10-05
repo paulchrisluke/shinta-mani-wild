@@ -30,7 +30,7 @@ export default {
       AOS.init({
         once: true,
         // NOTE: If you change duration, you should update lib-aos.scss
-        duration: 1200,
+        duration: 3000,
         easing: 'ease-in-out',
         anchorPlacement: 'center-bottom'
       })
