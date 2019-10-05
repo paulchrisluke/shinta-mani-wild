@@ -43,7 +43,7 @@ export default {
       })
     },
     getRellaxSpeed() {
-      return -1.5
+      return -2.5
     },
     relativeDoodleAmount(
       itemsLength: number,
