@@ -1,6 +1,6 @@
 // NOTE: this is the summarized and modified version of aos/dist/aos.css
 $aos-duration: 1200;
-// $fade-distance: 50;
+$fade-distance: 50;
 
 [data-aos][data-aos][data-aos-duration='3000'],
 body[data-aos-duration='3000'] [data-aos] {
@@ -17,10 +17,10 @@ body[data-aos-delay='3000'] [data-aos] {
 [data-aos].aos-animate {
   pointer-events: auto;
 }
-//[data-aos][data-aos][data-aos-easing='ease-in-out'],
-//body[data-aos-easing='ease-in-out'] [data-aos] {
-//  transition-timing-function: ease-in-out;
-//}
+[data-aos][data-aos][data-aos-easing='ease-in-out'],
+body[data-aos-easing='ease-in-out'] [data-aos] {
+  transition-timing-function: ease-in-out;
+}
 
 @media screen {
   html:not(.no-js) [data-aos^='fade'][data-aos^='fade'] {
@@ -31,10 +31,10 @@ body[data-aos-delay='3000'] [data-aos] {
     opacity: 1;
     transform: none;
   }
- // html:not(.no-js) [data-aos='fade-up'] {
- //   transform: translate3d(0, #{$fade-distance}px, 0);
- // }
- // html:not(.no-js) [data-aos='fade-down'] {
- //   transform: translate3d(0, #{-$fade-distance}px, 0);
- // }
+  html:not(.no-js) [data-aos='fade-up'] {
+    transform: translate3d(0, #{$fade-distance}px, 0);
+  }
+  html:not(.no-js) [data-aos='fade-down'] {
+    transform: translate3d(0, #{-$fade-distance}px, 0);
+  }
 }
