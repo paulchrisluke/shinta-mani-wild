@@ -71,14 +71,6 @@ body,
 .page--content {
   flex-grow: 1;
 }
-.shift-down {
-  margin-bottom: rem(-40px);
-}
-.shift-xl-down {
-  @include media-breakpoint-up(xl) {
-    margin-bottom: rem(-40px);
-  }
-}
 .aspect-ratio-box {
   height: 0;
   overflow: hidden;

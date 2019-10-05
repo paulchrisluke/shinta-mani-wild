@@ -6,7 +6,6 @@ Vue.directive('readMore', {
   inserted(el, binding, vnode) {    
     const originalHeight = el.clientHeight
     el.setAttribute('original-height', String(originalHeight))
-    
     const newHeight = binding.value.lines * binding.value.lineHeight
     if (originalHeight <= newHeight) {
       return

@@ -66,12 +66,14 @@
       </div>
 
       <div class="parallax-container position-relative py-5">
-        <!-- quote -->
-        <section class="container shift-xl-down">
-          <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
-            <div class="quote w-100 h-100" v-html="resort.h2"></div>
-          </base-quote>
-        </section>
+        <div class="container is-small">
+          <!-- quote -->
+          <section class="container mb-5">
+            <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+              <div class="quote" v-html="resort.h2"></div>
+            </base-quote>
+          </section>
+        </div>
 
         <!-- articles (stories) -->
         <div class="container is-small">
@@ -204,17 +206,6 @@ export default Vue.extend({
     height: rem($hero-height);
 
     @include hero-placeholder($hero-height);
-  }
-}
-.quote::v-deep {
-  p {
-    margin-bottom: 0;
-    font-style: italic;
-    font-weight: 300;
-  }
-  b {
-    font-weight: bold;
-    display: block;
   }
 }
 </style>

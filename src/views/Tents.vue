@@ -65,9 +65,9 @@
       </section>
 
         <!-- quote -->
-        <section class="container">
+        <section class="container is-small">
           <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
-            <div class="quote w-100 h-100" v-html="resort.h2"></div>
+            <div class="quote" v-html="resort.h2"></div>
           </base-quote>
         </section>
 
@@ -323,17 +323,6 @@ export default Vue.extend({
   }
   .description-placeholder {
     height: rem(72px);
-  }
-}
-.quote::v-deep {
-  p {
-    margin-bottom: 0;
-    font-style: italic;
-    font-weight: 300;
-  }
-  b {
-    font-weight: bold;
-    display: block;
   }
 }
 .featured-items {
