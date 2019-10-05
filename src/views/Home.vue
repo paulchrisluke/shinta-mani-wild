@@ -36,7 +36,10 @@
         <!-- quote -->
         <section class="container is-small home--quote-wrapper mb-5">
           <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
-            <div class="quote" v-html="resort.description"></div>
+            <div
+              class="quote"
+              v-html="resort.description"
+            ></div>
           </base-quote>
         </section>
 
