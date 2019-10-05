@@ -32,7 +32,7 @@ export default {
         // NOTE: If you change duration, you should update lib-aos.scss
         duration: 3000,
         easing: 'ease-in-out',
-        anchorPlacement: 'center-center'
+        anchorPlacement: 'center-bottom'
       })
     },
     setItemParallax(event: any) {
