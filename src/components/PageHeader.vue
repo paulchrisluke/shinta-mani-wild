@@ -74,7 +74,7 @@
               </div>
               <button
                 class="hamburger-icon ml-auto"
-                @click.prevent.stop="isMobileMenuTentsOpen = !isMobileMenuTentsOpen"
+                @click.prevent.stop="toggleMobileMenuTentsOpen"
                 >
                 <img
                   class="haburger-image d-block"
@@ -88,17 +88,17 @@
                   <div class="col-12"><hr class="my-2"></div>
                   <li class="col-12 nav-item">
                      <a 
-                      class="nav-link px-0" 
+                      class="nav-link px-0 py-1" 
                       href="/listing/wild-tents">Wild Tents</a>
                   </li>
                   <li class="col-12 nav-item">
                      <a 
-                      class="nav-link px-0" 
+                      class="nav-link px-0 py-1" 
                       href="/listing/waterfall-tents">Waterfall Tents</a>
                   </li>
                   <li class="col-12 nav-item">
                      <a 
-                      class="nav-link px-0" 
+                      class="nav-link px-0 py-1" 
                       href="/listing/two-bedroom-tent">Two Bedroom Tent</a> 
                   </li>
                   <li class="col-12 nav-item nav-title font-serif mt-3">Things to Do</li>
@@ -106,20 +106,20 @@
                   <li class="col-12 nav-item">
                     <a 
                       href="/search/adventure" 
-                      class="nav-link px-0">Adventures</a>
+                      class="nav-link px-0 py-1">Adventures</a>
                   </li>
                   <li class="col-12 nav-item">
                     <a 
                       href="/search/food-and-drink" 
-                      class="nav-link px-0">Food and Drink</a>
+                      class="nav-link px-0 py-1">Food and Drink</a>
                   </li>
                   <li class="col-12 nav-item">
                     <a 
                       href="/search/wellness" 
-                      class="nav-link px-0">Wellness</a>
+                      class="nav-link px-0 py-1">Wellness</a>
                   </li>
                   <li
-                    class="col-12 mt-6"
+                    class="col-12 mt-6 fixed-bottom mb-3"
                     v-if="isViewTentsVisible">
                     <base-image-link
                       :class-name="'is-secondary is-md w-100'"
@@ -155,12 +155,17 @@
   font-size: rem(16px * $serif-font-size-correction);
 }
 .mobile-menu-open {
-  position: absolute;
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
   top: rem($header-height);
   left: 0;
+  right: 0;
+  bottom: 0;
   padding: rem(8px);
   background: $white;
-  z-index: 1;
+  z-index: 10000;
   .nav-title {
     font-size: rem(18px * $serif-font-size-correction);
     color: $primary;
@@ -173,8 +178,9 @@
   }
 }
 .hamburger-icon {
-    background: transparent;
-    border: none;
+  background: transparent;
+  border: none;
+  outline: none;
 }
 </style>
 
@@ -211,6 +217,11 @@ export default Vue.extend({
         getPassiveEventConfig()
       )
     },
+    toggleMobileMenuTentsOpen() {
+      let myBody = document.getElementsByTagName('body')[0];
+      myBody.classList.toggle('overflow-hidden')
+      this.isMobileMenuTentsOpen = !this.isMobileMenuTentsOpen
+    }, 
     onClickOutsideDropdown() {
       this.isDropdownTentsOpen = false
     }
