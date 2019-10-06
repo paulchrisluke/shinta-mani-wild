@@ -1,6 +1,5 @@
 <template>
-  <section class="wrapper">
-    <div class="container is-small">
+    <section class="container is-small">
       <template v-if="showPlaceholder">
         <div class="row">
           <content-placeholders
@@ -27,8 +26,7 @@
       <p v-else class="mb-3 text-center">
         <small>There are no items to show</small>
       </p>
-    </div>
-  </section>
+    </section>
 </template>
 
 <script lang="ts">

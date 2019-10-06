@@ -21,7 +21,7 @@
         ></video-player>
       </div>
 
-      <div class="py-5 position-relative">
+      <div class="parallax-container position-relative py-5">
         <div class="container is-small mb-4">
           <base-heading
             :class-placeholder="'is-huge-placeholder'"
@@ -34,9 +34,12 @@
         </div>
 
         <!-- quote -->
-        <section class="container shift-xl-down home--quote-wrapper">
+        <section class="container is-small home--quote-wrapper mb-5">
           <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
-            <div class="quote w-100 h-100" v-html="resort.description"></div>
+            <div
+              class="quote"
+              v-html="resort.description"
+            ></div>
           </base-quote>
         </section>
 
@@ -48,7 +51,7 @@
                 <template v-slot:text>
                   <div class="card-content">
                     <h2
-                      class="base-heading text-small-caps font-sans-serif font-weight-light h2 mb-3 text-dark text-center text-xl-left"
+                      class="base-heading text-small-caps font-sans-serif font-weight-normal h2 mb-3 text-dark text-center text-xl-left"
                     >All Inclusive</h2>
                     <p
                       class="mb-xl-6"
@@ -68,9 +71,11 @@
 
         <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-0-${index} position-absolute`"
-            data-aos="fade-up"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            data-aos="fade-down"
+            :data-rellax-speed="getRellaxSpeed()"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
             :key="index"
             alt
           />
@@ -88,12 +93,12 @@
         ></base-banner-action>
       </div>
 
-      <div class="position-relative py-5">
-        <!-- quote tents -->
-        <div class="position-relative shift-xl-down home--quote-wrapper">
-          <section class="container">
+      <div class="parallax-container position-relative py-5">
+        <!-- quote -->
+        <div class="position-relative home--quote-wrapper mb-5">
+          <section class="container is-small">
             <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
-              <div class="quote w-100 h-100" v-html="resort.h2"></div>
+              <div class="quote" v-html="resort.h2"></div>
             </base-quote>
           </section>
         </div>
@@ -109,11 +114,13 @@
           <base-gallery-list :show-placeholder="!resort.id" :items="galleryItems.slice(0,2)" />
         </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(2, 5)">
+        <template v-for="(doodle, index) in pageDoodles.slice(2, 4)">
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-1-${index} position-absolute`"
-            data-aos="fade-up"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            data-aos="fade-down"
+            :data-rellax-speed="getRellaxSpeed()"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
             :key="index"
             alt
           />
@@ -133,7 +140,7 @@
         </section>
       </div>
 
-      <div class="py-5 position-relative">
+      <div class="parallax-container position-relative py-5">
         <!-- card -->
         <div class="container is-small">
           <div class="row">
@@ -142,7 +149,7 @@
                 <template v-slot:text>
                   <div class="card-content">
                     <h2
-                      class="base-heading text-small-caps font-sans-serif font-weight-light h2 mb-3 text-dark text-center text-xl-left"
+                      class="base-heading text-small-caps font-sans-serif font-weight-normal h2 mb-3 text-dark text-center text-xl-left"
                     >Conservation</h2>
                     <p>The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. A radical new fusion of world-class design, hospitality and conservation! Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. Join us on the front line of Conservation, and see your stay make a difference to protecting the lungs of Cambodia and it’s many unique and endangered species.</p>
                     <div class="d-flex">
@@ -160,11 +167,13 @@
           </div>
         </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(5, 7)">
+        <template v-for="(doodle, index) in pageDoodles.slice(4, 6)">
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-2-${index} position-absolute`"
             data-aos="fade-down"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:good,o_50')"
+            :data-rellax-speed="getRellaxSpeed()"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:good,o_20')"
             :key="index"
             alt
           />
@@ -190,7 +199,6 @@ import PageFooter from '@/components/PageFooter.vue'
 import { Resort, ResortImage, GalleryImage } from '@/types.ts'
 import { get } from 'lodash-es'
 import doodles from '@/mixins/doodles'
-import 'aos/dist/aos.css'
 
 export default Vue.extend({
   name: 'home',
@@ -332,22 +340,6 @@ export default Vue.extend({
   background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567397036/Shinta%20Mani%20Wild/home/Press_Banner_lvzdtx.jpg')
     center repeat-x;
   background-size: auto 100%;
-}
-.quote::v-deep {
-  p {
-    margin-bottom: 0;
-    font-style: italic;
-    font-weight: 300;
-  }
-  b {
-    font-weight: bold;
-    display: block;
-  }
-}
-.home--quote-wrapper {
-  @include media-breakpoint-down(lg) {
-    margin-bottom: $spacer * 3;
-  }
 }
 .page--home::v-deep {
   .card-image img {
