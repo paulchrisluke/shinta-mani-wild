@@ -18,6 +18,7 @@
     "bootstrap": "4.3.1",
     "core-js": "2.6.5",
     "lodash-es": "4.17.15",
+    "popmotion": "^8.7.0",
     "register-service-worker": "1.6.2",
     "rellax": "^1.10.0",
     "swiper": "^5.0.3",

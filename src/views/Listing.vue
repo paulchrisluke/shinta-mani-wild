@@ -105,6 +105,8 @@
             alt
           />
         </template>
+
+        <booking-bar-animation class="booking-bar-animation position-absolute" />
       </div>
     </div>
 
@@ -128,6 +130,7 @@ import BookingBar from '@/components/BookingBar.vue'
 import { GalleryImage, Story, Resort } from '@/types'
 import { get } from 'lodash-es'
 import doodles from '@/mixins/doodles'
+import BookingBarAnimation from '@/components/BookingBarAnimation.vue'
 
 export default Vue.extend({
   name: 'listing',
@@ -141,7 +144,8 @@ export default Vue.extend({
     BaseBannerAction,
     BaseArticlesList,
     BaseQuote,
-    BookingBar
+    BookingBar,
+    BookingBarAnimation
   },
   data() {
     return {
@@ -207,5 +211,11 @@ export default Vue.extend({
 
     @include hero-placeholder($hero-height);
   }
+}
+.booking-bar-animation {
+  bottom: rem(8px);
+  width: rem(900px);
+  height: rem(368px);
+  right: rem(180px);
 }
 </style>
