@@ -307,13 +307,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .hero-image {
-    height: rem($hero-height);
-
-    @include hero-placeholder($hero-height);
-  }
-}
 .page-description::v-deep {
   .heading-placeholder {
     height: rem(100px);

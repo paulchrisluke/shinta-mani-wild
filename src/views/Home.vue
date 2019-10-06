@@ -36,10 +36,7 @@
         <!-- quote -->
         <section class="container is-small home--quote-wrapper mb-5">
           <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
-            <div
-              class="quote"
-              v-html="resort.description"
-            ></div>
+            <div class="quote" v-html="resort.description"></div>
           </base-quote>
         </section>
 
@@ -307,9 +304,13 @@ export default Vue.extend({
   }
   &.has-image {
     box-shadow: $box-shadow-md, $box-shadow-sm;
-    @include media-breakpoint-up(xl) {
-      background: no-repeat center bottom;
-      background-size: cover;
+    background: no-repeat center bottom;
+    background-size: cover;
+    @include media-breakpoint-down(md) {
+      background-position: left 10% center;
+    }
+    @include media-breakpoint-down(sm) {
+      background-position: left 20% center;
     }
     cursor: pointer;
     &::after {
@@ -326,11 +327,14 @@ export default Vue.extend({
 
   iframe {
     max-width: 100%;
-    max-height: calc(100vh - #{$header-height});
+    max-height: calc(100vh - #{$header-height-mobile});
+    @include media-breakpoint-up(md) {
+      max-height: calc(100vh - #{$header-height});
+    }
   }
 
   ::v-deep {
-    @include hero-placeholder($hero-height);
+    @include hero-placeholder();
   }
 }
 .press-banner {

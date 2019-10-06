@@ -1,68 +1,72 @@
 <template>
-  <div class="page-header">
-    <div class="container h-100">
-      <div class="row h-100">
-        <div class="col-12">
-          <div class="page-header--inner d-md-flex d-none justify-content-between align-items-center">
-            <div class="logo">
-              <a href="/" class="logo-link d-block" title="Home">
-                <img
-                  class="w-100 h-100 d-block"
-                  src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png"
-                  alt="Shinta Mani Wild"
-                />
-              </a>
-            </div>
-            <div class="page-header--nav d-flex align-items-center">
-              <nav> 
-                <ul class="nav user-select-none text-small-caps font-weight-light">
-                  <li class="nav-item dropdown mx-1" :class="{'show': isDropdownTentsOpen}">
-                    <a
-                      href="#"
-                      @click.prevent.stop="isDropdownTentsOpen = !isDropdownTentsOpen"
-                      class="nav-link dropdown-toggle text-light px-2"
-                      id="page-header--dropdown-1"
-                    >Tents</a>
-                    <div
-                      class="dropdown-menu"
-                      :class="{'show': isDropdownTentsOpen}"
-                      aria-labelledby="page-header--dropdown-1"
-                      aria-haspopup="true"
-                      :aria-expanded="isDropdownTentsOpen + ''"
-                    >
-                      <a class="dropdown-item" href="/tents">All Tents</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="/listing/wild-tents">Wild Tents</a>
-                      <a class="dropdown-item" href="/listing/waterfall-tents">Waterfall Tents</a>
+  <div>
+    <div class="page-header--ghost d-md-none"></div>
+    <div class="page-header">
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-12">
+            <div
+              class="page-header--inner d-md-flex d-none justify-content-between align-items-center"
+            >
+              <div class="logo">
+                <a href="/" class="logo-link d-block" title="Home">
+                  <img
+                    class="w-100 h-100 d-block"
+                    src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png"
+                    alt="Shinta Mani Wild"
+                  />
+                </a>
+              </div>
+              <div class="page-header--nav d-flex align-items-center">
+                <nav>
+                  <ul class="nav user-select-none text-small-caps font-weight-light">
+                    <li class="nav-item dropdown mx-1" :class="{'show': isDropdownTentsOpen}">
                       <a
-                        class="dropdown-item"
-                        href="/listing/two-bedroom-tent"
-                      >Two Bedroom Tent</a>
-                    </div>
-                  </li>
-                  <li class="nav-item mx-1">
-                    <a href="/search/adventure" class="nav-link text-light px-2">Adventures</a>
-                  </li>
-                  <li class="nav-item mx-1">
-                    <a href="/search/food-and-drink" class="nav-link text-light px-2">Food and Drink</a>
-                  </li>
-                  <li class="nav-item mx-1">
-                    <a href="/search/wellness" class="nav-link text-light px-2">Wellness</a>
-                  </li>
-                </ul>
-              </nav>
-              <div
-                v-if="isViewTentsVisible"
-                class="ml-1">
-                <base-image-link
-                  :class-name="'is-secondary is-md ml-2'"
-                  :href="'/tents'"
-                  :text="'View Tents'"
-                ></base-image-link>
+                        href="#"
+                        @click.prevent.stop="isDropdownTentsOpen = !isDropdownTentsOpen"
+                        class="nav-link dropdown-toggle text-light px-2"
+                        id="page-header--dropdown-1"
+                      >Tents</a>
+                      <div
+                        class="dropdown-menu"
+                        :class="{'show': isDropdownTentsOpen}"
+                        aria-labelledby="page-header--dropdown-1"
+                        aria-haspopup="true"
+                        :aria-expanded="isDropdownTentsOpen + ''"
+                      >
+                        <a class="dropdown-item" href="/tents">All Tents</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/listing/wild-tents">Wild Tents</a>
+                        <a class="dropdown-item" href="/listing/waterfall-tents">Waterfall Tents</a>
+                        <a class="dropdown-item" href="/listing/two-bedroom-tent">Two Bedroom Tent</a>
+                      </div>
+                    </li>
+                    <li class="nav-item mx-1">
+                      <a href="/search/adventure" class="nav-link text-light px-2">Adventures</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                      <a
+                        href="/search/food-and-drink"
+                        class="nav-link text-light px-2"
+                      >Food and Drink</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                      <a href="/search/wellness" class="nav-link text-light px-2">Wellness</a>
+                    </li>
+                  </ul>
+                </nav>
+                <div v-if="isViewTentsVisible" class="ml-1">
+                  <base-image-link
+                    :class-name="'is-secondary is-md ml-2'"
+                    :href="'/tents'"
+                    :text="'View Tents'"
+                  ></base-image-link>
+                </div>
               </div>
             </div>
-          </div>
-            <div class="d-inline-flex d-md-none justify-content-between align-items-center h-100 w-100">
+            <div
+              class="d-inline-flex d-md-none justify-content-between align-items-center h-100 w-100 px-3"
+            >
               <div class="logo">
                 <a href="/" class="logo-link d-block" title="Home">
                   <img
@@ -73,54 +77,46 @@
                 </a>
               </div>
               <button
-                class="hamburger-icon ml-auto"
+                class="hamburger-icon ml-auto px-0"
                 @click.prevent.stop="toggleMobileMenuTentsOpen"
-                >
+              >
                 <img
                   class="haburger-image d-block"
                   src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570355029/Shinta%20Mani%20Wild/general/menu_24px_e3zpqv.svg"
                 />
               </button>
               <nav>
-                <ul v-if="isMobileMenuTentsOpen"
-                  class="nav mobile-menu-open fixed-top user-select-none text-small-caps font-weight-light">
+                <ul
+                  v-if="isMobileMenuTentsOpen"
+                  class="nav mobile-menu-open fixed-top user-select-none text-small-caps font-weight-light"
+                >
                   <li class="col-12 nav-item nav-title font-serif mx-1 mt-2">Tents</li>
-                  <div class="col-12"><hr class="my-2"></div>
+                  <div class="col-12">
+                    <hr class="my-2" />
+                  </div>
                   <li class="col-12 nav-item">
-                     <a 
-                      class="nav-link px-0 py-1" 
-                      href="/listing/wild-tents">Wild Tents</a>
+                    <a class="nav-link px-0 py-1" href="/listing/wild-tents">Wild Tents</a>
                   </li>
                   <li class="col-12 nav-item">
-                     <a 
-                      class="nav-link px-0 py-1" 
-                      href="/listing/waterfall-tents">Waterfall Tents</a>
+                    <a class="nav-link px-0 py-1" href="/listing/waterfall-tents">Waterfall Tents</a>
                   </li>
                   <li class="col-12 nav-item">
-                     <a 
-                      class="nav-link px-0 py-1" 
-                      href="/listing/two-bedroom-tent">Two Bedroom Tent</a> 
+                    <a class="nav-link px-0 py-1" href="/listing/two-bedroom-tent">Two Bedroom Tent</a>
                   </li>
                   <li class="col-12 nav-item nav-title font-serif mt-3">Things to Do</li>
-                  <div class="col-12"><hr class="my-2"></div>
+                  <div class="col-12">
+                    <hr class="my-2" />
+                  </div>
                   <li class="col-12 nav-item">
-                    <a 
-                      href="/search/adventure" 
-                      class="nav-link px-0 py-1">Adventures</a>
+                    <a href="/search/adventure" class="nav-link px-0 py-1">Adventures</a>
                   </li>
                   <li class="col-12 nav-item">
-                    <a 
-                      href="/search/food-and-drink" 
-                      class="nav-link px-0 py-1">Food and Drink</a>
+                    <a href="/search/food-and-drink" class="nav-link px-0 py-1">Food and Drink</a>
                   </li>
                   <li class="col-12 nav-item">
-                    <a 
-                      href="/search/wellness" 
-                      class="nav-link px-0 py-1">Wellness</a>
+                    <a href="/search/wellness" class="nav-link px-0 py-1">Wellness</a>
                   </li>
-                  <li
-                    class="col-12 mt-6 fixed-bottom mb-3"
-                    v-if="isViewTentsVisible">
+                  <li class="col-12 mt-6 fixed-bottom mb-3" v-if="isViewTentsVisible">
                     <base-image-link
                       :class-name="'is-secondary is-md w-100'"
                       :href="'/tents'"
@@ -130,6 +126,7 @@
                 </ul>
               </nav>
             </div>
+          </div>
         </div>
       </div>
     </div>
@@ -139,17 +136,25 @@
 <style lang="scss" scoped>
 .page-header {
   background: $primary;
-  height: rem($header-height);
 }
-.page-header--inner {
-  height: rem($header-height);
+.page-header,
+.page-header--inner,
+.page-header--ghost {
+  height: rem($header-height-mobile);
+  @include media-breakpoint-up(md) {
+    height: rem($header-height);
+  }
 }
 .page-header--nav {
   font-size: rem(18px);
 }
 .logo-link {
-  width: rem(44px);
-  height: rem(44px);
+  width: rem(32px);
+  height: rem(32px);
+  @include media-breakpoint-up(md) {
+    width: rem(44px);
+    height: rem(44px);
+  }
 }
 .font-serif {
   font-size: rem(16px * $serif-font-size-correction);
@@ -158,7 +163,10 @@
   display: block;
   width: 100%;
   height: 100%;
-  top: rem($header-height);
+  top: rem($header-height-mobile);
+  @include media-breakpoint-up(md) {
+    top: rem($header-height);
+  }
   padding: rem(8px);
   background: $white;
   z-index: 100000;
@@ -179,13 +187,13 @@
   outline: none;
 }
 @media (max-width: 767px) {
-  .page-header{
+  .page-header {
     position: fixed;
     right: 0;
     left: 0;
     top: 0;
     z-index: 10;
-  }      
+  }
 }
 </style>
 
@@ -227,7 +235,7 @@ export default Vue.extend({
     toggleMobileMenuTentsOpen() {
       myBody.classList.toggle('overflow-hidden')
       this.isMobileMenuTentsOpen = !this.isMobileMenuTentsOpen
-    }, 
+    },
     onClickOutsideDropdown() {
       this.isDropdownTentsOpen = false
     },
@@ -247,7 +255,8 @@ export default Vue.extend({
   &::after {
     border: none;
     margin-left: rem(8px);
-    background: no-repeat center url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4xMzMzIDBMOCA0Ljk3Mjk3TDEuODY2NjcgMEwwIDEuNTEzNTFMOCA4TDE2IDEuNTEzNTFMMTQuMTMzMyAwWiIgZmlsbD0iI0ZGRkZGMCIvPjwvc3ZnPg==);
+    background: no-repeat center
+      url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4xMzMzIDBMOCA0Ljk3Mjk3TDEuODY2NjcgMEwwIDEuNTEzNTFMOCA4TDE2IDEuNTEzNTFMMTQuMTMzMyAwWiIgZmlsbD0iI0ZGRkZGMCIvPjwvc3ZnPg==);
     width: rem(16px);
     height: rem(16px);
     vertical-align: -0.1rem;
