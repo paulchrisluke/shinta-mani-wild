@@ -21,7 +21,7 @@
           <div class="row">
             <div class="col-6 links is-discover">
               <nav>
-                <h3 class="h3 font-serif text-uppercase text-light">Discover</h3>
+                <h3 class="h3 font-sans-serif text-small-caps text-light">Discover</h3>
                 <ul class="nav flex-column">
                   <li class="nav-item">
                     <a
@@ -51,12 +51,12 @@
             </div>
             <div class="col-6 links is-connect">
               <nav>
-                <h3 class="h3 font-serif text-uppercase text-light">Connect</h3>
+                <h3 class="h3 font-sans-serif text-small-caps text-light">Connect</h3>
                 <ul class="nav flex-column">
                   <li class="nav-item">
                     <a
                       href="/contact"
-                      class="nav-link font-weight-bold text-light text-decoration-underline"
+                      class="nav-link font-weight-bold text-light"
                     >Contact</a>
                   </li>
                   <!-- <li class="nav-item">
