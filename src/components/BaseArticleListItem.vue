@@ -3,15 +3,15 @@
     <div class="pb-3">
       <div @mouseover="onMouseOver" @mouseleave="onMouseLeave" class="position-relative">
         <!-- like -->
-        <a class="like position-absolute">
+        <!-- <a class="like position-absolute">
           <img
             class="like-image d-block"
             src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568559589/Shinta%20Mani%20Wild/general/icon-like_bqhyu6.svg"
             alt
           />
-        </a>
+        </a> -->
 
-        <div class="article-list-item--media">
+        <div class="article-list-item--media"> 
           <!-- image -->
           <div
             key="poster"
