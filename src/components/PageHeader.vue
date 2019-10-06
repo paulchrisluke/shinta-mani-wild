@@ -83,7 +83,7 @@
               </button>
               <nav>
                 <ul v-if="isMobileMenuTentsOpen"
-                  class="nav mobile-menu-open user-select-none text-small-caps font-weight-light">
+                  class="nav mobile-menu-open fixed-top user-select-none text-small-caps font-weight-light">
                   <li class="col-12 nav-item nav-title font-serif mx-1 mt-2">Tents</li>
                   <div class="col-12"><hr class="my-2"></div>
                   <li class="col-12 nav-item">
@@ -155,17 +155,13 @@
   font-size: rem(16px * $serif-font-size-correction);
 }
 .mobile-menu-open {
-  position: fixed;
   display: block;
   width: 100%;
   height: 100%;
   top: rem($header-height);
-  left: 0;
-  right: 0;
-  bottom: 0;
   padding: rem(8px);
   background: $white;
-  z-index: 10000;
+  z-index: 100000;
   .nav-title {
     font-size: rem(18px * $serif-font-size-correction);
     color: $primary;
@@ -182,12 +178,21 @@
   border: none;
   outline: none;
 }
+@media (max-width: 767px) {
+  .page-header{
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+  }      
+}
 </style>
 
 <script lang="ts">
 import Vue from 'vue'
 import { getPassiveEventConfig } from '@/helpers'
 import BaseImageLink from '@/components/BaseImageLink.vue'
+let myBody = document.getElementsByTagName('body')[0]
 
 export default Vue.extend({
   name: 'page-header',
@@ -208,6 +213,7 @@ export default Vue.extend({
   },
   mounted() {
     this.clickOutsideDropdownListener()
+    window.addEventListener('resize', this.resetClassFromBody)
   },
   methods: {
     clickOutsideDropdownListener() {
@@ -218,16 +224,19 @@ export default Vue.extend({
       )
     },
     toggleMobileMenuTentsOpen() {
-      let myBody = document.getElementsByTagName('body')[0];
       myBody.classList.toggle('overflow-hidden')
       this.isMobileMenuTentsOpen = !this.isMobileMenuTentsOpen
     }, 
     onClickOutsideDropdown() {
       this.isDropdownTentsOpen = false
+    },
+    resetClassFromBody() {
+      myBody.classList.remove('overflow-hidden')
     }
   },
   destroyed() {
     document.removeEventListener('click', this.onClickOutsideDropdown)
+    this.resetClassFromBody()
   }
 })
 </script>
