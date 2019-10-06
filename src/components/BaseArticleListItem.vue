@@ -3,6 +3,7 @@
     <div class="pb-3">
       <div @mouseover="onMouseOver" @mouseleave="onMouseLeave" class="position-relative">
         <!-- like -->
+          <!-- issue #139 like button commented out--> 
         <!-- <a class="like position-absolute">
           <img
             class="like-image d-block"
