@@ -74,5 +74,6 @@ export default {
 $bar-height: rem(80px);
 .wrapper-ghost {
   height: $bar-height;
+  z-index: 5;
 }
 </style>
