@@ -97,7 +97,7 @@ export default Vue.extend({
     },
     titleClass: {
       type: String,
-      default: 'h3 font-weight-light'
+      default: 'h3 font-weight-normal'
     },
     previewTransformations: {
       type: String,
