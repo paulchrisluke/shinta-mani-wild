@@ -39,7 +39,7 @@
         <section class="container is-small mb-5 featured-items">
           <template v-if="!resort.id">
             <div class="row">
-              <content-placeholders :class="`col-${12 / 3}`" rounded v-for="item in 3" :key="item">
+              <content-placeholders :class="`col-6 col-sm-${12 / 3}`" rounded v-for="item in 3" :key="item">
                 <content-placeholders-img />
                 <content-placeholders-text :lines="2" />
               </content-placeholders>
@@ -47,7 +47,7 @@
           </template>
           <div v-else class="row">
             <div
-              :class="`col-${12 / 3}`"
+              :class="`col-6 col-sm-${12 / 3}`"
               v-for="(item, index) in accommodationsAsStories.slice(0, 3)"
               :key="index"
             >
