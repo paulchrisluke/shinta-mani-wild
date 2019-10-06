@@ -21,7 +21,7 @@
           <div class="row flex-column-reverse flex-md-row text-center text-md-left">
             <div class="col-12 col-md-6 links is-discover mb-4 mb-md-0">
               <nav>
-                <h3 class="h3 font-serif text-uppercase text-light">Discover</h3>
+                <h3 class="h3 font-sans-serif text-small-caps text-light">Discover</h3>
                 <ul class="nav flex-column">
                   <li class="nav-item">
                     <a
@@ -51,12 +51,12 @@
             </div>
             <div class="col-12 col-md-6 links is-connect mb-4 mb-md-0">
               <nav>
-                <h3 class="h3 font-serif text-uppercase text-light">Connect</h3>
+                <h3 class="h3 font-sans-serif text-small-caps text-light">Connect</h3>
                 <ul class="nav flex-column">
                   <li class="nav-item">
                     <a
                       href="/contact"
-                      class="nav-link font-weight-bold text-light text-decoration-underline"
+                      class="nav-link font-weight-bold text-light"
                     >Contact</a>
                   </li>
                   <!-- <li class="nav-item">

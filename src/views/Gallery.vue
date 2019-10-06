@@ -1,16 +1,16 @@
 <template>
-  <div class="page page--story">
+  <div class="page page--gallery">
     <story-slider
       @on-click-back="onClickBack"
-      :items="stories"
-      :custom="{ratioBoxClass: 'ratio-9-16'}"
+      :items="images"
+      :custom="{ratioBoxClass: 'ratio-16-9'}"
     />
   </div>
 </template>
 
 <script lang='ts'>
 import Vue from 'vue'
-import { Resort, Story } from '@/types'
+import { Resort, GalleryImage } from '@/types'
 import { get } from 'lodash-es'
 const StorySlider = () => import('@/components/StorySlider.vue')
 
@@ -22,7 +22,8 @@ export default Vue.extend({
   data() {
     return {
       slug: this.$route.params.resortId,
-      storyIndex: Number(this.$route.params.storyIndex)
+      orderFilter: Number(this.$route.params.orderFilter),
+      resortId: Number(this.$route.params.resortId)
     }
   },
   mounted() {
@@ -34,16 +35,11 @@ export default Vue.extend({
     resort(): Resort {
       return this.$store.getters['resort/getItem']
     },
-    stories(): Story[] {
-      const pageStoriesWithNoDuplicate = get(
-        (this as any).resort,
-        'stories',
-        []
-      ).filter((item: Story) => item.posterUrl)
-      const selectedStory = pageStoriesWithNoDuplicate[this.storyIndex]
-      return get((this as any).resort, 'stories', []).filter(
-        (item: Story) => item.ctaText === selectedStory.ctaText
+    images(): GalleryImage[] {
+      const result = get(this.resort, 'images', []).filter(
+        (item: GalleryImage) => item.order === this.orderFilter
       )
+      return result
     }
   },
   methods: {
@@ -61,16 +57,27 @@ export default Vue.extend({
   background-color: $brand-4;
 }
 ::v-deep {
-  .story-slider--inner {
-    max-width: rem(1100px);
-  }
   .swiper-container {
     @include media-breakpoint-up(lg) {
-      max-height: rem(624px);
+      height: calc(100vh - #{190px});
     }
   }
-  .story--inner {
-    max-width: rem(414px);
+  @include media-breakpoint-up(lg) {
+    .swiper-slide-active {
+      transform: scale(2) !important;
+      .story--details {
+        transform: scale(0.5);
+        left: auto !important;
+      }
+    }
+    .story--inner {
+      max-width: rem(618px);
+    }
+    .swiper-pagination-bullet-active {
+      &::before {
+        transform: translateX(0) !important;
+      }
+    }
   }
 }
 </style>

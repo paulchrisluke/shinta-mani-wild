@@ -3,15 +3,16 @@
     <div class="pb-3">
       <div @mouseover="onMouseOver" @mouseleave="onMouseLeave" class="position-relative">
         <!-- like -->
-        <a class="like position-absolute">
+          <!-- issue #139 like button commented out--> 
+        <!-- <a class="like position-absolute">
           <img
             class="like-image d-block"
             src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568559589/Shinta%20Mani%20Wild/general/icon-like_bqhyu6.svg"
             alt
           />
-        </a>
+        </a> -->
 
-        <div class="article-list-item--media">
+        <div class="article-list-item--media"> 
           <!-- image -->
           <div
             key="poster"
@@ -97,7 +98,7 @@ export default Vue.extend({
     },
     titleClass: {
       type: String,
-      default: 'h3 font-weight-light'
+      default: 'h3 font-weight-normal'
     },
     previewTransformations: {
       type: String,

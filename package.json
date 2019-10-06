@@ -13,12 +13,13 @@
     "swagger": "ts-node src/connection/swagger-axios.ts && tsc -p ./temp/resources.ts --moduleResolution classic --target es6 --outDir ./src/connection/"
   },
   "dependencies": {
-    "aos": "^2.3.4",
+    "aos": "3.0.0-beta.6",
     "axios": "0.19.0",
     "bootstrap": "4.3.1",
     "core-js": "2.6.5",
     "lodash-es": "4.17.15",
     "register-service-worker": "1.6.2",
+    "rellax": "^1.10.0",
     "swiper": "^5.0.3",
     "vue": "2.6.10",
     "vue-content-placeholders": "0.2.1",
@@ -29,6 +30,7 @@
     "@types/aos": "^3.0.2",
     "@types/jest": "23.1.4",
     "@types/lodash-es": "4.17.3",
+    "@types/rellax": "^1.7.2",
     "@types/swiper": "^4.4.5",
     "@vue/cli-plugin-babel": "3.11.0",
     "@vue/cli-plugin-e2e-cypress": "3.11.0",

@@ -1,0 +1,33 @@
+// NOTE: this is the summarized and modified version of aos/dist/aos.css
+// So many options of AOS.init will not work if you don't include the original css file.
+
+$aos-duration: 0;
+$opacity-transition-duration: 1500ms;
+
+[data-aos][data-aos][data-aos-duration],
+body[data-aos-duration] [data-aos] {
+  transition-duration: #{$aos-duration}ms;
+}
+[data-aos][data-aos][data-aos-delay],
+body[data-aos-delay] [data-aos] {
+  transition-delay: 0ms;
+}
+[data-aos] {
+  pointer-events: none;
+}
+[data-aos].aos-animate {
+  pointer-events: auto;
+}
+[data-aos][data-aos][data-aos-easing='ease-in-out'],
+body[data-aos-easing='ease-in-out'] [data-aos] {
+  transition-timing-function: ease-in-out;
+}
+@media screen {
+  html:not(.no-js) [data-aos^='fade'][data-aos^='fade'] {
+    opacity: 0;
+    transition: opacity $opacity-transition-duration ease;
+  }
+  html:not(.no-js) [data-aos^='fade'][data-aos^='fade'].aos-animate {
+    opacity: 1;
+  }
+}
