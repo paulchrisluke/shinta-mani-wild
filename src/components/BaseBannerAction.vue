@@ -16,7 +16,7 @@
             <content-placeholders-heading class="placeholder-heading mb-3" />
           </content-placeholders>
           <template v-else>
-            <h2 class="banner-action--text h1 text-uppercase font-serif text-light mb-3">
+            <h2 class="banner-action--text h1 text-uppercase font-serif text-light mb-4">
               <span v-text="text"></span>
             </h2>
           </template>
@@ -84,9 +84,6 @@ export default Vue.extend({
   left: 0;
   right: 0;
   bottom: 0;
-}
-.banner-action--text {
-  line-height: 1.5;
 }
 .has-image:not(.has-video) {
   &::after {

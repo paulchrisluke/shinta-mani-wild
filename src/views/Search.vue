@@ -44,6 +44,7 @@
             :preview-lines-of-read-more="2"
             :show-placeholder="!resort.id"
             :items-per-row="2"
+            :items-per-row-xs="1"
             :items="stories.slice(0,featuredStoriesCount)"
             preview-transformations="q_auto:low,e_preview:duration_10,w_440,h_248,c_fill,ar_16:9,ac_none"
             poster-transformations="q_auto:good,w_440,h_248,c_fill,g_auto"
