@@ -4,7 +4,7 @@
   </content-placeholders>
   <div v-else v-show="isVisible">
     <iframe
-      class="d-block mx-auto"
+      class="d-block mx-auto video-player--iframe"
       width="1322"
       height="744"
       :src="`${source}?rel=0`"
@@ -34,3 +34,9 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang="scss">
+.video-player--iframe {
+  max-width: 100%;
+}
+</style>
