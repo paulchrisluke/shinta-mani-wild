@@ -12,7 +12,7 @@
       <div class="image-link--center h-100 flex-grow-1"></div>
       <div class="image-link--right h-100"></div>
     </div>
-    <span class="image-link--text" v-text="text"></span>
+    <span class="image-link--text text-nowrap" v-text="text"></span>
   </a>
   <button
     v-else

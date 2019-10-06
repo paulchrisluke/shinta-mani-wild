@@ -60,7 +60,12 @@ export default Vue.extend({
   margin-bottom: 0;
 }
 .border-art {
-  height: rem(24px);
   background: url("https://res.cloudinary.com/ddwsbpkzk/image/upload/h_24/Shinta%20Mani%20Wild/home/line_umnjaa.png") no-repeat center;
+  background-size: contain;
+  height: rem(16px);
+  @include media-breakpoint-up(md) {
+    height: rem(24px);
+  }
+
 }
 </style>

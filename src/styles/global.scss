@@ -20,10 +20,10 @@
 }
 .h1 {
   line-height: 0.75;
-}
-.is-huge {
-  font-size: $huge-font-size;
-  line-height: 0.75;
+  font-size: $h1-font-size-mobile;
+  @include media-breakpoint-up(md) {
+    font-size: $h1-font-size;
+  }
 }
 .font-size-xl-huge {
   @include media-breakpoint-up(xl) {
