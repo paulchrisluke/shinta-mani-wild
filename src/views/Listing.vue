@@ -201,11 +201,4 @@ export default Vue.extend({
     height: rem(72px);
   }
 }
-::v-deep {
-  .hero-image {
-    height: rem($hero-height);
-
-    @include hero-placeholder($hero-height);
-  }
-}
 </style>

@@ -152,13 +152,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .hero-image {
-    height: rem($hero-height);
-
-    @include hero-placeholder($hero-height);
-  }
-}
 a {
   text-decoration: none;
   color: $black;

@@ -161,3 +161,9 @@ body,
   bottom: 0;
   right: 0;
 }
+
+// hero
+.hero-image {
+  height: rem($hero-height);
+  @include hero-placeholder();
+}
