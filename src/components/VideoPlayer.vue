@@ -35,7 +35,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .video-player--iframe {
   max-width: 100%;
 }
