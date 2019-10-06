@@ -1,10 +1,10 @@
 <template>
   <section class="page-footer py-4">
     <div class="container is-large">
-      <div class="row">
-        <div class="col-4">
+      <div class="row flex-column-reverse flex-md-row">
+        <div class="col-12 col-md-4">
           <div class="page-footer--logo">
-            <div class="d-table">
+            <div class="d-table m-auto ml-md-0">
               <a href="/" class="logo-link mt-2 d-block" title="Home">
                 <img class="d-block mx-auto" src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_64/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png" alt="shinta mani wild" />
               </a>
@@ -17,11 +17,11 @@
             </div>
           </div>
         </div>
-        <div class="col-8">
-          <div class="row">
-            <div class="col-6 links is-discover">
+        <div class="col-12 col-md-8">
+          <div class="row flex-column-reverse flex-md-row text-center text-md-left">
+            <div class="col-12 col-md-6 links is-discover mb-4 mb-md-0">
               <nav>
-                <h3 class="h3 font-serif text-uppercase text-light">Discover</h3>
+                <h3 class="h3 font-sans-serif text-small-caps text-light">Discover</h3>
                 <ul class="nav flex-column">
                   <li class="nav-item">
                     <a
@@ -49,14 +49,14 @@
                 </ul>
               </nav>
             </div>
-            <div class="col-6 links is-connect">
+            <div class="col-12 col-md-6 links is-connect mb-4 mb-md-0">
               <nav>
-                <h3 class="h3 font-serif text-uppercase text-light">Connect</h3>
+                <h3 class="h3 font-sans-serif text-small-caps text-light">Connect</h3>
                 <ul class="nav flex-column">
                   <li class="nav-item">
                     <a
                       href="/contact"
-                      class="nav-link font-weight-bold text-light text-decoration-underline"
+                      class="nav-link font-weight-bold text-light"
                     >Contact</a>
                   </li>
                   <!-- <li class="nav-item">
@@ -86,6 +86,11 @@ export default Vue.extend({
 .page-footer {
   background-color: $primary;
   box-shadow: $box-shadow-sm-top, $box-shadow-md-top;
+  @include media-breakpoint-down(md) {
+    .h3 {
+      font-family: 'Roboto', sans-serif;
+    }
+  }
 }
 .links {
   font-size: rem(12px);

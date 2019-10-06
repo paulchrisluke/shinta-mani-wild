@@ -9,11 +9,11 @@
   // stylelint-enable
 }
 
-@mixin hero-placeholder($hero-height) {
+@mixin hero-placeholder() {
   .placeholder-image {
     width: 100%;
     height: 100%;
-    padding: rem(80px);
+    padding: $hero-height;
   }
   .vue-content-placeholders-img {
     width: 100%;

@@ -16,7 +16,7 @@
             :text="resort.title"
             :type="'h1'"
             :class-placeholder="'heading-placeholder mb-5'"
-            :class-name="'h1 is-huge text-dark text-center mb-5'"
+            :class-name="'h1 font-size-xl-huge text-dark text-center mb-5'"
             :border-art="true"
           ></base-heading>
 
@@ -152,13 +152,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .hero-image {
-    height: rem($hero-height);
-
-    @include hero-placeholder($hero-height);
-  }
-}
 a {
   text-decoration: none;
   color: $black;

@@ -9,7 +9,7 @@
         <hero-image :image="resort.featuredImage"></hero-image>
       </div>
 
-      <div class="position-relative py-5">
+      <div class="parallax-container position-relative py-5">
         <div class="container is-small page-description">
           <article>
             <base-heading
@@ -17,7 +17,7 @@
               :text="resort.title"
               :type="'h1'"
               :class-placeholder="'heading-placeholder mb-5'"
-              :class-name="'h1 is-huge text-dark text-center mb-5'"
+              :class-name="'h1 font-size-xl-huge text-dark text-center mb-5'"
               :border-art="true"
             ></base-heading>
 
@@ -43,9 +43,11 @@
 
         <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-0-${index} position-absolute`"
             data-aos="fade-down"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            :data-rellax-speed="getRellaxSpeed()"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
             :key="index"
             alt
           />
@@ -63,13 +65,15 @@
         ></base-banner-action>
       </div>
 
-      <div class="position-relative py-5">
-        <!-- quote -->
-        <section class="container shift-xl-down">
-          <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
-            <div class="quote w-100 h-100" v-html="resort.h2"></div>
-          </base-quote>
-        </section>
+      <div class="parallax-container position-relative py-5">
+        <div class="container is-small">
+          <!-- quote -->
+          <section class="container mb-5">
+            <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+              <div class="quote" v-html="resort.h2"></div>
+            </base-quote>
+          </section>
+        </div>
 
         <!-- articles (stories) -->
         <div class="container is-small">
@@ -88,11 +92,15 @@
           ></base-articles-list>
         </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(2, 5)">
+        <template
+          v-for="(doodle, index) in pageDoodles.slice(2, (relativeDoodleAmount(stories.length, featuredStoriesCount, 2) || 4))"
+        >
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            :data-rellax-speed="getRellaxSpeed()"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
             :key="index"
             alt
           />
@@ -120,7 +128,6 @@ import BookingBar from '@/components/BookingBar.vue'
 import { GalleryImage, Story, Resort } from '@/types'
 import { get } from 'lodash-es'
 import doodles from '@/mixins/doodles'
-import 'aos/dist/aos.css'
 
 export default Vue.extend({
   name: 'listing',
@@ -138,7 +145,8 @@ export default Vue.extend({
   },
   data() {
     return {
-      slug: this.$route.params.id
+      slug: this.$route.params.id,
+      featuredStoriesCount: 0
     }
   },
   computed: {
@@ -159,14 +167,15 @@ export default Vue.extend({
         return []
       }
 
+      const slug = (this as any).slug
       const items = [
         {
-          link: '/comming-soon',
+          link: `/gallery/${slug}/3?returnTo=listing`,
           title: 'Exterior',
           url: get(images, '[0].url', '')
         },
         {
-          link: '/comming-soon',
+          link: `/gallery/${slug}/4?returnTo=listing`,
           title: 'Interior',
           url: get(images, '[1].url', '')
         }
@@ -190,24 +199,6 @@ export default Vue.extend({
   }
   .description-placeholder {
     height: rem(72px);
-  }
-}
-::v-deep {
-  .hero-image {
-    height: rem($hero-height);
-
-    @include hero-placeholder($hero-height);
-  }
-}
-.quote::v-deep {
-  p {
-    margin-bottom: 0;
-    font-style: italic;
-    font-weight: 300;
-  }
-  b {
-    font-weight: bold;
-    display: block;
   }
 }
 </style>

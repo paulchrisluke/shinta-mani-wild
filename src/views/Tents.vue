@@ -9,7 +9,7 @@
         <hero-image :image="resort.featuredImage"></hero-image>
       </div>
 
-      <div class="position-relative py-5">
+      <div class="parallax-container position-relative py-5">
         <div class="container is-small mb-5 page-description">
           <article>
             <base-heading
@@ -17,7 +17,7 @@
               :text="resort.title"
               :type="'h1'"
               :class-placeholder="'heading-placeholder mb-5'"
-              :class-name="'h1 is-huge text-dark text-center mb-5'"
+              :class-name="'h1 font-size-xl-huge text-dark text-center mb-5'"
               :border-art="true"
             ></base-heading>
 
@@ -65,17 +65,19 @@
       </section>
 
         <!-- quote -->
-        <section class="container">
+        <section class="container is-small">
           <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
-            <div class="quote w-100 h-100" v-html="resort.h2"></div>
+            <div class="quote" v-html="resort.h2"></div>
           </base-quote>
         </section>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(0, 3)">
+        <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
           <img
-            :class="`doodle doodle-item-0-${index} position-absolute`"
-            data-aos="fade-up"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            @load="setItemParallax($event)"
+            :class="`doodle doodle-item-1-${index} position-absolute`"
+            data-aos="fade-down"
+            :data-rellax-speed="getRellaxSpeed()"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
             :key="index"
             alt
           />
@@ -93,7 +95,7 @@
         ></base-banner-action>
       </div>
 
-      <div class="position-relative py-5">
+      <div class="parallax-container position-relative py-5">
         <!-- card -->
         <div class="container is-small">
           <div class="row mb-5">
@@ -193,11 +195,13 @@
           </div>
         </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(3, 7)">
+        <template v-for="(doodle, index) in pageDoodles.slice(2, 5)">
           <img
+            @load="setItemParallax($event)"
             :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_50,h_350,w_350,c_limit')"
+            :data-rellax-speed="getRellaxSpeed()"
+            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
             :key="index"
             alt
           />
@@ -223,7 +227,6 @@ import { Story, Resort, Category } from '@/types'
 import { get } from 'lodash-es'
 import { categoryToStoryBridge } from '@/helpers'
 import doodles from '@/mixins/doodles'
-import 'aos/dist/aos.css'
 
 export default Vue.extend({
   name: 'listing',
@@ -240,7 +243,8 @@ export default Vue.extend({
   },
   data() {
     return {
-      slug: 'tents'
+      slug: 'tents',
+      featuredStoriesCount: 0
     }
   },
   computed: {
@@ -303,13 +307,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .hero-image {
-    height: rem($hero-height);
-
-    @include hero-placeholder($hero-height);
-  }
-}
 .page-description::v-deep {
   .heading-placeholder {
     height: rem(100px);
@@ -319,17 +316,6 @@ export default Vue.extend({
   }
   .description-placeholder {
     height: rem(72px);
-  }
-}
-.quote::v-deep {
-  p {
-    margin-bottom: 0;
-    font-style: italic;
-    font-weight: 300;
-  }
-  b {
-    font-weight: bold;
-    display: block;
   }
 }
 .featured-items {
