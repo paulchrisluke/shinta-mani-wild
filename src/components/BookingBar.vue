@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import { footerHeight } from '@/constants/layout'
 import BaseImageLink from '@/components/BaseImageLink.vue'
 import BaseActionBar from '@/components/BaseActionBar'
 import { isPassiveEventsSupported } from '@/helpers'
@@ -34,12 +33,13 @@ export default {
   },
   data() {
     return {
-      thresholdDistance: footerHeight,
+      thresholdDistance: 0,
       distance: 0,
       isPassiveSupported: false
     }
   },
   mounted() {
+    this.thresholdDistance = document.querySelector('.page-footer').clientHeight
     this.isPassiveSupported = isPassiveEventsSupported()
     this.setInitialDistance()
     this.positionListener()
