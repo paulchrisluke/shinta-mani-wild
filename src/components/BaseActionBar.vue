@@ -35,6 +35,11 @@ export default Vue.extend({
   background-color: $secondary;
   box-shadow: $box-shadow-sm;
 }
+.font-serif {
+  @include media-breakpoint-down(md) {
+    font-size: rem(20px);
+  }
+}
 .action-bar--title {
   font-size: rem(24px);
   @include media-breakpoint-up(md) {

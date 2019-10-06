@@ -43,6 +43,12 @@
 .text-black {
   color: $black;
 }
+.read-more-link {
+  font-size: rem(12px);
+  &:hover {
+    text-decoration: none;
+  }
+}
 
 // utilities
 .user-select-none {
@@ -166,4 +172,16 @@ body,
 .hero-image {
   height: rem($hero-height);
   @include hero-placeholder();
+}
+
+.page-description {
+  .heading-placeholder {
+    height: rem(83px);
+  }
+  .vue-content-placeholders-heading {
+    height: 100%;
+  }
+  .description-placeholder {
+    height: rem(72px);
+  }
 }

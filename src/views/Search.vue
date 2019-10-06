@@ -10,7 +10,7 @@
       </div>
 
       <div class="parallax-container position-relative py-5">
-        <div class="container is-small page-description">
+        <div class="container is-small page-description mb-5">
           <article>
             <base-heading
               :show-placeholder="!resort.id"
@@ -36,7 +36,7 @@
         </div>
 
         <!-- featured stories -->
-        <section class="container is-small featured-items">
+        <section class="container is-small featured-items is-huge">
           <base-articles-list
             :route-props="{ returnTo: 'search', resortId: $route.params.id }"
             :image-box-class="'ratio-16-9'"
@@ -163,22 +163,11 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.page-description::v-deep {
-  .heading-placeholder {
-    height: rem(100px);
-  }
-  .vue-content-placeholders-heading {
-    height: 100%;
-  }
-  .description-placeholder {
-    height: rem(72px);
-  }
-}
 .featured-items {
   min-height: rem(356px);
   &::v-deep {
     .vue-content-placeholders-img {
-      height: rem(162px);
+      height: rem(248px);
     }
   }
 }

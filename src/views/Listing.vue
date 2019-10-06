@@ -10,7 +10,7 @@
       </div>
 
       <div class="parallax-container position-relative py-5">
-        <div class="container is-small page-description">
+        <div class="container is-small page-description mb-5">
           <article>
             <base-heading
               :show-placeholder="!resort.id"
@@ -79,6 +79,7 @@
         <div class="container is-small">
           <base-heading
             :show-placeholder="!resort.id"
+            :class-placeholder="'mb-4'"
             :type="'h2'"
             :class-name="'h2 text-dark text-center'"
             :text="`Explore our ${resort.title}`"
@@ -188,17 +189,3 @@ export default Vue.extend({
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.page-description::v-deep {
-  .heading-placeholder {
-    height: rem(100px);
-  }
-  .vue-content-placeholders-heading {
-    height: 100%;
-  }
-  .description-placeholder {
-    height: rem(72px);
-  }
-}
-</style>

@@ -87,8 +87,5 @@ export default Vue.extend({
   .vue-content-placeholders-text {
     height: rem(54px);
   }
-  .read-more-link {
-    font-size: rem(12px);
-  }
 }
 </style>
