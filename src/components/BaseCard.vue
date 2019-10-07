@@ -111,39 +111,43 @@ $shadow-small: $box-shadow-md, $box-shadow-sm;
     .card-image {
       img {
         .is-right-skew & {
-          transform: matrix(0.99, 0.04, -0.11, 1, 0, 0);
+          transform: rotate3d(.5,-.866,0,15deg) rotateZ(1deg);
+          box-shadow: 27.1px 62.5px 125px -25px rgba(0,10,0,.5), 16.2px 37.5px 75px -37.5px rgba(0,0,0,.6);
         }
         .is-left-skew & {
-          transform: matrix(0.99, -0.04, 0.11, 1, 0, 0);
+          transform: rotate3d(.5,.866,0,15deg) rotateZ(-1deg);
+          box-shadow: -27.1px 62.5px 125px -25px rgba(0,10,0,.5), -16.2px 37.5px 75px -37.5px rgba(0,0,0,.6);
         }
       }
     }
     &.is-right-skew {
       left: rem(96px);
+      perspective: 1500px;
       &::before {
         right: rem(4px);
         left: 0;
-        transform: rotate(5.5deg) translateX(-16px) translateY(12px) skewX(2deg)
-          skewY(-4deg);
+        transform: rotate3d(.5,-.866,0,15deg) rotateZ(1deg);
+          box-shadow: 27.1px 62.5px 125px -25px rgba(0,10,0,.5), 16.2px 37.5px 75px -37.5px rgba(0,0,0,.6);
       }
       .card-image {
         // NOTE: set a width for this element where ever you use this component
         img {
-          transform: matrix(0.99, 0.04, -0.11, 1, 0, 0);
+          transform: rotate3d(.5,-.866,0,15deg) rotateZ(1deg);
         }
       }
     }
     &.is-left-skew {
       right: rem(96px);
+      perspective: 1500px;
       &::before {
         left: rem(4px);
         right: 0;
-        transform: rotate(-5.5deg) translateX(16px) translateY(12px)
-          skewX(-2deg) skewY(4deg);
+        transform: rotate3d(.5,.866,0,15deg) rotateZ(-1deg);
+          box-shadow: -27.1px 62.5px 125px -25px rgba(0,10,0,.5), -16.2px 37.5px 75px -37.5px rgba(0,0,0,.6);
       }
       .card-image {
         img {
-          transform: matrix(0.99, -0.04, 0.11, 1, 0, 0);
+          transform: rotate3d(.5,.866,0,15deg) rotateZ(-1deg);
         }
       }
     }
