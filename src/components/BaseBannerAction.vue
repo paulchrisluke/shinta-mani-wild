@@ -85,8 +85,10 @@ export default Vue.extend({
   right: 0;
   bottom: 0;
 }
-.banner-action--text {
-  line-height: 1.5;
+@media(min-width:768px){
+  .banner-action--text {
+    line-height: 1.5;
+  }
 }
 .has-image:not(.has-video) {
   &::after {

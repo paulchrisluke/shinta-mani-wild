@@ -58,6 +58,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .base-heading {
   margin-bottom: 0;
+  
 }
 .border-art {
   background: url("https://res.cloudinary.com/ddwsbpkzk/image/upload/h_24/Shinta%20Mani%20Wild/home/line_umnjaa.png") no-repeat center;

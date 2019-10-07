@@ -8,7 +8,7 @@
           <content-placeholders-text :lines="4" />
         </content-placeholders>
         <div v-else>
-          <div v-read-more="{lineHeight: 36, lines: 4, linkClass: 'd-block float-right'}">
+          <div v-read-more="{lineHeight: 36, lines: 4, linkClass: 'd-block float-left'}">
             <slot />
           </div>
         </div>

@@ -101,6 +101,7 @@ body,
 }
 .read-more-link {
   color: $brand-3;
+  margin-top: .5rem;
 }
 
 // dropdown
@@ -167,3 +168,9 @@ body,
   height: rem($hero-height);
   @include hero-placeholder();
 }
+
+// @media(max-width:768px){
+//   .read-more-content {
+//     margin-bottom:4rem;
+//   }
+// }

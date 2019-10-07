@@ -473,6 +473,9 @@ export default Vue.extend({
       background: $white;
       transition: inherit;
     }
+    @media(max-width:768px){
+      width: 1.1rem;
+    }
   }
   .swiper-pagination-bullet-active {
     &::before {
