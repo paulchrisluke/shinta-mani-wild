@@ -38,7 +38,7 @@
         <div class="row">
           <div class="col-6">
             <div class="mb-3">
-              <h2 class="font-serif text-dark text-uppercase">Call us</h2>
+              <h2 class="font-sans-serif text-dark mb-3 text-small-caps font-weight-normal">Call us</h2>
               <div class="d-flex">
                 <img
                   class="mx-3 align-middle"
@@ -50,7 +50,7 @@
             </div>
 
             <div class="mb-3">
-              <h2 class="font-serif text-dark text-uppercase">How to get here</h2>
+              <h2 class="font-sans-serif text-dark mb-3 text-small-caps font-weight-normal">How to get here</h2>
               <div class="d-flex">
                 <img
                   class="mx-3 align-middle"
@@ -83,7 +83,7 @@
               action="/thanks"
               data-netlify="true"
             >
-              <h2 class="font-serif text-dark mb-3 text-uppercase text-center">Ask Us anything</h2>
+              <h2 class="font-sans-serif text-dark mb-3 text-small-caps text-center font-weight-normal">Ask Us Anything</h2>
 
               <input type="hidden" name="form-name" value="Contact" />
               <input placeholder="Name" class="contact--input-name input-field mb-4" type="text" />
