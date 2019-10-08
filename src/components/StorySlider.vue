@@ -65,13 +65,13 @@
                   <music-bars />
                 </div>
                 <!-- like -->
-                <a @click.stop.prevent class="like my-3 ml-auto" href="#">
+                <!-- <a @click.stop.prevent class="like my-3 ml-auto" href="#">
                   <img
                     class="like-image d-block"
                     src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402128/Shinta%20Mani%20Wild/general/icon-like-outline_dlymsz.svg"
                     alt
                   />
-                </a>
+                </a> -->
               </div>
             </div>
           </div>

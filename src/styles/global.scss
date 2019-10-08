@@ -43,6 +43,12 @@
 .text-black {
   color: $black;
 }
+.read-more-link {
+  font-size: rem(12px);
+  &:hover {
+    text-decoration: none;
+  }
+}
 
 // utilities
 .user-select-none {
@@ -111,11 +117,19 @@ body,
 // background doodle images
 .parallax-container {
   overflow-y: hidden;
+  // TODO: horizontally scroll in the mobile
+  @include media-breakpoint-down(sm) {
+    overflow-x: hidden;
+  }
 }
 .doodle {
   max-width: rem(700px);
   max-height: rem(700px);
   z-index: -1;
+  @include media-breakpoint-down(sm) {
+    max-width: rem(340px);
+    max-height: rem(340px);
+  }
 }
 .doodle-item-0-0 {
   top: 10vh;
@@ -166,4 +180,16 @@ body,
 .hero-image {
   height: rem($hero-height);
   @include hero-placeholder();
+}
+
+.page-description {
+  .heading-placeholder {
+    height: rem(83px);
+  }
+  .vue-content-placeholders-heading {
+    height: 100%;
+  }
+  .description-placeholder {
+    height: rem(72px);
+  }
 }

@@ -70,7 +70,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $bar-height: rem(80px);
 .wrapper-ghost {
   height: $bar-height;

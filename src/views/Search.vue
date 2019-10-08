@@ -10,7 +10,7 @@
       </div>
 
       <div class="parallax-container position-relative py-5">
-        <div class="container is-small page-description">
+        <div class="container is-small page-description mb-5">
           <article>
             <base-heading
               :show-placeholder="!resort.id"
@@ -36,7 +36,7 @@
         </div>
 
         <!-- featured stories -->
-        <section class="container is-small featured-items">
+        <section class="container is-small featured-items is-huge">
           <base-articles-list
             :route-props="{ returnTo: 'search', resortId: $route.params.id }"
             :image-box-class="'ratio-16-9'"
@@ -44,6 +44,7 @@
             :preview-lines-of-read-more="2"
             :show-placeholder="!resort.id"
             :items-per-row="2"
+            :items-per-row-xs="1"
             :items="stories.slice(0,featuredStoriesCount)"
             preview-transformations="q_auto:low,e_preview:duration_10,w_440,h_248,c_fill,ar_16:9,ac_none"
             poster-transformations="q_auto:good,w_440,h_248,c_fill,g_auto"
@@ -163,22 +164,11 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.page-description::v-deep {
-  .heading-placeholder {
-    height: rem(100px);
-  }
-  .vue-content-placeholders-heading {
-    height: 100%;
-  }
-  .description-placeholder {
-    height: rem(72px);
-  }
-}
 .featured-items {
   min-height: rem(356px);
   &::v-deep {
     .vue-content-placeholders-img {
-      height: rem(162px);
+      height: rem(248px);
     }
   }
 }
