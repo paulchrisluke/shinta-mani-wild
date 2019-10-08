@@ -5,11 +5,17 @@
       <!-- header -->
       <page-header></page-header>
 
-      <div class="mb-5">
-        <hero-image :image="resort.featuredImage"></hero-image>
+      <!-- player -->
+      <div class="hero position-relative">
+        <video-player
+          v-if="resort.id"
+          :source="resort.name"
+          :poster="transformCloudinaryUrl(resort.featuredImage, `q_auto:good,w_${pageWidth},ar_${heroVideoRatio},c_fill,g_west`)"
+          :rest="{autoplay: true, muted: false, loop: false}"
+        ></video-player>
       </div>
-
-      <div class="container is-small mb-6 page-description">
+      
+      <div class="container is-small mt-5 mb-6 page-description">
         <article>
           <base-heading
             :show-placeholder="!resort.id"
@@ -34,7 +40,7 @@
         </article>
       </div>
 
-      <div class="container is-small">
+      <div class="container is-small mb-5">
         <div class="row">
           <div class="col-6">
             <div class="mb-3">
@@ -101,7 +107,7 @@
               />
               <textarea name="Message" placeholder="Message" class="contact--input-text input-field mb-4 d-block" type="text" />
               <base-image-link
-                :class-name="'is-primary is-md mb-4 w-100'"
+                :class-name="'is-primary is-md w-100'"
                 :type="'submit'"
                 :text="'Submit'"
               ></base-image-link>
@@ -117,6 +123,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import PageHeader from '@/components/PageHeader.vue'
+import VideoPlayer from '@/components/VideoPlayer.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
 import HeroImage from '@/components/HeroImage.vue'
@@ -127,6 +134,7 @@ export default {
   name: 'contact',
   components: {
     PageHeader,
+    VideoPlayer,
     PageFooter,
     HeroImage,
     BaseHeading,

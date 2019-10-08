@@ -19,7 +19,6 @@
       class="video-player--video d-block w-100 mh-inherit"
       @play="onPlay"
       @ended="onEnd"
-      :poster="poster"
       v-bind="rest"
     >
       <source :src="source" type="video/mp4" />
