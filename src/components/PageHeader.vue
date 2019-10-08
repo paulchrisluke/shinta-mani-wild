@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-header--base position-relative">
     <div class="page-header--ghost d-md-none"></div>
     <div class="page-header">
       <div class="container h-100">
@@ -134,8 +134,13 @@
 </template>
 
 <style lang="scss" scoped>
+.page-header--base {
+  z-index: 1;
+}
 .page-header {
   background: $primary;
+  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.12),
+    0px 16px 24px rgba(0, 0, 0, 0.14), 0px 8px 10px rgba(0, 0, 0, 0.2);
 }
 .page-header,
 .page-header--inner,

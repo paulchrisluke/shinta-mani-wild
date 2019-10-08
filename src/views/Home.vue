@@ -11,7 +11,7 @@
         <video-player
           v-if="resort.id"
           :source="resort.name"
-          :poster="transformCloudinaryUrl(resort.featuredImage, `q_auto:good,w_${pageWidth},ar_2.134,c_fill,g_west`)"
+          :poster="transformCloudinaryUrl(resort.featuredImage, `q_auto:good,w_${pageWidth},ar_${heroVideoRatio},c_fill,g_west`)"
           :rest="{autoplay: true, muted: false, loop: false}"
         ></video-player>
       </div>
@@ -208,8 +208,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      startedPlaying: false,
-      pageWidth: document.body.clientWidth
+      startedPlaying: false
     }
   },
   mounted() {
@@ -283,23 +282,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.hero {
-  max-height: rem($hero-height);
-  background-color: $black;
-  box-shadow: $box-shadow-md, $box-shadow-sm;
-  &.has-inner-shadow {
-    &::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      content: '';
-      display: block;
-      background: $linear-gradient-md;
-    }
-  }
-}
 .press-banner {
   height: rem(300px);
 }

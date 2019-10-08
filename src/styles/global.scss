@@ -183,9 +183,22 @@ body,
 }
 
 // hero
-.hero-image {
-  height: rem($hero-height);
-  @include hero-placeholder();
+.hero {
+  max-height: rem($hero-height);
+  background-color: $black;
+  box-shadow: $box-shadow-md, $box-shadow-sm;
+  &.has-inner-shadow {
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      content: '';
+      display: block;
+      background: $linear-gradient-md;
+    }
+  }
 }
 
 .page-description {

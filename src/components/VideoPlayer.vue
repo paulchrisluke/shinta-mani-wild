@@ -5,9 +5,9 @@
     class="video-player mh-inherit position-relative cursor-pointer"
   >
     <!-- <pre class="debug">
-    isPaused: {{this.isPaused}}
-  </pre> -->
-  
+      isPaused: {{this.isPaused}}
+    </pre> -->
+
     <div
       v-if="!isStarted"
       class="video-poster position-absolute h-100"
