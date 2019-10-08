@@ -7,6 +7,7 @@ const Contact = () => import ('./views/Contact.vue')
 const Tents = () => import ('./views/Tents.vue')
 const Story = () => import ('./views/Story.vue')
 const Gallery = () => import ('./views/Gallery.vue')
+const ChickenSink = () => import ('./views/ChickenSink.vue')
 
 Vue.use(Router)
 
@@ -46,6 +47,10 @@ export default new Router({
     {
       path: '/contact',
       component: Contact
+    },
+    {
+      path: '/testing',
+      component: ChickenSink
     },
     {
       path: '/*/',
