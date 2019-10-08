@@ -71,7 +71,7 @@
                     src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402128/Shinta%20Mani%20Wild/general/icon-like-outline_dlymsz.svg"
                     alt
                   />
-                </a> -->
+                </a>-->
               </div>
             </div>
           </div>
@@ -123,7 +123,8 @@ import { isNumber } from 'lodash-es'
 import {
   changeUrlExtension,
   transformCloudinaryUrl,
-  hasAudio
+  hasAudio,
+  getPosterImage
 } from '../helpers'
 import { GalleryImage, Story } from '../types'
 export default Vue.extend({
@@ -184,7 +185,7 @@ export default Vue.extend({
       if (this.isImageItem(item)) {
         return transformCloudinaryUrl((item as GalleryImage).url, 'q_auto:best')
       }
-      return this.getPosterImage((item as Story).image, 'q_25')
+      return getPosterImage((item as Story).image, 'q_25')
     },
     goToSlide(index: number) {
       this.swiper.slideTo(index)
@@ -236,12 +237,6 @@ export default Vue.extend({
       return (
         // preload 2 images out of view
         Math.abs(index - this.swiper.activeIndex) <= maxVisibleSlides / 2 + 2
-      )
-    },
-    getPosterImage(videoUrl: string, transformations: string) {
-      return transformCloudinaryUrl(
-        changeUrlExtension(videoUrl, 'jpg'),
-        transformations
       )
     },
     onClickBack() {

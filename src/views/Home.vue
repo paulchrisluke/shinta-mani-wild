@@ -7,17 +7,12 @@
       <page-header></page-header>
 
       <!-- player -->
-      <div
-        @click="showIntroVideo()"
-        :style="styleOfHero"
-        :class="{ 'background-black': shouldShowIntroVideo, 'has-image background-black': resort.id && !shouldShowIntroVideo}"
-        class="hero position-relative"
-      >
-        <!-- https://www.youtube.com/watch?v=SUWpCjzeMb4 -->
+      <div class="hero position-relative">
         <video-player
-          :show-placeholder="!resort.id"
-          :is-visible="shouldShowIntroVideo"
-          source="https://www.youtube.com/embed/SUWpCjzeMb4"
+          v-if="resort.id"
+          :source="resort.name"
+          :poster="transformCloudinaryUrl(resort.featuredImage, `q_auto:good,w_${pageWidth},ar_2.134,c_fill,g_west`)"
+          :rest="{autoplay: true, muted: false, loop: false}"
         ></video-player>
       </div>
 
@@ -213,7 +208,8 @@ export default Vue.extend({
   },
   data() {
     return {
-      shouldShowIntroVideo: false
+      startedPlaying: false,
+      pageWidth: document.body.clientWidth
     }
   },
   mounted() {
@@ -236,13 +232,6 @@ export default Vue.extend({
     },
     resort(): Resort {
       return this.$store.getters['resort/getItem']
-    },
-    styleOfHero(): any {
-      return {
-        backgroundImage: !this.shouldShowIntroVideo
-          ? `url(${this.resort.featuredImage})`
-          : 'none'
-      }
     },
     cardImage1(): object | undefined {
       const image = this.getResortImage(1)
@@ -279,9 +268,6 @@ export default Vue.extend({
     init() {
       this.$store.dispatch('resort/getItemBySlug', 'home')
     },
-    showIntroVideo() {
-      this.shouldShowIntroVideo = true
-    },
     getResortImage(order: number): string | undefined {
       const images = get(this.resort, 'images', [])
       const resultImage = images.find(
@@ -298,21 +284,10 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .hero {
-  height: rem($hero-height);
-  &.background-black {
-    background: $black;
-  }
-  &.has-image {
-    box-shadow: $box-shadow-md, $box-shadow-sm;
-    background: no-repeat center bottom;
-    background-size: cover;
-    @include media-breakpoint-down(md) {
-      background-position: left 10% center;
-    }
-    @include media-breakpoint-down(sm) {
-      background-position: left 20% center;
-    }
-    cursor: pointer;
+  max-height: rem($hero-height);
+  background-color: $black;
+  box-shadow: $box-shadow-md, $box-shadow-sm;
+  &.has-inner-shadow {
     &::after {
       position: absolute;
       top: 0;
@@ -323,18 +298,6 @@ export default Vue.extend({
       display: block;
       background: $linear-gradient-md;
     }
-  }
-
-  iframe {
-    max-width: 100%;
-    max-height: calc(100vh - #{$header-height-mobile});
-    @include media-breakpoint-up(md) {
-      max-height: calc(100vh - #{$header-height});
-    }
-  }
-
-  ::v-deep {
-    @include hero-placeholder();
   }
 }
 .press-banner {

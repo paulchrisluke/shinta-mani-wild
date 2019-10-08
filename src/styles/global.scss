@@ -51,6 +51,12 @@
 }
 
 // utilities
+.h-inherit {
+  height: inherit;
+}
+.mh-inherit {
+  max-height: inherit;
+}
 .user-select-none {
   user-select: none;
 }
@@ -192,4 +198,10 @@ body,
   .description-placeholder {
     height: rem(72px);
   }
+}
+
+.debug {
+  background: $white;
+  padding: 1rem;
+  position: absolute;
 }

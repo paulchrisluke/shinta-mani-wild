@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { transformCloudinaryUrl } from '@/helpers'
+import { transformCloudinaryUrl, getPosterImage } from '@/helpers'
 import { cloudbedsBookingLink } from '@/constants/booking'
 
 Vue.mixin({
@@ -9,6 +9,7 @@ Vue.mixin({
     }
   },
   methods: {
-    transformCloudinaryUrl
+    transformCloudinaryUrl,
+    getPosterImage
   }
 })
