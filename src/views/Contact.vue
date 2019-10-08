@@ -86,18 +86,20 @@
               <h2 class="font-sans-serif text-dark mb-3 text-small-caps text-center font-weight-normal">Ask Us Anything</h2>
 
               <input type="hidden" name="form-name" value="Contact" />
-              <input placeholder="Name" class="contact--input-name input-field mb-4" type="text" />
+              <input name="Name" placeholder="Name" class="contact--input-name input-field mb-4" type="text" />
               <input
+                name="E-mail"
                 placeholder="E-mail"
                 class="contact--input-email input-field mb-4"
                 type="email"
               />
               <input
+                name="Subject"
                 placeholder="Subject"
                 class="contact--input-message input-field mb-4"
                 type="text"
               />
-              <textarea placeholder="Message" class="contact--input-text input-field mb-4 d-block" type="text" />
+              <textarea name="Message" placeholder="Message" class="contact--input-text input-field mb-4 d-block" type="text" />
               <base-image-link
                 :class-name="'is-primary is-md mb-4 w-100'"
                 :type="'submit'"
