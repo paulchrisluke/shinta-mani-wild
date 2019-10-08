@@ -5,8 +5,14 @@
       <!-- header -->
       <page-header></page-header>
 
-      <div>
-        <hero-image :image="resort.featuredImage"></hero-image>
+      <!-- player -->
+      <div class="hero position-relative">
+        <video-player
+          v-if="resort.id"
+          :source="resort.name"
+          :poster="transformCloudinaryUrl(resort.featuredImage, `q_auto:good,w_${pageWidth},ar_${heroVideoRatio},c_fill,g_west`)"
+          :rest="{autoplay: true, muted: false, loop: false}"
+        ></video-player>
       </div>
 
       <div class="parallax-container position-relative py-5">
@@ -119,6 +125,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import PageHeader from '@/components/PageHeader.vue'
+import VideoPlayer from '@/components/VideoPlayer.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import HeroImage from '@/components/HeroImage.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
@@ -134,6 +141,7 @@ export default Vue.extend({
   mixins: [doodles],
   components: {
     PageHeader,
+    VideoPlayer,
     PageFooter,
     HeroImage,
     BaseHeading,
