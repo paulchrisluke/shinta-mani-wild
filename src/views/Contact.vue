@@ -14,8 +14,8 @@
           :rest="{autoplay: true, muted: false, loop: false}"
         ></video-player>
       </div>
-      
-      <div class="container is-small mt-5 mb-6 page-description">
+
+      <div class="container is-small page-description clearfix my-5">
         <article>
           <base-heading
             :show-placeholder="!resort.id"
@@ -33,8 +33,8 @@
           </div>
           <p
             v-else
-            class="mb-0 px-5"
-            v-read-more="{lineHeight: 24, lines: 3, linkClass: 'd-block float-right'}"
+            class="mb-0 px-3"
+            v-read-more="{lineHeight: 24, lines: 3, linkClass: 'd-block float-left px-3'}"
             v-text="resort.description"
           ></p>
         </article>
@@ -42,8 +42,8 @@
 
       <div class="container is-small mb-5">
         <div class="row">
-          <div class="col-6">
-            <div class="mb-3">
+          <div class="col-12 col-md-6">
+            <div class="mb-3 ">
               <h2 class="font-sans-serif text-dark mb-3 text-small-caps font-weight-normal">Call us</h2>
               <div class="d-flex">
                 <img

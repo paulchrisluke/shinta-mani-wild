@@ -45,6 +45,7 @@
 }
 .read-more-link {
   font-size: rem(12px);
+  color: $brand-3;
   &:hover {
     text-decoration: none;
   }
@@ -110,9 +111,6 @@ body,
 
 .read-more-content {
   transition: height 300ms ease;
-}
-.read-more-link {
-  color: $brand-3;
 }
 
 // dropdown
@@ -210,6 +208,9 @@ body,
   }
   .description-placeholder {
     height: rem(72px);
+  }
+  .read-more-link {
+    margin-top: rem(8px);
   }
 }
 

@@ -63,7 +63,7 @@
       </div>
       <p
         class="description mb-0"
-        v-read-more="{lineHeight: 18, lines: previewLinesOfReadMore, linkClass: 'd-block float-right mb-3'}"
+        v-read-more="{lineHeight: 18, lines: previewLinesOfReadMore, linkClass: 'd-block mb-3'}"
         v-text="item.content"
       ></p>
     </div>
