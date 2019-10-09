@@ -48,13 +48,34 @@ export function changeUrlExtension(url: string, newExtension: string): string {
 }
 
 export function transformCloudinaryUrl(
-  imageUrl: string,
+  resourceUrl: string,
   transformations: string
 ): string {
-  const urlParts = imageUrl.split('/')
+  if (
+    !resourceUrl ||
+    !transformations ||
+    resourceUrl.indexOf('cloudinary') < 0
+  ) {
+    return resourceUrl
+  }
+  const urlParts = resourceUrl.split('/')
+
   const indexOfUpload = urlParts.indexOf('upload')
   urlParts.splice(indexOfUpload + 1, 0, transformations)
   return urlParts.join('/')
+}
+
+export function getPosterImage(
+  videoUrl: string,
+  transformations: string
+): string | null {
+  if (!videoUrl) {
+    return null
+  }
+  return transformCloudinaryUrl(
+    changeUrlExtension(videoUrl, 'jpg'),
+    transformations
+  )
 }
 
 export function hasAudio(video: any) {

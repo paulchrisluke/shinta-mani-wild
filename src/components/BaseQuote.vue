@@ -3,14 +3,12 @@
     <div class="quote--inner text-dark px-5 py-4 d-flex flex-column justify-content-between w-100">
       <div class="quote--line flex-shrink-0 position-relative is-top mb-4"></div>
       <div class="quote--bird position-absolute"></div>
-      <div class="quote--text position-relative pl-5">
-        <content-placeholders v-if="showPlaceholder" centered rounded>
-          <content-placeholders-text :lines="4" />
-        </content-placeholders>
-        <div v-else>
-          <div v-read-more="{lineHeight: 36, lines: 4, linkClass: 'd-block float-left'}">
-            <slot />
-          </div>
+      <content-placeholders v-if="showPlaceholder" centered rounded>
+        <content-placeholders-text :lines="4" />
+      </content-placeholders>
+      <div v-else class="quote--text position-relative pl-5 mb-auto">
+        <div v-read-more="{lineHeight: 36, lines: 4, linkClass: 'd-block float-right'}">
+          <slot />
         </div>
       </div>
       <div class="quote--line flex-shrink-0 position-relative is-bottom mt-3"></div>
@@ -40,15 +38,15 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-$quote-height: 302px;
+$quote-height: 288px;
 .base-quote {
-  min-height: rem($quote-height);
   width: 100%;
   max-width: 100%;
   border-radius: rem(20px);
   background-color: $brand-5;
   box-shadow: $box-shadow-md, $box-shadow-sm;
 }
+.base-quote,
 .quote--inner {
   min-height: rem($quote-height);
 }

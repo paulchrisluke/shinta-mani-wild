@@ -5,8 +5,14 @@
       <!-- header -->
       <page-header :is-view-tents-visible="false"></page-header>
 
-      <div>
-        <hero-image :image="resort.featuredImage"></hero-image>
+      <!-- player -->
+      <div class="hero position-relative">
+        <video-player
+          v-if="resort.id"
+          :source="resort.name"
+          :poster="transformCloudinaryUrl(resort.featuredImage, `q_auto:good,w_${pageWidth},ar_${heroVideoRatio},c_fill,g_west`)"
+          :rest="{autoplay: true, muted: false, loop: false}"
+        ></video-player>
       </div>
 
       <div class="parallax-container position-relative py-5">
@@ -35,34 +41,34 @@
           </article>
         </div>
 
-      <!-- accommodations -->
-      <section class="container is-small mb-5 featured-items">
-        <template v-if="!resort.id">
-          <div class="row">
-            <content-placeholders :class="`col-${12 / 3}`" rounded v-for="item in 3" :key="item">
-              <content-placeholders-img />
-              <content-placeholders-text :lines="2" />
-            </content-placeholders>
+        <!-- accommodations -->
+        <section class="container is-small mb-5 featured-items">
+          <template v-if="!resort.id">
+            <div class="row">
+              <content-placeholders :class="`col-6 col-sm-${12 / 3}`" rounded v-for="item in 3" :key="item">
+                <content-placeholders-img />
+                <content-placeholders-text :lines="2" />
+              </content-placeholders>
+            </div>
+          </template>
+          <div v-else class="row">
+            <div
+              :class="`col-6 col-sm-${12 / 3}`"
+              v-for="(item, index) in accommodationsAsStories.slice(0, 3)"
+              :key="index"
+            >
+              <!-- NOTE: data has no video preview in this section -->
+              <article-list-item
+                :href="`/listing/${item.slug}`"
+                :preview-transformations="'q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none'"
+                :poster-transformations="'q_auto:best,w_288,h_192,c_fill,g_auto'"
+                :image-box-class="'ratio-3-2'"
+                :preview-lines-of-read-more="2"
+                :item="item"
+              />
+            </div>
           </div>
-        </template>
-        <div v-else class="row">
-          <div
-            :class="`col-${12 / 3}`"
-            v-for="(item, index) in accommodationsAsStories.slice(0, 3)"
-            :key="index"
-          >
-            <!-- NOTE: data has no video preview in this section -->
-            <article-list-item
-              :href="`/listing/${item.slug}`"
-              :preview-transformations="'q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none'"
-              :poster-transformations="'q_auto:best,w_288,h_192,c_fill,g_auto'"
-              :image-box-class="'ratio-3-2'"
-              :preview-lines-of-read-more="2"
-              :item="item"
-            />
-          </div>
-        </div>
-      </section>
+        </section>
 
         <!-- quote -->
         <section class="container is-small">
@@ -216,6 +222,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import PageHeader from '@/components/PageHeader.vue'
+import VideoPlayer from '@/components/VideoPlayer.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import HeroImage from '@/components/HeroImage.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
@@ -233,6 +240,7 @@ export default Vue.extend({
   mixins: [doodles],
   components: {
     PageHeader,
+    VideoPlayer,
     PageFooter,
     HeroImage,
     BaseHeading,
@@ -307,17 +315,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.page-description::v-deep {
-  .heading-placeholder {
-    height: rem(100px);
-  }
-  .vue-content-placeholders-heading {
-    height: 100%;
-  }
-  .description-placeholder {
-    height: rem(72px);
-  }
-}
 .featured-items {
   min-height: rem(318px);
   &::v-deep {

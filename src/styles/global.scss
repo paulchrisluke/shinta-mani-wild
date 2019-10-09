@@ -43,8 +43,21 @@
 .text-black {
   color: $black;
 }
+.read-more-link {
+  font-size: rem(12px);
+  color: $brand-3;
+  &:hover {
+    text-decoration: none;
+  }
+}
 
 // utilities
+.h-inherit {
+  height: inherit;
+}
+.mh-inherit {
+  max-height: inherit;
+}
 .user-select-none {
   user-select: none;
 }
@@ -99,10 +112,6 @@ body,
 .read-more-content {
   transition: height 300ms ease;
 }
-.read-more-link {
-  color: $brand-3;
-  margin-top: .5rem;
-}
 
 // dropdown
 .dropdown-item {
@@ -112,11 +121,19 @@ body,
 // background doodle images
 .parallax-container {
   overflow-y: hidden;
+  // TODO: horizontally scroll in the mobile
+  @include media-breakpoint-down(sm) {
+    overflow-x: hidden;
+  }
 }
 .doodle {
   max-width: rem(700px);
   max-height: rem(700px);
   z-index: -1;
+  @include media-breakpoint-down(sm) {
+    max-width: rem(340px);
+    max-height: rem(340px);
+  }
 }
 .doodle-item-0-0 {
   top: 10vh;
@@ -164,13 +181,41 @@ body,
 }
 
 // hero
-.hero-image {
-  height: rem($hero-height);
-  @include hero-placeholder();
+.hero {
+  max-height: rem($hero-height);
+  background-color: $black;
+  box-shadow: $box-shadow-md, $box-shadow-sm;
+  &.has-inner-shadow {
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      content: '';
+      display: block;
+      background: $linear-gradient-md;
+    }
+  }
 }
 
-// @media(max-width:768px){
-//   .read-more-content {
-//     margin-bottom:4rem;
-//   }
-// }
+.page-description {
+  .heading-placeholder {
+    height: rem(83px);
+  }
+  .vue-content-placeholders-heading {
+    height: 100%;
+  }
+  .description-placeholder {
+    height: rem(72px);
+  }
+  .read-more-link {
+    margin-top: rem(8px);
+  }
+}
+
+.debug {
+  background: $white;
+  padding: 1rem;
+  position: absolute;
+}

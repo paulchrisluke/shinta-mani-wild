@@ -51,19 +51,19 @@
         </div>
 
         <h3
-          class="title font-sans-serif text-small-caps my-2 d-flex align-items-center"
+          class="article-list-item--title font-sans-serif text-small-caps my-2 d-flex align-items-center"
           :class="titleClass"
         >
           <a
             :href="href"
-            class="title-link text-black stretched-link text-decoration-none"
+            class="article-list-item--title-link text-black stretched-link text-decoration-none"
             v-text="item.ctaText"
           ></a>
         </h3>
       </div>
       <p
         class="description mb-0"
-        v-read-more="{lineHeight: 18, lines: previewLinesOfReadMore, linkClass: 'd-block float-left mb-3'}"
+        v-read-more="{lineHeight: 18, lines: previewLinesOfReadMore, linkClass: 'd-block mb-3'}"
         v-text="item.content"
       ></p>
     </div>
@@ -125,17 +125,21 @@ export default Vue.extend({
 </script>
 
 <style lang='scss' scoped>
-.title {
-  line-height: 0.85;
+.article-list-item--title {
+  line-height: 1;
   height: rem(28px);
 }
 .featured-items {
-  .title {
-    line-height: 0.75;
+  .article-list-item--title {
     height: rem(48px);
   }
+  &.is-huge {
+    .article-list-item--title {
+      line-height: 0.8;
+    }
+  }
 }
-.title-link {
+.article-list-item--title-link {
   @include line-clamp(2);
 }
 .description {

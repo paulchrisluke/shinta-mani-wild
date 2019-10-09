@@ -65,13 +65,13 @@
                   <music-bars />
                 </div>
                 <!-- like -->
-                <a @click.stop.prevent class="like my-3 ml-auto" href="#">
+                <!-- <a @click.stop.prevent class="like my-3 ml-auto" href="#">
                   <img
                     class="like-image d-block"
                     src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402128/Shinta%20Mani%20Wild/general/icon-like-outline_dlymsz.svg"
                     alt
                   />
-                </a>
+                </a>-->
               </div>
             </div>
           </div>
@@ -123,7 +123,8 @@ import { isNumber } from 'lodash-es'
 import {
   changeUrlExtension,
   transformCloudinaryUrl,
-  hasAudio
+  hasAudio,
+  getPosterImage
 } from '../helpers'
 import { GalleryImage, Story } from '../types'
 export default Vue.extend({
@@ -184,7 +185,7 @@ export default Vue.extend({
       if (this.isImageItem(item)) {
         return transformCloudinaryUrl((item as GalleryImage).url, 'q_auto:best')
       }
-      return this.getPosterImage((item as Story).image, 'q_25')
+      return getPosterImage((item as Story).image, 'q_25')
     },
     goToSlide(index: number) {
       this.swiper.slideTo(index)
@@ -236,12 +237,6 @@ export default Vue.extend({
       return (
         // preload 2 images out of view
         Math.abs(index - this.swiper.activeIndex) <= maxVisibleSlides / 2 + 2
-      )
-    },
-    getPosterImage(videoUrl: string, transformations: string) {
-      return transformCloudinaryUrl(
-        changeUrlExtension(videoUrl, 'jpg'),
-        transformations
       )
     },
     onClickBack() {
@@ -452,7 +447,7 @@ export default Vue.extend({
   }
   .swiper-pagination-bullet {
     $default-transition: 15000ms;
-    width: rem(48px);
+    width: rem(18px);
     height: rem(4px);
     border-radius: rem(4px);
     background: rgba($white, 0.4);
@@ -460,7 +455,10 @@ export default Vue.extend({
     margin: 0 rem(2px);
     position: relative;
     overflow: hidden;
-    transition: all $default-transition linear;
+    transition: transform $default-transition linear;
+    @include media-breakpoint-up(md) {
+      width: rem(48px);
+    }
     &::before {
       content: '';
       display: block;
@@ -472,9 +470,6 @@ export default Vue.extend({
       transform: translateX(0%);
       background: $white;
       transition: inherit;
-    }
-    @media(max-width:768px){
-      width: 1.1rem;
     }
   }
   .swiper-pagination-bullet-active {
