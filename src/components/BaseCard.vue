@@ -2,10 +2,7 @@
   <div class="position-relative">
     <div class="ghost-wrapper px-3 d-xl-none">
       <div v-if="!showPlaceholder" class="ghost-card-image d-table mx-auto px-3">
-        <picture>
-          <source :srcset="image.xl.src" :media="`(min-width: ${gridBreakpoints.xl})`" />
-          <img :src="image.default.src" :alt="image.alt" />
-        </picture>
+        <img :src="image.url" :alt="image.text" />
       </div>
     </div>
     <div :class="{'flex-row-reverse': isLeft}" class="wrapper-card row no-gutters mx-3 mx-xl-0">
@@ -27,7 +24,7 @@
             class="card-image-wrapper skew-effect position-relative"
           >
             <div class="card-image position-relative">
-              <img :src="image.default.src" :alt="image.alt" />
+              <img :src="image.url" :alt="image.text" />
             </div>
           </div>
         </div>

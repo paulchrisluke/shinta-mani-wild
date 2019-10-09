@@ -1,6 +1,6 @@
 <template>
-  <article class="article-list-item">
-    <div class="pb-3">
+  <article class="article-list-item pb-3">
+    <div>
       <div @mouseover="onMouseOver" @mouseleave="onMouseLeave" class="position-relative">
         <!-- like -->
         <!-- issue #139 like button commented out-->
@@ -122,6 +122,9 @@ export default Vue.extend({
   height: rem(28px);
 }
 .featured-items {
+  .article-list-item {
+    padding-bottom: 0 !important;
+  }
   .article-list-item--title {
     height: rem(48px);
   }

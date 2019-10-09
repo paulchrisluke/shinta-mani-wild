@@ -238,13 +238,8 @@ export default Vue.extend({
         return
       }
       return {
-        alt: 'All Inclusive',
-        xl: {
-          src: image
-        },
-        default: {
-          src: image
-        }
+        text: 'All Inclusive',
+        url: image
       }
     },
     cardImage2(): object | undefined {
@@ -253,13 +248,8 @@ export default Vue.extend({
         return
       }
       return {
-        alt: 'Conservation',
-        xl: {
-          src: image
-        },
-        default: {
-          src: image
-        }
+        text: 'Conservation',
+        url: image
       }
     }
   },
