@@ -7,7 +7,7 @@
     >
       <template slot="action-button">
         <base-image-link
-          :class-name="'is-secondary is-md'"
+          :class-name="'is-secondary is-md is-tiny'"
           :text="'Book Now'"
           :href="cloudbedsBookingLink"
           :rest="{target: '_blank'}"
@@ -72,8 +72,13 @@ export default {
 
 <style lang="scss" scoped>
 $bar-height: rem(80px);
+$image-lik-height: rem(55px);
 .wrapper-ghost {
   height: $bar-height;
   z-index: 5;
+}
+.is-tiny {
+  height: $image-lik-height !important;
+  transform: scale(.65);
 }
 </style>
