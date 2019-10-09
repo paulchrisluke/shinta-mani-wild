@@ -16,7 +16,7 @@
       </div>
 
       <div class="parallax-container position-relative py-5">
-        <div class="container is-small page-description mb-5">
+        <div class="container is-small page-description clearfix mb-5">
           <article>
             <base-heading
               :show-placeholder="!resort.id"
@@ -35,7 +35,6 @@
             <p
               v-else
               class="mb-0"
-              v-read-more="{lineHeight: 24, lines: 3, linkClass: 'd-block float-right'}"
               v-text="resort.description"
             ></p>
           </article>

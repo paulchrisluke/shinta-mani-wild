@@ -43,12 +43,6 @@
 .text-black {
   color: $black;
 }
-.read-more-link {
-  font-size: rem(12px);
-  &:hover {
-    text-decoration: none;
-  }
-}
 
 // utilities
 .h-inherit {
@@ -106,13 +100,6 @@ body,
   left: 0;
   width: 100%;
   height: 100%;
-}
-
-.read-more-content {
-  transition: height 300ms ease;
-}
-.read-more-link {
-  color: $brand-3;
 }
 
 // dropdown

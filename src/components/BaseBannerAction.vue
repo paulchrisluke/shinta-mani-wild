@@ -20,7 +20,12 @@
               <span v-text="text"></span>
             </h2>
           </template>
-          <base-image-link :class-name="'is-secondary is-md'" :text="buttonText" :href="link" target="_blank"></base-image-link>
+          <base-image-link
+            :class-name="'is-secondary is-md'"
+            :text="buttonText"
+            :href="link"
+            target="_blank"
+          ></base-image-link>
         </div>
       </div>
     </div>
@@ -85,6 +90,11 @@ export default Vue.extend({
   right: 0;
   bottom: 0;
 }
+@include media-breakpoint-up(md) {
+  .banner-action--text {
+    line-height: 1.5;
+  }
+}
 .has-image:not(.has-video) {
   &::after {
     position: absolute;
@@ -92,11 +102,7 @@ export default Vue.extend({
     right: 0;
     left: 0;
     bottom: 0;
-    background: linear-gradient(
-      270deg,
-      transparent 33.33%,
-      $black 100%
-    );
+    background: linear-gradient(270deg, transparent 33.33%, $black 100%);
     content: '';
   }
 }

@@ -7,9 +7,7 @@
         <content-placeholders-text :lines="4" />
       </content-placeholders>
       <div v-else class="quote--text position-relative pl-5 mb-auto">
-        <div v-read-more="{lineHeight: 36, lines: 4, linkClass: 'd-block float-right'}">
-          <slot />
-        </div>
+        <slot />
       </div>
       <div class="quote--line flex-shrink-0 position-relative is-bottom mt-3"></div>
     </div>
@@ -38,17 +36,12 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-$quote-height: 288px;
 .base-quote {
   width: 100%;
   max-width: 100%;
   border-radius: rem(20px);
   background-color: $brand-5;
   box-shadow: $box-shadow-md, $box-shadow-sm;
-}
-.base-quote,
-.quote--inner {
-  min-height: rem($quote-height);
 }
 .quote--bird {
   z-index: 2;
@@ -99,9 +92,6 @@ $quote-height: 288px;
       text-align: right;
       margin-top: rem($quote-author-margin);
       line-height: rem($quote-text-line-height - $quote-author-margin);
-    }
-    .read-more-link {
-      font-size: rem(16px);
     }
   }
 }

@@ -16,7 +16,7 @@
       </div>
 
       <div class="parallax-container position-relative py-5">
-        <div class="container is-small page-description mb-5">
+        <div class="container is-small page-description mb-5 clearfix">
           <article>
             <base-heading
               :show-placeholder="!resort.id"
@@ -35,7 +35,6 @@
             <p
               v-else
               class="mb-0"
-              v-read-more="{lineHeight: 24, lines: 3, linkClass: 'd-block float-right'}"
               v-text="resort.description"
             ></p>
           </article>
@@ -47,10 +46,8 @@
             :route-props="{ returnTo: 'search', resortId: $route.params.id }"
             :image-box-class="'ratio-16-9'"
             :title-class="'h2 font-weight-normal'"
-            :preview-lines-of-read-more="2"
             :show-placeholder="!resort.id"
             :items-per-row="2"
-            :items-per-row-xs="1"
             :items="stories.slice(0,featuredStoriesCount)"
             preview-transformations="q_auto:low,e_preview:duration_10,w_440,h_248,c_fill,ar_16:9,ac_none"
             poster-transformations="q_auto:good,w_440,h_248,c_fill,g_auto"

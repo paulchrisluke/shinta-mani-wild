@@ -16,7 +16,7 @@
       </div>
 
       <div class="parallax-container position-relative py-5">
-        <div class="container is-small mb-5 page-description">
+        <div class="container is-small mb-5 page-description clearfix mb-4">
           <article>
             <base-heading
               :show-placeholder="!resort.id"
@@ -32,12 +32,7 @@
                 <content-placeholders-text :lines="3" />
               </content-placeholders>
             </div>
-            <p
-              v-else
-              class="mb-0"
-              v-read-more="{lineHeight: 24, lines: 3, linkClass: 'd-block float-right'}"
-              v-text="resort.description"
-            ></p>
+            <p v-else class="mb-0" v-text="resort.description"></p>
           </article>
         </div>
 
@@ -45,7 +40,12 @@
         <section class="container is-small mb-5 featured-items">
           <template v-if="!resort.id">
             <div class="row">
-              <content-placeholders :class="`col-6 col-sm-${12 / 3}`" rounded v-for="item in 3" :key="item">
+              <content-placeholders
+                :class="`col-6 col-sm-${12 / 3}`"
+                rounded
+                v-for="item in 3"
+                :key="item"
+              >
                 <content-placeholders-img />
                 <content-placeholders-text :lines="2" />
               </content-placeholders>
@@ -59,11 +59,11 @@
             >
               <!-- NOTE: data has no video preview in this section -->
               <article-list-item
+                :title-class="'h2 font-weight-normal'"
                 :href="`/listing/${item.slug}`"
                 :preview-transformations="'q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none'"
                 :poster-transformations="'q_auto:best,w_288,h_192,c_fill,g_auto'"
                 :image-box-class="'ratio-3-2'"
-                :preview-lines-of-read-more="2"
                 :item="item"
               />
             </div>
@@ -230,7 +230,7 @@ import BaseCard from '@/components/BaseCard.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import articleListItem from '@/components/BaseArticleListItem.vue'
-import { Story, Resort, Category } from '@/types'
+import { Story, Resort, Category, GalleryImage } from '@/types'
 import { get } from 'lodash-es'
 import { categoryToStoryBridge } from '@/helpers'
 import doodles from '@/mixins/doodles'
@@ -259,6 +259,10 @@ export default Vue.extend({
     resort(): Resort {
       return this.$store.getters['resort/getItem']
     },
+    cardImages(): GalleryImage[] {
+      const OrderOfCardsImages = 4
+      return get(this.resort, 'images', []).filter(item => item.order === OrderOfCardsImages)
+    },
     categories(): any {
       return this.$store.getters['category/getItems']
     },
@@ -274,36 +278,22 @@ export default Vue.extend({
         }
       })
     },
-    cardImage1(): object | undefined {
-      const image =
-        'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567747072/Shinta%20Mani%20Wild/Tents/All_Inclusive_-_Tent_Page_Shinta_Mani_Wild_kdfq4g.jpg'
-      if (!image) {
-        return
+    cardImage1(): object | null {
+      if (this.cardImages.length < 1) {
+        return null
       }
       return {
-        alt: 'All Inclusive',
-        xl: {
-          src: image
-        },
-        default: {
-          src: image
-        }
+        text: 'All Inclusive',
+        url: this.cardImages[0].url
       }
     },
-    cardImage2(): object | undefined {
-      const image =
-        'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568948083/Shinta%20Mani%20Wild/Tents/Head_Butler_Mac_-_Shinta_Mani_Wild_xxc4i9.jpg'
-      if (!image) {
-        return
+    cardImage2(): object | null {
+      if (this.cardImages.length < 1) {
+        return null
       }
       return {
-        alt: 'Conservation',
-        xl: {
-          src: image
-        },
-        default: {
-          src: image
-        }
+        text: 'Conservation',
+        url: this.cardImages[1].url
       }
     }
   },
