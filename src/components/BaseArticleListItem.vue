@@ -3,16 +3,16 @@
     <div class="pb-3">
       <div @mouseover="onMouseOver" @mouseleave="onMouseLeave" class="position-relative">
         <!-- like -->
-          <!-- issue #139 like button commented out--> 
+        <!-- issue #139 like button commented out-->
         <!-- <a class="like position-absolute">
           <img
             class="like-image d-block"
             src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568559589/Shinta%20Mani%20Wild/general/icon-like_bqhyu6.svg"
             alt
           />
-        </a> -->
+        </a>-->
 
-        <div class="article-list-item--media"> 
+        <div class="article-list-item--media">
           <!-- image -->
           <div
             key="poster"
@@ -61,11 +61,7 @@
           ></a>
         </h3>
       </div>
-      <p
-        class="description mb-0"
-        v-read-more="{lineHeight: 18, lines: previewLinesOfReadMore, linkClass: 'd-block mb-3'}"
-        v-text="item.content"
-      ></p>
+      <p class="description mb-0" v-text="item.content"></p>
     </div>
   </article>
 </template>
@@ -87,10 +83,6 @@ export default Vue.extend({
     href: {
       type: String,
       default: '#'
-    },
-    previewLinesOfReadMore: {
-      type: Number,
-      default: 3
     },
     imageBoxClass: {
       type: String,

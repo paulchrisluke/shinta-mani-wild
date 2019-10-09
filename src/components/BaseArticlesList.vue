@@ -3,7 +3,7 @@
     <template v-if="showPlaceholder">
       <div class="row">
         <content-placeholders
-          :class="`col-6 col-sm-3 col-md-4`"
+          :class="`col-${12 / itemsPerRow}`"
           rounded
           v-for="item in itemsPerRow"
           :key="item"
@@ -21,7 +21,6 @@
           :poster-transformations="posterTransformations"
           :image-box-class="imageBoxClass"
           :title-class="titleClass"
-          :preview-lines-of-read-more="previewLinesOfReadMore"
           :item="item"
         />
       </div>
