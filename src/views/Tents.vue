@@ -63,7 +63,6 @@
                 :preview-transformations="'q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none'"
                 :poster-transformations="'q_auto:best,w_288,h_192,c_fill,g_auto'"
                 :image-box-class="'ratio-3-2'"
-                :preview-lines-of-read-more="2"
                 :item="item"
               />
             </div>

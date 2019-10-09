@@ -47,7 +47,6 @@
             :route-props="{ returnTo: 'search', resortId: $route.params.id }"
             :image-box-class="'ratio-16-9'"
             :title-class="'h2 font-weight-normal'"
-            :preview-lines-of-read-more="2"
             :show-placeholder="!resort.id"
             :items-per-row="2"
             :items="stories.slice(0,featuredStoriesCount)"
