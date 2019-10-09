@@ -34,7 +34,6 @@
           <p
             v-else
             class="mb-0 px-3"
-            v-read-more="{lineHeight: 24, lines: 3, linkClass: 'd-block float-left px-3'}"
             v-text="resort.description"
           ></p>
         </article>
