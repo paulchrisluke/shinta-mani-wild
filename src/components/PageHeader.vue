@@ -135,7 +135,7 @@
 
 <style lang="scss" scoped>
 .page-header--base {
-  z-index: 1;
+  z-index: 10;
 }
 .page-header {
   background: $primary;
@@ -174,7 +174,7 @@
   }
   padding: rem(8px);
   background: $white;
-  z-index: 100000;
+  z-index: 10;
   .nav-title {
     font-size: rem(18px * $serif-font-size-correction);
     color: $primary;
