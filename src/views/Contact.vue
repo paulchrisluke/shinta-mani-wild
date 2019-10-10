@@ -1,11 +1,15 @@
 <template>
   <!-- design: https://www.figma.com/file/SiFZE7hhRKx2fWmrfZ3uy2RO/Shinta-Mani-Wild?node-id=553%3A6283 -->
   <div class="page page--contact">
-    <div class="page--content">
+    <div class="page--header-content">
       <!-- header -->
       <page-header></page-header>
 
-      <!-- player -->
+      <loading-progress />
+
+      <div class="page--content">
+
+        <!-- player -->
       <div class="hero position-relative">
         <video-player
           v-if="resort.id"
@@ -15,7 +19,7 @@
         ></video-player>
       </div>
 
-      <div class="container is-small page-description clearfix my-5">
+      <div class="container is-small page-description clearfix py-5">
         <article>
           <base-heading
             :show-placeholder="!resort.id"
@@ -39,7 +43,7 @@
         </article>
       </div>
 
-      <div class="container is-small mb-5">
+      <div class="container is-small pb-5">
         <div class="row">
           <div class="col-12 col-md-6">
             <div class="mb-3 ">
@@ -114,6 +118,9 @@
           </div>
         </div>
       </div>
+      
+      </div>
+      
     </div>
     <page-footer></page-footer>
   </div>
@@ -127,10 +134,12 @@ import PageFooter from '@/components/PageFooter.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
 import HeroImage from '@/components/HeroImage.vue'
 import BaseImageLink from '@/components/BaseImageLink.vue'
-import { Resort } from '../types'
+import loading from '@/mixins/loading'
+import { Resort } from '@/types'
 
 export default {
   name: 'contact',
+  mixins: [loading],
   components: {
     PageHeader,
     VideoPlayer,

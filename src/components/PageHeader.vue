@@ -1,7 +1,7 @@
 <template>
-  <div class="page-header--base position-relative">
+  <div class="page-header position-relative">
     <div class="page-header--ghost d-md-none"></div>
-    <div class="page-header">
+    <div class="page-header--content">
       <div class="container h-100">
         <div class="row h-100">
           <div class="col-12">
@@ -134,15 +134,15 @@
 </template>
 
 <style lang="scss" scoped>
-.page-header--base {
-  z-index: 10;
-}
 .page-header {
+  z-index: $header-zindex;
+}
+.page-header--content {
   background: $primary;
   box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.12),
     0px 16px 24px rgba(0, 0, 0, 0.14), 0px 8px 10px rgba(0, 0, 0, 0.2);
 }
-.page-header,
+.page-header--content,
 .page-header--inner,
 .page-header--ghost {
   height: rem($header-height-mobile);
@@ -191,14 +191,29 @@
   border: none;
   outline: none;
 }
+// TODO: use media-breakpoint-down(md)
 @media (max-width: 767px) {
-  .page-header {
+  .page-header--content {
     position: fixed;
     right: 0;
     left: 0;
     top: 0;
     z-index: 10;
   }
+}
+.dropdown-toggle {
+  &::after {
+    border: none;
+    margin-left: rem(8px);
+    background: no-repeat center
+      url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4xMzMzIDBMOCA0Ljk3Mjk3TDEuODY2NjcgMEwwIDEuNTEzNTFMOCA4TDE2IDEuNTEzNTFMMTQuMTMzMyAwWiIgZmlsbD0iI0ZGRkZGMCIvPjwvc3ZnPg==);
+    width: rem(16px);
+    height: rem(16px);
+    vertical-align: -0.1rem;
+  }
+}
+.dropdown-menu {
+  margin-top: rem(20px);
 }
 </style>
 
@@ -254,20 +269,3 @@ export default Vue.extend({
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.dropdown-toggle {
-  &::after {
-    border: none;
-    margin-left: rem(8px);
-    background: no-repeat center
-      url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4xMzMzIDBMOCA0Ljk3Mjk3TDEuODY2NjcgMEwwIDEuNTEzNTFMOCA4TDE2IDEuNTEzNTFMMTQuMTMzMyAwWiIgZmlsbD0iI0ZGRkZGMCIvPjwvc3ZnPg==);
-    width: rem(16px);
-    height: rem(16px);
-    vertical-align: -0.1rem;
-  }
-}
-.dropdown-menu {
-  margin-top: rem(20px);
-}
-</style>
