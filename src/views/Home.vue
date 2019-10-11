@@ -125,14 +125,19 @@
 
       <!-- press banner -->
       <div>
-        <section class="press-banner">
+        <section class="press-banner mx-auto">
           <a
             href="/search/press"
             target="_blank"
-            class="press-banner--link d-block h-100"
+            class="press-banner--link d-block"
             title="Press"
             aria-label="Press"
-          ></a>
+          >
+            <picture>
+              <source v-for="size in gridBreakpointsArray" :key="size" :media="`(max-width: ${size}px)`" :srcset="transformCloudinaryUrl(pressBannerImage, `w_${size},q_auto:best`)">
+              <img class="w-100" :src="transformCloudinaryUrl(pressBannerImage, 'q_auto:best')" alt="Shinta Mani Wild in Press">
+            </picture>
+          </a>
         </section>
       </div>
 
@@ -214,7 +219,8 @@ export default Vue.extend({
   },
   data() {
     return {
-      startedPlaying: false
+      startedPlaying: false,
+      pressBannerImage: 'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567397036/Shinta%20Mani%20Wild/home/Press_Banner_lvzdtx.jpg'
     }
   },
   mounted() {
@@ -278,17 +284,12 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.press-banner {
-  height: rem(300px);
-}
-.press-banner--link {
-  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567397036/Shinta%20Mani%20Wild/home/Press_Banner_lvzdtx.jpg')
-    center repeat-x;
-  background-size: auto 100%;
-}
 .page--home::v-deep {
   .card-image img {
     width: rem(410px);
   }
+}
+.press-banner {
+  max-width: rem(1920px);
 }
 </style>
