@@ -67,6 +67,9 @@ body,
 .page {
   min-height: 100vh;
 }
+[page-is-loading] {
+  overflow: hidden;
+}
 .container.is-small {
   max-width: rem($container-small);
 }
@@ -74,8 +77,16 @@ body,
   display: flex;
   flex-direction: column;
 }
-.page--content {
+.page--header-content {
   flex-grow: 1;
+}
+.page-header {
+  z-index: $header-zindex;
+  position: relative;
+}
+.page--content {
+  z-index: $page-content-zindex;
+  position: relative;
 }
 .aspect-ratio-box {
   height: 0;

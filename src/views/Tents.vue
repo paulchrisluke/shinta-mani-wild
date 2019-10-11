@@ -1,9 +1,11 @@
 <template>
   <!-- design file: https://www.figma.com/file/SiFZE7hhRKx2fWmrfZ3uy2RO/Shinta-Mani-Wild?node-id=553%3A4724 -->
   <div class="page page--tents">
-    <div class="page--content">
+    <div class="page--header-content">
       <!-- header -->
       <page-header :is-view-tents-visible="false"></page-header>
+
+      <loading-progress />
 
       <!-- player -->
       <div class="hero position-relative">
@@ -230,14 +232,15 @@ import BaseCard from '@/components/BaseCard.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import articleListItem from '@/components/BaseArticleListItem.vue'
+import doodles from '@/mixins/doodles'
+import loading from '@/mixins/loading'
 import { Story, Resort, Category, GalleryImage } from '@/types'
 import { get } from 'lodash-es'
 import { categoryToStoryBridge } from '@/helpers'
-import doodles from '@/mixins/doodles'
 
 export default Vue.extend({
   name: 'listing',
-  mixins: [doodles],
+  mixins: [doodles, loading],
   components: {
     PageHeader,
     VideoPlayer,
