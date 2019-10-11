@@ -191,8 +191,7 @@
   border: none;
   outline: none;
 }
-// TODO: use media-breakpoint-down(md)
-@media (max-width: 767px) {
+@include media-breakpoint-down(sm) {
   .page-header--content {
     position: fixed;
     right: 0;

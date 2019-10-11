@@ -1,9 +1,9 @@
 <template>
-  <section>
+  <section class="article-list">
     <template v-if="showPlaceholder">
       <div class="row">
         <content-placeholders
-          :class="`col-${12 / itemsPerRow}`"
+          :class="columnClasses"
           rounded
           v-for="item in itemsPerRow"
           :key="item"
@@ -14,7 +14,7 @@
       </div>
     </template>
     <div v-else-if="items.length > 0" class="row">
-      <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items.slice(itemsOffset)" :key="index">
+      <div class="article-list--column" :class="columnClasses" v-for="(item, index) in items.slice(itemsOffset)" :key="index">
         <article-list-item
           :href="`/story/${routeProps.resortId}/${index + itemsOffset}?returnTo=${routeProps.returnTo}`"
           :preview-transformations="previewTransformations"
@@ -51,6 +51,10 @@ export default Vue.extend({
     itemsPerRow: {
       type: Number,
       default: 4
+    },
+    columnClasses: {
+      type: String,
+      default: 'col-6 col-sm-4 col-md-3'
     },
     showPlaceholder: {
       type: Boolean,

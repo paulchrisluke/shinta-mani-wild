@@ -55,7 +55,7 @@
           </template>
           <div v-else class="row">
             <div
-              :class="`col-6 col-sm-${12 / 3}`"
+              :class="`col-6 col-sm-${12 / 3} mb-3 mb-md-0`"
               v-for="(item, index) in accommodationsAsStories.slice(0, 3)"
               :key="index"
             >
@@ -254,8 +254,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      slug: 'tents',
-      featuredStoriesCount: 0
+      slug: 'tents'
     }
   },
   computed: {
@@ -309,7 +308,9 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .featured-items {
-  min-height: rem(318px);
+  @include media-breakpoint-up(md) {
+    min-height: rem(318px);
+  }
   &::v-deep {
     .vue-content-placeholders-img {
       height: rem(192px);
