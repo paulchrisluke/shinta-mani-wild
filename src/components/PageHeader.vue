@@ -88,9 +88,11 @@
               <nav>
                 <ul
                   v-if="isMobileMenuTentsOpen"
-                  class="nav mobile-menu-open fixed-top user-select-none text-small-caps font-weight-light"
+                  class="page-header--mobile-nav nav fixed-top user-select-none text-small-caps font-weight-normal"
                 >
-                  <li class="col-12 nav-item nav-title font-serif mx-1 mt-2">Tents</li>
+                  <li class="col-12 nav-item nav-title font-serif mx-1 mt-2">
+                    <a class="nav-link px-0" href="/tents">Tents</a>
+                  </li>
                   <div class="col-12">
                     <hr class="my-2" />
                   </div>
@@ -164,7 +166,7 @@
 .font-serif {
   font-size: rem(16px * $serif-font-size-correction);
 }
-.mobile-menu-open {
+.page-header--mobile-nav {
   display: block;
   width: 100%;
   height: 100%;
@@ -173,17 +175,20 @@
     top: rem($header-height);
   }
   padding: rem(8px);
-  background: $white;
+  background: $brand-1;
   z-index: 10;
-  .nav-title {
-    font-size: rem(18px * $serif-font-size-correction);
-    color: $primary;
-  }
   .nav-link {
     color: $black;
   }
+  .nav-title {
+    font-size: rem(18px * $serif-font-size-correction);
+    color: $primary;
+    .nav-link {
+      color: $primary;
+    }
+  }
   hr {
-    background: $primary;
+    background: darken($brand-1, 20%);
   }
 }
 .hamburger-icon {
@@ -191,8 +196,7 @@
   border: none;
   outline: none;
 }
-// TODO: use media-breakpoint-down(md)
-@media (max-width: 767px) {
+@include media-breakpoint-down(sm) {
   .page-header--content {
     position: fixed;
     right: 0;
