@@ -84,6 +84,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .page-footer {
+  z-index: $footer-zindex;
   background-color: $primary;
   box-shadow: $box-shadow-sm-top, $box-shadow-md-top;
   @include media-breakpoint-down(md) {

@@ -2,9 +2,13 @@
   <!-- design file: https://www.figma.com/file/SiFZE7hhRKx2fWmrfZ3uy2RO/Shinta-Mani-Wild -->
 
   <div class="page page--home">
-    <div class="page--content">
+    <div class="page--header-content">
       <!-- header -->
       <page-header></page-header>
+
+      <loading-progress />
+
+      <div class="page--content">
 
       <!-- player -->
       <div class="hero position-relative">
@@ -172,6 +176,7 @@
         </template>
       </div>
     </div>
+    </div>
 
     <page-footer></page-footer>
   </div>
@@ -188,13 +193,14 @@ import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import BaseGalleryList from '@/components/BaseGalleryList.vue'
 import PageFooter from '@/components/PageFooter.vue'
+import loading from '@/mixins/loading'
+import doodles from '@/mixins/doodles'
 import { Resort, ResortImage, GalleryImage } from '@/types.ts'
 import { get } from 'lodash-es'
-import doodles from '@/mixins/doodles'
 
 export default Vue.extend({
   name: 'home',
-  mixins: [doodles],
+  mixins: [doodles, loading],
   components: {
     PageHeader,
     VideoPlayer,

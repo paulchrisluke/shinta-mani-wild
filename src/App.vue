@@ -1,11 +1,16 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link>|
-    </div>-->
-    <router-view :key="$route.name + ($route.params.id || '')"/>
+    <router-view :key="$route.name + ($route.params.id || '')" />
   </div>
 </template>
+
+<script lang='ts'>
+import Vue from 'vue'
+export default Vue.extend({
+  name: 'app'
+})
+</script>
+
 
 <style lang="scss">
 @import '@/styles/global.scss';

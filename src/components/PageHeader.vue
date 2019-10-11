@@ -1,7 +1,7 @@
 <template>
-  <div class="page-header--base position-relative">
+  <div class="page-header position-relative">
     <div class="page-header--ghost d-md-none"></div>
-    <div class="page-header">
+    <div class="page-header--content">
       <div class="container h-100">
         <div class="row h-100">
           <div class="col-12">
@@ -85,64 +85,74 @@
                   src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570355029/Shinta%20Mani%20Wild/general/menu_24px_e3zpqv.svg"
                 />
               </button>
-              <nav>
-                <ul
-                  v-if="isMobileMenuTentsOpen"
-                  class="nav mobile-menu-open fixed-top user-select-none text-small-caps font-weight-light"
-                >
-                  <li class="col-12 nav-item nav-title font-serif mx-1 mt-2">Tents</li>
-                  <div class="col-12">
-                    <hr class="my-2" />
-                  </div>
-                  <li class="col-12 nav-item">
-                    <a class="nav-link px-0 py-1" href="/listing/wild-tents">Wild Tents</a>
-                  </li>
-                  <li class="col-12 nav-item">
-                    <a class="nav-link px-0 py-1" href="/listing/waterfall-tents">Waterfall Tents</a>
-                  </li>
-                  <li class="col-12 nav-item">
-                    <a class="nav-link px-0 py-1" href="/listing/two-bedroom-tent">Two Bedroom Tent</a>
-                  </li>
-                  <li class="col-12 nav-item nav-title font-serif mt-3">Things to Do</li>
-                  <div class="col-12">
-                    <hr class="my-2" />
-                  </div>
-                  <li class="col-12 nav-item">
-                    <a href="/search/adventure" class="nav-link px-0 py-1">Adventures</a>
-                  </li>
-                  <li class="col-12 nav-item">
-                    <a href="/search/food-and-drink" class="nav-link px-0 py-1">Food and Drink</a>
-                  </li>
-                  <li class="col-12 nav-item">
-                    <a href="/search/wellness" class="nav-link px-0 py-1">Wellness</a>
-                  </li>
-                  <li class="col-12 mt-6 fixed-bottom mb-3" v-if="isViewTentsVisible">
-                    <base-image-link
-                      :class-name="'is-secondary is-md w-100'"
-                      :href="'/tents'"
-                      :text="'View Tents'"
-                    ></base-image-link>
-                  </li>
-                </ul>
-              </nav>
             </div>
           </div>
         </div>
       </div>
+
+      <nav
+        class="page-header--mobile d-flex flex-column justify-content-between"
+        v-if="isMobileMenuTentsOpen"
+      >
+        <ul
+          class="page-header--mobile-links row px-2 nav user-select-none text-small-caps font-weight-normal mb-4"
+        >
+          <li class="col-12 nav-item nav-title font-serif mt-2">
+            <a class="nav-link px-0" href="/tents">Tents</a>
+          </li>
+          <div class="col-12">
+            <hr class="my-2" />
+          </div>
+          <li class="col-12 nav-item">
+            <a class="nav-link px-0 py-1" href="/listing/wild-tents">Wild Tents</a>
+          </li>
+          <li class="col-12 nav-item">
+            <a class="nav-link px-0 py-1" href="/listing/waterfall-tents">Waterfall Tents</a>
+          </li>
+          <li class="col-12 nav-item">
+            <a class="nav-link px-0 py-1" href="/listing/two-bedroom-tent">Two Bedroom Tent</a>
+          </li>
+          <li class="col-12 nav-item nav-title font-serif mt-3">Things to Do</li>
+          <div class="col-12">
+            <hr class="my-2" />
+          </div>
+          <li class="col-12 nav-item">
+            <a href="/search/adventure" class="nav-link px-0 py-1">Adventures</a>
+          </li>
+          <li class="col-12 nav-item">
+            <a href="/search/food-and-drink" class="nav-link px-0 py-1">Food and Drink</a>
+          </li>
+          <li class="col-12 nav-item">
+            <a href="/search/wellness" class="nav-link px-0 py-1">Wellness</a>
+          </li>
+          <div class="col-12 mt-3">
+            <hr class="my-2" />
+          </div>
+          <li class="col-12 nav-item">
+            <a href="/contact" class="nav-link px-0 py-1">Contact</a>
+          </li>
+        </ul>
+
+        <base-image-link
+          :class-name="'is-secondary is-md w-100'"
+          :href="'/tents'"
+          :text="'View Tents'"
+        ></base-image-link>
+      </nav>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.page-header--base {
-  z-index: 10;
-}
 .page-header {
+  z-index: $header-zindex;
+}
+.page-header--content {
   background: $primary;
   box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.12),
     0px 16px 24px rgba(0, 0, 0, 0.14), 0px 8px 10px rgba(0, 0, 0, 0.2);
 }
-.page-header,
+.page-header--content,
 .page-header--inner,
 .page-header--ghost {
   height: rem($header-height-mobile);
@@ -164,41 +174,60 @@
 .font-serif {
   font-size: rem(16px * $serif-font-size-correction);
 }
-.mobile-menu-open {
-  display: block;
+.page-header--mobile {
   width: 100%;
-  height: 100%;
+  height: calc(100vh - #{rem($header-height-mobile)});
   top: rem($header-height-mobile);
   @include media-breakpoint-up(md) {
     top: rem($header-height);
   }
   padding: rem(8px);
-  background: $white;
+  background: $brand-1;
   z-index: 10;
+  .nav-link {
+    color: $gray-2f;
+  }
   .nav-title {
     font-size: rem(18px * $serif-font-size-correction);
     color: $primary;
-  }
-  .nav-link {
-    color: $black;
+    .nav-link {
+      color: $primary;
+    }
   }
   hr {
-    background: $primary;
+    background: darken($brand-1, 20%);
   }
+}
+.page-header--mobile-links {
+  overflow-y: auto;
 }
 .hamburger-icon {
   background: transparent;
   border: none;
   outline: none;
 }
-@media (max-width: 767px) {
-  .page-header {
+@include media-breakpoint-down(sm) {
+  .page-header--content {
     position: fixed;
     right: 0;
     left: 0;
     top: 0;
     z-index: 10;
   }
+}
+.dropdown-toggle {
+  &::after {
+    border: none;
+    margin-left: rem(8px);
+    background: no-repeat center
+      url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4xMzMzIDBMOCA0Ljk3Mjk3TDEuODY2NjcgMEwwIDEuNTEzNTFMOCA4TDE2IDEuNTEzNTFMMTQuMTMzMyAwWiIgZmlsbD0iI0ZGRkZGMCIvPjwvc3ZnPg==);
+    width: rem(16px);
+    height: rem(16px);
+    vertical-align: -0.1rem;
+  }
+}
+.dropdown-menu {
+  margin-top: rem(20px);
 }
 </style>
 
@@ -227,7 +256,7 @@ export default Vue.extend({
   },
   mounted() {
     this.clickOutsideDropdownListener()
-    window.addEventListener('resize', this.resetClassFromBody)
+    window.addEventListener('resize', this.resetResponsiveMenu)
   },
   methods: {
     clickOutsideDropdownListener() {
@@ -244,30 +273,14 @@ export default Vue.extend({
     onClickOutsideDropdown() {
       this.isDropdownTentsOpen = false
     },
-    resetClassFromBody() {
+    resetResponsiveMenu() {
       myBody.classList.remove('overflow-hidden')
+      this.isMobileMenuTentsOpen = false
     }
   },
   destroyed() {
     document.removeEventListener('click', this.onClickOutsideDropdown)
-    this.resetClassFromBody()
+    this.resetResponsiveMenu()
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.dropdown-toggle {
-  &::after {
-    border: none;
-    margin-left: rem(8px);
-    background: no-repeat center
-      url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4xMzMzIDBMOCA0Ljk3Mjk3TDEuODY2NjcgMEwwIDEuNTEzNTFMOCA4TDE2IDEuNTEzNTFMMTQuMTMzMyAwWiIgZmlsbD0iI0ZGRkZGMCIvPjwvc3ZnPg==);
-    width: rem(16px);
-    height: rem(16px);
-    vertical-align: -0.1rem;
-  }
-}
-.dropdown-menu {
-  margin-top: rem(20px);
-}
-</style>

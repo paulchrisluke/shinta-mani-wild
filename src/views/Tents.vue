@@ -1,9 +1,11 @@
 <template>
   <!-- design file: https://www.figma.com/file/SiFZE7hhRKx2fWmrfZ3uy2RO/Shinta-Mani-Wild?node-id=553%3A4724 -->
   <div class="page page--tents">
-    <div class="page--content">
+    <div class="page--header-content">
       <!-- header -->
       <page-header :is-view-tents-visible="false"></page-header>
+
+      <loading-progress />
 
       <!-- player -->
       <div class="hero position-relative">
@@ -53,7 +55,7 @@
           </template>
           <div v-else class="row">
             <div
-              :class="`col-6 col-sm-${12 / 3}`"
+              :class="`col-6 col-sm-${12 / 3} mb-3 mb-md-0`"
               v-for="(item, index) in accommodationsAsStories.slice(0, 3)"
               :key="index"
             >
@@ -230,14 +232,15 @@ import BaseCard from '@/components/BaseCard.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import articleListItem from '@/components/BaseArticleListItem.vue'
+import doodles from '@/mixins/doodles'
+import loading from '@/mixins/loading'
 import { Story, Resort, Category, GalleryImage } from '@/types'
 import { get } from 'lodash-es'
 import { categoryToStoryBridge } from '@/helpers'
-import doodles from '@/mixins/doodles'
 
 export default Vue.extend({
   name: 'listing',
-  mixins: [doodles],
+  mixins: [doodles, loading],
   components: {
     PageHeader,
     VideoPlayer,
@@ -251,8 +254,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      slug: 'tents',
-      featuredStoriesCount: 0
+      slug: 'tents'
     }
   },
   computed: {
@@ -306,7 +308,9 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .featured-items {
-  min-height: rem(318px);
+  @include media-breakpoint-up(md) {
+    min-height: rem(318px);
+  }
   &::v-deep {
     .vue-content-placeholders-img {
       height: rem(192px);
