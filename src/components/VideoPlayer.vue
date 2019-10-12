@@ -4,19 +4,17 @@
     :class="{ 'has-inner-shadow': !isStarted}"
     class="video-player mh-inherit position-relative cursor-pointer"
   >
-    <!-- <pre class="debug">
-      isPaused: {{this.isPaused}}
-    </pre> -->
-
     <div
       v-if="!isStarted"
       class="video-poster position-absolute h-100"
-      :style="{'background-image': `url(${poster})`}"
+      :style="{'background-image': `url(${getPosterImage(source, `q_auto:good,w_${pageWidth},ar_${heroVideoRatio},c_fill,g_west`)})`}"
     ></div>
 
     <video
       ref="video"
       class="video-player--video d-block w-100 mh-inherit"
+      muted
+      playsinline
       @play="onPlay"
       @ended="onEnd"
       v-bind="rest"
@@ -29,6 +27,16 @@
       :class="{'is-paused': isStarted && !isEnded && isPaused, 'is-ended': isEnded}"
       class="video-player--overlay position-absolute"
     ></div>
+
+    <div class="video-player--tools position-absolute">
+      <a
+        v-if="isStarted"
+        aria-label="Toggle Sound"
+        @click.stop.prevent="toggleMute"
+        class="mute-toggle d-block cursor-pointer hover-button-bg ml-2 mb-2"
+        :class="{'is-mute': isMute, 'has-sound': !isMute}"
+      ></a>
+    </div>
   </div>
 </template>
 
@@ -40,14 +48,29 @@ export default Vue.extend({
       videoElement: {} as HTMLVideoElement,
       isStarted: false,
       isEnded: false,
-      isPaused: false
+      isPaused: false,
+      isMute: true
     }
   },
   mounted() {
     this.videoElement = this.$refs.video as HTMLVideoElement
-    this.setVolume(0.2)
+    this.restoreSettings()
   },
   methods: {
+    restoreSettings() {
+      const isMute = localStorage.getItem('video-player-muted')
+      if (isMute !== null) {
+        this.setSound(JSON.parse(isMute))
+      }
+    },
+    setSound(isMute: boolean) {
+      this.isMute = isMute
+      this.videoElement.muted = isMute
+      localStorage.setItem('video-player-muted', String(isMute))
+    },
+    toggleMute() {
+      this.setSound(!this.isMute)
+    },
     onClickVideo() {
       if (this.isEnded) {
         this.replay()
@@ -55,9 +78,6 @@ export default Vue.extend({
         this.togglePlay()
       }
       this.isPaused = this.videoElement.paused
-    },
-    setVolume(volume: number) {
-      this.videoElement.volume = volume
     },
     replay() {
       this.isEnded = false
@@ -83,9 +103,6 @@ export default Vue.extend({
   },
   props: {
     source: {
-      type: String
-    },
-    poster: {
       type: String
     },
     rest: {
@@ -121,5 +138,28 @@ export default Vue.extend({
     background-size: rem(64px);
   }
   @include stick-around;
+}
+.video-player--tools {
+  height: rem(56px);
+  bottom: 0;
+}
+.mute-toggle {
+  width: rem(48px);
+  height: rem(48px);
+  &.is-mute {
+    background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570887492/Shinta%20Mani%20Wild/general/sound-muted_sxxwst.svg')
+      no-repeat center;
+  }
+  &.has-sound {
+    background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570887492/Shinta%20Mani%20Wild/general/sound-enabled_dwwxaq.svg')
+      no-repeat center;
+  }
+}
+.hover-button-bg {
+  &:hover {
+    background-color: rgba($black, 0.4);
+    border-radius: rem(100px);
+    transition: all 200ms ease;
+  }
 }
 </style>
