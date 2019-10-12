@@ -64,6 +64,16 @@ $h1-font-size-mobile: 2.5rem;
 $h2-font-size: 2rem;
 $h3-font-size: 1rem;
 
+// z-index
+$header-zindex: 5;
+$loading-zindex: 4;
+$footer-zindex: 3;
+$booking-bar-zindex: 2;
+$page-content-zindex: 1;
+
+// loading
+$loading-transition-time: 500ms;
+
 // dropdown
 $dropdown-font-size: rem(18px);
 $dropdown-bg: $primary;

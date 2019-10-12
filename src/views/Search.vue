@@ -1,9 +1,13 @@
 <template>
   <!-- design file: https://www.figma.com/file/SiFZE7hhRKx2fWmrfZ3uy2RO/Shinta-Mani-Wild?node-id=553%3A4724 -->
   <div class="page page--search">
-    <div class="page--content">
+    <div class="page--header-content">
       <!-- header -->
       <page-header></page-header>
+
+      <loading-progress />
+
+      <div class="page--content">
 
       <!-- player -->
       <div class="hero position-relative">
@@ -48,6 +52,7 @@
             :title-class="'h2 font-weight-normal'"
             :show-placeholder="!resort.id"
             :items-per-row="2"
+            :column-classes="'col-6'"
             :items="stories.slice(0,featuredStoriesCount)"
             preview-transformations="q_auto:low,e_preview:duration_10,w_440,h_248,c_fill,ar_16:9,ac_none"
             poster-transformations="q_auto:good,w_440,h_248,c_fill,g_auto"
@@ -114,6 +119,7 @@
         </template>
       </div>
     </div>
+    </div>
 
     <page-footer></page-footer>
   </div>
@@ -129,13 +135,14 @@ import BaseHeading from '@/components/BaseHeading.vue'
 import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseArticlesList from '@/components/BaseArticlesList.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
+import doodles from '@/mixins/doodles'
+import loading from '@/mixins/loading'
 import { Story, Resort, Category } from '@/types'
 import { get } from 'lodash-es'
-import doodles from '@/mixins/doodles'
 
 export default Vue.extend({
   name: 'listing',
-  mixins: [doodles],
+  mixins: [doodles, loading],
   components: {
     PageHeader,
     VideoPlayer,
@@ -170,7 +177,9 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .featured-items {
-  min-height: rem(356px);
+  @include media-breakpoint-up(md) {
+    min-height: rem(356px);
+  }
   &::v-deep {
     .vue-content-placeholders-img {
       height: rem(248px);

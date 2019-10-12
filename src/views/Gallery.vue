@@ -1,21 +1,27 @@
 <template>
   <div class="page page--gallery">
-    <story-slider
-      @on-click-back="onClickBack"
-      :items="images"
-      :custom="{ratioBoxClass: 'ratio-16-9'}"
-    />
+    <loading-progress />
+
+    <div class="page--content d-flex flex-grow-1 flex-column">
+      <story-slider
+        @on-click-back="onClickBack"
+        :items="images"
+        :custom="{ratioBoxClass: 'ratio-16-9'}"
+      />
+    </div>
   </div>
 </template>
 
 <script lang='ts'>
 import Vue from 'vue'
+import loading from '@/mixins/loading'
 import { Resort, GalleryImage } from '@/types'
 import { get } from 'lodash-es'
 const StorySlider = () => import('@/components/StorySlider.vue')
 
 export default Vue.extend({
   name: 'story-page',
+  mixins: [loading],
   components: {
     StorySlider
   },

@@ -1,5 +1,5 @@
 <template>
-  <div ref="wrapperGhost" class="wrapper-ghost">
+  <div ref="wrapperGhost" class="booking-bar">
     <base-action-bar
       :title="title"
       :price="price"
@@ -73,9 +73,17 @@ export default {
 <style lang="scss" scoped>
 $bar-height: rem(80px);
 $image-lik-height: rem(55px);
-.wrapper-ghost {
+.booking-bar {
+  z-index: $booking-bar-zindex;
+  position: relative;
   height: $bar-height;
-  z-index: 5;
+  opacity: 1;
+  transition: opacity $loading-transition-time ease;
+}
+[page-is-loading] {
+  .booking-bar {
+    opacity: 0;
+  }
 }
 .is-tiny {
   height: $image-lik-height !important;

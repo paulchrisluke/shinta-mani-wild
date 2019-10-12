@@ -2,9 +2,13 @@
   <!-- design file: https://www.figma.com/file/SiFZE7hhRKx2fWmrfZ3uy2RO/Shinta-Mani-Wild -->
 
   <div class="page page--home">
-    <div class="page--content">
+    <div class="page--header-content">
       <!-- header -->
       <page-header></page-header>
+
+      <loading-progress />
+
+      <div class="page--content">
 
       <!-- player -->
       <div class="hero position-relative">
@@ -121,14 +125,19 @@
 
       <!-- press banner -->
       <div>
-        <section class="press-banner">
+        <section class="press-banner mx-auto">
           <a
             href="/search/press"
             target="_blank"
-            class="press-banner--link d-block h-100"
+            class="press-banner--link d-block"
             title="Press"
             aria-label="Press"
-          ></a>
+          >
+            <picture>
+              <source v-for="size in gridBreakpointsArray" :key="size" :media="`(max-width: ${size}px)`" :srcset="transformCloudinaryUrl(pressBannerImage, `w_${size},q_auto:best`)">
+              <img class="w-100" :src="transformCloudinaryUrl(pressBannerImage, 'q_auto:best')" alt="Shinta Mani Wild in Press">
+            </picture>
+          </a>
         </section>
       </div>
 
@@ -172,6 +181,7 @@
         </template>
       </div>
     </div>
+    </div>
 
     <page-footer></page-footer>
   </div>
@@ -188,13 +198,14 @@ import BaseBannerAction from '@/components/BaseBannerAction.vue'
 import BaseQuote from '@/components/BaseQuote.vue'
 import BaseGalleryList from '@/components/BaseGalleryList.vue'
 import PageFooter from '@/components/PageFooter.vue'
+import loading from '@/mixins/loading'
+import doodles from '@/mixins/doodles'
 import { Resort, ResortImage, GalleryImage } from '@/types.ts'
 import { get } from 'lodash-es'
-import doodles from '@/mixins/doodles'
 
 export default Vue.extend({
   name: 'home',
-  mixins: [doodles],
+  mixins: [doodles, loading],
   components: {
     PageHeader,
     VideoPlayer,
@@ -208,7 +219,8 @@ export default Vue.extend({
   },
   data() {
     return {
-      startedPlaying: false
+      startedPlaying: false,
+      pressBannerImage: 'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567397036/Shinta%20Mani%20Wild/home/Press_Banner_lvzdtx.jpg'
     }
   },
   mounted() {
@@ -272,17 +284,12 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.press-banner {
-  height: rem(300px);
-}
-.press-banner--link {
-  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567397036/Shinta%20Mani%20Wild/home/Press_Banner_lvzdtx.jpg')
-    center repeat-x;
-  background-size: auto 100%;
-}
 .page--home::v-deep {
   .card-image img {
     width: rem(410px);
   }
+}
+.press-banner {
+  max-width: rem(1920px);
 }
 </style>
