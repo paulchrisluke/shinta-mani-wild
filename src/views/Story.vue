@@ -2,7 +2,7 @@
   <div class="page page--story">
     <loading-progress />
 
-    <div class="page--content d-flex flex-grow-1">
+    <div class="page--content d-flex flex-column flex-grow-1">
       <story-slider
         @on-click-back="onClickBack"
         :items="stories"
