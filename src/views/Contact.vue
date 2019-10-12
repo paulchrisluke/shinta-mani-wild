@@ -14,7 +14,7 @@
             v-if="resort.id"
             :source="resort.name"
             :poster="transformCloudinaryUrl(resort.featuredImage, `q_auto:good,w_${pageWidth},ar_${heroVideoRatio},c_fill,g_west`)"
-            :rest="{autoplay: true, muted: false, loop: false}"
+            :rest="{autoplay: true, muted: true, loop: false}"
           ></video-player>
         </div>
 

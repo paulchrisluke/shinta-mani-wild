@@ -45,7 +45,7 @@ export default Vue.extend({
   },
   mounted() {
     this.videoElement = this.$refs.video as HTMLVideoElement
-    this.setVolume(0.2)
+    // this.setVolume(0.2)
   },
   methods: {
     onClickVideo() {
