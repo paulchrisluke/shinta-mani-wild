@@ -1,5 +1,5 @@
 <template>
-  <section class="wrapper pl-4 pr-0 px-md-5 py-0">
+  <section class="wrapper pl-4 pr-3 px-md-5 py-0">
     <div class="d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center">
         <div class="logo mr-3 d-none d-md-block">

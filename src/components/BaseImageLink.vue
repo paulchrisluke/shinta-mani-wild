@@ -95,6 +95,22 @@ export default Vue.extend({
       text-decoration: none;
       color: $dark;
     }
+    &.is-sm {
+      @include media-breakpoint-down(sm) {
+        .image-link--left {
+          background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/h_48/Shinta%20Mani%20Wild/general/Button_Light_Broken_Left_qcd0wr.png')
+            no-repeat center;
+        }
+        .image-link--center {
+          background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/h_48/Shinta%20Mani%20Wild/general/Button_Light_Broken_Mid_qmcoim.png')
+            repeat-x center;
+        }
+        .image-link--right {
+          background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/h_48/Shinta%20Mani%20Wild/general/Button_Light_Broken_Right_tbppzc.png')
+            no-repeat center;
+        }
+      }
+    }
   }
   &.is-primary {
     .image-link--left {
