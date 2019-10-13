@@ -5,9 +5,9 @@
     class="video-player mh-inherit position-relative cursor-pointer"
   >
     <div
-      v-if="!isStarted"
+      v-if="isErrored || shouldShowPoster"
       class="video-poster position-absolute h-100"
-      :style="{'background-image': `url(${getPosterImage(source, `q_auto:good,w_${pageWidth},ar_${heroVideoRatio},c_fill,g_west`)})`}"
+      :style="{'background-image': `url(${getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_${pageWidth},ar_${heroVideoRatio},c_fill,g_west`)})`}"
     ></div>
 
     <video
@@ -17,9 +17,10 @@
       playsinline
       @play="onPlay"
       @ended="onEnd"
+      @error="onError"
       v-bind="rest"
     >
-      <source :src="source" type="video/mp4" />
+      <source :src="transformCloudinaryUrl(source, videoTransformations)" type="video/mp4" />
     </video>
 
     <div
@@ -49,14 +50,25 @@ export default Vue.extend({
       isStarted: false,
       isEnded: false,
       isPaused: false,
-      isMute: true
+      isMute: true,
+      shouldShowPoster: false,
+      isErrored: false
     }
   },
   mounted() {
     this.videoElement = this.$refs.video as HTMLVideoElement
     this.restoreSettings()
+    this.updateShowPoster()
   },
   methods: {
+    updateShowPoster() {
+      const waitForPlayingTimeout = 4000
+      setTimeout(() => {
+        if (!this.isStarted) {
+          this.shouldShowPoster = true
+        }
+      }, waitForPlayingTimeout)
+    },
     restoreSettings() {
       const isMute = localStorage.getItem('video-player-muted')
       if (isMute !== null) {
@@ -92,6 +104,8 @@ export default Vue.extend({
       }
     },
     onPlay() {
+      this.isErrored = false
+      this.shouldShowPoster = false
       this.isStarted = true
       this.isEnded = false
       this.$emit('videoplayer-played')
@@ -99,6 +113,10 @@ export default Vue.extend({
     onEnd() {
       this.isEnded = true
       this.isPaused = this.videoElement.paused
+      this.shouldShowPoster = true
+    },
+    onError() {
+      this.isErrored = true
     }
   },
   props: {
@@ -108,6 +126,14 @@ export default Vue.extend({
     rest: {
       default: {},
       type: Object
+    },
+    posterFrameSecond: {
+      default: 0,
+      type: Number
+    },
+    videoTransformations: {
+      default: 'q_auto',
+      type: String
     }
   }
 })

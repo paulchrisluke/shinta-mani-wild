@@ -14,7 +14,8 @@
       <div class="hero position-relative">
         <video-player
           v-if="resort.id"
-          :source="transformCloudinaryUrl(resort.name, 'q_auto')"
+          :poster-frame-second="10"
+          :source="resort.name"
           :rest="{autoplay: true, loop: false}"
         ></video-player>
       </div>

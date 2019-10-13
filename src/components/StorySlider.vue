@@ -43,11 +43,12 @@
                     @ended="onVideoEnd(index)"
                     class="story--content is-video"
                     preload="none"
-                    :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25')"
+                    :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25,so_0')"
+                    playsinline
                     :muted="isMute"
                   >
                     <source
-                      :src="transformCloudinaryUrl(item.image, 'q_auto:good,ac_none')"
+                      :src="transformCloudinaryUrl(item.image, 'q_auto:good')"
                       type="video/mp4"
                     />
                   </video>
@@ -317,10 +318,10 @@ export default Vue.extend({
 }
 .story-slider--layer {
   // minus is a fix for white margins on blur filter
-  top: rem(-100px);
-  left: rem(-100px);
-  right: rem(-100px);
-  bottom: rem(-100px);
+  top: rem(-152px);
+  left: rem(-152px);
+  right: rem(-152px);
+  bottom: rem(-152px);
   filter: blur(50px);
   background-size: cover;
   background-position: center;
