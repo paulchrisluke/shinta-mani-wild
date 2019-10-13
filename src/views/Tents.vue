@@ -74,7 +74,7 @@
 
         <!-- quote -->
         <section class="container is-small">
-          <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+          <base-quote :type="'grass1'">
             <div class="quote" v-html="resort.h2"></div>
           </base-quote>
         </section>

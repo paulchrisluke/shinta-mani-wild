@@ -34,7 +34,7 @@
 
         <!-- quote -->
         <section class="container is-small home--quote-wrapper mb-5">
-          <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+          <base-quote :type="'grass1'">
             <div class="quote" v-html="resort.description"></div>
           </base-quote>
         </section>
@@ -93,7 +93,7 @@
         <!-- quote -->
         <div class="position-relative home--quote-wrapper mb-5">
           <section class="container is-small">
-            <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
+            <base-quote :class-name="'is-right'">
               <div class="quote" v-html="resort.h2"></div>
             </base-quote>
           </section>
@@ -224,7 +224,7 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.init()
+    this.$store.dispatch('resort/getItemBySlug', 'home')
   },
   computed: {
     galleryItems(): object[] {
@@ -266,9 +266,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    init() {
-      this.$store.dispatch('resort/getItemBySlug', 'home')
-    },
     getResortImage(order: number): string | undefined {
       const images = get(this.resort, 'images', [])
       const resultImage = images.find(

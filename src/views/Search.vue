@@ -86,7 +86,7 @@
       <div class="parallax-container position-relative py-5">
         <!-- quote -->
         <section class="container is-small mb-5">
-          <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+          <base-quote :type="'grass1'">
             <div class="quote" v-html="resort.h2"></div>
           </base-quote>
         </section>
