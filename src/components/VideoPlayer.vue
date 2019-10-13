@@ -6,9 +6,23 @@
   >
     <div
       v-if="isErrored || shouldShowPoster"
-      class="video-poster position-absolute h-100"
-      :style="{'background-image': `url(${getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_${pageWidth},ar_${heroVideoRatio},c_fill,g_west`)})`}"
-    ></div>
+      class="video-poster position-absolute h-100 w-100"
+      :style="{'background-image': `url(${getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_1920,ar_${heroVideoRatio},c_fill`)})`}"
+    >
+      <picture>
+        <source
+          v-for="size in gridBreakpointsArray"
+          :key="size"
+          :media="`(max-width: ${size}px)`"
+          :srcset="getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_${size},ar_${heroVideoRatio},c_fill`)"
+        />
+        <img
+          class="h-100"
+          :src="getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_1920,ar_${heroVideoRatio},c_fill`)"
+          alt="Shinta Mani Wild in Press"
+        />
+      </picture>
+    </div>
 
     <video
       ref="video"
@@ -148,8 +162,23 @@ export default Vue.extend({
 }
 .video-poster {
   @include stick-around;
+
+  // older browsers
   background: no-repeat center;
   background-size: cover;
+  img {
+    display: none;
+  }
+
+  // modern browsers
+  @supports (object-fit: cover) {
+    background: none !important;
+    img {
+      display: block;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
 }
 .video-player--overlay {
   transition: background-color 500ms ease;
