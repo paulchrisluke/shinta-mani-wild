@@ -4,25 +4,27 @@
     :class="{ 'has-inner-shadow': !isStarted}"
     class="video-player mh-inherit position-relative cursor-pointer"
   >
-    <div
-      v-if="isErrored || shouldShowPoster"
-      class="video-poster position-absolute h-100 w-100"
-      :style="{'background-image': `url(${getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_1920,ar_${heroVideoRatio},c_fill`)})`}"
-    >
-      <picture>
-        <source
-          v-for="size in gridBreakpointsArray"
-          :key="size"
-          :media="`(max-width: ${size}px)`"
-          :srcset="getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_${size},ar_${heroVideoRatio},c_fill`)"
-        />
-        <img
-          class="h-100"
-          :src="getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_1920,ar_${heroVideoRatio},c_fill`)"
-          alt="Shinta Mani Wild in Press"
-        />
-      </picture>
-    </div>
+    <transition name="fade">
+      <div
+        v-if="isErrored || shouldShowPoster"
+        class="video-poster position-absolute h-100 w-100"
+        :style="{'background-image': `url(${getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_1920,ar_${heroVideoRatio},c_fill`)})`}"
+      >
+        <picture>
+          <source
+            v-for="size in gridBreakpointsArray"
+            :key="size"
+            :media="`(max-width: ${size}px)`"
+            :srcset="getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_${size},ar_${heroVideoRatio},c_fill`)"
+          />
+          <img
+            class="h-100"
+            :src="getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_1920,ar_${heroVideoRatio},c_fill`)"
+            alt="Shinta Mani Wild in Press"
+          />
+        </picture>
+      </div>
+    </transition>
 
     <video
       ref="video"

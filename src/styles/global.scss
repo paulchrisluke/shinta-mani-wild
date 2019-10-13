@@ -216,3 +216,14 @@ body,
   padding: 1rem;
   position: absolute;
 }
+
+
+// transitions
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 500ms;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
