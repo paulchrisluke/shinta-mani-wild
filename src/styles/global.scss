@@ -227,3 +227,12 @@ body,
 .fade-leave-to {
   opacity: 0;
 }
+// fade-fast
+.fade-fast-enter-active,
+.fade-fast-leave-active {
+  transition: opacity 250ms;
+}
+.fade-fast-enter,
+.fade-fast-leave-to {
+  opacity: 0;
+}

@@ -39,11 +39,13 @@
       <source :src="transformCloudinaryUrl(source, videoTransformations)" type="video/mp4" />
     </video>
 
-    <div
-      v-if="isPaused"
-      :class="{'is-paused': isStarted && !isEnded && isPaused, 'is-ended': isEnded}"
-      class="video-player--overlay position-absolute"
-    ></div>
+    <transition name="fade-fast">
+      <div
+        v-if="isPaused"
+        :class="{'is-paused': isStarted && !isEnded && isPaused, 'is-ended': isEnded}"
+        class="video-player--overlay position-absolute"
+      ></div>
+    </transition>
 
     <div class="video-player--tools position-absolute">
       <a
@@ -183,18 +185,18 @@ export default Vue.extend({
   }
 }
 .video-player--overlay {
-  transition: background-color 500ms ease;
   &.is-paused {
-    background: center no-repeat rgba($black, 0.2)
-      url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570555404/Shinta%20Mani%20Wild/general/play_vqfrbb.svg');
-    background-size: rem(64px);
+    background-image: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570978871/Shinta%20Mani%20Wild/general/play_aphyj3.svg');
   }
   &.is-ended {
-    background: center no-repeat rgba($black, 0.2)
-      url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570555404/Shinta%20Mani%20Wild/general/play_vqfrbb.svg');
-    background-size: rem(64px);
+    background-image: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570978871/Shinta%20Mani%20Wild/general/play_aphyj3.svg');
   }
+  background: center no-repeat rgba($black, 0.2);
+  background-size: rem(48px);
   @include stick-around;
+  @include media-breakpoint-up(md) {
+    background-size: rem(96px);
+  }
 }
 .video-player--tools {
   height: rem(56px);
