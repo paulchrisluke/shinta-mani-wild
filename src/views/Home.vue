@@ -226,6 +226,14 @@ export default Vue.extend({
   mounted() {
     this.init()
   },
+  metaInfo () {
+    return {
+      title: this.resort.title,
+      meta: [
+        { vmid: 'description', name: 'description', content: this.resort.description }
+      ]
+    }
+  },
   computed: {
     galleryItems(): object[] {
       return [

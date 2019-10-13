@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import Meta from 'vue-meta'
 import store from './store'
 import './registerServiceWorker'
 import '@/connection/init'
@@ -11,6 +12,7 @@ import './directives.global'
 import VueContentPlaceholders from 'vue-content-placeholders'
 import 'vue-content-placeholders/src/styles.scss'
 
+Vue.use(Meta)
 Vue.config.productionTip = false
 Vue.prototype.gridBreakpoints = { xs: 0, sm: 576, md: 768, lg: 992, xl: 1200, xxl: 1920 }
 // NOTE: order matters

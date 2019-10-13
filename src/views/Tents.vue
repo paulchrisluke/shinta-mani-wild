@@ -257,6 +257,14 @@ export default Vue.extend({
       slug: 'tents'
     }
   },
+  metaInfo () {
+    return {
+      title: this.resort.title,
+      meta: [
+        { vmid: 'description', name: 'description', content: this.resort.description }
+      ]
+    }
+  },
   computed: {
     resort(): Resort {
       return this.$store.getters['resort/getItem']
