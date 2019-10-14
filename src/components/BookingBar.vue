@@ -6,12 +6,22 @@
       :class="{'fixed-bottom': distance > thresholdDistance}"
     >
       <template slot="action-button">
-        <base-image-link
-          :theme="'secondary'"
-          :size="'md'"
-          :text="'Book Now'"
-          :href="cloudbedsBookingLink"
-        ></base-image-link>
+        <div class="d-none d-md-flex align-items-center">
+          <base-image-link
+            :theme="'secondary'"
+            :size="'md'"
+            :text="'Book Now'"
+            :href="cloudbedsBookingLink"
+          ></base-image-link>
+        </div>
+        <div class="d-flex d-md-none align-items-center">
+          <base-image-link
+            :theme="'secondary'"
+            :size="'xs'"
+            :text="'Book Now'"
+            :href="cloudbedsBookingLink"
+          ></base-image-link>
+        </div>
       </template>
     </base-action-bar>
   </div>
@@ -71,13 +81,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$bar-height: rem(80px);
+$bar-height-md: rem(80px);
+$bar-height-sm: rem(40px);
 .booking-bar {
   z-index: $booking-bar-zindex;
   position: relative;
-  height: $bar-height;
   opacity: 1;
   transition: opacity $loading-transition-time ease;
+  height: $bar-height-sm;
+  @include media-breakpoint-up(md) {
+    height: $bar-height-md;
+  }
 }
 [page-is-loading] {
   .booking-bar {
