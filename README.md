@@ -32,6 +32,10 @@ shinta-mani-wild is licensed under the [Apache License, Version 2.0](LICENSE).
 master branch: https://cocky-boyd-093ab8.netlify.com/  
 staging branch: https://elegant-perlman-ff2d63.netlify.com/
 
+## Tools
+
+[<img src="https://raw.githubusercontent.com/whynotearth/shinta-mani-wild/master/src/assets/img/browserstack-logo.png">](https://browserstack.com)
+
 ## Project setup
 
 ```
