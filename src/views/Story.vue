@@ -68,15 +68,17 @@ export default Vue.extend({
 }
 ::v-deep {
   .story-slider--inner {
-    max-width: rem(1100px);
+    max-width: rem($slider-story-max-width);
   }
   .swiper-container {
     @include media-breakpoint-up(lg) {
-      max-height: rem(624px);
+      max-height: rem($slider-story-max-height);
     }
   }
   .story--inner {
-    max-width: rem(414px);
+    @media (min-width: rem(map-get($grid-breakpoints, 'lg'))) {
+      max-width: rem($slider-story-item-max-width-lg);
+    }
   }
 }
 </style>
