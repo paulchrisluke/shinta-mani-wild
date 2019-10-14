@@ -11,9 +11,8 @@
       <div class="hero position-relative">
         <video-player
           v-if="resort.id"
-          :source="resort.name"
-          :poster="transformCloudinaryUrl(resort.featuredImage, `q_auto:good,w_${pageWidth},ar_${heroVideoRatio},c_fill,g_west`)"
-          :rest="{autoplay: true, muted: false, loop: false}"
+          :source="transformCloudinaryUrl(resort.name, 'q_auto')"
+          :rest="{autoplay: true, loop: false}"
         ></video-player>
       </div>
 
@@ -74,7 +73,7 @@
 
         <!-- quote -->
         <section class="container is-small">
-          <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+          <base-quote :type="'grass1'">
             <div class="quote" v-html="resort.h2"></div>
           </base-quote>
         </section>

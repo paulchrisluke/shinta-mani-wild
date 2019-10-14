@@ -14,9 +14,8 @@
       <div class="hero position-relative">
         <video-player
           v-if="resort.id"
-          :source="resort.name"
-          :poster="transformCloudinaryUrl(resort.featuredImage, `q_auto:good,w_${pageWidth},ar_${heroVideoRatio},c_fill,g_west`)"
-          :rest="{autoplay: true, muted: false, loop: false}"
+          :source="transformCloudinaryUrl(resort.name, 'q_auto')"
+          :rest="{autoplay: true, loop: false}"
         ></video-player>
       </div>
 
@@ -34,7 +33,7 @@
 
         <!-- quote -->
         <section class="container is-small home--quote-wrapper mb-5">
-          <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+          <base-quote :type="'grass1'">
             <div class="quote" v-html="resort.description"></div>
           </base-quote>
         </section>
@@ -93,7 +92,7 @@
         <!-- quote -->
         <div class="position-relative home--quote-wrapper mb-5">
           <section class="container is-small">
-            <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
+            <base-quote :class-name="'is-right'">
               <div class="quote" v-html="resort.h2"></div>
             </base-quote>
           </section>
@@ -125,14 +124,19 @@
 
       <!-- press banner -->
       <div>
-        <section class="press-banner">
+        <section class="press-banner mx-auto">
           <a
             href="/search/press"
             target="_blank"
-            class="press-banner--link d-block h-100"
+            class="press-banner--link d-block"
             title="Press"
             aria-label="Press"
-          ></a>
+          >
+            <picture>
+              <source v-for="size in gridBreakpointsArray" :key="size" :media="`(max-width: ${size}px)`" :srcset="transformCloudinaryUrl(pressBannerImage, `w_${size},q_auto:best`)">
+              <img class="w-100" :src="transformCloudinaryUrl(pressBannerImage, 'q_auto:best')" alt="Shinta Mani Wild in Press">
+            </picture>
+          </a>
         </section>
       </div>
 
@@ -214,11 +218,12 @@ export default Vue.extend({
   },
   data() {
     return {
-      startedPlaying: false
+      startedPlaying: false,
+      pressBannerImage: 'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567397036/Shinta%20Mani%20Wild/home/Press_Banner_lvzdtx.jpg'
     }
   },
   mounted() {
-    this.init()
+    this.$store.dispatch('resort/getItemBySlug', 'home')
   },
   computed: {
     galleryItems(): object[] {
@@ -260,9 +265,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    init() {
-      this.$store.dispatch('resort/getItemBySlug', 'home')
-    },
     getResortImage(order: number): string | undefined {
       const images = get(this.resort, 'images', [])
       const resultImage = images.find(
@@ -278,17 +280,12 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.press-banner {
-  height: rem(300px);
-}
-.press-banner--link {
-  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567397036/Shinta%20Mani%20Wild/home/Press_Banner_lvzdtx.jpg')
-    center repeat-x;
-  background-size: auto 100%;
-}
 .page--home::v-deep {
   .card-image img {
     width: rem(410px);
   }
+}
+.press-banner {
+  max-width: rem(1920px);
 }
 </style>

@@ -1,14 +1,13 @@
 <template>
   <!-- empty page for testing -->
   <!-- route: /testing -->
-  <div>Chicken Sink</div>
+  <div>Chicken sink</div>
 </template>
 
 <script lang='ts'>
 import Vue from 'vue'
-
 export default Vue.extend({
-  components: {}
+  name: 'chicken sink'
 })
 </script>
 
