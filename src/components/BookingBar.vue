@@ -7,10 +7,10 @@
     >
       <template slot="action-button">
         <base-image-link
-          :class-name="'is-secondary is-md'"
+          :theme="'secondary'"
+          :size="'md'"
           :text="'Book Now'"
           :href="cloudbedsBookingLink"
-          :rest="{target: '_blank'}"
         ></base-image-link>
       </template>
     </base-action-bar>

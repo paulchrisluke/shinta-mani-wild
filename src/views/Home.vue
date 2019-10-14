@@ -52,10 +52,10 @@
                       class="mb-xl-6"
                     >Shinta Mani Wild is the full package - in every sense of the word. Our rates are inclusive of a round trip private car transfer to/from Phnom Penh or Sihanoukville Airport and vicinity, as well as your personal Bensley Butler, all meals and beverages, privately guided activities to explore the Cardamom forest, luxury spa treatments, WiFi throughout the camp and of course daily laundry service.</p>
                     <base-image-link
-                      :class-name="'is-primary is-md'"
+                      :theme="'primary'"
+                      :size="'md'"
                       :text="'Book Now'"
                       :href="cloudbedsBookingLink"
-                      :rest="{target: '_blank'}"
                     ></base-image-link>
                   </div>
                 </template>
@@ -154,10 +154,11 @@
                     <p>The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. A radical new fusion of world-class design, hospitality and conservation! Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. Join us on the front line of Conservation, and see your stay make a difference to protecting the lungs of Cambodia and it’s many unique and endangered species.</p>
                     <div class="d-flex">
                       <base-image-link
-                        :class-name="'is-primary is-md ml-xl-auto'"
+                        :class-name="'ml-xl-auto'"
+                        :theme="'primary'"
+                        :size="'md'"
                         :text="'Book Now'"
                         :href="cloudbedsBookingLink"
-                        :rest="{target: '_blank'}"
                       ></base-image-link>
                     </div>
                   </div>
