@@ -18,7 +18,7 @@
       <div class="swiper-container py-4 my-auto">
         <div class="swiper-wrapper">
           <div
-            class="swiper-slide story d-flex align-items-center"
+            class="swiper-slide d-flex align-items-center"
             v-for="(item, index) in items"
             :key="index"
           >
@@ -28,7 +28,7 @@
                 class="aspect-ratio-box"
                 :class="[{'cursor-pointer': index !== swiper.activeIndex}, custom.ratioBoxClass]"
               >
-                <div class="aspect-ratio-box-inside">
+                <div class="aspect-ratio-box-inside story--content-wrapper">
                   <img
                     class="story--content is-image"
                     v-if="isImageItem(item)"
@@ -216,7 +216,7 @@ export default Vue.extend({
     ) {
       const $navBullets = document.querySelectorAll('.swiper-pagination-bullet')
       const bullet = $navBullets[index] as HTMLElement
-      this.setTransition(bullet, `all ${duration}ms linear`)
+      this.setTransition(bullet, `transform ${duration}ms linear`)
       setTimeout(() => {
         bullet.classList.add('is-playing')
       }, 0)
@@ -328,6 +328,14 @@ export default Vue.extend({
     background-color: rgba($black, 0.2);
   }
 }
+.swiper-wrapper,
+.story--content-wrapper {
+  max-height: calc(100vh - #{rem(72px)});
+}
+.story--inner,
+.swiper-slide {
+  max-height: inherit;
+}
 .swiper-container {
   width: 100%;
   box-sizing: content-box;
@@ -337,15 +345,32 @@ export default Vue.extend({
   transform: scale(0.92);
 }
 .story--inner {
-  max-height: 100%;
-  box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
-    rem(0px 5px 22px) rgba($black, 0.12), rem(0px 12px 17px) rgba($black, 0.14);
   border-radius: rem(20px);
-
   transition: opacity 300ms ease;
   opacity: 0.05;
+  @media (min-width: rem(map-get($grid-breakpoints, 'lg'))) and (min-height: rem(700px)) {
+    box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
+      rem(0px 5px 22px) rgba($black, 0.12),
+      rem(0px 12px 17px) rgba($black, 0.14);
+  }
   &:hover {
     opacity: 0.3;
+  }
+}
+.story--content {
+  width: auto;
+  height: auto;
+  max-width: calc(100vw - #{rem(32px)});
+  max-height: 100%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: rem(20px);
+  @media (max-width: rem(map-get($grid-breakpoints, 'lg') - 1px)) {
+    box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
+      rem(0px 5px 22px) rgba($black, 0.12),
+      rem(0px 12px 17px) rgba($black, 0.14);
   }
 }
 .swiper-slide-active {
@@ -358,17 +383,6 @@ export default Vue.extend({
       opacity: 1;
     }
   }
-}
-.story--content {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  border-radius: rem(20px);
 }
 .story--details {
   right: 0;
