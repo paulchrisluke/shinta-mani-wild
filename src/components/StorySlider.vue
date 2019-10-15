@@ -43,11 +43,12 @@
                     @ended="onVideoEnd(index)"
                     class="story--content is-video"
                     preload="none"
-                    :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25')"
-                    :muted="isMute"
+                    :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25,so_0')"
+                    playsinline
+                    muted="muted"
                   >
                     <source
-                      :src="transformCloudinaryUrl(item.image, 'q_auto:good,ac_none')"
+                      :src="transformCloudinaryUrl(item.image, 'q_auto:good')"
                       type="video/mp4"
                     />
                   </video>
@@ -158,6 +159,10 @@ export default Vue.extend({
   watch: {
     items() {
       this.$nextTick(this.init)
+    },
+    isMute(newValue) {
+      const activeVideo = this.getVideoElementByIndex(this.swiper.activeIndex)
+      activeVideo.muted = newValue
     }
   },
   methods: {
@@ -249,6 +254,8 @@ export default Vue.extend({
       const activeVideo = this.getVideoElementByIndex(this.swiper.activeIndex)
       if (activeVideo) {
         activeVideo.currentTime = 0
+        activeVideo.muted = this.isMute
+        activeVideo.autoplay = 'autoplay'
         activeVideo.play()
       }
     },
@@ -317,10 +324,10 @@ export default Vue.extend({
 }
 .story-slider--layer {
   // minus is a fix for white margins on blur filter
-  top: rem(-100px);
-  left: rem(-100px);
-  right: rem(-100px);
-  bottom: rem(-100px);
+  top: rem(-152px);
+  left: rem(-152px);
+  right: rem(-152px);
+  bottom: rem(-152px);
   filter: blur(50px);
   background-size: cover;
   background-position: center;
@@ -388,6 +395,7 @@ export default Vue.extend({
   right: 0;
   left: 0;
   bottom: 0;
+  min-height: rem(64px);
 }
 .story--title {
   font-size: rem(32px);
