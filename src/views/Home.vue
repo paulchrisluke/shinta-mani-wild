@@ -14,9 +14,8 @@
       <div class="hero position-relative">
         <video-player
           v-if="resort.id"
-          :source="resort.name"
-          :poster="transformCloudinaryUrl(resort.featuredImage, `q_auto:good,w_${pageWidth},ar_${heroVideoRatio},c_fill,g_west`)"
-          :rest="{autoplay: true, muted: false, loop: false}"
+          :source="transformCloudinaryUrl(resort.name, 'q_auto')"
+          :rest="{autoplay: true, loop: false}"
         ></video-player>
       </div>
 
@@ -34,7 +33,7 @@
 
         <!-- quote -->
         <section class="container is-small home--quote-wrapper mb-5">
-          <base-quote :show-placeholder="!resort.id" :class-name="'is-left'">
+          <base-quote :type="'grass1'">
             <div class="quote" v-html="resort.description"></div>
           </base-quote>
         </section>
@@ -53,10 +52,10 @@
                       class="mb-xl-6"
                     >Shinta Mani Wild is the full package - in every sense of the word. Our rates are inclusive of a round trip private car transfer to/from Phnom Penh or Sihanoukville Airport and vicinity, as well as your personal Bensley Butler, all meals and beverages, privately guided activities to explore the Cardamom forest, luxury spa treatments, WiFi throughout the camp and of course daily laundry service.</p>
                     <base-image-link
-                      :class-name="'is-primary is-md'"
+                      :theme="'primary'"
+                      :size="'md'"
                       :text="'Book Now'"
                       :href="cloudbedsBookingLink"
-                      :rest="{target: '_blank'}"
                     ></base-image-link>
                   </div>
                 </template>
@@ -93,7 +92,7 @@
         <!-- quote -->
         <div class="position-relative home--quote-wrapper mb-5">
           <section class="container is-small">
-            <base-quote :show-placeholder="!resort.id" :class-name="'is-right'">
+            <base-quote :class-name="'is-right'">
               <div class="quote" v-html="resort.h2"></div>
             </base-quote>
           </section>
@@ -155,10 +154,11 @@
                     <p>The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. A radical new fusion of world-class design, hospitality and conservation! Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. Join us on the front line of Conservation, and see your stay make a difference to protecting the lungs of Cambodia and it’s many unique and endangered species.</p>
                     <div class="d-flex">
                       <base-image-link
-                        :class-name="'is-primary is-md ml-xl-auto'"
+                        :class-name="'ml-xl-auto'"
+                        :theme="'primary'"
+                        :size="'md'"
                         :text="'Book Now'"
                         :href="cloudbedsBookingLink"
-                        :rest="{target: '_blank'}"
                       ></base-image-link>
                     </div>
                   </div>
@@ -224,7 +224,7 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.init()
+    this.$store.dispatch('resort/getItemBySlug', 'home')
   },
   metaInfo () {
     return {
@@ -274,9 +274,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    init() {
-      this.$store.dispatch('resort/getItemBySlug', 'home')
-    },
     getResortImage(order: number): string | undefined {
       const images = get(this.resort, 'images', [])
       const resultImage = images.find(

@@ -57,9 +57,11 @@
                 </nav>
                 <div v-if="isViewTentsVisible" class="ml-1">
                   <base-image-link
-                    :class-name="'is-secondary is-md ml-2'"
-                    :href="'/tents'"
+                    :class-name="'ml-2'"
+                    :theme="'secondary'"
+                    :size="'sm'"
                     :text="'View Tents'"
+                    :href="'/tents'"
                   ></base-image-link>
                 </div>
               </div>
@@ -133,11 +135,7 @@
           </li>
         </ul>
 
-        <base-image-link
-          :class-name="'is-secondary is-md w-100'"
-          :href="'/tents'"
-          :text="'View Tents'"
-        ></base-image-link>
+        <base-image-link :theme="'secondary'" :size="'sm'" :text="'View Tents'" :href="'/tents'"></base-image-link>
       </nav>
     </div>
   </div>

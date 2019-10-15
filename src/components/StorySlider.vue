@@ -18,7 +18,7 @@
       <div class="swiper-container py-4 my-auto">
         <div class="swiper-wrapper">
           <div
-            class="swiper-slide story d-flex align-items-center"
+            class="swiper-slide d-flex align-items-center"
             v-for="(item, index) in items"
             :key="index"
           >
@@ -28,7 +28,7 @@
                 class="aspect-ratio-box"
                 :class="[{'cursor-pointer': index !== swiper.activeIndex}, custom.ratioBoxClass]"
               >
-                <div class="aspect-ratio-box-inside">
+                <div class="aspect-ratio-box-inside story--content-wrapper">
                   <img
                     class="story--content is-image"
                     v-if="isImageItem(item)"
@@ -216,7 +216,7 @@ export default Vue.extend({
     ) {
       const $navBullets = document.querySelectorAll('.swiper-pagination-bullet')
       const bullet = $navBullets[index] as HTMLElement
-      this.setTransition(bullet, `all ${duration}ms linear`)
+      this.setTransition(bullet, `transform ${duration}ms linear`)
       setTimeout(() => {
         bullet.classList.add('is-playing')
       }, 0)
@@ -328,6 +328,14 @@ export default Vue.extend({
     background-color: rgba($black, 0.2);
   }
 }
+.swiper-wrapper,
+.story--content-wrapper {
+  max-height: calc(100vh - #{rem(72px)});
+}
+.story--inner,
+.swiper-slide {
+  max-height: inherit;
+}
 .swiper-container {
   width: 100%;
   box-sizing: content-box;
@@ -337,15 +345,32 @@ export default Vue.extend({
   transform: scale(0.92);
 }
 .story--inner {
-  max-height: 100%;
-  box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
-    rem(0px 5px 22px) rgba($black, 0.12), rem(0px 12px 17px) rgba($black, 0.14);
   border-radius: rem(20px);
-
   transition: opacity 300ms ease;
   opacity: 0.05;
+  @media (min-width: rem(map-get($grid-breakpoints, 'lg'))) and (min-height: rem(700px)) {
+    box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
+      rem(0px 5px 22px) rgba($black, 0.12),
+      rem(0px 12px 17px) rgba($black, 0.14);
+  }
   &:hover {
     opacity: 0.3;
+  }
+}
+.story--content {
+  width: auto;
+  height: auto;
+  max-width: calc(100vw - #{rem(32px)});
+  max-height: 100%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: rem(20px);
+  @media (max-width: rem(map-get($grid-breakpoints, 'lg') - 1px)) {
+    box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
+      rem(0px 5px 22px) rgba($black, 0.12),
+      rem(0px 12px 17px) rgba($black, 0.14);
   }
 }
 .swiper-slide-active {
@@ -358,17 +383,6 @@ export default Vue.extend({
       opacity: 1;
     }
   }
-}
-.story--content {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  border-radius: rem(20px);
 }
 .story--details {
   right: 0;
@@ -531,11 +545,11 @@ export default Vue.extend({
   width: rem(56px);
   height: rem(56px);
   &.is-mute {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23FFF'%3E%3Cpath d='M16.5 12A4.5 4.5 0 0014 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0021 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E")
+    background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570887492/Shinta%20Mani%20Wild/general/sound-muted_sxxwst.svg')
       no-repeat center;
   }
   &.has-sound {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23FFF'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E")
+    background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570887492/Shinta%20Mani%20Wild/general/sound-enabled_dwwxaq.svg')
       no-repeat center;
   }
 }

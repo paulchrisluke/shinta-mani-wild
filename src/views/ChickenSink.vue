@@ -1,14 +1,25 @@
 <template>
   <!-- empty page for testing -->
   <!-- route: /testing -->
-  <div>Chicken Sink</div>
+  <div>
+    <base-image-link
+      :theme="'primary'"
+      :size="'xs'"
+      :text="'view tents'"
+      :href="'#'"
+      target="_blank"
+    ></base-image-link>
+  </div>
 </template>
 
 <script lang='ts'>
 import Vue from 'vue'
-
+import BaseImageLink from '@/components/BaseImageLink.vue'
 export default Vue.extend({
-  components: {}
+  name: 'chicken-sink',
+  components: {
+    BaseImageLink
+  }
 })
 </script>
 
