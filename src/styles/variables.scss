@@ -55,6 +55,12 @@ $spacers: map-merge(
   $spacers
 );
 
+// swiper slider
+$slider-story-max-height: 624px;
+$slider-story-max-width: 1100px;
+$slider-story-item-max-width-lg: 414px;
+$gallery-slide-max-width: 618px;
+
 // typography
 $font-family-sans-serif: 'Roboto', sans-serif;
 $serif-font-size-correction: 1.25;

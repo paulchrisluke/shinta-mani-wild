@@ -67,6 +67,9 @@ export default Vue.extend({
     @include media-breakpoint-up(lg) {
       height: calc(100vh - #{190px});
     }
+    .aspect-ratio-box {
+      overflow: visible;
+    }
   }
   @include media-breakpoint-up(lg) {
     .swiper-slide-active {
@@ -77,12 +80,19 @@ export default Vue.extend({
       }
     }
     .story--inner {
-      max-width: rem(618px);
+      max-width: rem($gallery-slide-max-width);
     }
     .swiper-pagination-bullet-active {
       &::before {
         transform: translateX(0) !important;
       }
+    }
+  }
+  .story--inner {
+    @media (min-width: rem(map-get($grid-breakpoints, 'lg'))) and (min-height: rem(600px)) {
+      box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
+        rem(0px 5px 22px) rgba($black, 0.12),
+        rem(0px 12px 17px) rgba($black, 0.14);
     }
   }
 }
