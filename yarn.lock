@@ -11732,11 +11732,6 @@ vue-eslint-parser@^5.0.0:
     esquery "^1.0.1"
     lodash "^4.17.11"
 
-vue-head@2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/vue-head/-/vue-head-2.1.2.tgz#ad3c39f464e3960042b064c00e4739674e61e291"
-  integrity sha512-rE9IOe6pxmMy9nXVTobkByA7l3SUQf29I5fNy0WtfL5AxJ7vLXq3sL+CCtARwiZi/WJZyy32MgsoRbeDsanqhg==
-
 vue-hot-reload-api@^2.3.0:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.3.tgz#2756f46cb3258054c5f4723de8ae7e87302a1ccf"
@@ -11769,7 +11764,7 @@ vue-loader@^15.7.0:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-meta@^2.3.1:
+vue-meta@2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/vue-meta/-/vue-meta-2.3.1.tgz#32a1c2634f49433f30e7e7a028aa5e5743f84f6a"
   integrity sha512-hnZvDNvLh+PefJLfYkZhG6cSBNKikgQyiEK8lI/P2qscM1DC/qHHOfdACPQ/VDnlaWU9VlcobCTNyVtssTR4XQ==
