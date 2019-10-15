@@ -1,5 +1,5 @@
 <template>
-  <section class="wrapper px-3 px-md-5 py-1">
+  <section class="wrapper px-3 px-md-5">
     <div class="d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center">
         <div class="logo mr-3 d-none d-md-block">
@@ -7,7 +7,7 @@
         </div>
         <h2 class="action-bar--title font-serif text-uppercase mb-0" v-text="title"></h2>
       </div>
-      <div class="d-flex align-items-center">
+      <div>
         <!-- <span class="pricing font-sans-serif font-weight-normal mr-5">
           <span class="currency">$</span>
           <span class="price" v-text="price"></span>

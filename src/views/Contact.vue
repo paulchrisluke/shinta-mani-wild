@@ -125,11 +125,12 @@
                     class="contact--input-text input-field mb-4 d-block"
                     type="text"
                   />
-                  <base-image-link
-                    :class-name="'is-primary is-md w-100'"
-                    :type="'submit'"
+                  <base-image-button
+                    :class-name="'w-100'"
+                    :theme="'primary'"
+                    :size="'sm'"
                     :text="'Submit'"
-                  ></base-image-link>
+                  ></base-image-button>
                 </form>
               </div>
             </div>
@@ -148,7 +149,7 @@ import VideoPlayer from '@/components/VideoPlayer.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
 import HeroImage from '@/components/HeroImage.vue'
-import BaseImageLink from '@/components/BaseImageLink.vue'
+import BaseImageButton from '@/components/BaseImageButton.vue'
 import loading from '@/mixins/loading'
 import { Resort } from '@/types'
 
@@ -161,7 +162,7 @@ export default {
     PageFooter,
     HeroImage,
     BaseHeading,
-    BaseImageLink
+    BaseImageButton
   },
   data() {
     return {
