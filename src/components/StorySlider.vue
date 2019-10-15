@@ -45,7 +45,7 @@
                     preload="none"
                     :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25,so_0')"
                     playsinline
-                    :muted="isMute"
+                    muted="muted"
                   >
                     <source
                       :src="transformCloudinaryUrl(item.image, 'q_auto:good')"
@@ -159,6 +159,10 @@ export default Vue.extend({
   watch: {
     items() {
       this.$nextTick(this.init)
+    },
+    isMute(newValue) {
+      const activeVideo = this.getVideoElementByIndex(this.swiper.activeIndex)
+      activeVideo.muted = newValue
     }
   },
   methods: {
@@ -250,6 +254,8 @@ export default Vue.extend({
       const activeVideo = this.getVideoElementByIndex(this.swiper.activeIndex)
       if (activeVideo) {
         activeVideo.currentTime = 0
+        activeVideo.muted = this.isMute
+        activeVideo.autoplay = 'autoplay'
         activeVideo.play()
       }
     },
@@ -389,6 +395,7 @@ export default Vue.extend({
   right: 0;
   left: 0;
   bottom: 0;
+  min-height: rem(64px);
 }
 .story--title {
   font-size: rem(32px);
