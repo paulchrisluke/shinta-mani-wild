@@ -13,7 +13,7 @@
       <div class="hero position-relative">
         <video-player
           v-if="resort.id"
-          :source="transformCloudinaryUrl(resort.name, 'q_auto')"
+          :source="resort.name"
           :rest="{autoplay: true, loop: false}"
         ></video-player>
       </div>
