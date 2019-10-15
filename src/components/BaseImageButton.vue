@@ -1,7 +1,7 @@
 <template>
-  <a :href="href" class="d-inline-flex text-decoration-none" :class="className" :aria-label="text" v-bind="rest">
+  <button :type="type" @click="onClick" class="d-inline-flex base-image-button p-0 d-block text-center" :class="className" :aria-label="text" v-bind="rest">
     <base-button-ui :size="size" :theme="theme">{{text}}</base-button-ui>
-  </a>
+  </button>
 </template>
 
 <script lang='ts'>
@@ -31,10 +31,27 @@ export default Vue.extend({
       type: String,
       default: ''
     },
+    type: {
+      type: String,
+      default: 'submit'
+    },
     rest: {
       type: Object,
       default: () => ({})
     }
+  },
+  methods: {
+    onClick($event: any) {
+      this.$emit('click')
+    }
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.base-image-button {
+  background: none;
+  border: none;
+  outline: none;
+}
+</style>
