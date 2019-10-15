@@ -37,6 +37,14 @@ export default Vue.extend({
       this.$store.dispatch('resort/getItemBySlug', (this as any).slug)
     }
   },
+  metaInfo () {
+    return {
+      title: this.resort.title,
+      meta: [
+        { vmid: 'description', name: 'description', content: this.resort.description }
+      ]
+    }
+  },
   computed: {
     resort(): Resort {
       return this.$store.getters['resort/getItem']
