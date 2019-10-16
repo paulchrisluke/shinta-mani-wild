@@ -13,7 +13,7 @@
       <div class="hero position-relative">
         <video-player
           v-if="resort.id"
-          :source="transformCloudinaryUrl(resort.name, 'q_auto')"
+          :source="resort.name"
           :rest="{autoplay: true, loop: false}"
         ></video-player>
       </div>
@@ -48,7 +48,7 @@
           <base-articles-list
             :route-props="{ returnTo: 'search', resortId: $route.params.id }"
             :image-box-class="'ratio-16-9'"
-            :title-class="'h2 font-weight-normal'"
+            :title-class="'font-weight-normal'"
             :show-placeholder="!resort.id"
             :items-per-row="2"
             :column-classes="'col-6'"

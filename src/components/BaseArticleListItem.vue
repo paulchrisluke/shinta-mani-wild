@@ -126,7 +126,12 @@ export default Vue.extend({
     padding-bottom: 0 !important;
   }
   .article-list-item--title {
-    height: rem(48px);
+    height: rem(32px);
+    font-size: rem(20px);
+    @include media-breakpoint-up(md) {
+      font-size: rem(32px);
+      height: rem(48px);
+    }
   }
   &.is-huge {
     .article-list-item--title {

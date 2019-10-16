@@ -4,11 +4,27 @@
     :class="{ 'has-inner-shadow': !isStarted}"
     class="video-player mh-inherit position-relative cursor-pointer"
   >
-    <div
-      v-if="!isStarted"
-      class="video-poster position-absolute h-100"
-      :style="{'background-image': `url(${getPosterImage(source, `q_auto:good,w_${pageWidth},ar_${heroVideoRatio},c_fill,g_west`)})`}"
-    ></div>
+    <transition name="fade">
+      <div
+        v-if="isErrored || shouldShowPoster"
+        class="video-poster position-absolute h-100 w-100"
+        :style="{'background-image': `url(${getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_1920,ar_${heroVideoRatio},c_fill`)})`}"
+      >
+        <picture>
+          <source
+            v-for="size in gridBreakpointsArray"
+            :key="size"
+            :media="`(max-width: ${size}px)`"
+            :srcset="getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_${size},ar_${heroVideoRatio},c_fill`)"
+          />
+          <img
+            class="h-100"
+            :src="getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_1920,ar_${heroVideoRatio},c_fill`)"
+            alt="Shinta Mani Wild in Press"
+          />
+        </picture>
+      </div>
+    </transition>
 
     <video
       ref="video"
@@ -17,16 +33,19 @@
       playsinline
       @play="onPlay"
       @ended="onEnd"
+      @error="onError"
       v-bind="rest"
     >
-      <source :src="source" type="video/mp4" />
+      <source :src="transformCloudinaryUrl(source, videoTransformations)" type="video/mp4" />
     </video>
 
-    <div
-      v-if="isPaused"
-      :class="{'is-paused': isStarted && !isEnded && isPaused, 'is-ended': isEnded}"
-      class="video-player--overlay position-absolute"
-    ></div>
+    <transition name="fade-fast">
+      <div
+        v-if="isPaused"
+        :class="{'is-paused': isStarted && !isEnded && isPaused, 'is-ended': isEnded}"
+        class="video-player--overlay position-absolute"
+      ></div>
+    </transition>
 
     <div class="video-player--tools position-absolute">
       <a
@@ -49,14 +68,25 @@ export default Vue.extend({
       isStarted: false,
       isEnded: false,
       isPaused: false,
-      isMute: true
+      isMute: true,
+      shouldShowPoster: false,
+      isErrored: false
     }
   },
   mounted() {
     this.videoElement = this.$refs.video as HTMLVideoElement
     this.restoreSettings()
+    this.updateShowPoster()
   },
   methods: {
+    updateShowPoster() {
+      const waitForPlayingTimeout = 4000
+      setTimeout(() => {
+        if (!this.isStarted) {
+          this.shouldShowPoster = true
+        }
+      }, waitForPlayingTimeout)
+    },
     restoreSettings() {
       const isMute = localStorage.getItem('video-player-muted')
       if (isMute !== null) {
@@ -92,6 +122,8 @@ export default Vue.extend({
       }
     },
     onPlay() {
+      this.isErrored = false
+      this.shouldShowPoster = false
       this.isStarted = true
       this.isEnded = false
       this.$emit('videoplayer-played')
@@ -99,6 +131,10 @@ export default Vue.extend({
     onEnd() {
       this.isEnded = true
       this.isPaused = this.videoElement.paused
+      this.shouldShowPoster = true
+    },
+    onError() {
+      this.isErrored = true
     }
   },
   props: {
@@ -108,6 +144,14 @@ export default Vue.extend({
     rest: {
       default: {},
       type: Object
+    },
+    posterFrameSecond: {
+      default: 0,
+      type: Number
+    },
+    videoTransformations: {
+      default: 'q_auto',
+      type: String
     }
   }
 })
@@ -122,22 +166,37 @@ export default Vue.extend({
 }
 .video-poster {
   @include stick-around;
+
+  // older browsers
   background: no-repeat center;
   background-size: cover;
+  img {
+    display: none;
+  }
+
+  // modern browsers
+  @supports (object-fit: cover) {
+    background: none !important;
+    img {
+      display: block;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
 }
 .video-player--overlay {
-  transition: background-color 500ms ease;
   &.is-paused {
-    background: center no-repeat rgba($black, 0.2)
-      url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570555404/Shinta%20Mani%20Wild/general/play_vqfrbb.svg');
-    background-size: rem(64px);
+    background-image: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570978871/Shinta%20Mani%20Wild/general/play_aphyj3.svg');
   }
   &.is-ended {
-    background: center no-repeat rgba($black, 0.2)
-      url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570555404/Shinta%20Mani%20Wild/general/play_vqfrbb.svg');
-    background-size: rem(64px);
+    background-image: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570978871/Shinta%20Mani%20Wild/general/play_aphyj3.svg');
   }
+  background: center no-repeat rgba($black, 0.2);
+  background-size: rem(48px);
   @include stick-around;
+  @include media-breakpoint-up(md) {
+    background-size: rem(96px);
+  }
 }
 .video-player--tools {
   height: rem(56px);

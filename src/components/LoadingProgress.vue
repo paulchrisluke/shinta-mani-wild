@@ -42,13 +42,4 @@ export default Vue.extend({
     url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570704550/Shinta%20Mani%20Wild/general/zipline_i85a4p.gif');
   background-size: contain;
 }
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 500ms;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
 </style>
