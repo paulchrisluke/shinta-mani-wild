@@ -37,8 +37,8 @@
                   />
                   <video
                     v-else
-                    @loadeddata="onLoadedVideoData($event, index)"
-                    @loadedmetadata="onLoadVideoMetadata($event, index)"
+                    @loadeddata.once="onLoadedVideoData($event, index)"
+                    @loadedmetadata.once="onLoadVideoMetadata($event, index)"
                     @playing="onVideoPlaying(index)"
                     @ended="onVideoEnd(index)"
                     class="story--content is-video"
