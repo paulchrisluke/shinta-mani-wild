@@ -3,7 +3,7 @@
   <div class="page page--tents">
     <div class="page--header-content">
       <!-- header -->
-      <page-header :is-view-tents-visible="false"></page-header>
+      <page-header></page-header>
 
       <loading-progress />
 
