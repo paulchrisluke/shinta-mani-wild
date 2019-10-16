@@ -138,6 +138,7 @@ import doodles from '@/mixins/doodles'
 import loading from '@/mixins/loading'
 import { Story, Resort, Category } from '@/types'
 import { get } from 'lodash-es'
+import { MetaInfo } from 'vue-meta'
 
 export default Vue.extend({
   name: 'listing',
@@ -158,7 +159,7 @@ export default Vue.extend({
       slug: this.$route.params.id
     }
   },
-  metaInfo () {
+  metaInfo (): MetaInfo {
     return {
       title: this.resort.title,
       meta: [

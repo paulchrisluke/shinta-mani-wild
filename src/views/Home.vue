@@ -203,6 +203,7 @@ import loading from '@/mixins/loading'
 import doodles from '@/mixins/doodles'
 import { Resort, ResortImage, GalleryImage } from '@/types.ts'
 import { get } from 'lodash-es'
+import { MetaInfo } from 'vue-meta'
 
 export default Vue.extend({
   name: 'home',
@@ -227,7 +228,7 @@ export default Vue.extend({
   mounted() {
     this.$store.dispatch('resort/getItemBySlug', 'home')
   },
-  metaInfo () {
+  metaInfo(): MetaInfo {
     return {
       title: this.resort.title,
       meta: [
