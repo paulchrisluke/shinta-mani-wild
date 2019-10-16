@@ -106,11 +106,9 @@
               <base-card :show-placeholder="!resort.id" :image="cardImage1">
                 <template v-slot:text>
                   <div class="card-content">
-                    <base-heading
-                      :text="'All Inclusive'"
-                      :type="'h2'"
-                      :class-name="'h2 text-dark text-center text-xl-left'"
-                    ></base-heading>
+                    <h2
+                      class="base-heading text-small-caps font-sans-serif font-weight-normal h2 mb-3 text-dark text-center text-xl-left"
+                    >All Inclusive</h2>
                     <p>Shinta Mani Wild is the full package - in every sense of the word. Our rates are inclusive of a round trip private car transfer to/from Phnom Penh or Sihanoukville Airport and vicinity, as well as your personal Bensley Butler, all meals and beverages, privately guided activities to explore the Cardamom forest, luxury spa treatments, WiFi throughout the camp and of course daily laundry service.</p>
                   </div>
                 </template>
@@ -183,11 +181,9 @@
               <base-card :show-placeholder="!resort.id" :image="cardImage2" :is-left="true">
                 <template v-slot:text>
                   <div class="card-content">
-                    <base-heading
-                      :text="'Personal Bujler'"
-                      :type="'h2'"
-                      :class-name="'h2 text-dark text-center text-xl-left'"
-                    ></base-heading>
+                    <h2
+                      class="base-heading text-small-caps font-sans-serif font-weight-normal h2 mb-3 text-dark text-center text-xl-left"
+                    >Personal Bujler</h2>
                     <p>Great guests deserve great butlers — and you’ll find both here. Part guide, part friend, part valet, part mindreader: Shinta Mani Wild’s Bensley Butlers will anticipate your needs before you do.</p>
                     <p>They’ll suggest unforgettable activities to suit your tastes and fitness, and accompany you on your adventures, from motorbike rides to boat trips. Your butler will also play the classic role of butler with aplomb, unpacking and packing your luggage and fulfilling your ad-hoc requests.</p>
                     <p>Please note: although we understand the temptation, guests are not allowed to take their butler home.</p>
