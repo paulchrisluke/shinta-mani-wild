@@ -17,6 +17,7 @@ import Vue from 'vue'
 import loading from '@/mixins/loading'
 import { Resort, Story } from '@/types'
 import { get } from 'lodash-es'
+import { MetaInfo } from 'vue-meta'
 const StorySlider = () => import('@/components/StorySlider.vue')
 
 export default Vue.extend({
@@ -34,6 +35,18 @@ export default Vue.extend({
   mounted() {
     if (this.resort && this.resort.slug !== this.slug) {
       this.$store.dispatch('resort/getItemBySlug', (this as any).slug)
+    }
+  },
+  metaInfo(): MetaInfo {
+    return {
+      title: this.resort.title,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.resort.description
+        }
+      ]
     }
   },
   computed: {

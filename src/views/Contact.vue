@@ -152,6 +152,8 @@ import HeroImage from '@/components/HeroImage.vue'
 import BaseImageButton from '@/components/BaseImageButton.vue'
 import loading from '@/mixins/loading'
 import { Resort } from '@/types'
+import { MetaInfo } from 'vue-meta'
+import store from '@/store'
 
 export default {
   name: 'contact',
@@ -174,13 +176,25 @@ export default {
       message: ''
     }
   },
+  metaInfo(): MetaInfo {
+    return {
+      title: (this as any).resort.title,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: (this as any).resort.description
+        }
+      ]
+    }
+  },
   computed: {
     resort(): Resort {
-      return (this as any).$store.getters['resort/getItem']
+      return store.getters['resort/getItem']
     }
   },
   mounted() {
-    ;(this as any).$store.dispatch('resort/getItemBySlug', (this as any).slug)
+    store.dispatch('resort/getItemBySlug', (this as any).slug)
   }
 }
 </script>

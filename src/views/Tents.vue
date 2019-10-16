@@ -9,11 +9,7 @@
 
       <!-- player -->
       <div class="hero position-relative">
-        <video-player
-          v-if="resort.id"
-          :source="resort.name"
-          :rest="{autoplay: true, loop: false}"
-        ></video-player>
+        <video-player v-if="resort.id" :source="resort.name" :rest="{autoplay: true, loop: false}"></video-player>
       </div>
 
       <div class="parallax-container position-relative py-5">
@@ -236,6 +232,8 @@ import loading from '@/mixins/loading'
 import { Story, Resort, Category, GalleryImage } from '@/types'
 import { get } from 'lodash-es'
 import { categoryToStoryBridge } from '@/helpers'
+import store from '@/store'
+import { MetaInfo } from 'vue-meta'
 
 export default Vue.extend({
   name: 'listing',
@@ -258,14 +256,16 @@ export default Vue.extend({
   },
   computed: {
     resort(): Resort {
-      return this.$store.getters['resort/getItem']
+      return store.getters['resort/getItem']
     },
     cardImages(): GalleryImage[] {
       const OrderOfCardsImages = 4
-      return get(this.resort, 'images', []).filter(item => item.order === OrderOfCardsImages)
+      return get(this.resort, 'images', []).filter(
+        item => item.order === OrderOfCardsImages
+      )
     },
     categories(): any {
-      return this.$store.getters['category/getItems']
+      return store.getters['category/getItems']
     },
     accommodations(): Category[] {
       return get(this.categories, 'accommodations', [])
@@ -299,8 +299,20 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.$store.dispatch('resort/getItemBySlug', this.slug)
-    this.$store.dispatch('category/getItemsByName', 'accommodations')
+    store.dispatch('resort/getItemBySlug', this.slug)
+    store.dispatch('category/getItemsByName', 'accommodations')
+  },
+  metaInfo(): MetaInfo {
+    return {
+      title: this.resort.title,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.resort.description
+        }
+      ]
+    }
   }
 })
 </script>
