@@ -42,10 +42,11 @@
                     @playing="onVideoPlaying(index)"
                     @ended="onVideoEnd(index)"
                     class="story--content is-video"
-                    preload="none"
+                    preload="auto"
                     :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25,so_0')"
                     playsinline
-                    muted="muted"
+                    autoplay
+                    muted
                   >
                     <source
                       :src="transformCloudinaryUrl(item.image, 'q_auto:good')"
@@ -103,7 +104,7 @@
           <div class="story--nav-tools d-flex align-items-end h-100 mx-3">
             <a
               aria-label="Toggle Sound"
-              @click="isMute = !isMute"
+              @click="toggleMute"
               class="mute-toggle d-block cursor-pointer hover-button-bg"
               :class="{'is-mute': isMute, 'has-sound': !isMute}"
             ></a>
@@ -128,6 +129,7 @@ import {
   getPosterImage
 } from '../helpers'
 import { GalleryImage, Story } from '../types'
+
 export default Vue.extend({
   name: 'story-slider',
   components: {
@@ -170,6 +172,13 @@ export default Vue.extend({
       this.initSlider()
       this.playActiveVideo()
     },
+    toggleMute() {
+      this.isMute = !this.isMute
+      this.items.forEach((item, index) => {
+        const videoElement = this.getVideoElementByIndex(index)
+        videoElement.muted = this.isMute
+      })
+    },
     shouldPlayMusicBars(index: number): boolean {
       if (this.isMute) {
         return false
@@ -201,6 +210,9 @@ export default Vue.extend({
     onLoadedVideoData($event: any, index: number) {
       const videoElement = $event.target
       this.videoHasNoSounds[index] = !hasAudio(videoElement)
+      if (index !== this.swiper.activeIndex) {
+        videoElement.pause()
+      }
     },
     onLoadVideoMetadata($event: any, index: number) {
       const videoDuration = $event.target.duration
@@ -254,8 +266,6 @@ export default Vue.extend({
       const activeVideo = this.getVideoElementByIndex(this.swiper.activeIndex)
       if (activeVideo) {
         activeVideo.currentTime = 0
-        activeVideo.muted = this.isMute
-        activeVideo.autoplay = 'autoplay'
         activeVideo.play()
       }
     },
@@ -274,7 +284,6 @@ export default Vue.extend({
         spaceBetween: 0,
         centeredSlides: true,
         pagination: {
-          // dynamicBullets: true,
           el: '.swiper-pagination',
           clickable: false
         },
