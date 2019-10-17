@@ -335,9 +335,16 @@ export default Vue.extend({
     background-color: rgba($black, 0.2);
   }
 }
+.story-slider--inner {
+  height: 100vh;
+  // stylelint-disable-next-line
+  height: calc(var(--vh, 1vh) * 100);
+}
 .swiper-wrapper,
 .story--content-wrapper {
   max-height: calc(100vh - #{rem(72px)});
+  // stylelint-disable-next-line
+  max-height: calc(var(--vh, 1vh) * 100 - #{rem(72px)});
 }
 .story--inner,
 .swiper-slide {
@@ -346,6 +353,9 @@ export default Vue.extend({
 .swiper-container {
   width: 100%;
   box-sizing: content-box;
+  height: calc(100vh - #{rem(24px * 2)});
+  // stylelint-disable-next-line
+  height: calc(var(--vh, 1vh) * 100 - #{rem(24px * 2)});
 }
 .swiper-slide {
   transition: transform 300ms ease;
@@ -524,7 +534,7 @@ export default Vue.extend({
   height: rem(32px);
 }
 .story--nav {
-  bottom: rem(16px);
+  bottom: 0;
   left: 0;
   right: 0;
   z-index: 10;
