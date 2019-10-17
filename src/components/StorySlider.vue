@@ -31,7 +31,6 @@
                 <div class="aspect-ratio-box-inside">
                   <div class="story--content-wrapper position-relative h-100">
                     <img
-                      @load="onImageLoad($event)"
                       class="story--content is-image"
                       v-if="isImageItem(item)"
                       :src="transformCloudinaryUrl(item.url, 'q_auto:best')"
@@ -39,15 +38,16 @@
                     />
                     <video
                       v-else
-                      @loadeddata="onLoadedVideoData($event, index)"
-                      @loadedmetadata="onLoadVideoMetadata($event, index)"
+                      @loadeddata.once="onLoadedVideoData($event, index)"
+                      @loadedmetadata.once="onLoadVideoMetadata($event, index)"
                       @playing="onVideoPlaying(index)"
                       @ended="onVideoEnd(index)"
                       class="story--content is-video"
-                      preload="none"
+                      preload="auto"
                       :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25,so_0')"
                       playsinline
-                      muted="muted"
+                      autoplay
+                      muted
                     >
                       <source
                         :src="transformCloudinaryUrl(item.image, 'q_auto:good')"
@@ -66,15 +66,13 @@
                         <music-bars />
                       </div>
                       <!-- like -->
-                      <!--
-                      <a @click.stop.prevent class="like my-3 ml-auto" href="#">
+                      <!-- <a @click.stop.prevent class="like my-3 ml-auto" href="#">
                         <img
                           class="like-image d-block"
                           src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402128/Shinta%20Mani%20Wild/general/icon-like-outline_dlymsz.svg"
                           alt
                         />
-                      </a>
-                      -->
+                      </a>-->
                     </div>
                   </div>
                 </div>
@@ -108,7 +106,7 @@
           <div class="story--nav-tools d-flex align-items-end h-100 mx-3">
             <a
               aria-label="Toggle Sound"
-              @click="isMute = !isMute"
+              @click="toggleMute"
               class="mute-toggle d-block cursor-pointer hover-button-bg"
               :class="{'is-mute': isMute, 'has-sound': !isMute}"
             ></a>
@@ -133,6 +131,7 @@ import {
   getPosterImage
 } from '../helpers'
 import { GalleryImage, Story } from '../types'
+
 export default Vue.extend({
   name: 'story-slider',
   components: {
@@ -176,6 +175,13 @@ export default Vue.extend({
       this.initSlider()
       this.playActiveVideo()
     },
+    toggleMute() {
+      this.isMute = !this.isMute
+      this.items.forEach((item, index) => {
+        const videoElement = this.getVideoElementByIndex(index)
+        videoElement.muted = this.isMute
+      })
+    },
     shouldPlayMusicBars(index: number): boolean {
       if (this.isMute) {
         return false
@@ -207,6 +213,9 @@ export default Vue.extend({
     onLoadedVideoData($event: any, index: number) {
       const videoElement = $event.target
       this.videoHasNoSounds[index] = !hasAudio(videoElement)
+      if (index !== this.swiper.activeIndex) {
+        videoElement.pause()
+      }
     },
     onLoadVideoMetadata($event: any, index: number) {
       const videoDuration = $event.target.duration
@@ -262,8 +271,6 @@ export default Vue.extend({
       const activeVideo = this.getVideoElementByIndex(this.swiper.activeIndex)
       if (activeVideo) {
         activeVideo.currentTime = 0
-        activeVideo.muted = this.isMute
-        activeVideo.autoplay = 'autoplay'
         activeVideo.play()
       }
     },
@@ -282,7 +289,6 @@ export default Vue.extend({
         spaceBetween: 0,
         centeredSlides: true,
         pagination: {
-          // dynamicBullets: true,
           el: '.swiper-pagination',
           clickable: false
         },
@@ -322,17 +328,16 @@ export default Vue.extend({
         }
       })
     },
-    onImageLoad() {
-      this.fixStoryDetailsWidth()
-    },
     fixStoryDetailsWidth() {
       if (this.isStoryDetailsWidthFixerRunned) {
         return
       } else {
         this.isStoryDetailsWidthFixerRunned = true
       }
+      console.log('runned')
+
       // a fix for story--details width in responsive mode
-      this.listenResize()
+      this.storyDetailsListenResize()
       this.setStoryDetailsWidth()
     },
     setStoryDetailsWidth() {
@@ -342,7 +347,6 @@ export default Vue.extend({
       const storyDetailsElements = document.querySelectorAll(
         '.swiper-slide .story--details'
       )
-      console.log('storyDetailsElements', storyDetailsElements)
 
       for (let i = 0; i < storyDetailsElements.length; i++) {
         ;(storyDetailsElements[
@@ -350,7 +354,7 @@ export default Vue.extend({
         ] as HTMLElement).style.width = `${slideContentElementWidth}px`
       }
     },
-    listenResize() {
+    storyDetailsListenResize() {
       const listener = (event: any) => {
         this.setStoryDetailsWidth()
       }
@@ -387,11 +391,13 @@ export default Vue.extend({
   // stylelint-disable-next-line
   height: calc(var(--vh, 1vh) * 100);
 }
-.swiper-wrapper,
-.story--content-wrapper {
-  max-height: calc(100vh - #{rem(72px)});
-  // stylelint-disable-next-line
-  max-height: calc(var(--vh, 1vh) * 100 - #{rem(72px)});
+.is-stories {
+  .swiper-wrapper,
+  .story--content-wrapper {
+    max-height: calc(100vh - #{rem(72px)});
+    // stylelint-disable-next-line
+    max-height: calc(var(--vh, 1vh) * 100 - #{rem(72px)});
+  }
 }
 .story--inner,
 .swiper-slide {

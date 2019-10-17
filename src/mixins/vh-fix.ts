@@ -1,7 +1,7 @@
 export default {
   mounted() {
     // @ts-ignore
-    this.listenResize()
+    this.vhFixerListenResize()
     // @ts-ignore
     this.fixVhUnit()
   },
@@ -13,7 +13,7 @@ export default {
       // Then we set the value in the --vh custom property to the root of the document
       document.documentElement.style.setProperty('--vh', `${vh}px`)
     },
-    listenResize() {
+    vhFixerListenResize() {
       const listener = (event: any) => {
         this.fixVhUnit()
       }
