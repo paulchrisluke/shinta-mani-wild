@@ -66,6 +66,8 @@ body,
 .app,
 .page {
   min-height: 100vh;
+  // stylelint-disable-next-line
+  min-height: calc(var(--vh, 1vh) * 100);
 }
 [page-is-loading] {
   overflow: hidden;

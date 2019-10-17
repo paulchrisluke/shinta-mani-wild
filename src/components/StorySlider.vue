@@ -28,52 +28,54 @@
                 class="aspect-ratio-box"
                 :class="[{'cursor-pointer': index !== swiper.activeIndex}, custom.ratioBoxClass]"
               >
-                <div class="aspect-ratio-box-inside story--content-wrapper">
-                  <img
-                    class="story--content is-image"
-                    v-if="isImageItem(item)"
-                    :src="transformCloudinaryUrl(item.url, 'q_auto:best')"
-                    alt
-                  />
-                  <video
-                    v-else
-                    @loadeddata.once="onLoadedVideoData($event, index)"
-                    @loadedmetadata.once="onLoadVideoMetadata($event, index)"
-                    @playing="onVideoPlaying(index)"
-                    @ended="onVideoEnd(index)"
-                    class="story--content is-video"
-                    preload="auto"
-                    :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25,so_0')"
-                    playsinline
-                    autoplay
-                    muted
-                  >
-                    <source
-                      :src="transformCloudinaryUrl(item.image, 'q_auto:good')"
-                      type="video/mp4"
+                <div class="aspect-ratio-box-inside">
+                  <div class="story--content-wrapper position-relative h-100">
+                    <img
+                      class="story--content is-image"
+                      v-if="isImageItem(item)"
+                      :src="transformCloudinaryUrl(item.url, 'q_auto:best')"
+                      alt
                     />
-                  </video>
-                </div>
-              </div>
+                    <video
+                      v-else
+                      @loadeddata.once="onLoadedVideoData($event, index)"
+                      @loadedmetadata.once="onLoadVideoMetadata($event, index)"
+                      @playing="onVideoPlaying(index)"
+                      @ended="onVideoEnd(index)"
+                      class="story--content is-video"
+                      preload="auto"
+                      :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25,so_0')"
+                      playsinline
+                      autoplay
+                      muted
+                    >
+                      <source
+                        :src="transformCloudinaryUrl(item.image, 'q_auto:good')"
+                        type="video/mp4"
+                      />
+                    </video>
 
-              <div
-                class="story--details position-absolute px-3 d-flex justify-content-between align-items-center"
-              >
-                <!-- music bars -->
-                <div
-                  v-if="swiper.activeIndex >= 0"
-                  :class="{'d-none': videoHasNoSounds[index] || !shouldPlayMusicBars(index)}"
-                >
-                  <music-bars />
+                    <div
+                      class="story--details position-absolute px-3 d-flex justify-content-between align-items-center mx-auto"
+                    >
+                      <!-- music bars -->
+                      <div
+                        v-if="swiper.activeIndex >= 0"
+                        :class="{'d-none': videoHasNoSounds[index] || !shouldPlayMusicBars(index)}"
+                      >
+                        <music-bars />
+                      </div>
+                      <!-- like -->
+                      <!-- <a @click.stop.prevent class="like my-3 ml-auto" href="#">
+                        <img
+                          class="like-image d-block"
+                          src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402128/Shinta%20Mani%20Wild/general/icon-like-outline_dlymsz.svg"
+                          alt
+                        />
+                      </a>-->
+                    </div>
+                  </div>
                 </div>
-                <!-- like -->
-                <!-- <a @click.stop.prevent class="like my-3 ml-auto" href="#">
-                  <img
-                    class="like-image d-block"
-                    src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402128/Shinta%20Mani%20Wild/general/icon-like-outline_dlymsz.svg"
-                    alt
-                  />
-                </a>-->
               </div>
             </div>
           </div>
@@ -140,7 +142,8 @@ export default Vue.extend({
       swiper: {} as Swiper,
       videoDurations: [] as number[],
       videoHasNoSounds: [] as boolean[],
-      isMute: true
+      isMute: true,
+      isStoryDetailsWidthFixerRunned: false
     }
   },
   props: {
@@ -219,6 +222,8 @@ export default Vue.extend({
       if (videoDuration > 0 && videoDuration < Infinity) {
         this.saveVideoDuration(index, videoDuration * 1000)
       }
+
+      this.fixStoryDetailsWidth()
     },
     onVideoPlaying(index: number) {
       this.setBulletTransition(this.swiper.activeIndex)
@@ -322,6 +327,43 @@ export default Vue.extend({
           }
         }
       })
+    },
+    fixStoryDetailsWidth() {
+      if (this.isStoryDetailsWidthFixerRunned) {
+        return
+      } else {
+        this.isStoryDetailsWidthFixerRunned = true
+      }
+      console.log('runned')
+
+      // a fix for story--details width in responsive mode
+      this.storyDetailsListenResize()
+      this.setStoryDetailsWidth()
+    },
+    setStoryDetailsWidth() {
+      const slideContentElementWidth = (document.querySelector(
+        '.swiper-slide-active .story--content'
+      ) as Element).clientWidth
+      const storyDetailsElements = document.querySelectorAll(
+        '.swiper-slide .story--details'
+      )
+
+      for (let i = 0; i < storyDetailsElements.length; i++) {
+        ;(storyDetailsElements[
+          i
+        ] as HTMLElement).style.width = `${slideContentElementWidth}px`
+      }
+    },
+    storyDetailsListenResize() {
+      const listener = (event: any) => {
+        this.setStoryDetailsWidth()
+      }
+      window.addEventListener('resize', listener)
+
+      // @ts-ignore
+      this.$once('hook:destroyed', () => {
+        document.removeEventListener('resize', listener)
+      })
     }
   }
 })
@@ -344,9 +386,18 @@ export default Vue.extend({
     background-color: rgba($black, 0.2);
   }
 }
-.swiper-wrapper,
-.story--content-wrapper {
-  max-height: calc(100vh - #{rem(72px)});
+.story-slider--inner {
+  height: 100vh;
+  // stylelint-disable-next-line
+  height: calc(var(--vh, 1vh) * 100);
+}
+.is-stories {
+  .swiper-wrapper,
+  .story--content-wrapper {
+    max-height: calc(100vh - #{rem(72px)});
+    // stylelint-disable-next-line
+    max-height: calc(var(--vh, 1vh) * 100 - #{rem(72px)});
+  }
 }
 .story--inner,
 .swiper-slide {
@@ -355,6 +406,9 @@ export default Vue.extend({
 .swiper-container {
   width: 100%;
   box-sizing: content-box;
+  height: calc(100vh - #{rem(24px * 2)});
+  // stylelint-disable-next-line
+  height: calc(var(--vh, 1vh) * 100 - #{rem(24px * 2)});
 }
 .swiper-slide {
   transition: transform 300ms ease;
@@ -405,6 +459,7 @@ export default Vue.extend({
   left: 0;
   bottom: 0;
   min-height: rem(64px);
+  max-width: 100%;
 }
 .story--title {
   font-size: rem(32px);
@@ -533,7 +588,7 @@ export default Vue.extend({
   height: rem(32px);
 }
 .story--nav {
-  bottom: rem(16px);
+  bottom: 0;
   left: 0;
   right: 0;
   z-index: 10;
