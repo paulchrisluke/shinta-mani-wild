@@ -76,6 +76,9 @@ export default Vue.extend({
   background-color: $brand-4;
 }
 ::v-deep {
+  .story--nav-tools {
+    display: none !important;
+  }
   .swiper-container {
     @include media-breakpoint-up(lg) {
       height: calc(100vh - #{190px});

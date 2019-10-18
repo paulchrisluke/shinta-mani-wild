@@ -533,8 +533,8 @@ export default Vue.extend({
   }
   .swiper-pagination-bullet {
     $default-transition: 15000ms;
-    width: rem(18px);
-    height: rem(4px);
+    width: rem(16px);
+    height: rem(2px);
     border-radius: rem(4px);
     background: rgba($white, 0.4);
     opacity: 1;
@@ -542,8 +542,8 @@ export default Vue.extend({
     position: relative;
     overflow: hidden;
     transition: transform $default-transition linear;
-    @include media-breakpoint-up(md) {
-      width: rem(48px);
+    @include media-breakpoint-up(lg) {
+      width: rem(24px);
     }
     &::before {
       content: '';
