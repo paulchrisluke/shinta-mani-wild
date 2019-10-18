@@ -102,7 +102,7 @@
         <!-- card -->
         <div class="container is-small">
           <div class="row mb-5">
-            <div class="column-12">
+            <div class="col-12">
               <base-card :show-placeholder="!resort.id" :image="cardImage1">
                 <template v-slot:text>
                   <div class="card-content">
@@ -118,9 +118,9 @@
         </div>
 
         <!-- Pure text -->
-        <div class="container is-small px-5 mb-5">
+        <div class="container is-small mb-5">
           <article>
-            <h2 class="h2 font-serif text-center mb-4 text-uppercase">Amenities and Treats</h2>
+            <h2 class="h2 font-sans-serif text-center mb-4 text-small-caps">Amenities and Treats</h2>
             <p>
               The bedrooms of your tent are climate controlled, your Butler
               will show you the controls. For a more intimate jungle experience
@@ -140,9 +140,9 @@
             </p>
 
             <div class="row justify-content-center">
-              <div class="col-3">
-                <h3 class="h4 font-weight-light font-italic">Complimentary</h3>
-                <ul class="list-unstyled">
+              <div class="col-12 col-md-3">
+                <h3 class="h4 font-weight-light font-italic mb-1">Complimentary</h3>
+                <ul class="list-unstyled page-tents--list-items">
                   <li>Toothbrush</li>
                   <li>Toothpaste</li>
                   <li>Hand sanitizer</li>
@@ -151,9 +151,9 @@
                   <li>Comb</li>
                 </ul>
               </div>
-              <div class="col-3">
-                <h3 class="h4 font-weight-light font-italic">Borrow</h3>
-                <ul class="list-unstyled">
+              <div class="col-12 col-md-3">
+                <h3 class="h4 font-weight-light font-italic mb-1">Borrow</h3>
+                <ul class="list-unstyled page-tents--list-items">
                   <li>Power adapter</li>
                   <li>Curling iron</li>
                   <li>Hair spray</li>
@@ -163,8 +163,8 @@
                   <li>Sunblock</li>
                 </ul>
               </div>
-              <div class="col-3">
-                <h3 class="h4 font-weight-light font-italic">Purchase</h3>
+              <div class="col-12 col-md-3">
+                <h3 class="h4 font-weight-light font-italic mb-1">Purchase</h3>
                 <ul class="list-unstyled">
                   <li>Deodorant</li>
                   <li>Sanitary Supplies</li>
@@ -177,7 +177,7 @@
         <!-- card -->
         <div class="container is-small">
           <div class="row">
-            <div class="column-12">
+            <div class="col-12">
               <base-card :show-placeholder="!resort.id" :image="cardImage2" :is-left="true">
                 <template v-slot:text>
                   <div class="card-content">
@@ -327,6 +327,12 @@ export default Vue.extend({
 .page--tents::v-deep {
   .card-image img {
     width: rem(384px);
+  }
+}
+.page-tents--list-items {
+  @include media-breakpoint-down(sm) {
+    column-count: 2;
+    max-width: rem(420px);
   }
 }
 </style>
