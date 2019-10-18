@@ -141,6 +141,7 @@ import loading from '@/mixins/loading'
 import doodles from '@/mixins/doodles'
 import { GalleryImage, Story, Resort } from '@/types'
 import { get } from 'lodash-es'
+import { MetaInfo } from 'vue-meta'
 
 export default Vue.extend({
   name: 'listing',
@@ -161,6 +162,14 @@ export default Vue.extend({
     return {
       slug: this.$route.params.id,
       featuredStoriesCount: 0
+    }
+  },
+  metaInfo (): MetaInfo {
+    return {
+      title: (this as any).resort.title,
+      meta: [
+        { vmid: 'description', name: 'description', content: (this as any).resort.description }
+      ]
     }
   },
   computed: {

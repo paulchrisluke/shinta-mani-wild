@@ -3,17 +3,13 @@
   <div class="page page--tents">
     <div class="page--header-content">
       <!-- header -->
-      <page-header :is-view-tents-visible="false"></page-header>
+      <page-header></page-header>
 
       <loading-progress />
 
       <!-- player -->
       <div class="hero position-relative">
-        <video-player
-          v-if="resort.id"
-          :source="resort.name"
-          :rest="{autoplay: true, loop: false}"
-        ></video-player>
+        <video-player v-if="resort.id" :source="resort.name" :rest="{autoplay: true, loop: false}"></video-player>
       </div>
 
       <div class="parallax-container position-relative py-5">
@@ -110,11 +106,9 @@
               <base-card :show-placeholder="!resort.id" :image="cardImage1">
                 <template v-slot:text>
                   <div class="card-content">
-                    <base-heading
-                      :text="'All Inclusive'"
-                      :type="'h2'"
-                      :class-name="'h2 text-dark text-center text-xl-left'"
-                    ></base-heading>
+                    <h2
+                      class="base-heading text-small-caps font-sans-serif font-weight-normal h2 mb-3 text-dark text-center text-xl-left"
+                    >All Inclusive</h2>
                     <p>Shinta Mani Wild is the full package - in every sense of the word. Our rates are inclusive of a round trip private car transfer to/from Phnom Penh or Sihanoukville Airport and vicinity, as well as your personal Bensley Butler, all meals and beverages, privately guided activities to explore the Cardamom forest, luxury spa treatments, WiFi throughout the camp and of course daily laundry service.</p>
                   </div>
                 </template>
@@ -187,11 +181,9 @@
               <base-card :show-placeholder="!resort.id" :image="cardImage2" :is-left="true">
                 <template v-slot:text>
                   <div class="card-content">
-                    <base-heading
-                      :text="'Personal Bujler'"
-                      :type="'h2'"
-                      :class-name="'h2 text-dark text-center text-xl-left'"
-                    ></base-heading>
+                    <h2
+                      class="base-heading text-small-caps font-sans-serif font-weight-normal h2 mb-3 text-dark text-center text-xl-left"
+                    >Personal Bujler</h2>
                     <p>Great guests deserve great butlers — and you’ll find both here. Part guide, part friend, part valet, part mindreader: Shinta Mani Wild’s Bensley Butlers will anticipate your needs before you do.</p>
                     <p>They’ll suggest unforgettable activities to suit your tastes and fitness, and accompany you on your adventures, from motorbike rides to boat trips. Your butler will also play the classic role of butler with aplomb, unpacking and packing your luggage and fulfilling your ad-hoc requests.</p>
                     <p>Please note: although we understand the temptation, guests are not allowed to take their butler home.</p>
@@ -236,6 +228,8 @@ import loading from '@/mixins/loading'
 import { Story, Resort, Category, GalleryImage } from '@/types'
 import { get } from 'lodash-es'
 import { categoryToStoryBridge } from '@/helpers'
+import store from '@/store'
+import { MetaInfo } from 'vue-meta'
 
 export default Vue.extend({
   name: 'listing',
@@ -258,14 +252,16 @@ export default Vue.extend({
   },
   computed: {
     resort(): Resort {
-      return this.$store.getters['resort/getItem']
+      return store.getters['resort/getItem']
     },
     cardImages(): GalleryImage[] {
       const OrderOfCardsImages = 4
-      return get(this.resort, 'images', []).filter(item => item.order === OrderOfCardsImages)
+      return get(this.resort, 'images', []).filter(
+        item => item.order === OrderOfCardsImages
+      )
     },
     categories(): any {
-      return this.$store.getters['category/getItems']
+      return store.getters['category/getItems']
     },
     accommodations(): Category[] {
       return get(this.categories, 'accommodations', [])
@@ -299,8 +295,20 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.$store.dispatch('resort/getItemBySlug', this.slug)
-    this.$store.dispatch('category/getItemsByName', 'accommodations')
+    store.dispatch('resort/getItemBySlug', this.slug)
+    store.dispatch('category/getItemsByName', 'accommodations')
+  },
+  metaInfo(): MetaInfo {
+    return {
+      title: this.resort.title,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.resort.description
+        }
+      ]
+    }
   }
 })
 </script>

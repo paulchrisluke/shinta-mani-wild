@@ -32,8 +32,10 @@
       muted
       playsinline
       @play="onPlay"
+      @playing="onPlaying"
       @ended="onEnd"
       @error="onError"
+      @waiting="onWaiting"
       v-bind="rest"
     >
       <source :src="transformCloudinaryUrl(source, videoTransformations)" type="video/mp4" />
@@ -47,9 +49,18 @@
       ></div>
     </transition>
 
+    <transition name="fade-fast">
+      <div
+        v-if="(isWaiting && !isEnded && !isErrored) || !isStarted"
+        class="video-player--overlay position-absolute d-flex justify-content-center align-items-center"
+      >
+        <base-loading-spinner />
+      </div>
+    </transition>
+
     <div class="video-player--tools position-absolute">
       <a
-        v-if="isStarted"
+        v-if="isStarted && !this.videoElement.controls"
         aria-label="Toggle Sound"
         @click.stop.prevent="toggleMute"
         class="mute-toggle d-block cursor-pointer hover-button-bg ml-2 mb-2"
@@ -61,11 +72,14 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import BaseLoadingSpinner from '@/components/BaseLoadingSpinner.vue'
 export default Vue.extend({
+  components: { BaseLoadingSpinner },
   data() {
     return {
       videoElement: {} as HTMLVideoElement,
       isStarted: false,
+      isWaiting: false,
       isEnded: false,
       isPaused: false,
       isMute: true,
@@ -122,11 +136,17 @@ export default Vue.extend({
       }
     },
     onPlay() {
+      this.isEnded = false
+    },
+    onPlaying() {
+      this.$emit('videoplayer-played')
       this.isErrored = false
       this.shouldShowPoster = false
+      this.isWaiting = false
       this.isStarted = true
-      this.isEnded = false
-      this.$emit('videoplayer-played')
+    },
+    onWaiting($event: any, index: number) {
+      this.isWaiting = true
     },
     onEnd() {
       this.isEnded = true

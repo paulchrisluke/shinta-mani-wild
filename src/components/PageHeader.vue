@@ -50,20 +50,11 @@
                         class="nav-link text-light px-2"
                       >Food and Drink</a>
                     </li>
-                    <li class="nav-item mx-1">
-                      <a href="/search/wellness" class="nav-link text-light px-2">Wellness</a>
+                    <li class="nav-item">
+                      <a href="/search/wellness" class="nav-link text-light pl-2 pr-0">Wellness</a>
                     </li>
                   </ul>
                 </nav>
-                <div v-if="isViewTentsVisible" class="ml-1">
-                  <base-image-link
-                    :class-name="'ml-2'"
-                    :theme="'secondary'"
-                    :size="'sm'"
-                    :text="'View Tents'"
-                    :href="'/tents'"
-                  ></base-image-link>
-                </div>
               </div>
             </div>
             <div
@@ -94,7 +85,7 @@
 
       <nav
         class="page-header--mobile d-flex flex-column justify-content-between"
-        v-if="isMobileMenuTentsOpen"
+        v-if="isMobileMenuOpen"
       >
         <ul
           class="page-header--mobile-links row px-2 nav user-select-none text-small-caps font-weight-normal mb-4"
@@ -134,8 +125,6 @@
             <a href="/contact" class="nav-link px-0 py-1">Contact</a>
           </li>
         </ul>
-
-        <base-image-link :theme="'secondary'" :size="'sm'" :text="'View Tents'" :href="'/tents'"></base-image-link>
       </nav>
     </div>
   </div>
@@ -240,16 +229,10 @@ export default Vue.extend({
   components: {
     BaseImageLink
   },
-  props: {
-    isViewTentsVisible: {
-      type: Boolean,
-      default: true
-    }
-  },
   data() {
     return {
       isDropdownTentsOpen: false,
-      isMobileMenuTentsOpen: false
+      isMobileMenuOpen: false
     }
   },
   mounted() {
@@ -266,14 +249,14 @@ export default Vue.extend({
     },
     toggleMobileMenuTentsOpen() {
       myBody.classList.toggle('overflow-hidden')
-      this.isMobileMenuTentsOpen = !this.isMobileMenuTentsOpen
+      this.isMobileMenuOpen = !this.isMobileMenuOpen
     },
     onClickOutsideDropdown() {
       this.isDropdownTentsOpen = false
     },
     resetResponsiveMenu() {
       myBody.classList.remove('overflow-hidden')
-      this.isMobileMenuTentsOpen = false
+      this.isMobileMenuOpen = false
     }
   },
   destroyed() {

@@ -66,6 +66,8 @@ body,
 .app,
 .page {
   min-height: 100vh;
+  // stylelint-disable-next-line
+  min-height: calc(var(--vh, 1vh) * 100);
 }
 [page-is-loading] {
   overflow: hidden;
@@ -111,6 +113,9 @@ body,
   left: 0;
   width: 100%;
   height: 100%;
+}
+.stick-around {
+  @include stick-around;
 }
 
 // dropdown
