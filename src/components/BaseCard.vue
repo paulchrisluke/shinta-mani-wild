@@ -5,11 +5,11 @@
         <img :src="image.url" :alt="image.text" />
       </div>
     </div>
-    <div :class="{'flex-row-reverse': isLeft}" class="wrapper-card row no-gutters mx-3 mx-xl-0">
+    <div :class="{'flex-row-reverse': isLeft}" class="wrapper-card row no-gutters">
       <div class="text col-12 col-xl-6 order-2 order-xl-1">
         <div
           :class="{'pl-xl-5 pr-xl-0': !isLeft, 'pr-xl-5 pl-xl-0': isLeft}"
-          class="p-3 pt-xl-5 pb-xl-5"
+          class="px-4 pb-4 pt-3 pt-xl-5 pb-xl-5"
         >
           <slot name="text"></slot>
         </div>
@@ -63,6 +63,9 @@ $shadow-small: $box-shadow-md, $box-shadow-sm;
   border-radius: rem(15px);
   border-top: rem($card-border-top) solid $primary;
   background: $brand-2;
+  p:last-child {
+    margin-bottom: 0;
+  }
 }
 .card-image-wrapper {
   @include media-breakpoint-down(lg) {

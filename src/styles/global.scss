@@ -74,6 +74,10 @@ body,
 }
 .container.is-small {
   max-width: rem($container-small);
+  @include media-breakpoint-down(md) {
+    padding-left: rem($spacer * 1.5);
+    padding-right: rem($spacer * 1.5);
+  }
 }
 .page {
   display: flex;
@@ -221,7 +225,6 @@ body,
   padding: 1rem;
   position: absolute;
 }
-
 
 // transitions
 .fade-enter-active,
