@@ -62,7 +62,10 @@ $slider-story-item-max-width-lg: 414px;
 $gallery-slide-max-width: 618px;
 
 // typography
-$font-family-sans-serif: 'Roboto', sans-serif;
+$font-family-sans-serif: 'Roboto', 'Segoe UI', Tahoma, sans-serif;
+$font-family-base: $font-family-sans-serif;
+$font-family-serif: 'Modern KING', arial, serif;
+$font-family-serif-2: 'trajan-pro-3', arial, serif;
 $serif-font-size-correction: 1.25;
 $huge-font-size: 4.25rem;
 $h1-font-size: 3rem;

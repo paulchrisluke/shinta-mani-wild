@@ -1,19 +1,23 @@
-@import './font-shinta-mani.scss';
+@import './font-modern-king.scss';
 @import './bootstrap.scss';
 @import '@/styles/lib-aos.scss';
 
 // Typography
-.font-serif {
-  font-family: 'Modern King', arial, serif;
+.h2,
+.h3 {
+  font-family: $font-family-serif-2;
 }
-.font-serif-condensed {
-  font-family: 'Modern King', arial, serif;
+.font-serif {
+  font-family: $font-family-serif;
+}
+.font-serif-2 {
+  font-family: $font-family-serif-2;
+}
+.font-sans-serif {
+  font-family: $font-family-sans-serif;
 }
 .font-weight-semibold {
   font-weight: 500;
-}
-.font-sans-serif {
-  font-family: 'Trajan Pro', 'Segoe UI', Tahoma, serif;
 }
 .text-decoration-underline {
   text-decoration: underline;

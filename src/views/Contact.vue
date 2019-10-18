@@ -43,7 +43,7 @@
               <div class="px-3 mb-5 mb-md-0">
                 <div class="mb-3">
                   <h2
-                    class="font-sans-serif text-dark mb-3 text-small-caps font-weight-normal"
+                    class="text-dark mb-3 font-weight-normal h2"
                   >Call us</h2>
                   <div class="d-flex">
                     <img
@@ -57,7 +57,7 @@
 
                 <div class="mb-3">
                   <h2
-                    class="font-sans-serif text-dark mb-3 text-small-caps font-weight-normal"
+                    class="text-dark mb-3 font-weight-normal h2"
                   >How to get here</h2>
                   <div class="d-flex">
                     <img
@@ -97,7 +97,7 @@
                   data-netlify="true"
                 >
                   <h2
-                    class="font-sans-serif text-dark mb-3 text-small-caps text-center font-weight-normal"
+                    class="text-dark mb-3 text-center font-weight-normal h2"
                   >Ask Us Anything</h2>
 
                   <input type="hidden" name="form-name" value="Contact" />

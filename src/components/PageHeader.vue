@@ -19,7 +19,7 @@
               </div>
               <div class="page-header--nav d-flex align-items-center">
                 <nav>
-                  <ul class="nav user-select-none text-small-caps font-weight-light">
+                  <ul class="nav user-select-none font-serif-2 font-weight-light">
                     <li class="nav-item dropdown mx-1" :class="{'show': isDropdownTentsOpen}">
                       <a
                         href="#"
@@ -88,7 +88,7 @@
         v-if="isMobileMenuOpen"
       >
         <ul
-          class="page-header--mobile-links row px-2 nav user-select-none text-small-caps font-weight-normal mb-4"
+          class="page-header--mobile-links row px-2 nav user-select-none font-serif-2 font-weight-normal mb-4"
         >
           <li class="col-12 nav-item nav-title font-serif mt-2">
             <a class="nav-link px-0" href="/tents">Tents</a>
