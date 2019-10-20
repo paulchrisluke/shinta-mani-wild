@@ -10,8 +10,8 @@
               </a>
 
               <div class="text-light text-center my-2">
-                <p class="mb-0 font-serif">Bensley Collection</p>
-                <p class="mb-2 font-serif">Shinta Mani Wild</p>
+                <p class="mb-0 font-serif-2">Bensley Collection</p>
+                <p class="mb-2 font-serif-2">Shinta Mani Wild</p>
                 <p class="mb-0 copyright">&copy;Bensley Collection. All rights reserved.</p>
               </div>
             </div>
@@ -21,7 +21,7 @@
           <div class="row flex-column-reverse flex-md-row text-center text-md-left">
             <div class="col-12 col-md-6 links is-discover mb-4 mb-md-0">
               <nav>
-                <h3 class="h3 font-sans-serif text-small-caps text-light">Discover</h3>
+                <h3 class="h3 font-serif-2 text-light">Discover</h3>
                 <ul class="nav flex-column">
                   <li class="nav-item">
                     <a
@@ -51,7 +51,7 @@
             </div>
             <div class="col-12 col-md-6 links is-connect mb-4 mb-md-0">
               <nav>
-                <h3 class="h3 font-sans-serif text-small-caps text-light">Connect</h3>
+                <h3 class="h3 font-serif-2 text-small-caps text-light">Connect</h3>
                 <ul class="nav flex-column">
                   <li class="nav-item">
                     <a
@@ -87,11 +87,6 @@ export default Vue.extend({
   z-index: $footer-zindex;
   background-color: $primary;
   box-shadow: $box-shadow-sm-top, $box-shadow-md-top;
-  @include media-breakpoint-down(md) {
-    .h3 {
-      font-family: 'Roboto', sans-serif;
-    }
-  }
 }
 .links {
   font-size: rem(12px);
