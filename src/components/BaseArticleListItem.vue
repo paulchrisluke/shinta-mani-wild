@@ -51,7 +51,7 @@
         </div>
 
         <h3
-          class="article-list-item--title font-sans-serif text-small-caps my-2 d-flex align-items-center"
+          class="article-list-item--title font-serif-2 my-2 d-flex align-items-center"
           :class="titleClass"
         >
           <a
