@@ -56,8 +56,10 @@ export default Vue.extend({
     },
     images(): GalleryImage[] {
       const result = get(this.resort, 'images', []).filter(
-        (item: GalleryImage) => item.order === this.orderFilter
+        (item: GalleryImage) => {console.log(item.order); return item.order === this.orderFilter}
       )
+      console.log('this.orderFilter', this.orderFilter);
+      
       return result
     }
   },
@@ -76,6 +78,9 @@ export default Vue.extend({
   background-color: $brand-4;
 }
 ::v-deep {
+  .story--nav-tools {
+    display: none !important;
+  }
   .swiper-container {
     @include media-breakpoint-up(lg) {
       height: calc(100vh - #{190px});

@@ -1,32 +1,32 @@
 <template>
-    <section class="container is-small">
-      <template v-if="showPlaceholder">
-        <div class="row">
-          <content-placeholders
-            :class="`col-${12 / itemsPerRow}`"
-            rounded
-            v-for="item in itemsPerRow"
-            :key="item"
-          >
-            <content-placeholders-img />
-          </content-placeholders>
-        </div>
-      </template>
-      <template v-else-if="items.length > 0">
-        <div class="row">
-          <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
-            <a class="position-relative gallery-item d-block" :style="{'background-image': `url(${item.url})`}" :href="item.link">
-              <div class="heading position-absolute">
-                <h3 class="base-heading text-uppercase font-serif h1 text-light text-center" v-html="item.title">Exterior</h3>
-              </div>
-            </a>
+  <section class="container is-small">
+    <template v-if="items.length > 0">
+      <div class="row">
+        <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
+          <div class="aspect-ratio-box ratio-11-8">
+            <div class="aspect-ratio-box-inside">
+              <a class="gallery-item d-block" :href="item.link">
+                <img
+                  class="gallery-item--image w-100"
+                  :src="transformCloudinaryUrl(item.url, 'w_440,h_320,c_crop,g_auto')"
+                  :alt="item.title"
+                />
+                <div class="gallery-list--heading position-absolute">
+                  <h3
+                    class="gallery-list--heading-text text-uppercase font-serif h1 text-light text-center mb-0"
+                    v-html="item.title"
+                  >Exterior</h3>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
-      </template>
-      <p v-else class="mb-3 text-center">
-        <small>There are no items to show</small>
-      </p>
-    </section>
+      </div>
+    </template>
+    <p v-else class="mb-3 text-center">
+      <small>There are no items to show</small>
+    </p>
+  </section>
 </template>
 
 <script lang="ts">
@@ -57,11 +57,6 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .gallery-item {
   cursor: pointer;
-  height: rem(320px);
-  background: no-repeat center;
-  background-size: cover;
-  border-radius: rem(10px);
-  box-shadow: $box-shadow-md, $box-shadow-sm;
   &::before {
     content: '';
     position: absolute;
@@ -69,14 +64,28 @@ export default Vue.extend({
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba($black, 0.4);
+    background-color: rgba($black, 0.4);
     border-radius: rem(10px);
+    opacity: 1;
+    transition: opacity 300ms ease;
+  }
+  &:hover::before {
+    opacity: 0;
   }
 }
-.heading {
+.gallery-item--image {
+  border-radius: rem(10px);
+  box-shadow: $box-shadow-md, $box-shadow-sm;
+}
+.gallery-list--heading {
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+}
+.gallery-list--heading-text {
+  @include media-breakpoint-down(sm) {
+    font-size: $h1-font-size-mobile * 0.7;
+  }
 }
 .vue-content-placeholders-img {
   height: rem(320px);

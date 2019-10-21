@@ -26,7 +26,7 @@
               :text="resort.title"
               :type="'h1'"
               :class-placeholder="'heading-placeholder mb-5'"
-              :class-name="'h1 font-size-xl-huge text-dark text-center mb-5'"
+              :class-name="'h1 text-dark text-center mb-5'"
               :border-art="true"
             ></base-heading>
 
@@ -46,7 +46,7 @@
         <!-- gallery -->
         <section>
           <base-heading :text="'Gallery'" :type="'h2'" :class-name="'h2 text-dark text-center'"></base-heading>
-          <base-gallery-list :show-placeholder="!resort.id" :items="galleryItems.slice(0,2)" />
+          <base-gallery-list :items="galleryItems.slice(0,2)" />
         </section>
 
         <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
