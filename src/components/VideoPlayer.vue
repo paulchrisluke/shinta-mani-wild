@@ -15,11 +15,11 @@
             v-for="size in gridBreakpointsArray"
             :key="size"
             :media="`(max-width: ${size}px)`"
-            :srcset="getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_${size},ar_${heroVideoRatio},c_fill`)"
+            :srcset="getPosterImage(source, `so_${posterFrameSecond},q_auto:best,w_${size},ar_${heroVideoRatio},c_fill`)"
           />
           <img
             class="h-100"
-            :src="getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_1920,ar_${heroVideoRatio},c_fill`)"
+            :src="getPosterImage(source, `so_${posterFrameSecond},q_auto:best,w_1920,ar_${heroVideoRatio},c_fill`)"
             alt="Shinta Mani Wild in Press"
           />
         </picture>
