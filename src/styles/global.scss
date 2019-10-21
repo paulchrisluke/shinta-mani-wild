@@ -100,7 +100,6 @@ body,
 }
 .aspect-ratio-box {
   height: 0;
-  overflow: hidden;
   position: relative;
   &.ratio-1-1 {
     padding-top: 100%;
@@ -113,6 +112,9 @@ body,
   }
   &.ratio-3-2 {
     padding-top: 66.7%;
+  }
+  &.ratio-11-8 {
+    padding-top: 72.727%;
   }
 }
 .aspect-ratio-box-inside {
