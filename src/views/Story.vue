@@ -93,5 +93,8 @@ export default Vue.extend({
       max-width: rem($slider-story-item-max-width-lg);
     }
   }
+  .story--inner .aspect-ratio-box {
+    max-width: calc((100vh - #{rem(72px)}) * (0.5625));
+  }
 }
 </style>
