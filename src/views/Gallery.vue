@@ -56,8 +56,10 @@ export default Vue.extend({
     },
     images(): GalleryImage[] {
       const result = get(this.resort, 'images', []).filter(
-        (item: GalleryImage) => item.order === this.orderFilter
+        (item: GalleryImage) => {console.log(item.order); return item.order === this.orderFilter}
       )
+      console.log('this.orderFilter', this.orderFilter);
+      
       return result
     }
   },
