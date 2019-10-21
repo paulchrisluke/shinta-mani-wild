@@ -430,7 +430,7 @@ export default Vue.extend({
 .story--content {
   width: auto;
   height: auto;
-  max-width: calc(100vw - #{rem(32px)});
+  max-width: calc(100vw - #{rem(40px)});
   max-height: 100%;
   transform: translate(-50%, -50%);
   position: absolute;
