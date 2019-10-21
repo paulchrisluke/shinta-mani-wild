@@ -80,6 +80,9 @@ export default Vue.extend({
   background-color: $brand-4;
 }
 ::v-deep {
+  .swiper-pagination {
+    margin-right: 1 * $spacer;
+  }
   .story-slider--inner {
     max-width: rem($slider-story-max-width);
   }
