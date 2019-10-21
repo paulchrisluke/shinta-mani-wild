@@ -27,7 +27,7 @@
             :show-placeholder="!resort.id"
             :text="'Shinta Mani Wild'"
             :type="'h1'"
-            :class-name="'h1 font-size-xl-huge text-dark text-center'"
+            :class-name="'h1 text-dark text-center'"
             :border-art="true"
           ></base-heading>
         </div>
