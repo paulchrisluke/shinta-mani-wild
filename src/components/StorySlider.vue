@@ -101,18 +101,18 @@
 
     <!-- Pagination -->
     <div class="story--nav position-absolute">
-      <div class="d-flex">
-        <div class="d-flex mx-auto align-items-center">
-          <div class="story--nav-tools d-flex align-items-end h-100 mx-3">
-            <a
-              aria-label="Toggle Sound"
-              @click="toggleMute"
-              class="mute-toggle d-block cursor-pointer hover-button-bg"
-              :class="{'is-mute': isMute, 'has-sound': !isMute}"
-            ></a>
-          </div>
-          <div class="swiper-pagination swiper-pagination-white ml-auto mr-3"></div>
+      <div class="d-flex w-100">
+        <div class="story--nav-tools d-flex align-items-end h-100 mx-3">
+          <a
+            aria-label="Toggle Sound"
+            @click="toggleMute"
+            class="mute-toggle d-block cursor-pointer hover-button-bg"
+            :class="{'is-mute': isMute, 'has-sound': !isMute}"
+          ></a>
         </div>
+        <div
+          class="swiper-pagination swiper-pagination-white ml-auto d-flex align-items-center w-100"
+        ></div>
       </div>
     </div>
   </div>
@@ -529,11 +529,13 @@ export default Vue.extend({
 ::v-deep {
   .swiper-pagination {
     position: static;
-    min-height: rem(32px);
+    min-height: rem(16px);
   }
   .swiper-pagination-bullet {
+    flex-basis: 0;
+    flex-grow: 1;
+
     $default-transition: 15000ms;
-    width: rem(16px);
     height: rem(2px);
     border-radius: rem(4px);
     background: rgba($white, 0.4);
@@ -542,9 +544,6 @@ export default Vue.extend({
     position: relative;
     overflow: hidden;
     transition: transform $default-transition linear;
-    @include media-breakpoint-up(lg) {
-      width: rem(24px);
-    }
     &::before {
       content: '';
       display: block;
@@ -614,8 +613,12 @@ export default Vue.extend({
   }
 }
 .mute-toggle {
-  width: rem(56px);
-  height: rem(56px);
+  width: rem(32px);
+  height: rem(32px);
+  @include media-breakpoint-up(md) {
+    width: rem(56px);
+    height: rem(56px);
+  }
   &.is-mute {
     background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570887492/Shinta%20Mani%20Wild/general/sound-muted_sxxwst.svg')
       no-repeat center;

@@ -40,8 +40,8 @@ $container-small: 912px;
 $nav-link-padding-y: rem(4px);
 $caret-vertical-align: 0.1em;
 
-$spacer: 1rem !default;
-$spacers: () !default;
+$spacer: 1rem;
+$spacers: ();
 $spacers: map-merge(
   (
     0: 0,
