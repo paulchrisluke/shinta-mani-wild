@@ -17,6 +17,7 @@
           :poster-frame-second="10"
           :source="resort.name"
           :rest="{autoplay: true, loop: false}"
+          :videoTransformations="'q_auto:best'"
         ></video-player>
       </div>
 

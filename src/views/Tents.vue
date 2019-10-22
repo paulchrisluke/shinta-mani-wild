@@ -9,7 +9,12 @@
 
       <!-- player -->
       <div class="hero position-relative">
-        <video-player v-if="resort.id" :source="resort.name" :rest="{autoplay: true, loop: false}"></video-player>
+        <video-player
+          v-if="resort.id"
+          :source="resort.name"
+          :rest="{autoplay: true, loop: false}"
+          :videoTransformations="'q_auto:best'"
+        ></video-player>
       </div>
 
       <div class="parallax-container position-relative py-5">
