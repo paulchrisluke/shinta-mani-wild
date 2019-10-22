@@ -20,7 +20,7 @@
               :text="resort.title"
               :type="'h1'"
               :class-placeholder="'heading-placeholder mb-5'"
-              :class-name="'h1 font-size-xl-huge text-dark text-center mb-5'"
+              :class-name="'h1 text-dark text-center mb-5'"
               :border-art="true"
             ></base-heading>
 

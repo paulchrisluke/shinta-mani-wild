@@ -80,6 +80,9 @@ export default Vue.extend({
   background-color: $brand-4;
 }
 ::v-deep {
+  .swiper-pagination {
+    margin-right: 1 * $spacer;
+  }
   .story-slider--inner {
     max-width: rem($slider-story-max-width);
   }
@@ -92,6 +95,9 @@ export default Vue.extend({
     @media (min-width: rem(map-get($grid-breakpoints, 'lg'))) {
       max-width: rem($slider-story-item-max-width-lg);
     }
+  }
+  .story--inner .aspect-ratio-box {
+    max-width: calc((100vh - #{rem(72px)}) * (0.5625));
   }
 }
 </style>

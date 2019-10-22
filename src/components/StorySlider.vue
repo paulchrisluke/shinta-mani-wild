@@ -25,7 +25,7 @@
             <div class="story--inner position-relative w-100 mx-auto">
               <div
                 @click="goToSlide(index)"
-                class="aspect-ratio-box"
+                class="aspect-ratio-box mx-auto"
                 :class="[{'cursor-pointer': index !== swiper.activeIndex}, custom.ratioBoxClass]"
               >
                 <div class="aspect-ratio-box-inside">
@@ -101,18 +101,18 @@
 
     <!-- Pagination -->
     <div class="story--nav position-absolute">
-      <div class="d-flex">
-        <div class="d-flex mx-auto align-items-center">
-          <div class="story--nav-tools d-flex align-items-end h-100 mx-3">
-            <a
-              aria-label="Toggle Sound"
-              @click="toggleMute"
-              class="mute-toggle d-block cursor-pointer hover-button-bg"
-              :class="{'is-mute': isMute, 'has-sound': !isMute}"
-            ></a>
-          </div>
-          <div class="swiper-pagination swiper-pagination-white ml-auto mr-3"></div>
+      <div class="d-flex w-100">
+        <div class="story--nav-tools d-flex align-items-end h-100 mx-3">
+          <a
+            aria-label="Toggle Sound"
+            @click="toggleMute"
+            class="mute-toggle d-block cursor-pointer hover-button-bg"
+            :class="{'is-mute': isMute, 'has-sound': !isMute}"
+          ></a>
         </div>
+        <div
+          class="swiper-pagination swiper-pagination-white ml-auto d-flex align-items-center w-100"
+        ></div>
       </div>
     </div>
   </div>
@@ -142,8 +142,7 @@ export default Vue.extend({
       swiper: {} as Swiper,
       videoDurations: [] as number[],
       videoHasNoSounds: [] as boolean[],
-      isMute: true,
-      isStoryDetailsWidthFixerRunned: false
+      isMute: true
     }
   },
   props: {
@@ -222,8 +221,6 @@ export default Vue.extend({
       if (videoDuration > 0 && videoDuration < Infinity) {
         this.saveVideoDuration(index, videoDuration * 1000)
       }
-
-      this.fixStoryDetailsWidth()
     },
     onVideoPlaying(index: number) {
       this.setBulletTransition(this.swiper.activeIndex)
@@ -327,43 +324,6 @@ export default Vue.extend({
           }
         }
       })
-    },
-    fixStoryDetailsWidth() {
-      if (this.isStoryDetailsWidthFixerRunned) {
-        return
-      } else {
-        this.isStoryDetailsWidthFixerRunned = true
-      }
-      console.log('runned')
-
-      // a fix for story--details width in responsive mode
-      this.storyDetailsListenResize()
-      this.setStoryDetailsWidth()
-    },
-    setStoryDetailsWidth() {
-      const slideContentElementWidth = (document.querySelector(
-        '.swiper-slide-active .story--content'
-      ) as Element).clientWidth
-      const storyDetailsElements = document.querySelectorAll(
-        '.swiper-slide .story--details'
-      )
-
-      for (let i = 0; i < storyDetailsElements.length; i++) {
-        ;(storyDetailsElements[
-          i
-        ] as HTMLElement).style.width = `${slideContentElementWidth}px`
-      }
-    },
-    storyDetailsListenResize() {
-      const listener = (event: any) => {
-        this.setStoryDetailsWidth()
-      }
-      window.addEventListener('resize', listener)
-
-      // @ts-ignore
-      this.$once('hook:destroyed', () => {
-        document.removeEventListener('resize', listener)
-      })
     }
   }
 })
@@ -391,18 +351,6 @@ export default Vue.extend({
   // stylelint-disable-next-line
   height: calc(var(--vh, 1vh) * 100);
 }
-.is-stories {
-  .swiper-wrapper,
-  .story--content-wrapper {
-    max-height: calc(100vh - #{rem(72px)});
-    // stylelint-disable-next-line
-    max-height: calc(var(--vh, 1vh) * 100 - #{rem(72px)});
-  }
-}
-.story--inner,
-.swiper-slide {
-  max-height: inherit;
-}
 .swiper-container {
   width: 100%;
   box-sizing: content-box;
@@ -411,18 +359,23 @@ export default Vue.extend({
   height: calc(var(--vh, 1vh) * 100 - #{rem(24px * 2)});
 }
 .swiper-slide {
+  max-height: inherit;
   transition: transform 300ms ease;
   transform: scale(0.92);
+}
+.swiper-wrapper,
+.story--inner,
+.story--inner .aspect-ratio-box-inside,
+.story--content-wrapper {
+  max-height: calc(100vh - #{rem(72px)});
+  // stylelint-disable-next-line
+  max-height: calc(var(--vh, 1vh) * 100 - #{rem(72px)});
 }
 .story--inner {
   border-radius: rem(20px);
   transition: opacity 300ms ease;
   opacity: 0.05;
-  @media (min-width: rem(map-get($grid-breakpoints, 'lg'))) and (min-height: rem(700px)) {
-    box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
-      rem(0px 5px 22px) rgba($black, 0.12),
-      rem(0px 12px 17px) rgba($black, 0.14);
-  }
+  max-width: calc(100vw - #{rem(40px)});
   &:hover {
     opacity: 0.3;
   }
@@ -430,18 +383,14 @@ export default Vue.extend({
 .story--content {
   width: auto;
   height: auto;
-  max-width: calc(100vw - #{rem(32px)});
   max-height: 100%;
   transform: translate(-50%, -50%);
   position: absolute;
   left: 50%;
   top: 50%;
   border-radius: rem(20px);
-  @media (max-width: rem(map-get($grid-breakpoints, 'lg') - 1px)) {
-    box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
-      rem(0px 5px 22px) rgba($black, 0.12),
-      rem(0px 12px 17px) rgba($black, 0.14);
-  }
+  box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
+    rem(0px 5px 22px) rgba($black, 0.12), rem(0px 12px 17px) rgba($black, 0.14);
 }
 .swiper-slide-active {
   transform: scale(1);
@@ -529,12 +478,14 @@ export default Vue.extend({
 ::v-deep {
   .swiper-pagination {
     position: static;
-    min-height: rem(32px);
+    min-height: rem(16px);
   }
   .swiper-pagination-bullet {
+    flex-basis: 0;
+    flex-grow: 1;
+
     $default-transition: 15000ms;
-    width: rem(18px);
-    height: rem(4px);
+    height: rem(2px);
     border-radius: rem(4px);
     background: rgba($white, 0.4);
     opacity: 1;
@@ -542,9 +493,6 @@ export default Vue.extend({
     position: relative;
     overflow: hidden;
     transition: transform $default-transition linear;
-    @include media-breakpoint-up(md) {
-      width: rem(48px);
-    }
     &::before {
       content: '';
       display: block;
@@ -614,8 +562,12 @@ export default Vue.extend({
   }
 }
 .mute-toggle {
-  width: rem(56px);
-  height: rem(56px);
+  width: rem(32px);
+  height: rem(32px);
+  @include media-breakpoint-up(md) {
+    width: rem(56px);
+    height: rem(56px);
+  }
   &.is-mute {
     background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570887492/Shinta%20Mani%20Wild/general/sound-muted_sxxwst.svg')
       no-repeat center;
