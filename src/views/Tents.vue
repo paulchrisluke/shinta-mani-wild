@@ -49,7 +49,7 @@
             </div>
           </template>
           <div class="swiper-container">
-            <div class="swiper-wrapper">
+            <div ref="swiper-wrapper" class="swiper-wrapper" v-if="resort.id">
               <div
                 class="swiper-slide"
                 v-for="(item, index) in accommodationsAsStories.slice(0, 3)"
@@ -67,7 +67,6 @@
               </div>
             </div>
           </div>
-    
         </section>
 
         <!-- quote -->
@@ -302,17 +301,27 @@ export default Vue.extend({
   },
 
   mounted() {
-    this.initSlider()
     store.dispatch('resort/getItemBySlug', this.slug)
     store.dispatch('category/getItemsByName', 'accommodations')
+    this.initSlider()
   },
   methods: {
     initSlider(): void {
-      this.swiper = new Swiper('.swiper-container', {
-        slidesPerView: 2.2,
-        spaceBetween: 30,
-        loop: true
-      })
+      // Only initilizes the Swiper instance when swiper-wrapper is in the DOM
+      if (!this.resort.id || !this.$refs['swiper-wrapper']) {
+        setTimeout(this.initSlider, 1000)
+      } else {
+        this.swiper = new Swiper('.swiper-container', {
+          slidesPerView: 1.15,
+          spaceBetween: 30,
+          loop: false,
+          breakpoints: {
+            576: {
+              slidesPerView: 2.2
+            }
+          }
+        })
+      }
     }
   },
   metaInfo(): MetaInfo {
