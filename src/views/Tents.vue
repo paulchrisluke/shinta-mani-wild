@@ -309,18 +309,21 @@ export default Vue.extend({
     initSlider(): void {
       // Only initilizes the Swiper instance when swiper-wrapper is in the DOM
       if (!this.resort.id || !this.$refs['swiper-wrapper']) {
+        
         setTimeout(this.initSlider, 1000)
       } else {
-        this.swiper = new Swiper('.swiper-container', {
-          slidesPerView: 1.15,
-          spaceBetween: 30,
-          loop: false,
-          breakpoints: {
-            576: {
-              slidesPerView: 2.2
+        setTimeout(() => {
+          this.swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1.2,
+            spaceBetween: 30,
+            loop: false,
+            breakpoints: {
+              576: {
+                slidesPerView: 2.2
+              }
             }
-          }
-        })
+          })
+        }, 1000)
       }
     }
   },
