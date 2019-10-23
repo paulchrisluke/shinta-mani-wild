@@ -83,7 +83,6 @@
           </section>
         </div>
 
-        <div class="parallax-container position-relative py-5">
         <!-- card -->
         <div class="container is-small">
           <div class="row mb-5">
@@ -238,6 +237,7 @@ import doodles from '@/mixins/doodles'
 import { GalleryImage, Story, Resort } from '@/types'
 import { get } from 'lodash-es'
 import { MetaInfo } from 'vue-meta'
+import BaseCard from '@/components/BaseCard.vue'
 
 export default Vue.extend({
   name: 'listing',
@@ -252,7 +252,8 @@ export default Vue.extend({
     BaseBannerAction,
     BaseArticlesList,
     BaseQuote,
-    BookingBar
+    BookingBar,
+    BaseCard
   },
   data() {
     return {
