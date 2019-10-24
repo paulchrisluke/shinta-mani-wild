@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="items.length > 0"
-    class="story-slider d-flex flex-grow-1 position-relative"
-  >
+  <div v-if="items.length > 0" class="story-slider d-flex flex-grow-1 position-relative">
     <!-- blurred background -->
     <div class="story-slider--background position-absolute overflow-hidden">
       <div
@@ -29,34 +26,15 @@
               >
                 <div class="aspect-ratio-box-inside">
                   <div class="story--content-wrapper position-relative h-100">
-                    <video
-                      @loadeddata.once="onLoadedVideoData($event, index)"
-                      @loadedmetadata.once="onLoadVideoMetadata($event, index)"
-                      @playing="onVideoPlaying(index)"
-                      @ended="onVideoEnd(index)"
-                      class="story--content is-video"
-                      preload="auto"
-                      :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25,so_0')"
-                      playsinline
-                      autoplay
-                      muted
-                    >
-                      <source
-                        :src="transformCloudinaryUrl(item.image, 'q_auto:good')"
-                        type="video/mp4"
-                      />
-                    </video>
+                    <img
+                      class="story--content is-image"
+                      :src="transformCloudinaryUrl(item.url, 'q_auto:best')"
+                      alt
+                    />
 
                     <div
                       class="story--details position-absolute px-3 d-flex justify-content-between align-items-center mx-auto"
                     >
-                      <!-- music bars -->
-                      <div
-                        v-if="swiper.activeIndex >= 0"
-                        :class="{'d-none': videoHasNoSounds[index] || !shouldPlayMusicBars(index)}"
-                      >
-                        <music-bars />
-                      </div>
                       <!-- like -->
                       <!-- <a @click.stop.prevent class="like my-3 ml-auto" href="#">
                         <img
@@ -94,14 +72,6 @@
     <!-- Pagination -->
     <div class="story--nav position-absolute">
       <div class="d-flex w-100">
-        <div class="story--nav-tools d-flex align-items-end h-100 mx-3">
-          <a
-            aria-label="Toggle Sound"
-            @click="toggleMute"
-            class="mute-toggle d-block cursor-pointer hover-button-bg"
-            :class="{'is-mute': isMute, 'has-sound': !isMute}"
-          ></a>
-        </div>
         <div
           class="swiper-pagination swiper-pagination-white ml-auto d-flex align-items-center w-100"
         ></div>
@@ -124,17 +94,16 @@ import {
 } from '../helpers'
 import { GalleryImage, Story } from '../types'
 
+const autoplayDuration = 5000
+
 export default Vue.extend({
-  name: 'story-slider',
+  name: 'gallery-slider',
   components: {
     MusicBars
   },
   data() {
     return {
-      swiper: {} as Swiper,
-      videoDurations: [] as number[],
-      videoHasNoSounds: [] as boolean[],
-      isMute: true
+      swiper: {} as Swiper
     }
   },
   props: {
@@ -155,115 +124,47 @@ export default Vue.extend({
   watch: {
     items() {
       this.$nextTick(this.init)
-    },
-    isMute(newValue) {
-      const activeVideo = this.getVideoElementByIndex(this.swiper.activeIndex)
-      activeVideo.muted = newValue
     }
   },
   methods: {
     init() {
       this.initSlider()
-      this.playActiveVideo()
-    },
-    toggleMute() {
-      this.isMute = !this.isMute
-      this.items.forEach((item, index) => {
-        const videoElement = this.getVideoElementByIndex(index)
-        videoElement.muted = this.isMute
-      })
-    },
-    shouldPlayMusicBars(index: number): boolean {
-      if (this.isMute) {
-        return false
-      }
-      if (index !== this.swiper.activeIndex) {
-        return false
-      }
-      return true
     },
     getBlurredImage(index: number) {
       const item = this.items[index]
-      return getPosterImage((item as Story).image, 'q_25')
+      return transformCloudinaryUrl((item as GalleryImage).url, 'q_auto:best')
     },
     goToSlide(index: number) {
       this.swiper.slideTo(index)
     },
-    saveVideoDuration(index: number, duration: number) {
-      this.videoDurations[index] = duration
-    },
-    onLoadedVideoData($event: any, index: number) {
-      const videoElement = $event.target
-      this.videoHasNoSounds[index] = !hasAudio(videoElement)
-      if (index !== this.swiper.activeIndex) {
-        videoElement.pause()
-      }
-    },
-    onLoadVideoMetadata($event: any, index: number) {
-      const videoDuration = $event.target.duration
-      if (videoDuration > 0 && videoDuration < Infinity) {
-        this.saveVideoDuration(index, videoDuration * 1000)
-      }
-    },
-    onVideoPlaying(index: number) {
-      this.setBulletTransition(this.swiper.activeIndex)
-    },
-    onVideoEnd(index: number) {
-      this.swiper.slideNext()
-    },
-    setBulletTransition(
-      index: number,
-      // @ts-ignore
-      duration: number = this.videoDurations[index]
-    ) {
-      const $navBullets = document.querySelectorAll('.swiper-pagination-bullet')
-      const bullet = $navBullets[index] as HTMLElement
-      this.setTransition(bullet, `transform ${duration}ms linear`)
-      setTimeout(() => {
-        bullet.classList.add('is-playing')
-      }, 0)
-    },
     resetBulletStyle(index: number) {
       const $navBullets = document.querySelectorAll('.swiper-pagination-bullet')
       const bullet = $navBullets[index] as HTMLElement
+
       this.setTransition(bullet, 'none')
-      bullet.classList.remove('is-playing')
+      bullet.classList.add('reset-bullet-transition')
+      setTimeout(() => {
+        this.setTransition(bullet, '')
+        bullet.classList.remove('reset-bullet-transition')
+      }, 0)
     },
     setTransition(element: HTMLElement, value: string) {
       if (element) {
         element.style.transition = value
       }
     },
-    shouldLoadVideoPoster(index: number) {
-      const maxVisibleSlides = 3
-      return (
-        // preload 2 images out of view
-        Math.abs(index - this.swiper.activeIndex) <= maxVisibleSlides / 2 + 2
-      )
-    },
     onClickBack() {
       this.$emit('on-click-back')
-    },
-    getVideoElementByIndex(index: number) {
-      return this.swiper.slides[index].querySelector('.story--content.is-video')
-    },
-    playActiveVideo() {
-      const activeVideo = this.getVideoElementByIndex(this.swiper.activeIndex)
-      if (activeVideo) {
-        activeVideo.currentTime = 0
-        activeVideo.play()
-      }
-    },
-    pausePrevVideo() {
-      const prevVideo = this.getVideoElementByIndex(this.swiper.previousIndex)
-      if (prevVideo) {
-        prevVideo.pause()
-      }
     },
     initSlider(): void {
       const that = this
       // documentation: https://swiperjs.com/api
       that.swiper = new Swiper('.swiper-container', {
+        autoplay: {
+          delay: autoplayDuration,
+          disableOnInteraction: false,
+          stopOnLastSlide: true
+        },
         keyboard: { onlyInViewport: true },
         slidesPerView: 1,
         spaceBetween: 0,
@@ -283,12 +184,15 @@ export default Vue.extend({
           }
         },
         on: {
+          init() {
+            setTimeout(() => {
+              that.resetBulletStyle(0)
+            }, 0)
+          },
           slideChange() {
-            that.pausePrevVideo()
+            that.resetBulletStyle(that.swiper.activeIndex)
           },
-          slideChangeTransitionEnd() {
-            that.playActiveVideo()
-          },
+          slideChangeTransitionEnd() {},
           // reset left slide on go forward
           slideNextTransitionStart() {
             const leftIndex = that.swiper.activeIndex - 1
@@ -464,8 +368,6 @@ export default Vue.extend({
   .swiper-pagination-bullet {
     flex-basis: 0;
     flex-grow: 1;
-
-    $default-transition: 15000ms;
     height: rem(2px);
     border-radius: rem(4px);
     background: rgba($white, 0.4);
@@ -473,7 +375,7 @@ export default Vue.extend({
     margin: 0 rem(2px);
     position: relative;
     overflow: hidden;
-    transition: transform $default-transition linear;
+    transition: none;
     &::before {
       content: '';
       display: block;
@@ -488,15 +390,11 @@ export default Vue.extend({
     }
   }
   .swiper-pagination-bullet-active {
+    $transition-duration: 5000ms;
+    transition: transform $transition-duration linear;
     &::before {
-      transform: translateX(-100%);
-      transition: none;
-    }
-    &.is-playing {
-      &::before {
-        transform: translateX(0%);
-        transition: inherit;
-      }
+      transform: translateX(0%);
+      transition: inherit;
     }
     ~ .swiper-pagination-bullet {
       &::before {
@@ -507,6 +405,11 @@ export default Vue.extend({
   .swiper-button-white:focus {
     outline: none;
     user-select: none;
+  }
+  .reset-bullet-transition {
+    &::before {
+      transform: translateX(-100%) !important;
+    }
   }
 }
 .like {
@@ -540,22 +443,6 @@ export default Vue.extend({
       width: rem(24px);
       height: rem(24px);
     }
-  }
-}
-.mute-toggle {
-  width: rem(32px);
-  height: rem(32px);
-  @include media-breakpoint-up(md) {
-    width: rem(56px);
-    height: rem(56px);
-  }
-  &.is-mute {
-    background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570887492/Shinta%20Mani%20Wild/general/sound-muted_sxxwst.svg')
-      no-repeat center;
-  }
-  &.has-sound {
-    background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570887492/Shinta%20Mani%20Wild/general/sound-enabled_dwwxaq.svg')
-      no-repeat center;
   }
 }
 .hover-button-bg {
