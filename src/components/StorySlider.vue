@@ -50,7 +50,7 @@
                       muted
                     >
                       <source
-                        :src="transformCloudinaryUrl(item.image, 'q_auto:good')"
+                        :src="transformCloudinaryUrl(item.image, 'q_auto:best')"
                         type="video/mp4"
                       />
                     </video>

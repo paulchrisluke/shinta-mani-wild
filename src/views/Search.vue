@@ -14,8 +14,8 @@
         <video-player
           v-if="resort.id"
           :source="resort.name"
-          :rest="{autoplay: true, loop: false}"
-          :videoTransformations="'q_auto:best'"
+          :rest="{autoplay: true, loop: true}"
+          :video-transformations="'q_auto:best'"
         ></video-player>
       </div>
 
