@@ -159,7 +159,7 @@
         </div>
 
         <!-- card -->
-        <div class="container is-small">
+        <div class="container is-small mb-5">
           <div class="row">
             <div class="col-12">
               <base-card :show-placeholder="!resort.id" :image="cardImage2" :is-left="true">
@@ -258,7 +258,15 @@ export default Vue.extend({
   data() {
     return {
       slug: this.$route.params.id,
-      featuredStoriesCount: 0
+      featuredStoriesCount: 0,
+      cardImage1: {
+        text: 'All Inclusive',
+        url: "https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567747072/Shinta%20Mani%20Wild/Tents/All_Inclusive_-_Tent_Page_Shinta_Mani_Wild_kdfq4g.jpg"
+      },
+      cardImage2: {
+        text: 'Conservation',
+        url: "https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568948083/Shinta%20Mani%20Wild/Tents/Head_Butler_Mac_-_Shinta_Mani_Wild_xxc4i9.jpg"
+      }
     }
   },
   metaInfo (): MetaInfo {
