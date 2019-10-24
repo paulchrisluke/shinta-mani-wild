@@ -70,13 +70,10 @@
                 </a>
               </div>
               <button
-                class="hamburger-icon ml-auto px-0"
+                class="hamburger-button pb-2 ml-auto px-0"
                 @click.prevent.stop="toggleMobileMenuTentsOpen"
               >
-                <img
-                  class="haburger-image d-block"
-                  src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570355029/Shinta%20Mani%20Wild/general/menu_24px_e3zpqv.svg"
-                />
+              <div class="hamburger-menu" :class="{ 'animate': isMobileMenuOpen }" /> 
               </button>
             </div>
           </div>
@@ -188,11 +185,6 @@
 .page-header--mobile-links {
   overflow-y: auto;
 }
-.hamburger-icon {
-  background: transparent;
-  border: none;
-  outline: none;
-}
 @include media-breakpoint-down(sm) {
   .page-header--content {
     position: fixed;
@@ -215,6 +207,64 @@
 }
 .dropdown-menu {
   margin-top: rem(20px);
+}
+// Hamburger menu
+$bar-width: rem(20px);
+$bar-height: rem(2px);
+$bar-spacing: rem(5px);
+.hamburger-button {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: rem(32px);
+  height: rem(32px);
+}
+.hamburger-menu,
+.hamburger-menu:after,
+.hamburger-menu:before {
+  width: $bar-width;
+	height: $bar-height;
+}
+
+.hamburger-menu {
+	position: relative;
+	transform: translateY($bar-spacing);
+	background: rgba(255, 255, 255, 1);
+	transition: all 0ms 300ms;
+
+  &.animate {
+    background: rgba(255, 255, 255, 0);
+  }
+}
+
+.hamburger-menu:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: $bar-spacing;
+	background: rgba(255, 255, 255, 1);
+	transition: bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hamburger-menu:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: $bar-spacing;
+	background: rgba(255, 255, 255, 1);
+	transition: top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hamburger-menu.animate:after {
+	top: 0;
+	transform: rotate(45deg);
+	transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);;
+}
+
+.hamburger-menu.animate:before {
+	bottom: 0;
+	transform: rotate(-45deg);
+	transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);;
 }
 </style>
 
