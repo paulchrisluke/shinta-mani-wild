@@ -20,7 +20,7 @@
           <img
             class="h-100"
             :src="getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_1920,ar_${heroVideoRatio},c_fill`)"
-            alt="Shinta Mani Wild in Press"
+            alt="Shinta Mani Wild"
           />
         </picture>
       </div>

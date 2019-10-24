@@ -79,7 +79,7 @@
           <!-- quote -->
           <section class="container mb-5">
             <base-quote :type="'grass1'">
-              <div class="quote" v-html="resort.h2"></div>
+              <div class="quote h-100" v-html="resort.h2"></div>
             </base-quote>
           </section>
         </div>
