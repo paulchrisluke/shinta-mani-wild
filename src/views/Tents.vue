@@ -35,21 +35,8 @@
 
         <!-- accommodations -->
         <section class="container is-small mb-5 featured-items">
-          <template v-if="!resort.id">
-            <div class="row">
-              <content-placeholders
-                :class="`col-6 col-sm-${12 / 3}`"
-                rounded
-                v-for="item in 3"
-                :key="item"
-              >
-                <content-placeholders-img />
-                <content-placeholders-text :lines="2" />
-              </content-placeholders>
-            </div>
-          </template>
           <div class="swiper-container">
-            <div ref="swiper-wrapper" class="swiper-wrapper" v-if="resort.id">
+            <div ref="swiper-wrapper" class="swiper-wrapper">
               <div
                 class="swiper-slide"
                 v-for="(item, index) in accommodationsAsStories.slice(0, 3)"
@@ -303,28 +290,26 @@ export default Vue.extend({
   mounted() {
     store.dispatch('resort/getItemBySlug', this.slug)
     store.dispatch('category/getItemsByName', 'accommodations')
-    this.initSlider()
+  },
+  watch: {
+    accommodationsAsStories() {
+      this.$nextTick(this.initSlider)
+    }
   },
   methods: {
     initSlider(): void {
-      // Only initilizes the Swiper instance when swiper-wrapper is in the DOM
-      if (!this.resort.id || !this.$refs['swiper-wrapper']) {
-        
-        setTimeout(this.initSlider, 1000)
-      } else {
-        setTimeout(() => {
-          this.swiper = new Swiper('.swiper-container', {
-            slidesPerView: 1.2,
-            spaceBetween: 30,
-            loop: false,
-            breakpoints: {
-              576: {
-                slidesPerView: 2.2
-              }
-            }
-          })
-        }, 1000)
-      }
+      console.log('init slider')
+
+      this.swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1.2,
+        spaceBetween: 30,
+        loop: false,
+        breakpoints: {
+          576: {
+            slidesPerView: 2.2
+          }
+        }
+      })
     }
   },
   metaInfo(): MetaInfo {
