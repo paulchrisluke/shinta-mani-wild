@@ -40,34 +40,23 @@
 
         <!-- accommodations -->
         <section class="container is-small mb-5 featured-items">
-          <template v-if="!resort.id">
-            <div class="row">
-              <content-placeholders
-                :class="`col-6 col-sm-${12 / 3}`"
-                rounded
-                v-for="item in 3"
-                :key="item"
+          <div class="swiper-container">
+            <div ref="swiper-wrapper" class="swiper-wrapper">
+              <div
+                class="swiper-slide"
+                v-for="(item, index) in accommodationsAsStories.slice(0, 3)"
+                :key="index"
               >
-                <content-placeholders-img />
-                <content-placeholders-text :lines="2" />
-              </content-placeholders>
-            </div>
-          </template>
-          <div v-else class="row">
-            <div
-              :class="`col-6 col-sm-${12 / 3} mb-3 mb-md-0`"
-              v-for="(item, index) in accommodationsAsStories.slice(0, 3)"
-              :key="index"
-            >
-              <!-- NOTE: data has no video preview in this section -->
-              <article-list-item
-                :title-class="'font-weight-normal'"
-                :href="`/listing/${item.slug}`"
-                :preview-transformations="'q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none'"
-                :poster-transformations="'q_auto:best,w_288,h_192,c_fill,g_auto'"
-                :image-box-class="'ratio-3-2'"
-                :item="item"
-              />
+                <article-list-item
+                  :title-class="'font-weight-normal'"
+                  :href="`/listing/${item.slug}`"
+                  :preview-transformations="'q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none'"
+                  :poster-transformations="'q_auto:best,w_288,h_192,c_fill,g_auto'"
+                  :image-box-class="'ratio-3-2'"
+                  :key="`tent${index}`"
+                  :item="item"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -235,6 +224,8 @@ import { get } from 'lodash-es'
 import { categoryToStoryBridge } from '@/helpers'
 import store from '@/store'
 import { MetaInfo } from 'vue-meta'
+import Swiper from 'swiper'
+import '@/styles/lib-swiper.scss'
 
 export default Vue.extend({
   name: 'listing',
@@ -252,7 +243,8 @@ export default Vue.extend({
   },
   data() {
     return {
-      slug: 'tents'
+      slug: 'tents',
+      swiper: {} as Swiper
     }
   },
   computed: {
@@ -299,9 +291,31 @@ export default Vue.extend({
       }
     }
   },
+
   mounted() {
     store.dispatch('resort/getItemBySlug', this.slug)
     store.dispatch('category/getItemsByName', 'accommodations')
+  },
+  watch: {
+    accommodationsAsStories() {
+      this.$nextTick(this.initSlider)
+    }
+  },
+  methods: {
+    initSlider(): void {
+      console.log('init slider')
+
+      this.swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1.2,
+        spaceBetween: 30,
+        loop: false,
+        breakpoints: {
+          576: {
+            slidesPerView: 2.2
+          }
+        }
+      })
+    }
   },
   metaInfo(): MetaInfo {
     return {
