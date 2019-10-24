@@ -36,7 +36,7 @@
         <!-- quote -->
         <section class="container is-small home--quote-wrapper mb-5">
           <base-quote :type="'grass1'">
-            <div class="quote" v-html="resort.description"></div>
+            <div class="quote h-100" v-html="resort.description"></div>
           </base-quote>
         </section>
 
@@ -95,7 +95,7 @@
         <div class="position-relative home--quote-wrapper mb-5">
           <section class="container is-small">
             <base-quote :class-name="'is-right'">
-              <div class="quote" v-html="resort.h2"></div>
+              <div class="quote h-100" v-html="resort.h2"></div>
             </base-quote>
           </section>
         </div>
