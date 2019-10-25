@@ -16,7 +16,7 @@
           v-if="resort.id"
           :poster-frame-second="10"
           :source="resort.name"
-          :rest="{autoplay: true, loop: true}"
+          :rest="{autoplay: false, loop: true}"
           :video-transformations="'q_auto:best'"
         ></video-player>
       </div>

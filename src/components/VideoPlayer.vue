@@ -67,6 +67,16 @@
         :class="{'is-mute': isMute, 'has-sound': !isMute}"
       ></a>
     </div>
+
+    <transition name="fade-fast">
+      <div
+        v-if="!isStarted || isEnded"
+        class="video-player--swipup d-block d-md-none">
+        <div class="scroll-indicator scroll-indicator-first"></div>
+        <div class="scroll-indicator scroll-indicator-second"></div>
+      </div>
+    </transition>
+   
   </div>
 </template>
 
@@ -239,6 +249,72 @@ export default Vue.extend({
     background-color: rgba($black, 0.4);
     border-radius: rem(100px);
     transition: all 200ms ease;
+  }
+}
+.video-player--swipup {
+  width: 100%;
+  height: rem(110px);
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, #000000 99.85%);
+}
+// Animate scroll indicator
+$speed: 2s;
+$delay: 1s;
+.scroll-indicator {
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: 50% 50%;
+}
+.scroll-indicator-first {
+  animation: arrow-first-animate $speed $delay ease-in-out infinite;
+  top: 42%;
+}
+.scroll-indicator-second {
+  animation: arrow-second-animate $speed $delay ease-in-out infinite;
+  top:50%
+}
+.scroll-indicator:before,
+.scroll-indicator:after {
+  background: $white;
+  content: '';
+  display: block;
+  height: rem(2px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: rem(12px);
+}
+.scroll-indicator:before {
+  transform: rotate(45deg) translateX(-23%);
+  transform-origin: top left;
+}
+.scroll-indicator:after {
+  transform: rotate(-45deg) translateX(23%);
+  transform-origin: top right;
+}
+@keyframes arrow-first-animate {
+  10% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes arrow-second-animate {
+  20% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 </style>
