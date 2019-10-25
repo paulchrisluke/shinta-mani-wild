@@ -71,7 +71,7 @@
 
     <transition name="fade-fast">
       <div
-        v-if="!isStarted || isEnded"
+        v-if="(isLoaded && !isStarted) || isEnded"
         class="video-player--swipup d-block d-md-none">
         <div class="scroll-indicator scroll-indicator-first"></div>
         <div class="scroll-indicator scroll-indicator-second"></div>
