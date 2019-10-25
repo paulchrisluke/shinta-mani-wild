@@ -36,6 +36,7 @@
       @ended="onEnd"
       @error="onError"
       @waiting="onWaiting"
+      @loadeddata="onLoad"
       v-bind="rest"
     >
       <source :src="transformCloudinaryUrl(source, videoTransformations)" type="video/mp4" />
@@ -51,7 +52,7 @@
 
     <transition name="fade-fast">
       <div
-        v-if="(isWaiting && !isEnded && !isErrored) || !isStarted"
+        v-if="(isWaiting && !isEnded && !isErrored) || !isLoaded"
         class="video-player--overlay position-absolute d-flex justify-content-center align-items-center"
       >
         <base-loading-spinner />
@@ -76,7 +77,6 @@
         <div class="scroll-indicator scroll-indicator-second"></div>
       </div>
     </transition>
-   
   </div>
 </template>
 
@@ -93,6 +93,7 @@ export default Vue.extend({
       isEnded: false,
       isPaused: false,
       isMute: true,
+      isLoaded: false,
       shouldShowPoster: false,
       isErrored: false
     }
@@ -165,6 +166,9 @@ export default Vue.extend({
     },
     onError() {
       this.isErrored = true
+    },
+    onLoad () {
+      this.isLoaded = true
     }
   },
   props: {
