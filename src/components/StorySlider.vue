@@ -75,8 +75,8 @@
       </div>
 
       <!-- Navigation -->
-      <div class="swiper-button-next swiper-button-white"></div>
-      <div class="swiper-button-prev swiper-button-white"></div>
+      <div class="swiper-button-next swiper-button-white d-none d-lg-block"></div>
+      <div class="swiper-button-prev swiper-button-white d-none d-lg-block"></div>
 
       <a
         class="story--back position-absolute p-2 p-md-3 cursor-pointer hover-button-bg"
@@ -442,17 +442,6 @@ export default Vue.extend({
   &:hover,
   &:focus {
     background-color: $white;
-  }
-  @include media-breakpoint-down(md) {
-    opacity: 0;
-    width: rem(104px);
-    top: 25%;
-    bottom: 25%;
-    height: auto;
-    border-radius: 0;
-    &:hover {
-      transform: translateX(0);
-    }
   }
 }
 

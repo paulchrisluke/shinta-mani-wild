@@ -347,17 +347,6 @@ export default Vue.extend({
   &:focus {
     background-color: $white;
   }
-  @include media-breakpoint-down(md) {
-    opacity: 0;
-    width: rem(104px);
-    top: 25%;
-    bottom: 25%;
-    height: auto;
-    border-radius: 0;
-    &:hover {
-      transform: translateX(0);
-    }
-  }
 }
 
 ::v-deep {
