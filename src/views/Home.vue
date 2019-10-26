@@ -53,12 +53,14 @@
                     <p
                       class="mb-xl-6"
                     >Shinta Mani Wild is the full package - in every sense of the word. Our rates are inclusive of a round trip private car transfer to/from Phnom Penh or Sihanoukville Airport and vicinity, as well as your personal Bensley Butler, all meals and beverages, privately guided activities to explore the Cardamom forest, luxury spa treatments, WiFi throughout the camp and of course daily laundry service.</p>
-                    <base-image-link
-                      :theme="'primary'"
-                      :size="'md'"
-                      :text="'Book Now'"
-                      :href="cloudbedsBookingLink"
-                    ></base-image-link>
+                    <div class="text-center">
+                      <base-image-link
+                        :theme="'primary'"
+                        :size="'md'"
+                        :text="'Book Now'"
+                        :href="cloudbedsBookingLink"
+                      ></base-image-link>
+                    </div>
                   </div>
                 </template>
               </base-card>
@@ -154,7 +156,7 @@
                       class="base-heading font-weight-normal h2 mb-3 text-dark text-center text-xl-left"
                     >Conservation</h2>
                     <p>The camp was born when world-renowned designer Bill Bensley identified an unprotected, 350-hectare wildlife corridor – and set out to save it from poaching, mining and logging. A radical new fusion of world-class design, hospitality and conservation! Sustainability informs everything we do, hence our partnership with the Wildlife Alliance (whose rangers have an onsite station), and our resident naturalists, who assist our chef. Join us on the front line of Conservation, and see your stay make a difference to protecting the lungs of Cambodia and it’s many unique and endangered species.</p>
-                    <div class="d-flex">
+                    <div class="text-center">
                       <base-image-link
                         :class-name="'ml-xl-auto'"
                         :theme="'primary'"

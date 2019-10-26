@@ -2,130 +2,131 @@
   <div class="page-header position-relative">
     <div class="page-header--ghost d-md-none"></div>
     <div class="page-header--content">
-      <div class="container h-100">
-        <div class="row h-100">
-          <div class="col-12">
-            <div
-              class="page-header--inner d-md-flex d-none justify-content-between align-items-center"
-            >
-              <div class="logo">
-                <a href="/" class="logo-link d-block" title="Home">
-                  <img
-                    class="w-100 h-100 d-block"
-                    src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png"
-                    alt="Shinta Mani Wild"
-                  />
-                </a>
-              </div>
-              <div class="page-header--nav d-flex align-items-center">
-                <nav>
-                  <ul class="nav user-select-none font-serif-2 font-weight-light">
-                    <li class="nav-item dropdown mx-1" :class="{'show': isDropdownTentsOpen}">
-                      <a
-                        href="#"
-                        @click.prevent.stop="isDropdownTentsOpen = !isDropdownTentsOpen"
-                        class="nav-link dropdown-toggle text-light px-2"
-                        id="page-header--dropdown-1"
-                      >Tents</a>
-                      <div
-                        class="dropdown-menu"
-                        :class="{'show': isDropdownTentsOpen}"
-                        aria-labelledby="page-header--dropdown-1"
-                        aria-haspopup="true"
-                        :aria-expanded="isDropdownTentsOpen + ''"
-                      >
-                        <a class="dropdown-item" href="/tents">All Tents</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/listing/wild-tents">Wild Tents</a>
-                        <a class="dropdown-item" href="/listing/waterfall-tents">Waterfall Tents</a>
-                        <a class="dropdown-item" href="/listing/two-bedroom-tent">Two Bedroom Tent</a>
-                      </div>
-                    </li>
-                    <li class="nav-item mx-1">
-                      <a href="/search/adventure" class="nav-link text-light px-2">Adventures</a>
-                    </li>
-                    <li class="nav-item mx-1">
-                      <a
-                        href="/search/food-and-drink"
-                        class="nav-link text-light px-2"
-                      >Food and Drink</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="/search/wellness" class="nav-link text-light pl-2 pr-0">Wellness</a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-            <div
-              class="d-inline-flex d-md-none justify-content-between align-items-center h-100 w-100 px-3"
-            >
-              <div class="logo">
-                <a href="/" class="logo-link d-block" title="Home">
-                  <img
-                    class="w-100 h-100 d-block"
-                    src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png"
-                    alt="Shinta Mani Wild"
-                  />
-                </a>
-              </div>
-              <button
-                class="hamburger-icon ml-auto px-0"
-                @click.prevent.stop="toggleMobileMenuTentsOpen"
+      <div class="page-header--content-inner position-relative">
+        <div class="container h-100 position-relative">
+          <div class="row h-100">
+            <div class="col-12">
+              <div
+                class="page-header--inner d-md-flex d-none justify-content-between align-items-center"
               >
-                <img
-                  class="haburger-image d-block"
-                  src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570355029/Shinta%20Mani%20Wild/general/menu_24px_e3zpqv.svg"
-                />
-              </button>
+                <div class="logo">
+                  <a href="/" class="logo-link d-block" title="Home">
+                    <img
+                      class="w-100 h-100 d-block"
+                      src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png"
+                      alt="Shinta Mani Wild"
+                    />
+                  </a>
+                </div>
+                <div class="page-header--nav d-flex align-items-center">
+                  <nav>
+                    <ul class="nav user-select-none font-serif-2 font-weight-light">
+                      <li class="nav-item dropdown mx-1" :class="{'show': isDropdownTentsOpen}">
+                        <a
+                          href="#"
+                          @click.prevent.stop="isDropdownTentsOpen = !isDropdownTentsOpen"
+                          class="nav-link dropdown-toggle text-light px-2"
+                          id="page-header--dropdown-1"
+                        >Tents</a>
+                        <div
+                          class="dropdown-menu"
+                          :class="{'show': isDropdownTentsOpen}"
+                          aria-labelledby="page-header--dropdown-1"
+                          aria-haspopup="true"
+                          :aria-expanded="isDropdownTentsOpen + ''"
+                        >
+                          <a class="dropdown-item" href="/tents">All Tents</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="/listing/wild-tents">Wild Tents</a>
+                          <a class="dropdown-item" href="/listing/waterfall-tents">Waterfall Tents</a>
+                          <a class="dropdown-item" href="/listing/two-bedroom-tent">Two Bedroom Tent</a>
+                        </div>
+                      </li>
+                      <li class="nav-item mx-1">
+                        <a href="/search/adventure" class="nav-link text-light px-2">Adventures</a>
+                      </li>
+                      <li class="nav-item mx-1">
+                        <a
+                          href="/search/food-and-drink"
+                          class="nav-link text-light px-2"
+                        >Food and Drink</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="/search/wellness" class="nav-link text-light pl-2 pr-0">Wellness</a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div
+                class="d-inline-flex d-md-none justify-content-between align-items-center h-100 w-100 px-3"
+              >
+                <div class="logo">
+                  <a href="/" class="logo-link d-block" title="Home">
+                    <img
+                      class="w-100 h-100 d-block"
+                      src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png"
+                      alt="Shinta Mani Wild"
+                    />
+                  </a>
+                </div>
+                <button
+                  class="hamburger-button pb-2 ml-auto px-0"
+                  @click.prevent.stop="toggleMobileMenuTentsOpen"
+                >
+                  <div class="hamburger-menu" :class="{ 'animate': isMobileMenuOpen }" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <nav
-        class="page-header--mobile d-flex flex-column justify-content-between"
-        v-if="isMobileMenuOpen"
-      >
-        <ul
-          class="page-header--mobile-links row px-2 nav user-select-none font-serif-2 font-weight-normal mb-4"
+      <transition name="slide-down">
+        <nav
+          class="page-header--mobile d-flex flex-column justify-content-between"
+          v-if="isMobileMenuOpen"
         >
-          <li class="col-12 nav-item nav-title font-serif mt-2">
-            <a class="nav-link px-0" href="/tents">Tents</a>
-          </li>
-          <div class="col-12">
-            <hr class="my-2" />
-          </div>
-          <li class="col-12 nav-item">
-            <a class="nav-link px-0 py-1" href="/listing/wild-tents">Wild Tents</a>
-          </li>
-          <li class="col-12 nav-item">
-            <a class="nav-link px-0 py-1" href="/listing/waterfall-tents">Waterfall Tents</a>
-          </li>
-          <li class="col-12 nav-item">
-            <a class="nav-link px-0 py-1" href="/listing/two-bedroom-tent">Two Bedroom Tent</a>
-          </li>
-          <li class="col-12 nav-item nav-title font-serif mt-3">Things to Do</li>
-          <div class="col-12">
-            <hr class="my-2" />
-          </div>
-          <li class="col-12 nav-item">
-            <a href="/search/adventure" class="nav-link px-0 py-1">Adventures</a>
-          </li>
-          <li class="col-12 nav-item">
-            <a href="/search/food-and-drink" class="nav-link px-0 py-1">Food and Drink</a>
-          </li>
-          <li class="col-12 nav-item">
-            <a href="/search/wellness" class="nav-link px-0 py-1">Wellness</a>
-          </li>
-          <div class="col-12 mt-3">
-            <hr class="my-2" />
-          </div>
-          <li class="col-12 nav-item">
-            <a href="/contact" class="nav-link px-0 py-1">Contact</a>
-          </li>
-        </ul>
-      </nav>
+          <ul
+            class="page-header--mobile-links p-3 nav user-select-none font-serif-2 font-weight-normal mb-4 w-100"
+          >
+            <li class="w-100 nav-item nav-title font-serif">
+              <a class="nav-link px-0" href="/tents">Tents</a>
+            </li>
+            <div class="w-100">
+              <hr class="my-2" />
+            </div>
+            <li class="w-100 nav-item">
+              <a class="nav-link px-0 py-1" href="/listing/wild-tents">Wild Tents</a>
+            </li>
+            <li class="w-100 nav-item">
+              <a class="nav-link px-0 py-1" href="/listing/waterfall-tents">Waterfall Tents</a>
+            </li>
+            <li class="w-100 nav-item">
+              <a class="nav-link px-0 py-1" href="/listing/two-bedroom-tent">Two Bedroom Tent</a>
+            </li>
+            <li class="w-100 nav-item nav-title font-serif mt-3">Things to Do</li>
+            <div class="w-100">
+              <hr class="my-2" />
+            </div>
+            <li class="w-100 nav-item">
+              <a href="/search/adventure" class="nav-link px-0 py-1">Adventures</a>
+            </li>
+            <li class="w-100 nav-item">
+              <a href="/search/food-and-drink" class="nav-link px-0 py-1">Food and Drink</a>
+            </li>
+            <li class="w-100 nav-item">
+              <a href="/search/wellness" class="nav-link px-0 py-1">Wellness</a>
+            </li>
+            <div class="w-100 mt-3">
+              <hr class="my-2" />
+            </div>
+            <li class="w-100 nav-item">
+              <a href="/contact" class="nav-link px-0 py-1">Contact</a>
+            </li>
+          </ul>
+        </nav>
+      </transition>
     </div>
   </div>
 </template>
@@ -136,8 +137,10 @@
 }
 .page-header--content {
   background: $primary;
-  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.12),
-    0px 16px 24px rgba(0, 0, 0, 0.14), 0px 8px 10px rgba(0, 0, 0, 0.2);
+  &-inner {
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.12),
+      0px 16px 24px rgba(0, 0, 0, 0.14), 0px 8px 10px rgba(0, 0, 0, 0.2);
+  }
 }
 .page-header--content,
 .page-header--inner,
@@ -168,7 +171,6 @@
   @include media-breakpoint-up(md) {
     top: rem($header-height);
   }
-  padding: rem(8px);
   background: $brand-1;
   z-index: 10;
   .nav-link {
@@ -187,11 +189,9 @@
 }
 .page-header--mobile-links {
   overflow-y: auto;
-}
-.hamburger-icon {
-  background: transparent;
-  border: none;
-  outline: none;
+  [class*='slide-down'] & {
+    overflow-y: hidden;
+  }
 }
 @include media-breakpoint-down(sm) {
   .page-header--content {
@@ -216,6 +216,68 @@
 .dropdown-menu {
   margin-top: rem(20px);
 }
+// Hamburger menu
+$bar-width: rem(20px);
+$bar-height: rem(2px);
+$bar-spacing: rem(5px);
+.hamburger-button {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: rem(32px);
+  height: rem(32px);
+}
+.hamburger-menu,
+.hamburger-menu:after,
+.hamburger-menu:before {
+  width: $bar-width;
+  height: $bar-height;
+}
+
+.hamburger-menu {
+  position: relative;
+  transform: translateY($bar-spacing);
+  background: rgba(255, 255, 255, 1);
+  transition: all 0ms 300ms;
+
+  &.animate {
+    background: rgba(255, 255, 255, 0);
+  }
+}
+
+.hamburger-menu:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: $bar-spacing;
+  background: rgba(255, 255, 255, 1);
+  transition: bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hamburger-menu:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: $bar-spacing;
+  background: rgba(255, 255, 255, 1);
+  transition: top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hamburger-menu.animate:after {
+  top: 0;
+  transform: rotate(45deg);
+  transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hamburger-menu.animate:before {
+  bottom: 0;
+  transform: rotate(-45deg);
+  transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
 </style>
 
 <script lang="ts">
@@ -232,7 +294,8 @@ export default Vue.extend({
   data() {
     return {
       isDropdownTentsOpen: false,
-      isMobileMenuOpen: false
+      isMobileMenuOpen: false,
+      isOpeningClosingMobileMenu: false
     }
   },
   mounted() {
@@ -248,8 +311,29 @@ export default Vue.extend({
       )
     },
     toggleMobileMenuTentsOpen() {
+      if (this.isOpeningClosingMobileMenu) {
+        return
+      }
+      this.isOpeningClosingMobileMenu = true
+      if (this.isMobileMenuOpen) {
+        this.closeMobileMenu()
+      } else {
+        this.openMobileMenu()
+      }
+    },
+    openMobileMenu() {
       myBody.classList.toggle('overflow-hidden')
       this.isMobileMenuOpen = !this.isMobileMenuOpen
+      setTimeout(() => {
+        this.isOpeningClosingMobileMenu = false
+      }, 300)
+    },
+    closeMobileMenu() {
+      this.isMobileMenuOpen = !this.isMobileMenuOpen
+      setTimeout(() => {
+        myBody.classList.toggle('overflow-hidden')
+        this.isOpeningClosingMobileMenu = false
+      }, 300)
     },
     onClickOutsideDropdown() {
       this.isDropdownTentsOpen = false
