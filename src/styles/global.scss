@@ -197,7 +197,6 @@ body,
 
 // hero
 .hero {
-  max-height: rem($hero-height);
   background-color: $black;
   box-shadow: $box-shadow-md, $box-shadow-sm;
   &.has-inner-shadow {

@@ -41,6 +41,7 @@
       <source :src="transformCloudinaryUrl(source, videoTransformations)" type="video/mp4" />
     </video>
 
+    <!-- paused screen -->
     <transition name="fade-fast">
       <div
         v-if="isPaused"
@@ -49,7 +50,9 @@
       ></div>
     </transition>
 
+    <!-- loading screen -->
     <transition name="fade-fast">
+      <!-- FIXME: add && !isPaused -->
       <div
         v-if="(isWaiting && !isEnded && !isErrored) || !isStarted"
         class="video-player--overlay position-absolute d-flex justify-content-center align-items-center"
@@ -170,7 +173,7 @@ export default Vue.extend({
       type: Number
     },
     videoTransformations: {
-      default: 'q_auto',
+      default: 'q_auto:best',
       type: String
     }
   }
@@ -181,8 +184,16 @@ export default Vue.extend({
 .video-player {
   background-color: $black;
 }
-.video-player--video:focus {
-  outline: none;
+.video-player--video {
+  object-fit: cover;
+  max-height: rem(992px);
+  height: calc(100vh - #{rem($header-height-mobile)});
+  @include media-breakpoint-up(md) {
+    height: calc(100vh - #{rem($header-height)});
+  }
+  &:focus {
+    outline: none;
+  }
 }
 .video-poster {
   @include stick-around;
