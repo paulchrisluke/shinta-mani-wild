@@ -1,30 +1,31 @@
 <template>
-  <div class="position-relative">
-    <div class="ghost-wrapper px-3 d-xl-none">
-      <div v-if="!showPlaceholder" class="ghost-card-image d-table mx-auto px-3">
-        <img :src="image.url" :alt="image.text" />
-      </div>
+  <div v-if="image">
+    <!-- mobile image -->
+    <div class="card-image-mobile d-xl-none mx-auto position-relative">
+      <img class="mx-auto d-block" :src="image.url" :alt="image.text" />
     </div>
-    <div :class="{'flex-row-reverse': isLeft}" class="wrapper-card row no-gutters">
-      <div class="text col-12 col-xl-6 order-2 order-xl-1">
-        <div
-          :class="{'pl-xl-5 pr-xl-0': !isLeft, 'pr-xl-5 pl-xl-0': isLeft}"
-          class="px-4 pb-4 pt-3 pt-xl-5 pb-xl-5"
-        >
-          <slot name="text"></slot>
-        </div>
-      </div>
-      <div class="image col-12 col-xl-6 order-1 order-xl-2 d-flex align-items-center">
-        <content-placeholders class="w-100 h-100 p-3" v-if="showPlaceholder" rounded>
-          <content-placeholders-img class="h-100" />
-        </content-placeholders>
-        <div v-else class="px-3 px-xl-0 mx-auto">
+    <div class="position-relative">
+      <div :class="{'flex-row-reverse': isLeft}" class="wrapper-card row no-gutters">
+        <!-- text section -->
+        <div class="text col-12 col-xl-6 order-2 order-xl-1">
           <div
-            :class="{'is-right-skew': !isLeft, 'is-left-skew': isLeft}"
-            class="card-image-wrapper skew-effect position-relative"
+            :class="{'pl-xl-5 pr-xl-0': !isLeft, 'pr-xl-5 pl-xl-0': isLeft}"
+            class="p-3 px-xl-4 py-xl-5 mt-5 mt-xl-0"
           >
-            <div class="card-image position-relative">
-              <img :src="image.url" :alt="image.text" />
+            <slot name="text"></slot>
+          </div>
+        </div>
+
+        <!-- side image -->
+        <div class="col-12 col-xl-6 order-2 align-items-center d-none d-xl-flex">
+          <div class="px-0 mx-auto">
+            <div
+              :class="{'is-right-skew': !isLeft, 'is-left-skew': isLeft}"
+              class="card-image-wrapper skew-effect position-relative"
+            >
+              <div class="card-image position-relative">
+                <img :src="image.url" :alt="image.text" />
+              </div>
             </div>
           </div>
         </div>
@@ -56,7 +57,6 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 $card-border-top: 24px;
-$amount-of-card-image-inside-card-in-responsive: 80px;
 $shadow-small: $box-shadow-md, $box-shadow-sm;
 .wrapper-card {
   box-shadow: $shadow-small;
@@ -67,32 +67,22 @@ $shadow-small: $box-shadow-md, $box-shadow-sm;
     margin-bottom: 0;
   }
 }
-.card-image-wrapper {
-  @include media-breakpoint-down(lg) {
-    // the height of image inside card (in viewport < lg)
-    height: rem($amount-of-card-image-inside-card-in-responsive);
-  }
-}
-// for the space above card in mobile
-.ghost-card-image {
-  visibility: hidden;
-  img {
-    max-width: 100%;
-    margin-top: rem(
-      -$amount-of-card-image-inside-card-in-responsive + -$card-border-top
-    );
-  }
-}
 
 .card-image {
   img {
     max-width: 100%;
     border-radius: rem(10px);
-
-    @include media-breakpoint-down(lg) {
-      transform: translateY(-80%);
-      box-shadow: $shadow-small;
-    }
+  }
+}
+.card-image-mobile {
+  width: calc(100vw - #{rem(88px)});
+  max-width: rem(400px);
+  margin-bottom: rem(-72px);
+  z-index: 1;
+  img {
+    max-width: 100%;
+    border-radius: rem(10px);
+    box-shadow: $shadow-small;
   }
 }
 .skew-effect {
@@ -111,12 +101,14 @@ $shadow-small: $box-shadow-md, $box-shadow-sm;
     .card-image {
       img {
         .is-right-skew & {
-          transform: rotate3d(.5,-.866,0,15deg) rotateZ(1deg);
-          box-shadow: 27.1px 62.5px 125px -25px rgba(0,10,0,.5), 16.2px 37.5px 75px -37.5px rgba(0,0,0,.6);
+          transform: rotate3d(0.5, -0.866, 0, 15deg) rotateZ(1deg);
+          box-shadow: 27.1px 62.5px 125px -25px rgba(0, 10, 0, 0.5),
+            16.2px 37.5px 75px -37.5px rgba(0, 0, 0, 0.6);
         }
         .is-left-skew & {
-          transform: rotate3d(.5,.866,0,15deg) rotateZ(-1deg);
-          box-shadow: -27.1px 62.5px 125px -25px rgba(0,10,0,.5), -16.2px 37.5px 75px -37.5px rgba(0,0,0,.6);
+          transform: rotate3d(0.5, 0.866, 0, 15deg) rotateZ(-1deg);
+          box-shadow: -27.1px 62.5px 125px -25px rgba(0, 10, 0, 0.5),
+            -16.2px 37.5px 75px -37.5px rgba(0, 0, 0, 0.6);
         }
       }
     }
@@ -126,13 +118,14 @@ $shadow-small: $box-shadow-md, $box-shadow-sm;
       &::before {
         right: rem(4px);
         left: 0;
-        transform: rotate3d(.5,-.866,0,15deg) rotateZ(1deg);
-          box-shadow: 27.1px 62.5px 125px -25px rgba(0,10,0,.5), 16.2px 37.5px 75px -37.5px rgba(0,0,0,.6);
+        transform: rotate3d(0.5, -0.866, 0, 15deg) rotateZ(1deg);
+        box-shadow: 27.1px 62.5px 125px -25px rgba(0, 10, 0, 0.5),
+          16.2px 37.5px 75px -37.5px rgba(0, 0, 0, 0.6);
       }
       .card-image {
         // NOTE: set a width for this element where ever you use this component
         img {
-          transform: rotate3d(.5,-.866,0,15deg) rotateZ(1deg);
+          transform: rotate3d(0.5, -0.866, 0, 15deg) rotateZ(1deg);
         }
       }
     }
@@ -142,12 +135,13 @@ $shadow-small: $box-shadow-md, $box-shadow-sm;
       &::before {
         left: rem(4px);
         right: 0;
-        transform: rotate3d(.5,.866,0,15deg) rotateZ(-1deg);
-          box-shadow: -27.1px 62.5px 125px -25px rgba(0,10,0,.5), -16.2px 37.5px 75px -37.5px rgba(0,0,0,.6);
+        transform: rotate3d(0.5, 0.866, 0, 15deg) rotateZ(-1deg);
+        box-shadow: -27.1px 62.5px 125px -25px rgba(0, 10, 0, 0.5),
+          -16.2px 37.5px 75px -37.5px rgba(0, 0, 0, 0.6);
       }
       .card-image {
         img {
-          transform: rotate3d(.5,.866,0,15deg) rotateZ(-1deg);
+          transform: rotate3d(0.5, 0.866, 0, 15deg) rotateZ(-1deg);
         }
       }
     }
