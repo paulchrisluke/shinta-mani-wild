@@ -197,7 +197,6 @@ body,
 
 // hero
 .hero {
-  max-height: rem($hero-height);
   background-color: $black;
   box-shadow: $box-shadow-md, $box-shadow-sm;
   &.has-inner-shadow {
@@ -233,6 +232,7 @@ body,
 }
 
 // transitions
+// fade transition
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 500ms;
@@ -241,7 +241,7 @@ body,
 .fade-leave-to {
   opacity: 0;
 }
-// fade-fast
+// fade-fast transition
 .fade-fast-enter-active,
 .fade-fast-leave-active {
   transition: opacity 250ms;
@@ -249,4 +249,18 @@ body,
 .fade-fast-enter,
 .fade-fast-leave-to {
   opacity: 0;
+}
+
+// slide-down transition
+.slide-down-enter-active,
+.slide-down-leave-active {
+  transition: height 300ms ease-in-out;
+}
+
+.slide-down-enter,
+.slide-down-leave-to {
+  height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  overflow: hidden;
 }

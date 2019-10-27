@@ -14,7 +14,8 @@
         <video-player
           v-if="resort.id"
           :source="resort.name"
-          :rest="{autoplay: true, loop: false}"
+          :rest="{autoplay: true, loop: true}"
+          :video-transformations="'q_auto:best'"
         ></video-player>
       </div>
 
@@ -86,7 +87,7 @@
         <!-- quote -->
         <section class="container is-small mb-5">
           <base-quote :type="'grass1'">
-            <div class="quote" v-html="resort.h2"></div>
+            <div class="quote h-100" v-html="resort.h2"></div>
           </base-quote>
         </section>
 

@@ -20,7 +20,7 @@
           <img
             class="h-100"
             :src="getPosterImage(source, `so_${posterFrameSecond},q_auto:good,w_1920,ar_${heroVideoRatio},c_fill`)"
-            alt="Shinta Mani Wild in Press"
+            alt="Shinta Mani Wild"
           />
         </picture>
       </div>
@@ -36,11 +36,13 @@
       @ended="onEnd"
       @error="onError"
       @waiting="onWaiting"
+      @loadeddata="onLoad"
       v-bind="rest"
     >
       <source :src="transformCloudinaryUrl(source, videoTransformations)" type="video/mp4" />
     </video>
 
+    <!-- paused screen -->
     <transition name="fade-fast">
       <div
         v-if="isPaused"
@@ -49,9 +51,11 @@
       ></div>
     </transition>
 
+    <!-- loading screen -->
     <transition name="fade-fast">
+      <!-- FIXME: add && !isPaused -->
       <div
-        v-if="(isWaiting && !isEnded && !isErrored) || !isStarted"
+        v-if="(isWaiting && !isEnded && !isErrored) || !isLoaded"
         class="video-player--overlay position-absolute d-flex justify-content-center align-items-center"
       >
         <base-loading-spinner />
@@ -67,6 +71,15 @@
         :class="{'is-mute': isMute, 'has-sound': !isMute}"
       ></a>
     </div>
+
+    <transition name="fade-fast">
+      <div
+        v-if="(isLoaded && !isStarted) || isEnded"
+        class="video-player--swipup d-block d-md-none">
+        <div class="scroll-indicator scroll-indicator-first"></div>
+        <div class="scroll-indicator scroll-indicator-second"></div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -83,6 +96,7 @@ export default Vue.extend({
       isEnded: false,
       isPaused: false,
       isMute: true,
+      isLoaded: false,
       shouldShowPoster: false,
       isErrored: false
     }
@@ -155,6 +169,9 @@ export default Vue.extend({
     },
     onError() {
       this.isErrored = true
+    },
+    onLoad () {
+      this.isLoaded = true
     }
   },
   props: {
@@ -170,7 +187,7 @@ export default Vue.extend({
       type: Number
     },
     videoTransformations: {
-      default: 'q_auto',
+      default: 'q_auto:best',
       type: String
     }
   }
@@ -181,8 +198,16 @@ export default Vue.extend({
 .video-player {
   background-color: $black;
 }
-.video-player--video:focus {
-  outline: none;
+.video-player--video {
+  object-fit: cover;
+  max-height: rem(992px);
+  height: calc(100vh - #{rem($header-height-mobile)});
+  @include media-breakpoint-up(md) {
+    height: calc(100vh - #{rem($header-height)});
+  }
+  &:focus {
+    outline: none;
+  }
 }
 .video-poster {
   @include stick-around;
@@ -239,6 +264,72 @@ export default Vue.extend({
     background-color: rgba($black, 0.4);
     border-radius: rem(100px);
     transition: all 200ms ease;
+  }
+}
+.video-player--swipup {
+  width: 100%;
+  height: rem(110px);
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, #000000 99.85%);
+}
+// Animate scroll indicator
+$speed: 2s;
+$delay: 1s;
+.scroll-indicator {
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: 50% 50%;
+}
+.scroll-indicator-first {
+  animation: arrow-first-animate $speed $delay ease-in-out infinite;
+  top: 42%;
+}
+.scroll-indicator-second {
+  animation: arrow-second-animate $speed $delay ease-in-out infinite;
+  top:50%
+}
+.scroll-indicator:before,
+.scroll-indicator:after {
+  background: $white;
+  content: '';
+  display: block;
+  height: rem(2px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: rem(12px);
+}
+.scroll-indicator:before {
+  transform: rotate(45deg) translateX(-23%);
+  transform-origin: top left;
+}
+.scroll-indicator:after {
+  transform: rotate(-45deg) translateX(23%);
+  transform-origin: top right;
+}
+@keyframes arrow-first-animate {
+  10% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes arrow-second-animate {
+  20% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 </style>
