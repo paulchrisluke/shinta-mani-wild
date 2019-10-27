@@ -177,7 +177,7 @@
                   <div class="card-content">
                     <h2
                       class="base-heading font-weight-normal h2 mb-3 text-dark text-center text-xl-left"
-                    >Personal Bujler</h2>
+                    >Personal Butler</h2>
                     <p>Great guests deserve great butlers — and you’ll find both here. Part guide, part friend, part valet, part mindreader: Shinta Mani Wild’s Bensley Butlers will anticipate your needs before you do.</p>
                     <p>They’ll suggest unforgettable activities to suit your tastes and fitness, and accompany you on your adventures, from motorbike rides to boat trips. Your butler will also play the classic role of butler with aplomb, unpacking and packing your luggage and fulfilling your ad-hoc requests.</p>
                     <p>Please note: although we understand the temptation, guests are not allowed to take their butler home.</p>
