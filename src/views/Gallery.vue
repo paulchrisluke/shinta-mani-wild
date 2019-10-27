@@ -3,7 +3,7 @@
     <loading-progress />
 
     <div class="page--content d-flex flex-grow-1 flex-column">
-      <story-slider
+      <gallery-slider
         @on-click-back="onClickBack"
         :items="images"
         :custom="{ratioBoxClass: 'ratio-16-9'}"
@@ -18,13 +18,13 @@ import loading from '@/mixins/loading'
 import { Resort, GalleryImage } from '@/types'
 import { get } from 'lodash-es'
 import { MetaInfo } from 'vue-meta'
-const StorySlider = () => import('@/components/StorySlider.vue')
+const GallerySlider = () => import('@/components/GallerySlider.vue')
 
 export default Vue.extend({
   name: 'story-page',
   mixins: [loading],
   components: {
-    StorySlider
+    GallerySlider
   },
   data() {
     return {
@@ -55,12 +55,9 @@ export default Vue.extend({
       return this.$store.getters['resort/getItem']
     },
     images(): GalleryImage[] {
-      const result = get(this.resort, 'images', []).filter(
-        (item: GalleryImage) => {console.log(item.order); return item.order === this.orderFilter}
+      return get(this.resort, 'images', []).filter(
+        (item: GalleryImage) => item.order === this.orderFilter
       )
-      console.log('this.orderFilter', this.orderFilter);
-      
-      return result
     }
   },
   methods: {
