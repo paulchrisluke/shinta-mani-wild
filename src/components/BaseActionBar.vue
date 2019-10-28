@@ -41,8 +41,14 @@ export default Vue.extend({
   }
 }
 .action-bar--title {
-  font-size: rem(24px);
+  font-size: rem(14px);
   @include media-breakpoint-up(md) {
+    font-size: rem(24px);
+  }
+  @include media-breakpoint-up(lg) {
+    font-size: rem(32px);
+  }
+  @include media-breakpoint-up(xl) {
     font-size: rem(40px);
   }
 }

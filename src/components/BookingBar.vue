@@ -3,7 +3,7 @@
     <base-action-bar
       :title="title"
       :price="price"
-      :class="{'fixed-bottom': distance > thresholdDistance}"
+      :class="{'fixed-bottom': bottomDistance > thresholdDistance}"
     >
       <template slot="action-button">
         <div class="d-none d-md-flex align-items-center">
@@ -30,7 +30,7 @@
 <script>
 import BaseImageLink from '@/components/BaseImageLink.vue'
 import BaseActionBar from '@/components/BaseActionBar'
-import { isPassiveEventsSupported } from '@/helpers'
+import { getPassiveEventConfig } from '@/helpers'
 export default {
   name: 'booking-bar',
   components: {
@@ -44,13 +44,11 @@ export default {
   data() {
     return {
       thresholdDistance: 0,
-      distance: 0,
-      isPassiveSupported: false
+      bottomDistance: 0
     }
   },
   mounted() {
     this.thresholdDistance = document.querySelector('.page-footer').clientHeight
-    this.isPassiveSupported = isPassiveEventsSupported()
     this.setInitialDistance()
     this.positionListener()
   },
@@ -59,14 +57,13 @@ export default {
   },
   methods: {
     setInitialDistance() {
-      this.distance = document.body.offsetHeight
+      this.bottomDistance = document.body.offsetHeight
     },
     positionListener() {
       document.addEventListener(
         'scroll',
         this.onScrollPage,
-        // TODO: use getPassiveEventConfig()
-        this.isPassiveSupported ? { passive: true } : false
+        getPassiveEventConfig()
       )
     },
     onScrollPage(event) {
@@ -74,15 +71,15 @@ export default {
       var windowSize = window.innerHeight
       var bodyHeight = document.body.offsetHeight
 
-      this.distance = Math.max(bodyHeight - (scrollPosition + windowSize), 0)
+      this.bottomDistance = Math.max(bodyHeight - (scrollPosition + windowSize), 0)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-$bar-height-md: rem(80px);
 $bar-height-sm: rem(40px);
+$bar-height-md: rem(80px);
 .booking-bar {
   z-index: $booking-bar-zindex;
   position: relative;
