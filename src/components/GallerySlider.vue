@@ -50,11 +50,14 @@
             </div>
           </div>
         </div>
+      <!-- Navigation tap areas in mobile -->
+        <div @click="swiper.slideNext()" class="swiper-tap-area-mobile is-next position-absolute d-lg-none"></div>
+        <div @click="swiper.slidePrev()" class="swiper-tap-area-mobile is-prev position-absolute d-lg-none"></div>
       </div>
 
       <!-- Navigation -->
-      <div class="swiper-button-next swiper-button-white"></div>
-      <div class="swiper-button-prev swiper-button-white"></div>
+      <div class="swiper-button-next swiper-button-white d-none d-lg-block"></div>
+      <div class="swiper-button-prev swiper-button-white d-none d-lg-block"></div>
 
       <a
         class="story--back position-absolute p-2 p-md-3 cursor-pointer hover-button-bg"
@@ -346,6 +349,24 @@ export default Vue.extend({
   &:hover,
   &:focus {
     background-color: $white;
+  }
+}
+
+.swiper-tap-area-mobile {
+  z-index: 10;
+  opacity: 0;
+  top: 15vh;
+  height: 70vh;
+  margin: 0;
+  width: rem(80px);
+  &:hover {
+    transform: none;
+  }
+  &.is-next {
+    right: 0;
+  }
+  &.is-prev {
+    left: 0;
   }
 }
 
