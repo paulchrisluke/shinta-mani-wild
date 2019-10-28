@@ -119,14 +119,13 @@ export default Vue.extend({
 <style lang='scss' scoped>
 .article-list-item--title {
   line-height: 1;
-  height: rem(28px);
 }
 .featured-items {
   .article-list-item {
     padding-bottom: 0 !important;
   }
   .article-list-item--title {
-    height: rem(32px);
+    min-height: rem(32px);
     font-size: rem(20px);
     @include media-breakpoint-up(md) {
       font-size: rem(32px);
@@ -138,9 +137,6 @@ export default Vue.extend({
       line-height: 0.8;
     }
   }
-}
-.article-list-item--title-link {
-  @include line-clamp(2);
 }
 .description {
   font-size: rem(12px);
