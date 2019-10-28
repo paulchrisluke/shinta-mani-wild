@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="items.length > 0"
-    class="story-slider d-flex flex-grow-1 position-relative"
-  >
+  <div v-if="items.length > 0" class="story-slider d-flex flex-grow-1 position-relative">
     <!-- blurred background -->
     <div class="story-slider--background position-absolute overflow-hidden">
       <div
@@ -72,6 +69,10 @@
             </div>
           </div>
         </div>
+
+        <!-- Navigation tap areas in mobile -->
+        <div @click="swiper.slideNext()" class="swiper-tap-area-mobile is-next position-absolute d-lg-none"></div>
+        <div @click="swiper.slidePrev()" class="swiper-tap-area-mobile is-prev position-absolute d-lg-none"></div>
       </div>
 
       <!-- Navigation -->
@@ -410,17 +411,19 @@ export default Vue.extend({
 }
 .swiper-button-next {
   right: rem(40px);
-  &::after {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath style='fill:%23333' d='M.3 3l9.5 9.5L.3 22l3 3 12.4-12.5L3.2 0'/%3E%3C/svg%3E")
-      no-repeat center;
-    margin-right: rem(-4px);
-    transform: translate(-35%, -50%);
-  }
-  &:hover {
-    transform: translateX(#{rem(8px)});
-  }
   @include media-breakpoint-down(md) {
     right: 0;
+  }
+  &.swiper-button-white {
+    &::after {
+      background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath style='fill:%23333' d='M.3 3l9.5 9.5L.3 22l3 3 12.4-12.5L3.2 0'/%3E%3C/svg%3E")
+        no-repeat center;
+      margin-right: rem(-4px);
+      transform: translate(-35%, -50%);
+    }
+    &:hover {
+      transform: translateX(#{rem(8px)});
+    }
   }
 }
 .swiper-button-white {
@@ -442,6 +445,24 @@ export default Vue.extend({
   &:hover,
   &:focus {
     background-color: $white;
+  }
+}
+
+.swiper-tap-area-mobile {
+  z-index: 10;
+  opacity: 0;
+  top: 15vh;
+  height: 70vh;
+  margin: 0;
+  width: rem(80px);
+  &:hover {
+    transform: none;
+  }
+  &.is-next {
+    right: 0;
+  }
+  &.is-prev {
+    left: 0;
   }
 }
 
