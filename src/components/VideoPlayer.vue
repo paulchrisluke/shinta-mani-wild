@@ -202,8 +202,12 @@ export default Vue.extend({
   object-fit: cover;
   max-height: rem(992px);
   height: calc(100vh - #{rem($header-height-mobile)});
+  // stylelint-disable-next-line
+  height: calc(var(--vh, 1vh) * 100 - #{rem($header-height-mobile)});
   @include media-breakpoint-up(md) {
     height: calc(100vh - #{rem($header-height)});
+    // stylelint-disable-next-line
+    height: calc(var(--vh, 1vh) * 100 - #{rem($header-height)});
   }
   &:focus {
     outline: none;
