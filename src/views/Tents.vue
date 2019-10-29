@@ -68,17 +68,19 @@
           </base-quote>
         </section>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
+        <div
+          :class="`doodle doodle-item-1-${index} position-absolute`"
+          :key="index"
+          v-for="(doodle, index) in pageDoodles.slice(0, 2)"
+        >
           <img
             @load="setItemParallax($event)"
-            :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
             :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
-            :key="index"
             alt
           />
-        </template>
+        </div>
       </div>
 
       <!-- banner action -->
@@ -188,17 +190,19 @@
           </div>
         </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(2, 5)">
+        <div
+          :class="`doodle doodle-item-1-${index} position-absolute`"
+          :key="index"
+          v-for="(doodle, index) in pageDoodles.slice(2, 5)"
+        >
           <img
             @load="setItemParallax($event)"
-            :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
             :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
-            :key="index"
             alt
           />
-        </template>
+        </div>
       </div>
     </div>
 
@@ -353,5 +357,10 @@ export default Vue.extend({
     column-count: 2;
     max-width: rem(420px);
   }
+}
+
+// override doodles positions
+.doodle-item-1-0 {
+  top: -30vh;
 }
 </style>
