@@ -88,6 +88,7 @@ $shadow-small: $box-shadow-md, $box-shadow-sm;
 .skew-effect {
   @include media-breakpoint-up(xl) {
     transform: scale(1.15);
+    perspective: rem(1504px);
     &::before {
       top: 0;
       bottom: 0;
@@ -114,7 +115,6 @@ $shadow-small: $box-shadow-md, $box-shadow-sm;
     }
     &.is-right-skew {
       left: rem(96px);
-      perspective: 1500px;
       &::before {
         right: rem(4px);
         left: 0;
@@ -131,7 +131,6 @@ $shadow-small: $box-shadow-md, $box-shadow-sm;
     }
     &.is-left-skew {
       right: rem(96px);
-      perspective: 1500px;
       &::before {
         left: rem(4px);
         right: 0;

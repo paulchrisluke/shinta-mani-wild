@@ -68,17 +68,18 @@
           </div>
         </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
+        <div
+          :class="`doodle doodle-item-0-${index} position-absolute`"
+          :key="index"
+          v-for="(doodle, index) in pageDoodles.slice(0, 2)">
           <img
             @load="setItemParallax($event)"
-            :class="`doodle doodle-item-0-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
             :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
-            :key="index"
             alt
           />
-        </template>
+        </div>
       </div>
 
       <!-- banner action -->
@@ -113,17 +114,18 @@
           <base-gallery-list :show-placeholder="!resort.id" :items="galleryItems.slice(0,2)" />
         </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(2, 4)">
+        <div 
+          :class="`doodle doodle-item-1-${index} position-absolute`"
+          :key="index"
+          v-for="(doodle, index) in pageDoodles.slice(2, 4)">
           <img
             @load="setItemParallax($event)"
-            :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
             :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
-            :key="index"
             alt
           />
-        </template>
+        </div>
       </div>
 
       <!-- press banner -->
@@ -172,17 +174,18 @@
           </div>
         </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(4, 6)">
+        <div
+          :class="`doodle doodle-item-2-${index} position-absolute`"
+          :key="index"
+          v-for="(doodle, index) in pageDoodles.slice(4, 6)">
           <img
             @load="setItemParallax($event)"
-            :class="`doodle doodle-item-2-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
             :src="transformCloudinaryUrl(doodle.url, 'q_auto:good,o_20')"
-            :key="index"
             alt
           />
-        </template>
+        </div>
       </div>
     </div>
     </div>
@@ -301,5 +304,19 @@ export default Vue.extend({
 }
 .press-banner {
   max-width: rem(1920px);
+}
+
+// override doodles positions
+.doodle-item-1-0 {
+  top: -35vh;
+}
+.doodle-item-1-1 {
+  top: -25vh;
+}
+.doodle-item-2-0 {
+  top: -30%;
+}
+.doodle-item-2-1 {
+  bottom: 40%;
 }
 </style>

@@ -35,7 +35,7 @@ export default {
     },
     setItemParallax(event: any) {
       // documentation: https://github.com/dixonandmoe/rellax
-      new Rellax(event.target, {
+      new Rellax(event.target.parentElement, {
         vertical: true,
         horizontal: false
       })
