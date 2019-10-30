@@ -2,7 +2,12 @@
 
 A virtuoso (hyper-luxury) hotel site. Vue.js, typescript, and bootstrap. Shinta Mani Wild is focused on conserving Cambodia wildlife and forests, with all of its revenue going towards conservation. Built with luxury in mind, this is our most important and prestigous client at the moment, and is still being improved. While we are pleased with the base template we currently have, next steps include a much more creative design and components (perhaps lottie animations?) and a fully functional booking engine. This is currently one of our most active projects and well documented.
 
+## Preview URL (netlify)
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4eda4789-8413-4278-bceb-146da2ff6a22/deploy-status)](https://app.netlify.com/sites/elegant-perlman-ff2d63/deploys)
+
+master branch: https://cocky-boyd-093ab8.netlify.com/  
+staging branch: https://elegant-perlman-ff2d63.netlify.com/
 
 ## Design File:
 
@@ -23,14 +28,7 @@ We enthusiastically welcome new contributors to the MEREDITH Project **_even if 
 
 If you're new to **contributing to the MEREDITH open source project**, sign up for our [Discord](https://discord.gg/EBpyFM3) and say Hi!
 
-## License
 
-shinta-mani-wild is licensed under the [Apache License, Version 2.0](LICENSE).
-
-## Preview URL (netlify)
-
-master branch: https://cocky-boyd-093ab8.netlify.com/  
-staging branch: https://elegant-perlman-ff2d63.netlify.com/
 
 ## Tools
 
@@ -81,3 +79,7 @@ yarn run test:unit
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## License
+
+shinta-mani-wild is licensed under the [Apache License, Version 2.0](LICENSE).
