@@ -79,25 +79,4 @@ export default Vue.extend({
 .page--story {
   background-color: $brand-4;
 }
-::v-deep {
-  .swiper-pagination {
-    margin-right: 1 * $spacer;
-  }
-  .story-slider--inner {
-    max-width: rem($slider-story-max-width);
-  }
-  .swiper-container {
-    @include media-breakpoint-up(lg) {
-      max-height: rem($slider-story-max-height);
-    }
-  }
-  .story--inner {
-    @media (min-width: rem(map-get($grid-breakpoints, 'lg'))) {
-      max-width: rem($slider-story-item-max-width-lg);
-    }
-  }
-  .story--inner .aspect-ratio-box {
-    max-width: calc((100vh - #{rem(72px)}) * (0.5625));
-  }
-}
 </style>
