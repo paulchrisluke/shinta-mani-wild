@@ -1,6 +1,6 @@
 # shinta-mani-wild
 
-Welcome to Shinta Mani Wild's new website project. Our tech stack:
+A virtuoso (hyper-luxury) hotel site. Vue.js, typescript, and bootstrap. Shinta Mani Wild is focused on conserving Cambodia wildlife and forests, with all of its revenue going towards conservation. Built with luxury in mind, this is our most important and prestigous client at the moment, and is still being improved. While we are pleased with the base template we currently have, next steps include a much more creative design and components (perhaps lottie animations?) and a fully functional booking engine. This is currently one of our most active projects and well documented.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4eda4789-8413-4278-bceb-146da2ff6a22/deploy-status)](https://app.netlify.com/sites/elegant-perlman-ff2d63/deploys)
 
