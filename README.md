@@ -70,13 +70,13 @@ yarn run test:unit
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-## We'd love your help making MEREDITH better
+## We'd love your help making WHY NOT EARTH better
 
-There are a lot of ways you can contribute to making MEREDITH better! You can report bugs and feature requests or ideally become an ongoing participant in the MEREDITH Project community and contribute code to the open source project.
+There are a lot of ways you can contribute to making WHY NOT EARTH better! You can report bugs and feature requests or ideally become an ongoing participant in the WHY NOT EARTH Project community and contribute code to the open source project.
 
-We enthusiastically welcome new contributors to the MEREDITH Project **_even if you have no experience being part of an open source project_**.  
+We enthusiastically welcome new contributors to the WHY NOT EARTH Projects **_even if you have no experience being part of an open source project_**.  
 
-If you're new to **contributing to the MEREDITH open source project**, sign up for our [Discord](https://discord.gg/EBpyFM3) and say Hi!
+If you're new to **contributing to the WHY NOT EARTH open source project**, sign up for our [Discord](https://discord.gg/EBpyFM3) and say Hi!
 
 ## License
 
