@@ -11766,6 +11766,13 @@ vue-meta@2.3.1:
   dependencies:
     deepmerge "^4.0.0"
 
+vue-rippler@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/vue-rippler/-/vue-rippler-1.3.0.tgz#5549e7a98d4e3b5f4ba7e4abe8ae95465303cf7b"
+  integrity sha512-q+SijkJVtgktsbov1FlIEVmcGDzsZHHiXb2EQ9sMevK4x5Qe2XOZh8vp4hwv4t3hzQynohL0EwXsWF0A8OSLzA==
+  dependencies:
+    vue "^2.5.11"
+
 vue-router@3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.1.3.tgz#e6b14fabc0c0ee9fda0e2cbbda74b350e28e412b"
@@ -11792,7 +11799,7 @@ vue-template-es2015-compiler@^1.6.0, vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@2.6.10:
+vue@2.6.10, vue@^2.5.11:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
