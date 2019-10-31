@@ -9,7 +9,12 @@
       ></div>
       <div class="story-slider--layer is-shade position-absolute"></div>
       <!-- preload next image -->
-      <link rel="preload" v-if="items.length > swiper.activeIndex + 1" :href="getBlurredImage(swiper.activeIndex + 1)" as="image">
+      <link
+        rel="preload"
+        v-if="items.length > swiper.activeIndex + 1"
+        :href="getBlurredImage(swiper.activeIndex + 1)"
+        as="image"
+      />
     </div>
 
     <div class="story-slider--inner mx-auto w-100 d-flex">
@@ -28,11 +33,19 @@
               >
                 <div class="aspect-ratio-box-inside">
                   <div class="story--content-wrapper position-relative h-100">
-                    <img
-                      class="story--content is-image"
-                      :src="transformCloudinaryUrl(item.url, 'q_auto:best')"
-                      alt
-                    />
+                    <picture>
+                      <source
+                        v-for="size in gridBreakpointsArray"
+                        :key="size"
+                        :media="`(max-width: ${size}px)`"
+                        :srcset="transformCloudinaryUrl(item.url, `q_auto:best,f_auto,c_limit,w_${size},ar_${galleryImageRatio}`)"
+                      />
+                      <img
+                        class="story--content is-image"
+                        :src="transformCloudinaryUrl(item.url, `q_auto:best,f_auto,c_limit,w_${gridBreakpointsArray.slice(-1)[0]},ar_${galleryImageRatio}`)"
+                        alt
+                      />
+                    </picture>
 
                     <div
                       class="story--details position-absolute px-3 d-flex justify-content-between align-items-center mx-auto"
@@ -114,7 +127,8 @@ export default Vue.extend({
   },
   data() {
     return {
-      swiper: {} as Swiper
+      swiper: {} as Swiper,
+      galleryImageRatio: 1.7778
     }
   },
   props: {
@@ -143,7 +157,7 @@ export default Vue.extend({
     },
     getBlurredImage(index: number) {
       const item = this.items[index]
-      return transformCloudinaryUrl((item as GalleryImage).url, 'q_1')
+      return transformCloudinaryUrl((item as GalleryImage).url, 'q_4,w_540,f_auto,c_limit')
     },
     goToSlide(index: number) {
       this.swiper.slideTo(index)
@@ -189,12 +203,6 @@ export default Vue.extend({
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         },
-        breakpoints: {
-          992: {
-            slidesPerView: 3,
-            spaceBetween: 32
-          }
-        },
         on: {
           init() {
             setTimeout(() => {
@@ -239,8 +247,6 @@ export default Vue.extend({
   filter: blur(50px);
   background-size: cover;
   background-position: center;
-  transition: background-image 100ms linear;
-  will-change: background-image;
   &.is-shade {
     background-color: rgba($black, 0.2);
   }
@@ -266,9 +272,9 @@ export default Vue.extend({
 .story--inner,
 .story--inner .aspect-ratio-box-inside,
 .story--content-wrapper {
-  max-height: calc(100vh - #{rem(72px)});
+  max-height: calc(100vh - #{rem(56px)});
   // stylelint-disable-next-line
-  max-height: calc(var(--vh, 1vh) * 100 - #{rem(72px)});
+  max-height: calc(var(--vh, 1vh) * 100 - #{rem(56px)});
 }
 .story--inner {
   border-radius: rem($slide-border-radius);
@@ -276,13 +282,13 @@ export default Vue.extend({
   opacity: 0.05;
   max-width: calc(100vw - #{rem(40px)});
   @include media-breakpoint-up(lg) {
-    max-width: rem($gallery-slide-max-width);
+    max-width: calc(100vw - #{rem(240px)});
   }
   &:hover {
     opacity: 0.3;
   }
 }
-$swiper-scale-active-slide: 2;
+$swiper-scale-active-slide: 1;
 .story--content {
   width: auto;
   height: auto;
@@ -385,7 +391,7 @@ $swiper-scale-active-slide: 2;
   top: 15vh;
   height: 70vh;
   margin: 0;
-  width: rem(80px);
+  width: rem(33.334vw);
   &:hover {
     transform: none;
   }
