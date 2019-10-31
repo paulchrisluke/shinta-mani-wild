@@ -6,6 +6,7 @@ A virtuoso (hyper-luxury) hotel site. Vue.js, typescript, and bootstrap. Shinta 
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4eda4789-8413-4278-bceb-146da2ff6a22/deploy-status)](https://app.netlify.com/sites/elegant-perlman-ff2d63/deploys)
 
+![image](https://user-images.githubusercontent.com/5694308/67919492-2b061180-fbd3-11e9-8888-9db922283aa5.png)  
 master branch: https://cocky-boyd-093ab8.netlify.com/  
 staging branch: https://elegant-perlman-ff2d63.netlify.com/
 
