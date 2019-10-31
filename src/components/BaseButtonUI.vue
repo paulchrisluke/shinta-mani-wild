@@ -1,6 +1,10 @@
 <template>
   <!-- You can't use this component directly -->
-  <div class="image-link font-serif text-uppercase d-flex w-100" :class="[`is-${theme} is-${size}`]">
+  <div
+    ripple
+    class="image-link font-serif text-uppercase d-flex w-100"
+    :class="[`is-${theme} is-${size}`]"
+  >
     <div
       :style="{'background-image': `url(${transformCloudinaryUrl(image[theme].left, `q_auto:best,h_${buttonHeight}`)})`}"
       class="image-link--left h-100"
@@ -123,6 +127,11 @@ $button-font-size-xs: 16px;
   &.is-lg {
     height: rem($button-height-lg);
     font-size: rem($button-font-size-lg);
+    &::v-deep {
+      .ripple--container {
+        margin: rem(11px 16px 11px 4px);
+      }
+    }
     .image-link--left {
       width: rem(102px);
     }
@@ -137,6 +146,11 @@ $button-font-size-xs: 16px;
   &.is-md {
     height: rem($button-height-md);
     font-size: rem($button-font-size-md);
+    &::v-deep {
+      .ripple--container {
+        margin: rem(6px 9px 6px 0px);
+      }
+    }
     .image-link--left {
       width: rem(58px);
     }
@@ -151,6 +165,11 @@ $button-font-size-xs: 16px;
   &.is-sm {
     height: rem($button-height-sm);
     font-size: rem($button-font-size-sm);
+    &::v-deep {
+      .ripple--container {
+        margin: rem(6px 10px 5px 1px);
+      }
+    }
     .image-link--left {
       width: rem(51px);
     }
@@ -165,6 +184,11 @@ $button-font-size-xs: 16px;
   &.is-xs {
     height: rem($button-height-xs);
     font-size: rem($button-font-size-xs);
+    &::v-deep {
+      .ripple--container {
+        margin: rem(3px 4px 4px 1px);
+      }
+    }
     .image-link--left {
       width: rem(32px);
     }
