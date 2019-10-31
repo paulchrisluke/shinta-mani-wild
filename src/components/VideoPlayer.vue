@@ -88,6 +88,7 @@ import Vue from 'vue'
 import BaseLoadingSpinner from '@/components/BaseLoadingSpinner.vue'
 export default Vue.extend({
   components: { BaseLoadingSpinner },
+  // TODO: move heroVideoRatio to data()
   data() {
     return {
       videoElement: {} as HTMLVideoElement,

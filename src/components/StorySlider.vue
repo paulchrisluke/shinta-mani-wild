@@ -40,7 +40,7 @@
                       @ended="onVideoEnd(index)"
                       class="story--content is-video"
                       preload="auto"
-                      :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25,so_0')"
+                      :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25,so_0,f_auto')"
                       playsinline
                       autoplay
                       muted
@@ -198,7 +198,7 @@ export default Vue.extend({
     },
     getBlurredImage(index: number) {
       const item = this.items[index]
-      return getPosterImage((item as Story).image, 'q_1')
+      return getPosterImage((item as Story).image, 'q_4,w_540,f_auto,c_limit')
     },
     goToSlide(index: number) {
       this.swiper.slideTo(index)
@@ -338,8 +338,6 @@ export default Vue.extend({
   filter: blur(50px);
   background-size: cover;
   background-position: center;
-  transition: background-image 100ms linear;
-  will-change: background-image;
   &.is-shade {
     background-color: rgba($black, 0.2);
   }
