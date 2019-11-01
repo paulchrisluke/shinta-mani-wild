@@ -35,7 +35,7 @@
                           aria-haspopup="true"
                           :aria-expanded="isDropdownTentsOpen + ''"
                         >
-                          <a class="dropdown-item" href="/tents">All Tents</a>
+                          <router-link to="/tents" class="dropdown-item">All Tents</router-link>
                           <div class="dropdown-divider"></div>
                           <router-link class="dropdown-item" to="/listing/wild-tents">Wild Tents</router-link>
                           <router-link
@@ -49,16 +49,22 @@
                         </div>
                       </li>
                       <li class="nav-item mx-1">
-                        <a href="/search/adventure" class="nav-link text-light px-2">Adventures</a>
+                        <router-link
+                          to="/search/adventure"
+                          class="nav-link text-light px-2"
+                        >Adventures</router-link>
                       </li>
                       <li class="nav-item mx-1">
-                        <a
-                          href="/search/food-and-drink"
+                        <router-link
+                          to="/search/food-and-drink"
                           class="nav-link text-light px-2"
-                        >Food and Drink</a>
+                        >Food and Drink</router-link>
                       </li>
                       <li class="nav-item">
-                        <a href="/search/wellness" class="nav-link text-light pl-2 pr-0">Wellness</a>
+                        <router-link
+                          to="/search/wellness"
+                          class="nav-link text-light pl-2 pr-0"
+                        >Wellness</router-link>
                       </li>
                     </ul>
                   </nav>
