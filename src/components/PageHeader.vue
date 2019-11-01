@@ -25,8 +25,8 @@
                         <a
                           href="#"
                           @click.prevent.stop="isDropdownTentsOpen = !isDropdownTentsOpen"
-                          ripple
-                          class="nav-link dropdown-toggle text-light px-2"
+                          v-ripple
+                          class="nav-link h-100 py-0 dropdown-toggle text-light px-2"
                           id="page-header--dropdown-1"
                         >Tents</a>
                         <div
@@ -51,23 +51,23 @@
                       </li>
                       <li class="nav-item mx-1">
                         <router-link
-                          ripple
+                          v-ripple
                           to="/search/adventure"
-                          class="nav-link text-light px-2"
+                          class="nav-link h-100 py-0 text-light px-2"
                         >Adventures</router-link>
                       </li>
                       <li class="nav-item mx-1">
                         <router-link
-                          ripple
+                          v-ripple
                           to="/search/food-and-drink"
-                          class="nav-link text-light px-2"
+                          class="nav-link h-100 py-0 text-light px-2"
                         >Food and Drink</router-link>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item mx-1">
                         <router-link
-                          ripple
+                          v-ripple
                           to="/search/wellness"
-                          class="nav-link text-light pl-2 pr-0"
+                          class="nav-link h-100 py-0 text-light px-2"
                         >Wellness</router-link>
                       </li>
                     </ul>
@@ -78,7 +78,7 @@
                 class="d-inline-flex d-md-none justify-content-between align-items-center h-100 w-100 px-3"
               >
                 <div class="logo">
-                  <router-link ripple to="/" class="logo-link d-block" title="Home">
+                  <router-link v-ripple to="/" class="logo-link d-block" title="Home">
                     <img
                       class="w-100 h-100 d-block"
                       src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png"
@@ -107,24 +107,24 @@
             class="page-header--mobile-links p-3 nav user-select-none font-serif-2 font-weight-normal mb-4 w-100"
           >
             <li class="w-100 nav-item nav-title font-serif">
-              <router-link ripple to="/tents" class="nav-link px-0">Tents</router-link>
+              <router-link v-ripple to="/tents" class="nav-link px-0">Tents</router-link>
             </li>
             <div class="w-100">
               <hr class="my-2" />
             </div>
             <li class="w-100 nav-item">
-              <router-link ripple to="/listing/wild-tents" class="nav-link px-0 py-1">Wild Tents</router-link>
+              <router-link v-ripple to="/listing/wild-tents" class="nav-link px-0 py-1">Wild Tents</router-link>
             </li>
             <li class="w-100 nav-item">
               <router-link
-                ripple
+                v-ripple
                 to="/listing/waterfall-tents"
                 class="nav-link px-0 py-1"
               >Waterfall Tents</router-link>
             </li>
             <li class="w-100 nav-item">
               <router-link
-                ripple
+                v-ripple
                 to="/listing/two-bedroom-tent"
                 class="nav-link px-0 py-1"
               >Two Bedroom Tent</router-link>
@@ -134,23 +134,23 @@
               <hr class="my-2" />
             </div>
             <li class="w-100 nav-item">
-              <router-link ripple to="/search/adventure" class="nav-link px-0 py-1">Adventures</router-link>
+              <router-link v-ripple to="/search/adventure" class="nav-link px-0 py-1">Adventures</router-link>
             </li>
             <li class="w-100 nav-item">
               <router-link
-                ripple
+                v-ripple
                 to="/search/food-and-drink"
                 class="nav-link px-0 py-1"
               >Food and Drink</router-link>
             </li>
             <li class="w-100 nav-item">
-              <router-link ripple to="/search/wellness" class="nav-link px-0 py-1">Wellness</router-link>
+              <router-link v-ripple to="/search/wellness" class="nav-link px-0 py-1">Wellness</router-link>
             </li>
             <div class="w-100 mt-3">
               <hr class="my-2" />
             </div>
             <li class="w-100 nav-item">
-              <router-link ripple to="/contact" class="nav-link px-0 py-1">Contact</router-link>
+              <router-link v-ripple to="/contact" class="nav-link px-0 py-1">Contact</router-link>
             </li>
           </ul>
         </nav>
@@ -172,7 +172,8 @@
 }
 .page-header--content,
 .page-header--inner,
-.page-header--ghost {
+.page-header--ghost,
+.page-header--nav .nav {
   height: rem($header-height-mobile);
   @include media-breakpoint-up(md) {
     height: rem($header-height);
@@ -180,6 +181,22 @@
 }
 .page-header--nav {
   font-size: rem(18px);
+  .nav-link {
+    position: relative;
+    line-height: rem($header-height);
+    transition: color 250ms ease;
+    &::before {
+      transition: background-color 250ms ease;
+      content: '';
+      @include stick-around;
+      position: absolute;
+    }
+    &:hover {
+      &::before {
+        background-color: rgba($white, 0.3);
+      }
+    }
+  }
 }
 .logo-link {
   width: rem(32px);
@@ -242,7 +259,7 @@
   }
 }
 .dropdown-menu {
-  margin-top: rem(20px);
+  margin-top: rem(-2px);
 }
 // Hamburger menu
 $bar-width: rem(20px);
