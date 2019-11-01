@@ -8,121 +8,115 @@
       <loading-progress />
 
       <div class="page--content">
+        <!-- player -->
+        <div class="hero position-relative">
+          <video-player
+            v-if="resort.id"
+            :source="resort.name"
+            :rest="{autoplay: true, loop: true}"
+            :video-transformations="'q_auto:best'"
+          ></video-player>
+        </div>
 
-      <!-- player -->
-      <div class="hero position-relative">
-        <video-player
-          v-if="resort.id"
-          :source="resort.name"
-          :rest="{autoplay: true, loop: true}"
-          :video-transformations="'q_auto:best'"
-        ></video-player>
-      </div>
+        <div class="parallax-container position-relative py-5">
+          <div class="container is-small page-description clearfix mb-5">
+            <article>
+              <base-heading
+                :show-placeholder="!resort.id"
+                :text="resort.title"
+                :type="'h1'"
+                :class-placeholder="'heading-placeholder mb-5'"
+                :class-name="'h1 text-dark text-center mb-5'"
+                :border-art="true"
+              ></base-heading>
 
-      <div class="parallax-container position-relative py-5">
-        <div class="container is-small page-description clearfix mb-5">
-          <article>
+              <div v-if="!resort.id">
+                <content-placeholders centered rounded class="description-placeholder">
+                  <content-placeholders-text :lines="3" />
+                </content-placeholders>
+              </div>
+              <p v-else class="mb-0" v-text="resort.description"></p>
+            </article>
+          </div>
+
+          <!-- gallery -->
+          <section>
+            <base-heading :text="'Gallery'" :type="'h2'" :class-name="'h2 text-dark text-center'"></base-heading>
+            <base-gallery-list :items="galleryItems.slice(0,2)" />
+          </section>
+
+          <div
+            :class="`doodle doodle-item-0-${index} position-absolute`"
+            :key="index"
+            v-for="(doodle, index) in pageDoodles.slice(0, 2)"
+          >
+            <img
+              @load="setItemParallax($event)"
+              data-aos="fade-down"
+              :data-rellax-speed="getRellaxSpeed()"
+              :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
+              alt
+            />
+          </div>
+        </div>
+
+        <!-- banner action -->
+        <div>
+          <base-banner-action
+            :image="resort.backgroundImage"
+            :show-placeholder="!resort.id"
+            :link="resort.ctaLink"
+            :text="resort.ctaText"
+            :button-text="'Book Now'"
+          ></base-banner-action>
+        </div>
+
+        <div class="parallax-container position-relative py-5">
+          <div class="container is-small">
+            <!-- quote -->
+            <section class="container mb-5">
+              <base-quote :type="'grass1'">
+                <div class="quote h-100" v-html="resort.h2"></div>
+              </base-quote>
+            </section>
+          </div>
+
+          <!-- articles (stories) -->
+          <div class="container is-small">
             <base-heading
               :show-placeholder="!resort.id"
-              :text="resort.title"
-              :type="'h1'"
-              :class-placeholder="'heading-placeholder mb-5'"
-              :class-name="'h1 text-dark text-center mb-5'"
-              :border-art="true"
+              :class-placeholder="'mb-4'"
+              :type="'h2'"
+              :class-name="'h2 text-dark text-center'"
+              :text="`Explore our ${resort.title}`"
             ></base-heading>
+            <base-articles-list
+              :route-props="{ returnTo: 'listing', resortId: $route.params.id }"
+              :show-placeholder="!resort.id"
+              :items="stories"
+              preview-transformations="q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none"
+              poster-transformations="q_auto:best,w_212,h_212,c_fill,g_auto"
+            ></base-articles-list>
+          </div>
 
-            <div v-if="!resort.id">
-              <content-placeholders centered rounded class="description-placeholder">
-                <content-placeholders-text :lines="3" />
-              </content-placeholders>
-            </div>
-            <p
-              v-else
-              class="mb-0"
-              v-text="resort.description"
-            ></p>
-          </article>
-        </div>
-
-        <!-- gallery -->
-        <section>
-          <base-heading :text="'Gallery'" :type="'h2'" :class-name="'h2 text-dark text-center'"></base-heading>
-          <base-gallery-list :items="galleryItems.slice(0,2)" />
-        </section>
-
-        <div
-          :class="`doodle doodle-item-0-${index} position-absolute`"
-          :key="index"
-          v-for="(doodle, index) in pageDoodles.slice(0, 2)"
-        >
-          <img
-            @load="setItemParallax($event)"
-            data-aos="fade-down"
-            :data-rellax-speed="getRellaxSpeed()"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
-            alt
-          />
+          <div
+            :class="`doodle doodle-item-1-${index} position-absolute`"
+            :key="index"
+            v-for="(doodle, index) in pageDoodles.slice(2, (relativeDoodleAmount(stories.length, featuredStoriesCount, 2) || 4))"
+          >
+            <img
+              @load="setItemParallax($event)"
+              data-aos="fade-down"
+              :data-rellax-speed="getRellaxSpeed()"
+              :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
+              alt
+            />
+          </div>
         </div>
       </div>
 
-      <!-- banner action -->
-      <div>
-        <base-banner-action
-          :image="resort.backgroundImage"
-          :show-placeholder="!resort.id"
-          :link="resort.ctaLink"
-          :text="resort.ctaText"
-          :button-text="'Book Now'"
-        ></base-banner-action>
-      </div>
-
-      <div class="parallax-container position-relative py-5">
-        <div class="container is-small">
-          <!-- quote -->
-          <section class="container mb-5">
-            <base-quote :type="'grass1'">
-              <div class="quote h-100" v-html="resort.h2"></div>
-            </base-quote>
-          </section>
-        </div>
-
-        <!-- articles (stories) -->
-        <div class="container is-small">
-          <base-heading
-            :show-placeholder="!resort.id"
-            :class-placeholder="'mb-4'"
-            :type="'h2'"
-            :class-name="'h2 text-dark text-center'"
-            :text="`Explore our ${resort.title}`"
-          ></base-heading>
-          <base-articles-list
-            :route-props="{ returnTo: 'listing', resortId: $route.params.id }"
-            :show-placeholder="!resort.id"
-            :items="stories"
-            preview-transformations="q_auto:low,e_preview:duration_8,w_212,c_fill,ar_1:1,ac_none"
-            poster-transformations="q_auto:best,w_212,h_212,c_fill,g_auto"
-          ></base-articles-list>
-        </div>
-
-        <div
-          :class="`doodle doodle-item-1-${index} position-absolute`"
-          :key="index"
-          v-for="(doodle, index) in pageDoodles.slice(2, (relativeDoodleAmount(stories.length, featuredStoriesCount, 2) || 4))"
-        >
-          <img
-            @load="setItemParallax($event)"
-            data-aos="fade-down"
-            :data-rellax-speed="getRellaxSpeed()"
-            :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
-            alt
-          />
-        </div>
-      </div>
+      <booking-bar :title="resort.title" :price="1200"></booking-bar>
     </div>
-    
-    <booking-bar :title="resort.title" :price="1200"></booking-bar>
-    </div>
-
 
     <page-footer></page-footer>
   </div>
@@ -163,15 +157,18 @@ export default Vue.extend({
   },
   data() {
     return {
-      slug: this.$route.params.id,
       featuredStoriesCount: 0
     }
   },
-  metaInfo (): MetaInfo {
+  metaInfo(): MetaInfo {
     return {
       title: (this as any).resort.title,
       meta: [
-        { vmid: 'description', name: 'description', content: (this as any).resort.description }
+        {
+          vmid: 'description',
+          name: 'description',
+          content: (this as any).resort.description
+        }
       ]
     }
   },
@@ -193,7 +190,7 @@ export default Vue.extend({
         return []
       }
 
-      const slug = (this as any).slug
+      const slug = this.$route.params.id
       const items = [
         {
           link: `/gallery/${slug}/3?returnTo=listing`,
@@ -209,8 +206,17 @@ export default Vue.extend({
       return items
     }
   },
+  methods: {
+    init() {
+      this.$store.dispatch('resort/getItemBySlug', this.$route.params.id)
+    }
+  },
   mounted() {
-    this.$store.dispatch('resort/getItemBySlug', (this as any).slug)
+    ;(this as any).init()
+  },
+  beforeRouteUpdate (to, from, next) {
+    next();
+    ;(this as any).init();
   }
 })
 </script>
