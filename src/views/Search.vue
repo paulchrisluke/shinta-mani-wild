@@ -188,8 +188,8 @@ export default Vue.extend({
     this.init()
   },
   beforeRouteUpdate (to, from, next) {
-    next();
-    this.init();
+    next()
+    this.init()
   }
 })
 </script>

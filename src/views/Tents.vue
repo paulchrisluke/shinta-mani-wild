@@ -247,7 +247,6 @@ export default Vue.extend({
   },
   data() {
     return {
-      slug: 'tents',
       swiper: {} as Swiper
     }
   },
@@ -295,20 +294,24 @@ export default Vue.extend({
       }
     }
   },
-
-  mounted() {
-    store.dispatch('resort/getItemBySlug', this.slug)
-    store.dispatch('category/getItemsByName', 'accommodations')
-  },
   watch: {
     accommodationsAsStories() {
       this.$nextTick(this.initSlider)
     }
   },
+  beforeRouteUpdate(to, from, next) {
+    next()
+    this.init()
+  },
+  mounted() {
+    this.init()
+  },
   methods: {
+    init() {
+      store.dispatch('resort/getItemBySlug', 'tents')
+      store.dispatch('category/getItemsByName', 'accommodations')
+    },
     initSlider(): void {
-      console.log('init slider')
-
       this.swiper = new Swiper('.swiper-container', {
         slidesPerView: 1.2,
         spaceBetween: 30,
