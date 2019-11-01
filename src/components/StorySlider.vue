@@ -241,6 +241,7 @@ export default Vue.extend({
       const $navBullets = document.querySelectorAll('.swiper-pagination-bullet')
       const bullet = $navBullets[index] as HTMLElement
       this.setTransition(bullet, 'none')
+      // TODO: check if bullet is not undefined (when user leaves route)
       bullet.classList.remove('is-playing')
     },
     setTransition(element: HTMLElement, value: string) {

@@ -5,7 +5,7 @@
         <div :class="`col-${12 / itemsPerRow}`" v-for="(item, index) in items" :key="index">
           <div class="aspect-ratio-box ratio-11-8">
             <div class="aspect-ratio-box-inside">
-              <a class="gallery-item d-block" :href="item.link">
+              <router-link class="gallery-item d-block" :to="item.link">
                 <img
                   class="gallery-item--image w-100"
                   :src="transformCloudinaryUrl(item.url, 'w_440,h_320,c_crop,g_auto')"
@@ -17,7 +17,7 @@
                     v-html="item.title"
                   >Exterior</h3>
                 </div>
-              </a>
+              </router-link>
             </div>
           </div>
         </div>

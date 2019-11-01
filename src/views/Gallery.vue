@@ -58,7 +58,12 @@ export default Vue.extend({
   },
   methods: {
     init() {
-      this.$store.dispatch('resort/getItemBySlug', this.$route.params.resortId)
+      if (this.resort && this.resort.slug !== this.$route.params.resortId) {
+        this.$store.dispatch(
+          'resort/getItemBySlug',
+          this.$route.params.resortId
+        )
+      }
     },
     onClickBack() {
       const returnTo: string = (this.$route.query.returnTo as string) || 'home'
