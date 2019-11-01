@@ -1,8 +1,43 @@
-# shinta-mani-wild
+<h1 align="center">
+  <br>
+  <a href="https://user-images.githubusercontent.com/5694308/67922376-2e05ff80-fbdd-11e9-8e9e-58b52ca151b9"><img src="https://user-images.githubusercontent.com/5694308/67922376-2e05ff80-fbdd-11e9-8e9e-58b52ca151b9.png" alt="Why Not Earth" width="200"></a>
+  <br>
+  Why Not Earth
+  <br>
+</h1>
 
-A virtuoso (hyper-luxury) hotel site. Vue.js, typescript, and bootstrap. Shinta Mani Wild is focused on conserving Cambodia wildlife and forests, with all of its revenue going towards conservation. Built with luxury in mind, this is our most important and prestigous client at the moment, and is still being improved. While we are pleased with the base template we currently have, next steps include a much more creative design and components (perhaps lottie animations?) and a fully functional booking engine. This is currently one of our most active projects and well documented.
+<h4 align="center">A virtuoso (hyper-luxury) hotel site. Vue.js, typescript, and bootstrap. Shinta Mani Wild is focused on conserving Cambodia wildlife and forests, with all of its revenue going towards conservation. Built with luxury in mind, this is our most important and prestigous client at the moment, and is still being improved. While we are pleased with the base template we currently have, next steps include a much more creative design and components (perhaps lottie animations?) and a fully functional booking engine. This is currently one of our most active projects and well documented.
+</h4>
 
-## Preview URL
+<p align="center">
+  <a href="https://badges.frapsoft.com/os/v1/open-source">
+    <img src="https://badges.frapsoft.com/os/v1/open-source.svg"
+         alt="Open Source">
+  </a>
+  <a href="https://img.shields.io/discord/453020970354081812">
+      <img src="https://img.shields.io/discord/453020970354081812.svg">
+  </a>
+  <a href="https://img.shields.io/badge/PRs-welcome-brightgreen">
+      <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat">
+  </a>
+  <a href="https://www.paypal.me/paulchrisluke">
+    <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
+  </a>
+</p> 
+
+
+<p align="center">
+  <a href="#preview">Preview</a> •
+  <a href="#design-file">Design File</a> •
+  <a href="#frontend">Frontend</a> •
+  <a href="#backend">Backend</a> •
+  <a href="#tools">Tools</a> •
+  <a href="#build-setup">Build Setup</a> •
+  <a href="#wed-love-your-help-making-WHY-NOT-EARTH-better">We'd love your help making WHY NOT EARTH better</a> •
+  <a href="#license">License</a>
+</p>
+
+## Preview
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4eda4789-8413-4278-bceb-146da2ff6a22/deploy-status)](https://app.netlify.com/sites/elegant-perlman-ff2d63/deploys)
 
