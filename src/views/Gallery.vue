@@ -26,18 +26,6 @@ export default Vue.extend({
   components: {
     GallerySlider
   },
-  data() {
-    return {
-      slug: this.$route.params.resortId,
-      orderFilter: Number(this.$route.params.orderFilter),
-      resortId: Number(this.$route.params.resortId)
-    }
-  },
-  mounted() {
-    if (this.resort && this.resort.slug !== this.slug) {
-      this.$store.dispatch('resort/getItemBySlug', (this as any).slug)
-    }
-  },
   metaInfo(): MetaInfo {
     return {
       title: this.resort.title,
@@ -55,16 +43,34 @@ export default Vue.extend({
       return this.$store.getters['resort/getItem']
     },
     images(): GalleryImage[] {
+      const orderFilter = Number(this.$route.params.orderFilter)
       return get(this.resort, 'images', []).filter(
-        (item: GalleryImage) => item.order === this.orderFilter
+        (item: GalleryImage) => item.order === orderFilter
       )
     }
   },
+  beforeRouteUpdate(to, from, next) {
+    next()
+    ;(this as any).init()
+  },
+  mounted() {
+    this.init()
+  },
   methods: {
+    init() {
+      if (this.resort && this.resort.slug !== this.$route.params.resortId) {
+        this.$store.dispatch(
+          'resort/getItemBySlug',
+          this.$route.params.resortId
+        )
+      }
+    },
     onClickBack() {
       const returnTo: string = (this.$route.query.returnTo as string) || 'home'
-      const paramId = this.$route.params.resortId
-      this.$router.push({ name: returnTo, params: { id: paramId } })
+      this.$router.push({
+        name: returnTo,
+        params: { id: this.$route.params.resortId }
+      })
     }
   }
 })

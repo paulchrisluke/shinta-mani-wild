@@ -26,17 +26,6 @@ export default Vue.extend({
   components: {
     StorySlider
   },
-  data() {
-    return {
-      slug: this.$route.params.resortId,
-      storyIndex: Number(this.$route.params.storyIndex)
-    }
-  },
-  mounted() {
-    if (this.resort && this.resort.slug !== this.slug) {
-      this.$store.dispatch('resort/getItemBySlug', (this as any).slug)
-    }
-  },
   metaInfo(): MetaInfo {
     return {
       title: this.resort.title,
@@ -59,18 +48,36 @@ export default Vue.extend({
         'stories',
         []
       ).filter((item: Story) => item.posterUrl)
-      const selectedStory = pageStoriesWithNoDuplicate[this.storyIndex]
+      const selectedStory =
+        pageStoriesWithNoDuplicate[Number(this.$route.params.storyIndex)]
       return get((this as any).resort, 'stories', []).filter(
         (item: Story) => item.ctaText === selectedStory.ctaText
       )
     }
   },
   methods: {
+    init() {
+      if (this.resort && this.resort.slug !== this.$route.params.resortId) {
+        this.$store.dispatch(
+          'resort/getItemBySlug',
+          this.$route.params.resortId
+        )
+      }
+    },
     onClickBack() {
       const returnTo: string = (this.$route.query.returnTo as string) || 'home'
-      const paramId = this.$route.params.resortId
-      this.$router.push({ name: returnTo, params: { id: paramId } })
+      this.$router.push({
+        name: returnTo,
+        params: { id: this.$route.params.resortId }
+      })
     }
+  },
+  beforeRouteUpdate(to, from, next) {
+    next()
+    this.init()
+  },
+  mounted() {
+    this.init()
   }
 })
 </script>

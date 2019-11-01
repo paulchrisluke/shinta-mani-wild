@@ -12,9 +12,26 @@ const ChickenSink = () => import('./views/ChickenSink.vue')
 
 Vue.use(Router)
 
+let unsubscribeStore: any = null
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
+  scrollBehavior(to, from, savedPosition) {
+    return new Promise(resolve => {
+      const loading = store.getters['loading/isLoading']
+      if (loading) {
+        unsubscribeStore = store.subscribe((mutation, state) => {
+          const loading = store.getters['loading/isLoading']
+          if (mutation.type === 'loading/loading' && loading === false) {
+            resolve(savedPosition || { x: 0, y: 0 })
+            unsubscribeStore()
+          }
+        })
+      } else {
+        resolve(savedPosition || { x: 0, y: 0 })
+      }
+    })
+  },
   routes: [
     {
       path: '/',
