@@ -1,7 +1,7 @@
 <template>
   <!-- You can't use this component directly -->
   <div
-    ripple
+    v-ripple
     class="image-link font-serif text-uppercase d-flex w-100"
     :class="[`is-${theme} is-${size}`]"
   >
@@ -100,6 +100,14 @@ $button-font-size-xs: 16px;
   outline: none;
   border: none;
   background-color: transparent;
+  user-select: none;
+  color: $white;
+  ::v-deep {
+    .v-ripple__container {
+      color: $white;
+      z-index: 1;
+    }
+  }
   .image-link--left,
   .image-link--right {
     background: no-repeat center;
@@ -128,8 +136,11 @@ $button-font-size-xs: 16px;
     height: rem($button-height-lg);
     font-size: rem($button-font-size-lg);
     &::v-deep {
-      .ripple--container {
-        margin: rem(11px 16px 11px 4px);
+      .v-ripple__container {
+        width: calc(100% - #{rem(20px)});
+        height: calc(100% - #{rem(22px)});
+        top: rem(11px);
+        left: rem(4px);
       }
     }
     .image-link--left {
@@ -147,8 +158,11 @@ $button-font-size-xs: 16px;
     height: rem($button-height-md);
     font-size: rem($button-font-size-md);
     &::v-deep {
-      .ripple--container {
-        margin: rem(6px 9px 6px 0px);
+      .v-ripple__container {
+        width: calc(100% - #{rem(7px)});
+        height: calc(100% - #{rem(12px)});
+        top: rem(6px);
+        left: 0;
       }
     }
     .image-link--left {
@@ -166,8 +180,11 @@ $button-font-size-xs: 16px;
     height: rem($button-height-sm);
     font-size: rem($button-font-size-sm);
     &::v-deep {
-      .ripple--container {
-        margin: rem(6px 10px 5px 1px);
+      .v-ripple__container {
+        width: calc(100% - #{rem(9px)});
+        height: calc(100% - #{rem(11px)});
+        top: rem(6px);
+        left: rem(1px);
       }
     }
     .image-link--left {
@@ -185,8 +202,11 @@ $button-font-size-xs: 16px;
     height: rem($button-height-xs);
     font-size: rem($button-font-size-xs);
     &::v-deep {
-      .ripple--container {
-        margin: rem(3px 4px 4px 1px);
+      .v-ripple__container {
+        width: calc(100% - #{rem(7px)});
+        height: calc(100% - #{rem(7px)});
+        top: rem(3px);
+        left: rem(1px);
       }
     }
     .image-link--left {

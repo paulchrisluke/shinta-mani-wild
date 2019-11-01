@@ -8,6 +8,7 @@ import '@/connection/init'
 import './mixins.global'
 import './filters.global'
 import './directives.global'
+import './plugins/vuetify.js'
 // @ts-ignore
 import VueContentPlaceholders from 'vue-content-placeholders'
 import 'vue-content-placeholders/src/styles.scss'

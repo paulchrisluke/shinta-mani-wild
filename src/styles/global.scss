@@ -287,17 +287,3 @@ body,
   padding-bottom: 0 !important;
   overflow: hidden;
 }
-
-// ripple effect
-/*
-play with some lines below
-*/
-[ripple] .ripple--container .ripple--body {
-  z-index: 15;
-  opacity: 0.1 !important;
-  background-color: rgba($white, 0.1) !important;
-  animation: rippler 200ms;
-}
-.ripple--container {
-  z-index: 1;
-}
