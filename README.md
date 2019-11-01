@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-<h4 align="center">A virtuoso (hyper-luxury) hotel site. Vue.js, typescript, and bootstrap. Shinta Mani Wild is focused on conserving Cambodia wildlife and forests, with all of its revenue going towards conservation. Built with luxury in mind, this is our most important and prestigous client at the moment, and is still being improved. While we are pleased with the base template we currently have, next steps include a much more creative design and components (perhaps lottie animations?) and a fully functional booking engine. This is currently one of our most active projects and well documented.
+<h4 align="center">A virtuoso (hyper-luxury) hotel site. Vue.js, typescript, and bootstrap. Shinta Mani Wild is focused on conserving Cambodia wildlife and forests, with all of its revenue going towards conservation. Built with luxury in mind, this is our most important and prestigous client at the moment, and is still being improved. While we are pleased with the base template we currently have, next steps include a much more creative design and components (perhaps lottie animations?) and a fully functional booking engine. This is currently one of our most active  and well documented projects.
 </h4>
 
 <p align="center">
