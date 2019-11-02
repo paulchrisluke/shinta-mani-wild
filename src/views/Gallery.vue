@@ -40,7 +40,7 @@ export default Vue.extend({
   },
   computed: {
     resort(): Resort {
-      return this.$store.getters['resort/getItem']
+      return this.$store.getters['resort/getItemBySlug'](this.$route.params.resortId)
     },
     images(): GalleryImage[] {
       const orderFilter = Number(this.$route.params.orderFilter)
