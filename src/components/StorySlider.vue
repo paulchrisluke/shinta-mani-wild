@@ -8,6 +8,13 @@
         :style="{'background-image': `url(${getBlurredImage(swiper.activeIndex)})`}"
       ></div>
       <div class="story-slider--layer is-shade position-absolute"></div>
+      <!-- preload next image -->
+      <link
+        rel="preload"
+        v-if="items.length > swiper.activeIndex + 1"
+        :href="getBlurredImage(swiper.activeIndex + 1)"
+        as="image"
+      />
     </div>
 
     <div class="story-slider--inner mx-auto w-100 d-flex">
@@ -33,7 +40,7 @@
                       @ended="onVideoEnd(index)"
                       class="story--content is-video"
                       preload="auto"
-                      :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25,so_0')"
+                      :poster="shouldLoadVideoPoster(index) && getPosterImage(item.image, 'q_25,so_0,f_auto')"
                       playsinline
                       autoplay
                       muted
@@ -71,8 +78,14 @@
         </div>
 
         <!-- Navigation tap areas in mobile -->
-        <div @click="swiper.slideNext()" class="swiper-tap-area-mobile is-next position-absolute d-lg-none"></div>
-        <div @click="swiper.slidePrev()" class="swiper-tap-area-mobile is-prev position-absolute d-lg-none"></div>
+        <div
+          @click="swiper.slideNext()"
+          class="swiper-tap-area-mobile is-next position-absolute d-lg-none"
+        ></div>
+        <div
+          @click="swiper.slidePrev()"
+          class="swiper-tap-area-mobile is-prev position-absolute d-lg-none"
+        ></div>
       </div>
 
       <!-- Navigation -->
@@ -185,7 +198,7 @@ export default Vue.extend({
     },
     getBlurredImage(index: number) {
       const item = this.items[index]
-      return getPosterImage((item as Story).image, 'q_25')
+      return getPosterImage((item as Story).image, 'q_4,w_540,f_auto,c_limit')
     },
     goToSlide(index: number) {
       this.swiper.slideTo(index)
@@ -265,6 +278,7 @@ export default Vue.extend({
       const that = this
       // documentation: https://swiperjs.com/api
       that.swiper = new Swiper('.swiper-container', {
+        speed: 300,
         keyboard: { onlyInViewport: true },
         slidesPerView: 1,
         spaceBetween: 0,
@@ -332,6 +346,7 @@ export default Vue.extend({
   height: 100vh;
   // stylelint-disable-next-line
   height: calc(var(--vh, 1vh) * 100);
+  max-width: rem($slider-story-max-width);
 }
 .swiper-container {
   width: 100%;
@@ -339,6 +354,9 @@ export default Vue.extend({
   height: calc(100vh - #{rem(24px * 2)});
   // stylelint-disable-next-line
   height: calc(var(--vh, 1vh) * 100 - #{rem(24px * 2)});
+  @include media-breakpoint-up(lg) {
+    max-height: rem($slider-story-max-height);
+  }
 }
 .swiper-slide {
   max-height: inherit;
@@ -354,12 +372,18 @@ export default Vue.extend({
   max-height: calc(var(--vh, 1vh) * 100 - #{rem(72px)});
 }
 .story--inner {
-  border-radius: rem(20px);
+  border-radius: rem($slide-border-radius);
   transition: opacity 300ms ease;
   opacity: 0.05;
   max-width: calc(100vw - #{rem(40px)});
+  @media (min-width: rem(map-get($grid-breakpoints, 'lg'))) {
+    max-width: rem($slider-story-item-max-width-lg);
+  }
   &:hover {
     opacity: 0.3;
+  }
+  .aspect-ratio-box {
+    max-width: calc((100vh - #{rem(72px)}) * (0.5625));
   }
 }
 .story--content {
@@ -370,7 +394,7 @@ export default Vue.extend({
   position: absolute;
   left: 50%;
   top: 50%;
-  border-radius: rem(20px);
+  border-radius: rem($slide-border-radius);
   box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
     rem(0px 5px 22px) rgba($black, 0.12), rem(0px 12px 17px) rgba($black, 0.14);
 }
@@ -403,7 +427,7 @@ export default Vue.extend({
     transform: translate(-65%, -50%);
   }
   &:hover {
-    transform: translateX(#{rem(-8px)});
+    transform: translate(#{rem(-8px)}, rem(-28px + 12px));
   }
   @include media-breakpoint-down(md) {
     left: 0;
@@ -411,25 +435,25 @@ export default Vue.extend({
 }
 .swiper-button-next {
   right: rem(40px);
+  &::after {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath style='fill:%23333' d='M.3 3l9.5 9.5L.3 22l3 3 12.4-12.5L3.2 0'/%3E%3C/svg%3E")
+      no-repeat center;
+    margin-right: rem(-4px);
+    transform: translate(-35%, -50%);
+  }
+  &:hover {
+    transform: translate(#{rem(8px)}, rem(-28px + 12px));
+  }
   @include media-breakpoint-down(md) {
     right: 0;
-  }
-  &.swiper-button-white {
-    &::after {
-      background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath style='fill:%23333' d='M.3 3l9.5 9.5L.3 22l3 3 12.4-12.5L3.2 0'/%3E%3C/svg%3E")
-        no-repeat center;
-      margin-right: rem(-4px);
-      transform: translate(-35%, -50%);
-    }
-    &:hover {
-      transform: translateX(#{rem(8px)});
-    }
   }
 }
 .swiper-button-white {
   width: rem(56px);
   height: rem(56px);
   border-radius: 100%;
+  box-shadow: 0 0 4px rgba($black, 0.3);
+  transform: translateY(rem(-28px + 12px));
   &::after {
     background-size: rem(12px);
     width: rem(16px);
@@ -470,6 +494,7 @@ export default Vue.extend({
   .swiper-pagination {
     position: static;
     min-height: rem(16px);
+    margin-right: 1 * $spacer;
   }
   .swiper-pagination-bullet {
     flex-basis: 0;
@@ -539,6 +564,7 @@ export default Vue.extend({
   background-color: rgba($black, 0.2);
   border-radius: rem(100px);
   transition: all 200ms ease;
+  box-shadow: 0 0 4px rgba($black, 0.3);
   @include media-breakpoint-up(md) {
     top: rem(40px);
     left: rem(40px);
