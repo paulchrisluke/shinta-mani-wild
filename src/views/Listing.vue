@@ -86,6 +86,101 @@
           </section>
         </div>
 
+        <!-- card -->
+        <div class="container is-small">
+          <div class="row mb-5">
+            <div class="col-12">
+              <base-card :show-placeholder="!resort.id" :image="cardImage1">
+                <template v-slot:text>
+                  <div class="card-content">
+                    <h2
+                      class="base-heading font-weight-normal h2 mb-3 text-dark text-center text-xl-left"
+                    >All Inclusive</h2>
+                    <p>Shinta Mani Wild is the full package - in every sense of the word. Our rates are inclusive of a round trip private car transfer to/from Phnom Penh or Sihanoukville Airport and vicinity, as well as your personal Bensley Butler, all meals and beverages, privately guided activities to explore the Cardamom forest, luxury spa treatments, WiFi throughout the camp and of course daily laundry service.</p>
+                  </div>
+                </template>
+              </base-card>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pure text -->
+        <div class="container is-small mb-5">
+          <article>
+            <h2 class="h2 text-center mb-4">Amenities and Treats</h2>
+            <p>
+              The bedrooms of your tent are climate controlled, your Butler
+              will show you the controls. For a more intimate jungle experience
+              on cooler evenings open the windows (leave the screens down)
+              and shut off your AC.
+            </p>
+            <p class="mb-5">
+              In an effort to reduce waste in such a pristine part of the world,
+              amenities such as a toothbrushes, soap or shampoo will not be
+              kept in your tent. However should you need them, please do not
+              hesitate to let your Adventure Butler know.
+              Have you forgotten to pack an important item? For your
+              convenience, we offer the following essentials to you with our
+              compliments, as well as variety of items for you to purchase or
+              borrow during your stay. Please contact the Bensley Butlers, and
+              we will deliver the requested item(s) to your tent.
+            </p>
+
+            <div class="row justify-content-center">
+              <div class="col-12 col-md-3">
+                <h3 class="h4 font-weight-light font-italic mb-1">Complimentary</h3>
+                <ul class="list-unstyled page-tents--list-items">
+                  <li>Toothbrush</li>
+                  <li>Toothpaste</li>
+                  <li>Hand sanitizer</li>
+                  <li>Razor</li>
+                  <li>Tissues</li>
+                  <li>Comb</li>
+                </ul>
+              </div>
+              <div class="col-12 col-md-3">
+                <h3 class="h4 font-weight-light font-italic mb-1">Borrow</h3>
+                <ul class="list-unstyled page-tents--list-items">
+                  <li>Power adapter</li>
+                  <li>Curling iron</li>
+                  <li>Hair spray</li>
+                  <li>Nail polish remover</li>
+                  <li>Mosquito repellent</li>
+                  <li>Sewing kit</li>
+                  <li>Sunblock</li>
+                </ul>
+              </div>
+              <div class="col-12 col-md-3">
+                <h3 class="h4 font-weight-light font-italic mb-1">Purchase</h3>
+                <ul class="list-unstyled">
+                  <li>Deodorant</li>
+                  <li>Sanitary Supplies</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- card -->
+        <div class="container is-small mb-5">
+          <div class="row">
+            <div class="col-12">
+              <base-card :show-placeholder="!resort.id" :image="cardImage2" :is-left="true">
+                <template v-slot:text>
+                  <div class="card-content">
+                    <h2
+                      class="base-heading font-weight-normal h2 mb-3 text-dark text-center text-xl-left"
+                    >Personal Butler</h2>
+                    <p>Great guests deserve great butlers — and you’ll find both here. Part guide, part friend, part valet, part mindreader: Shinta Mani Wild’s Bensley Butlers will anticipate your needs before you do.</p>
+                    <p>They’ll suggest unforgettable activities to suit your tastes and fitness, and accompany you on your adventures, from motorbike rides to boat trips. Your butler will also play the classic role of butler with aplomb, unpacking and packing your luggage and fulfilling your ad-hoc requests.</p>
+                    <p>Please note: although we understand the temptation, guests are not allowed to take their butler home.</p>
+                  </div>
+                </template>
+              </base-card>
+            </div>
+          </div>
+        </div>
+  
         <!-- articles (stories) -->
         <div class="container is-small">
           <base-heading
@@ -145,6 +240,7 @@ import doodles from '@/mixins/doodles'
 import { GalleryImage, Story, Resort } from '@/types'
 import { get } from 'lodash-es'
 import { MetaInfo } from 'vue-meta'
+import BaseCard from '@/components/BaseCard.vue'
 
 export default Vue.extend({
   name: 'listing',
@@ -159,12 +255,21 @@ export default Vue.extend({
     BaseBannerAction,
     BaseArticlesList,
     BaseQuote,
-    BookingBar
+    BookingBar,
+    BaseCard
   },
   data() {
     return {
       slug: this.$route.params.id,
-      featuredStoriesCount: 0
+      featuredStoriesCount: 0,
+      cardImage1: {
+        text: 'All Inclusive',
+        url: "https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567747072/Shinta%20Mani%20Wild/Tents/All_Inclusive_-_Tent_Page_Shinta_Mani_Wild_kdfq4g.jpg"
+      },
+      cardImage2: {
+        text: 'Conservation',
+        url: "https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568948083/Shinta%20Mani%20Wild/Tents/Head_Butler_Mac_-_Shinta_Mani_Wild_xxc4i9.jpg"
+      }
     }
   },
   metaInfo (): MetaInfo {
