@@ -1,5 +1,5 @@
 <template>
-  <a :href="href" class="d-inline-flex text-decoration-none" :class="className" :aria-label="text" v-bind="rest">
+  <a class="d-inline-flex text-decoration-none" :class="className" :aria-label="text" v-bind="rest">
     <base-button-ui :size="size" :theme="theme">{{text}}</base-button-ui>
   </a>
 </template>

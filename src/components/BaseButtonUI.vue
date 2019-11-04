@@ -1,6 +1,10 @@
 <template>
   <!-- You can't use this component directly -->
-  <div class="image-link font-serif text-uppercase d-flex w-100" :class="[`is-${theme} is-${size}`]">
+  <div
+    v-ripple
+    class="image-link font-serif text-uppercase d-flex w-100"
+    :class="[`is-${theme} is-${size}`]"
+  >
     <div
       :style="{'background-image': `url(${transformCloudinaryUrl(image[theme].left, `q_auto:best,h_${buttonHeight}`)})`}"
       class="image-link--left h-100"
@@ -96,6 +100,14 @@ $button-font-size-xs: 16px;
   outline: none;
   border: none;
   background-color: transparent;
+  user-select: none;
+  color: $white;
+  ::v-deep {
+    .v-ripple__container {
+      color: $white;
+      z-index: 1;
+    }
+  }
   .image-link--left,
   .image-link--right {
     background: no-repeat center;
@@ -123,6 +135,14 @@ $button-font-size-xs: 16px;
   &.is-lg {
     height: rem($button-height-lg);
     font-size: rem($button-font-size-lg);
+    &::v-deep {
+      .v-ripple__container {
+        width: calc(100% - #{rem(20px)});
+        height: calc(100% - #{rem(22px)});
+        top: rem(11px);
+        left: rem(4px);
+      }
+    }
     .image-link--left {
       width: rem(102px);
     }
@@ -137,6 +157,14 @@ $button-font-size-xs: 16px;
   &.is-md {
     height: rem($button-height-md);
     font-size: rem($button-font-size-md);
+    &::v-deep {
+      .v-ripple__container {
+        width: calc(100% - #{rem(7px)});
+        height: calc(100% - #{rem(12px)});
+        top: rem(6px);
+        left: 0;
+      }
+    }
     .image-link--left {
       width: rem(58px);
     }
@@ -151,6 +179,14 @@ $button-font-size-xs: 16px;
   &.is-sm {
     height: rem($button-height-sm);
     font-size: rem($button-font-size-sm);
+    &::v-deep {
+      .v-ripple__container {
+        width: calc(100% - #{rem(9px)});
+        height: calc(100% - #{rem(11px)});
+        top: rem(6px);
+        left: rem(1px);
+      }
+    }
     .image-link--left {
       width: rem(51px);
     }
@@ -165,6 +201,14 @@ $button-font-size-xs: 16px;
   &.is-xs {
     height: rem($button-height-xs);
     font-size: rem($button-font-size-xs);
+    &::v-deep {
+      .v-ripple__container {
+        width: calc(100% - #{rem(7px)});
+        height: calc(100% - #{rem(7px)});
+        top: rem(3px);
+        left: rem(1px);
+      }
+    }
     .image-link--left {
       width: rem(32px);
     }
