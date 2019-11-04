@@ -197,6 +197,13 @@
       }
     }
   }
+  .nav-item.dropdown.show {
+    .nav-link {
+      &::before {
+        background-color: rgba($white, 0.3);
+      }
+    }
+  }
 }
 .logo-link {
   width: rem(32px);
