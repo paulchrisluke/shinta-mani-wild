@@ -230,6 +230,7 @@ import store from '@/store'
 import { MetaInfo } from 'vue-meta'
 import Swiper from 'swiper'
 import '@/styles/lib-swiper.scss'
+const slug = 'tents'
 
 export default Vue.extend({
   name: 'listing',
@@ -252,7 +253,7 @@ export default Vue.extend({
   },
   computed: {
     resort(): Resort {
-      return store.getters['resort/getItem']
+      return this.$store.getters['resort/getItemBySlug'](slug)
     },
     cardImages(): GalleryImage[] {
       const OrderOfCardsImages = 4
@@ -308,7 +309,7 @@ export default Vue.extend({
   },
   methods: {
     init() {
-      store.dispatch('resort/getItemBySlug', 'tents')
+      store.dispatch('resort/getItemBySlug', slug)
       store.dispatch('category/getItemsByName', 'accommodations')
     },
     initSlider(): void {

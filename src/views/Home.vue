@@ -210,6 +210,7 @@ import doodles from '@/mixins/doodles'
 import { Resort, ResortImage, GalleryImage } from '@/types.ts'
 import { get } from 'lodash-es'
 import { MetaInfo } from 'vue-meta'
+const slug = 'home'
 
 export default Vue.extend({
   name: 'home',
@@ -232,7 +233,7 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.$store.dispatch('resort/getItemBySlug', 'home')
+    this.$store.dispatch('resort/getItemBySlug', slug)
   },
   metaInfo(): MetaInfo {
     return {
@@ -258,7 +259,7 @@ export default Vue.extend({
       ]
     },
     resort(): Resort {
-      return this.$store.getters['resort/getItem']
+      return this.$store.getters['resort/getItemBySlug'](slug)
     },
     cardImage1(): object | undefined {
       const image = this.getResortImage(1)

@@ -174,7 +174,7 @@ export default Vue.extend({
   },
   computed: {
     resort(): Resort {
-      return this.$store.getters['resort/getItem']
+      return this.$store.getters['resort/getItemBySlug'](this.$route.params.id)
     },
     stories(): Story[] {
       return get((this as any).resort, 'stories', []).filter(
