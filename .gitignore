@@ -2,7 +2,6 @@
 node_modules
 /dist
 /temp
-/storybook-static
 
 /tests/e2e/videos/
 /tests/e2e/screenshots/
