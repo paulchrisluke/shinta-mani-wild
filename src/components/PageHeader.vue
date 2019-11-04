@@ -10,13 +10,13 @@
                 class="page-header--inner d-md-flex d-none justify-content-between align-items-center"
               >
                 <div class="logo">
-                  <a href="/" class="logo-link d-block" title="Home">
+                  <router-link to="/" class="logo-link d-block" title="Home">
                     <img
                       class="w-100 h-100 d-block"
                       src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png"
                       alt="Shinta Mani Wild"
                     />
-                  </a>
+                  </router-link>
                 </div>
                 <div class="page-header--nav d-flex align-items-center">
                   <nav>
@@ -35,24 +35,36 @@
                           aria-haspopup="true"
                           :aria-expanded="isDropdownTentsOpen + ''"
                         >
-                          <a class="dropdown-item" href="/tents">All Tents</a>
+                          <router-link to="/tents" class="dropdown-item">All Tents</router-link>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="/listing/wild-tents">Wild Tents</a>
-                          <a class="dropdown-item" href="/listing/waterfall-tents">Waterfall Tents</a>
-                          <a class="dropdown-item" href="/listing/two-bedroom-tent">Two Bedroom Tent</a>
+                          <router-link class="dropdown-item" to="/listing/wild-tents">Wild Tents</router-link>
+                          <router-link
+                            class="dropdown-item"
+                            to="/listing/waterfall-tents"
+                          >Waterfall Tents</router-link>
+                          <router-link
+                            class="dropdown-item"
+                            to="/listing/two-bedroom-tent"
+                          >Two Bedroom Tent</router-link>
                         </div>
                       </li>
                       <li class="nav-item mx-1">
-                        <a href="/search/adventure" class="nav-link text-light px-2">Adventures</a>
+                        <router-link
+                          to="/search/adventure"
+                          class="nav-link text-light px-2"
+                        >Adventures</router-link>
                       </li>
                       <li class="nav-item mx-1">
-                        <a
-                          href="/search/food-and-drink"
+                        <router-link
+                          to="/search/food-and-drink"
                           class="nav-link text-light px-2"
-                        >Food and Drink</a>
+                        >Food and Drink</router-link>
                       </li>
                       <li class="nav-item">
-                        <a href="/search/wellness" class="nav-link text-light pl-2 pr-0">Wellness</a>
+                        <router-link
+                          to="/search/wellness"
+                          class="nav-link text-light pl-2 pr-0"
+                        >Wellness</router-link>
                       </li>
                     </ul>
                   </nav>
@@ -62,13 +74,13 @@
                 class="d-inline-flex d-md-none justify-content-between align-items-center h-100 w-100 px-3"
               >
                 <div class="logo">
-                  <a href="/" class="logo-link d-block" title="Home">
+                  <router-link to="/" class="logo-link d-block" title="Home">
                     <img
                       class="w-100 h-100 d-block"
                       src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png"
                       alt="Shinta Mani Wild"
                     />
-                  </a>
+                  </router-link>
                 </div>
                 <button
                   class="hamburger-button pb-2 ml-auto px-0"
@@ -91,38 +103,41 @@
             class="page-header--mobile-links p-3 nav user-select-none font-serif-2 font-weight-normal mb-4 w-100"
           >
             <li class="w-100 nav-item nav-title font-serif">
-              <a class="nav-link px-0" href="/tents">Tents</a>
+              <router-link to="/tents" class="nav-link px-0">Tents</router-link>
             </li>
             <div class="w-100">
               <hr class="my-2" />
             </div>
             <li class="w-100 nav-item">
-              <a class="nav-link px-0 py-1" href="/listing/wild-tents">Wild Tents</a>
+              <router-link to="/listing/wild-tents" class="nav-link px-0 py-1">Wild Tents</router-link>
             </li>
             <li class="w-100 nav-item">
-              <a class="nav-link px-0 py-1" href="/listing/waterfall-tents">Waterfall Tents</a>
+              <router-link to="/listing/waterfall-tents" class="nav-link px-0 py-1">Waterfall Tents</router-link>
             </li>
             <li class="w-100 nav-item">
-              <a class="nav-link px-0 py-1" href="/listing/two-bedroom-tent">Two Bedroom Tent</a>
+              <router-link
+                to="/listing/two-bedroom-tent"
+                class="nav-link px-0 py-1"
+              >Two Bedroom Tent</router-link>
             </li>
             <li class="w-100 nav-item nav-title font-serif mt-3">Things to Do</li>
             <div class="w-100">
               <hr class="my-2" />
             </div>
             <li class="w-100 nav-item">
-              <a href="/search/adventure" class="nav-link px-0 py-1">Adventures</a>
+              <router-link to="/search/adventure" class="nav-link px-0 py-1">Adventures</router-link>
             </li>
             <li class="w-100 nav-item">
-              <a href="/search/food-and-drink" class="nav-link px-0 py-1">Food and Drink</a>
+              <router-link to="/search/food-and-drink" class="nav-link px-0 py-1">Food and Drink</router-link>
             </li>
             <li class="w-100 nav-item">
-              <a href="/search/wellness" class="nav-link px-0 py-1">Wellness</a>
+              <router-link to="/search/wellness" class="nav-link px-0 py-1">Wellness</router-link>
             </li>
             <div class="w-100 mt-3">
               <hr class="my-2" />
             </div>
             <li class="w-100 nav-item">
-              <a href="/contact" class="nav-link px-0 py-1">Contact</a>
+              <router-link to="/contact" class="nav-link px-0 py-1">Contact</router-link>
             </li>
           </ul>
         </nav>
@@ -301,6 +316,11 @@ export default Vue.extend({
   mounted() {
     this.clickOutsideDropdownListener()
     window.addEventListener('resize', this.resetResponsiveMenu)
+  },
+  watch: {
+    $route(to, from) {
+      this.resetResponsiveMenu()
+    }
   },
   methods: {
     clickOutsideDropdownListener() {

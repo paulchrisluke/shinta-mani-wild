@@ -5,9 +5,9 @@
         <div class="col-12 col-md-4">
           <div class="page-footer--logo">
             <div class="d-table m-auto ml-md-0">
-              <a href="/" class="logo-link mt-2 d-block" title="Home">
+              <router-link to="/" class="logo-link mt-2 d-block" title="Home">
                 <img class="d-block mx-auto" src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_64/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png" alt="shinta mani wild" />
-              </a>
+              </router-link>
 
               <div class="text-light text-center my-2">
                 <p class="mb-0 font-serif-2">Bensley Collection</p>
@@ -24,19 +24,19 @@
                 <h3 class="h3 font-serif-2 text-light">Discover</h3>
                 <ul class="nav flex-column">
                   <li class="nav-item">
-                    <a
-                      href="/search/bensleys-favorite-seasons/"
+                    <router-link
+                      to="/search/bensleys-favorite-seasons/"
                       class="nav-link font-weight-bold text-light"
-                    >Bensley's Favorite Season</a>
+                    >Bensley's Favorite Season</router-link>
                   </li>
                   <li class="nav-item">
-                    <a href="/search/foundation/" class="nav-link font-weight-bold text-light">Foundation</a>
+                    <router-link to="/search/foundation/" class="nav-link font-weight-bold text-light">Foundation</router-link>
                   </li>
                   <li class="nav-item">
-                    <a href="/search/conservation/" class="nav-link font-weight-bold text-light">Conservation</a>
+                    <router-link to="/search/conservation/" class="nav-link font-weight-bold text-light">Conservation</router-link>
                   </li>
                   <li class="nav-item">
-                    <a href="/search/press/" class="nav-link font-weight-bold text-light">Press</a>
+                    <router-link to="/search/press/" class="nav-link font-weight-bold text-light">Press</router-link>
                   </li>
                   <li class="nav-item">
                     <a
@@ -54,16 +54,16 @@
                 <h3 class="h3 font-serif-2 text-small-caps text-light">Connect</h3>
                 <ul class="nav flex-column">
                   <li class="nav-item">
-                    <a
-                      href="/contact"
+                    <router-link
+                      to="/contact"
                       class="nav-link font-weight-bold text-light"
-                    >Contact</a>
+                    >Contact</router-link>
                   </li>
                   <!-- <li class="nav-item">
-                    <a
-                      href="/subscribe"
+                    <router-link
+                      to="/subscribe"
                       class="nav-link font-weight-bold text-light text-decoration-underline"
-                    >Subscribe</a>
+                    >Subscribe</router-link>
                   </li> -->
                 </ul>
               </nav>
