@@ -10,9 +10,7 @@
     "test:unit": "vue-cli-service test:unit",
     "fix-code": "prettier-eslint --write 'src/**/*.{js,jsx,vue,json}' ",
     "fix-style": "prettier-stylelint --write 'src/**/*.{css,scss}' ",
-    "swagger": "ts-node src/connection/swagger-axios.ts && tsc -p ./temp/resources.ts --moduleResolution classic --target es6 --outDir ./src/connection/",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "swagger": "ts-node src/connection/swagger-axios.ts && tsc -p ./temp/resources.ts --moduleResolution classic --target es6 --outDir ./src/connection/"
   },
   "dependencies": {
     "aos": "3.0.0-beta.6",
@@ -30,11 +28,6 @@
     "vuex": "3.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.4",
-    "@storybook/addon-actions": "^5.2.5",
-    "@storybook/addon-links": "^5.2.5",
-    "@storybook/addons": "^5.2.5",
-    "@storybook/vue": "^5.2.5",
     "@types/aos": "3.0.2",
     "@types/jest": "23.1.4",
     "@types/lodash-es": "4.17.3",
@@ -52,13 +45,10 @@
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.3",
-    "babel-loader": "^8.0.6",
-    "babel-preset-vue": "^2.0.2",
     "eslint": "6.3.0",
     "eslint-plugin-prettier": "3.1.1",
     "eslint-plugin-vue": "5.2.3",
     "esm": "3.2.25",
-    "node-sass": "^4.13.0",
     "prettier": "1.18.2",
     "prettier-eslint": "9.0.0",
     "prettier-eslint-cli": "5.0.0",
