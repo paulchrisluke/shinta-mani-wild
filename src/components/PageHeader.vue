@@ -13,7 +13,7 @@
                   <router-link to="/" class="logo-link d-block" title="Home">
                     <img
                       class="w-100 h-100 d-block"
-                      src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png"
+                      src="https://res.cloudinary.com/whynotearth/image/upload/w_48/Shinta%20Mani%20Wild/Home/Bensley_Collection_Shinta_ManiWild_brandmark_white_2_ns8kxh.png"
                       alt="Shinta Mani Wild"
                     />
                   </router-link>
@@ -81,7 +81,7 @@
                   <router-link v-ripple to="/" class="logo-link d-block" title="Home">
                     <img
                       class="w-100 h-100 d-block"
-                      src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png"
+                      src="https://res.cloudinary.com/whynotearth/image/upload/w_48/Shinta%20Mani%20Wild/Home/Bensley_Collection_Shinta_ManiWild_brandmark_white_2_ns8kxh.png"
                       alt="Shinta Mani Wild"
                     />
                   </router-link>
