@@ -229,7 +229,7 @@ export default Vue.extend({
   data() {
     return {
       startedPlaying: false,
-      pressBannerImage: 'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1567397036/Shinta%20Mani%20Wild/home/Press_Banner_lvzdtx.jpg'
+      pressBannerImage: 'https://res.cloudinary.com/whynotearth/image/upload/v1574308285/Shinta%20Mani%20Wild/Home/Press_Banner_pk5sr6.jpg'
     }
   },
   mounted() {
