@@ -155,6 +155,7 @@ import loading from '@/mixins/loading'
 import { Resort } from '@/types'
 import { MetaInfo } from 'vue-meta'
 import store from '@/store'
+const slug = 'contact'
 
 export default {
   name: 'contact',
@@ -169,7 +170,6 @@ export default {
   },
   data() {
     return {
-      slug: 'contact',
       title: 'Contact',
       name: '',
       email: '',
@@ -191,11 +191,11 @@ export default {
   },
   computed: {
     resort(): Resort {
-      return store.getters['resort/getItem']
+      return store.getters['resort/getItemBySlug'](slug)
     }
   },
   mounted() {
-    store.dispatch('resort/getItemBySlug', (this as any).slug)
+    store.dispatch('resort/getItemBySlug', slug)
   }
 }
 </script>

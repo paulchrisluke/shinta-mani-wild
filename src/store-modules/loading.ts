@@ -14,5 +14,10 @@ export default {
         state.isLoading = state.refCount > 0
       }
     }
+  },
+  getters: {
+    isLoading(state: any) {
+      return state.isLoading
+    }
   }
 }

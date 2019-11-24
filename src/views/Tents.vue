@@ -68,17 +68,19 @@
           </base-quote>
         </section>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
+        <div
+          :class="`doodle doodle-item-1-${index} position-absolute`"
+          :key="index"
+          v-for="(doodle, index) in pageDoodles.slice(0, 2)"
+        >
           <img
             @load="setItemParallax($event)"
-            :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
             :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
-            :key="index"
             alt
           />
-        </template>
+        </div>
       </div>
 
       <!-- banner action -->
@@ -188,17 +190,19 @@
           </div>
         </div>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(2, 5)">
+        <div
+          :class="`doodle doodle-item-1-${index} position-absolute`"
+          :key="index"
+          v-for="(doodle, index) in pageDoodles.slice(2, 5)"
+        >
           <img
             @load="setItemParallax($event)"
-            :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
             :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
-            :key="index"
             alt
           />
-        </template>
+        </div>
       </div>
     </div>
 
@@ -226,6 +230,7 @@ import store from '@/store'
 import { MetaInfo } from 'vue-meta'
 import Swiper from 'swiper'
 import '@/styles/lib-swiper.scss'
+const slug = 'tents'
 
 export default Vue.extend({
   name: 'listing',
@@ -243,13 +248,12 @@ export default Vue.extend({
   },
   data() {
     return {
-      slug: 'tents',
       swiper: {} as Swiper
     }
   },
   computed: {
     resort(): Resort {
-      return store.getters['resort/getItem']
+      return this.$store.getters['resort/getItemBySlug'](slug)
     },
     cardImages(): GalleryImage[] {
       const OrderOfCardsImages = 4
@@ -291,20 +295,24 @@ export default Vue.extend({
       }
     }
   },
-
-  mounted() {
-    store.dispatch('resort/getItemBySlug', this.slug)
-    store.dispatch('category/getItemsByName', 'accommodations')
-  },
   watch: {
     accommodationsAsStories() {
       this.$nextTick(this.initSlider)
     }
   },
+  beforeRouteUpdate(to, from, next) {
+    next()
+    this.init()
+  },
+  mounted() {
+    this.init()
+  },
   methods: {
+    init() {
+      store.dispatch('resort/getItemBySlug', slug)
+      store.dispatch('category/getItemsByName', 'accommodations')
+    },
     initSlider(): void {
-      console.log('init slider')
-
       this.swiper = new Swiper('.swiper-container', {
         slidesPerView: 1.2,
         spaceBetween: 30,
@@ -353,5 +361,10 @@ export default Vue.extend({
     column-count: 2;
     max-width: rem(420px);
   }
+}
+
+// override doodles positions
+.doodle-item-1-0 {
+  top: -30vh;
 }
 </style>

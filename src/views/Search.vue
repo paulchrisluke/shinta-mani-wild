@@ -59,17 +59,19 @@
           ></base-articles-list>
         </section>
 
-        <template v-for="(doodle, index) in pageDoodles.slice(0, 2)">
+        <div
+          :class="`doodle doodle-item-0-${index} position-absolute`"
+          :key="index"
+          v-for="(doodle, index) in pageDoodles.slice(0, 2)"
+        >
           <img
             @load="setItemParallax($event)"
-            :class="`doodle doodle-item-0-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
             :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
-            :key="index"
             alt
           />
-        </template>
+        </div>
       </div>
 
       <!-- banner action -->
@@ -104,19 +106,19 @@
           ></base-articles-list>
         </div>
 
-        <template
+        <div
+          :class="`doodle doodle-item-1-${index} position-absolute`"
+          :key="index"
           v-for="(doodle, index) in pageDoodles.slice(2, (relativeDoodleAmount(stories.length, featuredStoriesCount, 2) || 4))"
         >
           <img
             @load="setItemParallax($event)"
-            :class="`doodle doodle-item-1-${index} position-absolute`"
             data-aos="fade-down"
             :data-rellax-speed="getRellaxSpeed()"
             :src="transformCloudinaryUrl(doodle.url, 'q_auto:low,fl_any_format,o_20,h_700,w_700,c_limit')"
-            :key="index"
             alt
           />
-        </template>
+        </div>
       </div>
     </div>
     </div>
@@ -157,7 +159,6 @@ export default Vue.extend({
   data() {
     return {
       featuredStoriesCount: 2,
-      slug: this.$route.params.id
     }
   },
   metaInfo (): MetaInfo {
@@ -170,7 +171,7 @@ export default Vue.extend({
   },
   computed: {
     resort(): Resort {
-      return this.$store.getters['resort/getItem']
+      return this.$store.getters['resort/getItemBySlug'](this.$route.params.id)
     },
     stories(): Story[] {
       return get(this.resort, 'stories', []).filter(
@@ -178,8 +179,17 @@ export default Vue.extend({
       )
     }
   },
+  methods: {
+    init() {
+      this.$store.dispatch('resort/getItemBySlug', this.$route.params.id)
+    }
+  },
   mounted() {
-    this.$store.dispatch('resort/getItemBySlug', this.slug)
+    this.init()
+  },
+  beforeRouteUpdate (to, from, next) {
+    next()
+    this.init()
   }
 })
 </script>

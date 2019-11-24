@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view :key="$route.name + ($route.params.id || '')" />
+    <router-view />
   </div>
 </template>
 

@@ -26,18 +26,6 @@ export default Vue.extend({
   components: {
     GallerySlider
   },
-  data() {
-    return {
-      slug: this.$route.params.resortId,
-      orderFilter: Number(this.$route.params.orderFilter),
-      resortId: Number(this.$route.params.resortId)
-    }
-  },
-  mounted() {
-    if (this.resort && this.resort.slug !== this.slug) {
-      this.$store.dispatch('resort/getItemBySlug', (this as any).slug)
-    }
-  },
   metaInfo(): MetaInfo {
     return {
       title: this.resort.title,
@@ -52,63 +40,38 @@ export default Vue.extend({
   },
   computed: {
     resort(): Resort {
-      return this.$store.getters['resort/getItem']
+      return this.$store.getters['resort/getItemBySlug'](this.$route.params.resortId)
     },
     images(): GalleryImage[] {
+      const orderFilter = Number(this.$route.params.orderFilter)
       return get(this.resort, 'images', []).filter(
-        (item: GalleryImage) => item.order === this.orderFilter
+        (item: GalleryImage) => item.order === orderFilter
       )
     }
   },
+  beforeRouteUpdate(to, from, next) {
+    next()
+    ;(this as any).init()
+  },
+  mounted() {
+    this.init()
+  },
   methods: {
+    init() {
+      if (this.resort && this.resort.slug !== this.$route.params.resortId) {
+        this.$store.dispatch(
+          'resort/getItemBySlug',
+          this.$route.params.resortId
+        )
+      }
+    },
     onClickBack() {
       const returnTo: string = (this.$route.query.returnTo as string) || 'home'
-      const paramId = this.$route.params.resortId
-      this.$router.push({ name: returnTo, params: { id: paramId } })
+      this.$router.push({
+        name: returnTo,
+        params: { id: this.$route.params.resortId }
+      })
     }
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.page--story {
-  background-color: $brand-4;
-}
-::v-deep {
-  .story--nav-tools {
-    display: none !important;
-  }
-  .swiper-container {
-    @include media-breakpoint-up(lg) {
-      height: calc(100vh - #{190px});
-    }
-    .aspect-ratio-box {
-      overflow: visible;
-    }
-  }
-  @include media-breakpoint-up(lg) {
-    .swiper-slide-active {
-      transform: scale(2) !important;
-      .story--details {
-        transform: scale(0.5);
-        left: auto !important;
-      }
-    }
-    .story--inner {
-      max-width: rem($gallery-slide-max-width);
-    }
-    .swiper-pagination-bullet-active {
-      &::before {
-        transform: translateX(0) !important;
-      }
-    }
-  }
-  .story--inner {
-    @media (min-width: rem(map-get($grid-breakpoints, 'lg'))) and (min-height: rem(600px)) {
-      box-shadow: rem(0px 7px 8px) rgba($black, 0.2),
-        rem(0px 5px 22px) rgba($black, 0.12),
-        rem(0px 12px 17px) rgba($black, 0.14);
-    }
-  }
-}
-</style>

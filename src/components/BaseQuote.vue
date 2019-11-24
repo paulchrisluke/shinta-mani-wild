@@ -1,5 +1,5 @@
 <template>
-  <!-- type: bird left -->
+  <!-- type: bird left , TODO: remove type bird, not in use -->
   <div
     v-if="type === 'bird-left'"
     :class="className"

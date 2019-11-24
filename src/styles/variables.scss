@@ -58,7 +58,7 @@ $spacers: map-merge(
 $slider-story-max-height: 624px;
 $slider-story-max-width: 1100px;
 $slider-story-item-max-width-lg: 414px;
-$gallery-slide-max-width: 618px;
+$slide-border-radius: 10px;
 
 // typography
 $font-family-sans-serif: 'Roboto', 'Segoe UI', Tahoma, sans-serif;
@@ -86,10 +86,10 @@ $loading-transition-time: 500ms;
 $dropdown-font-size: rem(18px);
 $dropdown-bg: $primary;
 $dropdown-link-color: $brand-2;
-$dropdown-link-hover-color: $primary;
-$dropdown-link-active-color: $primary;
-$dropdown-link-hover-bg: $brand-2;
-$dropdown-link-active-bg: $brand-2;
+$dropdown-link-hover-color: $brand-2;
+$dropdown-link-active-color: $brand-2;
+$dropdown-link-hover-bg: rgba(255,255,255, 0.3);
+$dropdown-link-active-bg: rgba(255,255,255, 0.3);
 $dropdown-link-disabled-color: lighten($primary, 30%);
 $dropdown-divider-bg: rgba($brand-2, 0.15);
 

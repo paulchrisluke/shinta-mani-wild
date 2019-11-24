@@ -26,17 +26,6 @@ export default Vue.extend({
   components: {
     StorySlider
   },
-  data() {
-    return {
-      slug: this.$route.params.resortId,
-      storyIndex: Number(this.$route.params.storyIndex)
-    }
-  },
-  mounted() {
-    if (this.resort && this.resort.slug !== this.slug) {
-      this.$store.dispatch('resort/getItemBySlug', (this as any).slug)
-    }
-  },
   metaInfo(): MetaInfo {
     return {
       title: this.resort.title,
@@ -51,7 +40,7 @@ export default Vue.extend({
   },
   computed: {
     resort(): Resort {
-      return this.$store.getters['resort/getItem']
+      return this.$store.getters['resort/getItemBySlug'](this.$route.params.resortId)
     },
     stories(): Story[] {
       const pageStoriesWithNoDuplicate = get(
@@ -59,18 +48,36 @@ export default Vue.extend({
         'stories',
         []
       ).filter((item: Story) => item.posterUrl)
-      const selectedStory = pageStoriesWithNoDuplicate[this.storyIndex]
+      const selectedStory =
+        pageStoriesWithNoDuplicate[Number(this.$route.params.storyIndex)]
       return get((this as any).resort, 'stories', []).filter(
         (item: Story) => item.ctaText === selectedStory.ctaText
       )
     }
   },
   methods: {
+    init() {
+      if (this.resort && this.resort.slug !== this.$route.params.resortId) {
+        this.$store.dispatch(
+          'resort/getItemBySlug',
+          this.$route.params.resortId
+        )
+      }
+    },
     onClickBack() {
       const returnTo: string = (this.$route.query.returnTo as string) || 'home'
-      const paramId = this.$route.params.resortId
-      this.$router.push({ name: returnTo, params: { id: paramId } })
+      this.$router.push({
+        name: returnTo,
+        params: { id: this.$route.params.resortId }
+      })
     }
+  },
+  beforeRouteUpdate(to, from, next) {
+    next()
+    this.init()
+  },
+  mounted() {
+    this.init()
   }
 })
 </script>
@@ -78,26 +85,5 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .page--story {
   background-color: $brand-4;
-}
-::v-deep {
-  .swiper-pagination {
-    margin-right: 1 * $spacer;
-  }
-  .story-slider--inner {
-    max-width: rem($slider-story-max-width);
-  }
-  .swiper-container {
-    @include media-breakpoint-up(lg) {
-      max-height: rem($slider-story-max-height);
-    }
-  }
-  .story--inner {
-    @media (min-width: rem(map-get($grid-breakpoints, 'lg'))) {
-      max-width: rem($slider-story-item-max-width-lg);
-    }
-  }
-  .story--inner .aspect-ratio-box {
-    max-width: calc((100vh - #{rem(72px)}) * (0.5625));
-  }
 }
 </style>
