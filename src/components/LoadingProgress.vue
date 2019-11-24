@@ -39,7 +39,7 @@ export default Vue.extend({
   width: rem(192px);
   height: rem(116px);
   background: no-repeat center
-    url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570704550/Shinta%20Mani%20Wild/general/zipline_i85a4p.gif');
+    url('https://res.cloudinary.com/whynotearth/image/upload/v1574308918/Shinta%20Mani%20Wild/General/zipline_i85a4p_u5nk8r.gif');
   background-size: contain;
 }
 </style>

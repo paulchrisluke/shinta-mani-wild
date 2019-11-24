@@ -6,7 +6,7 @@
           <div class="page-footer--logo">
             <div class="d-table m-auto ml-md-0">
               <router-link to="/" class="logo-link mt-2 d-block" title="Home">
-                <img class="d-block mx-auto" src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_64/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png" alt="shinta mani wild" />
+                <img class="d-block mx-auto" src="https://res.cloudinary.com/whynotearth/image/upload/w_64/Shinta%20Mani%20Wild/Home/Bensley_Collection_Shinta_ManiWild_brandmark_white_2_ns8kxh.png" alt="shinta mani wild" />
               </router-link>
 
               <div class="text-light text-center my-2">

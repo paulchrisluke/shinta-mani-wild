@@ -65,21 +65,21 @@ export default Vue.extend({
     return {
       grass1: {
         corner1:
-          'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570859485/Shinta%20Mani%20Wild/general/Quote_Box_1.png',
+          'https://res.cloudinary.com/whynotearth/image/upload/v1574308913/Shinta%20Mani%20Wild/General/Quote_Box_1_jolydd.png',
         corner2:
-          'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570859485/Shinta%20Mani%20Wild/general/Quote_Box_3.png',
+          'https://res.cloudinary.com/whynotearth/image/upload/v1574308915/Shinta%20Mani%20Wild/General/Quote_Box_3_ujykfp.png',
         corner3:
-          'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570859485/Shinta%20Mani%20Wild/general/Quote_Box_5.png',
+          'https://res.cloudinary.com/whynotearth/image/upload/v1574308915/Shinta%20Mani%20Wild/General/Quote_Box_5_qog324.png',
         corner4:
-          'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570859486/Shinta%20Mani%20Wild/general/Quote_Box_8.png',
+          'https://res.cloudinary.com/whynotearth/image/upload/v1574308917/Shinta%20Mani%20Wild/General/Quote_Box_8_bwbojr.png',
         spacing1:
-          'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570859486/Shinta%20Mani%20Wild/general/Quote_Box_2.png',
+          'https://res.cloudinary.com/whynotearth/image/upload/v1574308914/Shinta%20Mani%20Wild/General/Quote_Box_2_hslhkl.png',
         spacing2:
-          'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570859486/Shinta%20Mani%20Wild/general/Quote_Box_4.png',
+          'https://res.cloudinary.com/whynotearth/image/upload/v1574308915/Shinta%20Mani%20Wild/General/Quote_Box_4_j5ph6p.png',
         spacing3:
-          'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570859485/Shinta%20Mani%20Wild/general/Quote_Box_6.png',
+          'https://res.cloudinary.com/whynotearth/image/upload/v1574308915/Shinta%20Mani%20Wild/General/Quote_Box_6_voommq.png',
         spacing4:
-          'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570859485/Shinta%20Mani%20Wild/general/Quote_Box_7.png'
+          'https://res.cloudinary.com/whynotearth/image/upload/v1574308916/Shinta%20Mani%20Wild/General/Quote_Box_7_hbraqq.png'
       }
     }
   },
@@ -138,7 +138,7 @@ export default Vue.extend({
     width: rem(80px);
     height: rem(72px);
     background: no-repeat center $brand-5
-      url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570202922/Shinta%20Mani%20Wild/general/quote-birds_jguoxi.svg');
+      url('https://res.cloudinary.com/whynotearth/image/upload/v1574308917/Shinta%20Mani%20Wild/General/quote-birds_jguoxi_xanoah.svg');
     background-size: rem(auto 72px);
     top: rem(16px);
     left: rem(24px);
@@ -148,18 +148,18 @@ export default Vue.extend({
     z-index: 1;
     &.is-top {
       background: repeat-x
-          url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570216746/Shinta%20Mani%20Wild/general/line-thick_chyib1.svg')
+          url('https://res.cloudinary.com/whynotearth/image/upload/v1574308909/Shinta%20Mani%20Wild/General/line-thick_chyib1_kj505f.svg')
           center bottom,
         repeat-x
-          url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570217027/Shinta%20Mani%20Wild/general/line-thin_agqmow.svg')
+          url('https://res.cloudinary.com/whynotearth/image/upload/v1574308909/Shinta%20Mani%20Wild/General/line-thin_agqmow_redjvf.svg')
           center top;
     }
     &.is-bottom {
       background: repeat-x
-          url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570216746/Shinta%20Mani%20Wild/general/line-thick_chyib1.svg')
+          url('https://res.cloudinary.com/whynotearth/image/upload/v1574308909/Shinta%20Mani%20Wild/General/line-thick_chyib1_kj505f.svg')
           center top,
         repeat-x
-          url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570217027/Shinta%20Mani%20Wild/general/line-thin_agqmow.svg')
+          url('https://res.cloudinary.com/whynotearth/image/upload/v1574308909/Shinta%20Mani%20Wild/General/line-thin_agqmow_redjvf.svg')
           center bottom;
     }
   }
