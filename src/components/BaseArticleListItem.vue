@@ -54,11 +54,11 @@
           class="article-list-item--title font-serif-2 my-2 d-flex align-items-center"
           :class="titleClass"
         >
-          <a
-            :href="href"
+          <router-link
+            :to="href"
             class="article-list-item--title-link text-black stretched-link text-decoration-none"
             v-text="item.ctaText"
-          ></a>
+          ></router-link>
         </h3>
       </div>
       <p class="description mb-0" v-text="item.content"></p>

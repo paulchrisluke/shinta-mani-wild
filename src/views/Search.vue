@@ -159,7 +159,6 @@ export default Vue.extend({
   data() {
     return {
       featuredStoriesCount: 2,
-      slug: this.$route.params.id
     }
   },
   metaInfo (): MetaInfo {
@@ -172,7 +171,7 @@ export default Vue.extend({
   },
   computed: {
     resort(): Resort {
-      return this.$store.getters['resort/getItem']
+      return this.$store.getters['resort/getItemBySlug'](this.$route.params.id)
     },
     stories(): Story[] {
       return get(this.resort, 'stories', []).filter(
@@ -180,8 +179,17 @@ export default Vue.extend({
       )
     }
   },
+  methods: {
+    init() {
+      this.$store.dispatch('resort/getItemBySlug', this.$route.params.id)
+    }
+  },
   mounted() {
-    this.$store.dispatch('resort/getItemBySlug', this.slug)
+    this.init()
+  },
+  beforeRouteUpdate (to, from, next) {
+    next()
+    this.init()
   }
 })
 </script>

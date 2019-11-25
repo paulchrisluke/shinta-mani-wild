@@ -2,33 +2,34 @@
 import { PageService } from '@/connection/resources.js'
 import Vue from 'vue'
 
-const defaultResort = {
-  resort: {}
-}
 export default {
   namespaced: true,
   state: {
-    resort: defaultResort
+    items: {}
   },
   mutations: {
-    update(state: any, payload: any) {
-      Vue.set(state, 'resort', payload)
+    update(state: any, { data, slug }: any) {
+      const items = Object.assign({}, state.items, { [slug]: data })
+      Vue.set(state, 'items', items)
     }
   },
   actions: {
     getItemBySlug(context: any, slug: string) {
-      context.state.resort = defaultResort
+      context.state.items[slug] = {}
       return PageService.get({
         companySlug: 'shintamaniwild',
         pageSlug: slug
-      }).then((res: any) => {
-        context.commit('update', res)
+      }).then((data: any) => {
+        context.commit('update', { data, slug })
       })
     }
   },
   getters: {
     getItem(state: any) {
-      return state.resort
+      return state.items
+    },
+    getItemBySlug: (state: any) => (slug: string) => {
+      return state.items[slug] || {}
     }
   }
 }
