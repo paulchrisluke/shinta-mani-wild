@@ -49,7 +49,7 @@
                   <div class="d-flex">
                     <img
                       class="mx-3 align-middle"
-                      src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_32/Shinta%20Mani%20Wild/general/icon-phone_gcrzyg.png"
+                      src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_32,q_auto:best/Shinta%20Mani%20Wild/general/icon-name_zo5gaf.png"
                       alt="phone"
                     />
                     <a class="contact--phone" href="tel:+85512223782">+855 12 223 782</a>
@@ -63,7 +63,7 @@
                   <div class="d-flex">
                     <img
                       class="mx-3 align-middle"
-                      src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_32/Shinta%20Mani%20Wild/general/icon-address_xsksp1.png"
+                      src="https://res.cloudinary.com/whynotearth/image/upload/w_32/v1574308908/Shinta%20Mani%20Wild/General/icon-address_xsksp1_blohb1.png"
                       alt="map"
                     />
                     <div class="d-flex flex-column">
@@ -230,17 +230,17 @@ form {
   line-height: rem(32px);
 }
 .contact--input-name {
-  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/h_64,q_auto:best/Shinta%20Mani%20Wild/general/icon-name_zo5gaf.png')
+  background: url('https://res.cloudinary.com/whynotearth/image/upload/h_64,q_auto:best/Shinta%20Mani%20Wild/General/icon-name_zo5gaf_qgxzsp.png')
     no-repeat right #{rem(16px)} center;
   background-size: rem(32px);
 }
 .contact--input-email {
-  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/h_64,q_auto:best/Shinta%20Mani%20Wild/general/icon-email_erfxz7.png')
+  background: url('https://res.cloudinary.com/whynotearth/image/upload/h_64,q_auto:best/Shinta%20Mani%20Wild/General/icon-email_erfxz7_sedaod.png')
     no-repeat right #{rem(16px)} center;
   background-size: rem(32px);
 }
 .contact--input-message {
-  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/h_64,q_auto:best/Shinta%20Mani%20Wild/general/icon-message_jjsjja.png')
+  background: url('https://res.cloudinary.com/whynotearth/image/upload/h_64,q_auto:best/Shinta%20Mani%20Wild/General/icon-message_jjsjja_eb2t2y.png')
     no-repeat right #{rem(16px)} center;
   background-size: rem(32px);
 }

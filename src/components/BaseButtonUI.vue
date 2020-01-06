@@ -37,19 +37,19 @@ export default Vue.extend({
       image: {
         secondary: {
           left:
-            'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568620324/Shinta%20Mani%20Wild/general/Button_Light_Broken_Left_qcd0wr.png',
+            'https://res.cloudinary.com/whynotearth/image/upload/v1574308907/Shinta%20Mani%20Wild/General/Button_Light_Broken_Left_qcd0wr_pvhowk.png',
           center:
-            'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568620324/Shinta%20Mani%20Wild/general/Button_Light_Broken_Mid_qmcoim.png',
+            'https://res.cloudinary.com/whynotearth/image/upload/v1574308908/Shinta%20Mani%20Wild/General/Button_Light_Broken_Mid_qmcoim_qsswn1.png',
           right:
-            'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568620566/Shinta%20Mani%20Wild/general/Button_Light_Broken_Right_tbppzc.png'
+            'https://res.cloudinary.com/whynotearth/image/upload/v1574308908/Shinta%20Mani%20Wild/General/Button_Light_Broken_Right_tbppzc_jbhw1i.png'
         },
         primary: {
           left:
-            'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568616916/Shinta%20Mani%20Wild/general/Button_Broken_Left_nyexsi.png',
+            'https://res.cloudinary.com/whynotearth/image/upload/v1574308907/Shinta%20Mani%20Wild/General/Button_Broken_Left_nyexsi_hyq7bt.png',
           center:
-            'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568616404/Shinta%20Mani%20Wild/general/Button_Broken_Mid_cu34ha.png',
+            'https://res.cloudinary.com/whynotearth/image/upload/v1574308907/Shinta%20Mani%20Wild/General/Button_Broken_Mid_cu34ha_bdpr5k.png',
           right:
-            'https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568616916/Shinta%20Mani%20Wild/general/Button_Broken_Right_hyntrd.png'
+            'https://res.cloudinary.com/whynotearth/image/upload/v1574308907/Shinta%20Mani%20Wild/General/Button_Broken_Right_hyntrd_a3earq.png'
         }
       }
     }

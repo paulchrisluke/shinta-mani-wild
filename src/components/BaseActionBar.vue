@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center">
         <div class="logo mr-3 d-none d-md-block">
-          <img class="w-100 h-100 d-block" src="https://res.cloudinary.com/ddwsbpkzk/image/upload/w_48/Shinta%20Mani%20Wild/general/logo-dark_i1vspg.png" alt />
+          <img class="w-100 h-100 d-block" src="https://res.cloudinary.com/whynotearth/image/upload/w_48/Shinta%20Mani%20Wild/General/logo-dark_i1vspg_asjbdb.png" alt />
         </div>
         <h2 class="action-bar--title font-serif-2 text-uppercase mb-0" v-text="title"></h2>
       </div>
