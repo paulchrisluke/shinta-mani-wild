@@ -7,7 +7,7 @@
         <!-- <a class="like position-absolute">
           <img
             class="like-image d-block"
-            src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1568559589/Shinta%20Mani%20Wild/general/icon-like_bqhyu6.svg"
+            src="https://res.cloudinary.com/whynotearth/image/upload/v1574308909/Shinta%20Mani%20Wild/General/icon-like_bqhyu6_nleapt.svg"
             alt
           />
         </a>-->
@@ -155,7 +155,7 @@ export default Vue.extend({
   background-color: rgba($brand-2, 0.4);
 }
 .image-placeholder {
-  background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/w_88/Shinta%20Mani%20Wild/home/Bensley_Collection_Shinta_ManiWild_brandmark_white_k9xfuy.png')
+  background: url('https://res.cloudinary.com/whynotearth/image/upload/w_88/Shinta%20Mani%20Wild/Home/Bensley_Collection_Shinta_ManiWild_brandmark_white_2_ns8kxh.png')
     center no-repeat;
   background-size: rem(88px);
 }

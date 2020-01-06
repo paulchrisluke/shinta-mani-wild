@@ -116,9 +116,9 @@
       </div>
 
       <booking-bar :title="resort.title" :price="1200"></booking-bar>
-    </div>
+      </div>
 
-    <page-footer></page-footer>
+      <page-footer></page-footer>
   </div>
 </template>
 
@@ -139,6 +139,7 @@ import doodles from '@/mixins/doodles'
 import { GalleryImage, Story, Resort } from '@/types'
 import { get } from 'lodash-es'
 import { MetaInfo } from 'vue-meta'
+import BaseCard from '@/components/BaseCard.vue'
 
 export default Vue.extend({
   name: 'listing',
@@ -153,7 +154,8 @@ export default Vue.extend({
     BaseBannerAction,
     BaseArticlesList,
     BaseQuote,
-    BookingBar
+    BookingBar,
+    BaseCard
   },
   data() {
     return {

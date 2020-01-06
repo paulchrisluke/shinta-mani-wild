@@ -236,10 +236,10 @@ export default Vue.extend({
 }
 .video-player--overlay {
   &.is-paused {
-    background-image: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570978871/Shinta%20Mani%20Wild/general/play_aphyj3.svg');
+    background-image: url('https://res.cloudinary.com/whynotearth/image/upload/v1574308911/Shinta%20Mani%20Wild/General/play_aphyj3_l6zwo1.svg');
   }
   &.is-ended {
-    background-image: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570978871/Shinta%20Mani%20Wild/general/play_aphyj3.svg');
+    background-image: url('https://res.cloudinary.com/whynotearth/image/upload/v1574308911/Shinta%20Mani%20Wild/General/play_aphyj3_l6zwo1.svg');
   }
   background: center no-repeat rgba($black, 0.2);
   background-size: rem(48px);
@@ -256,11 +256,11 @@ export default Vue.extend({
   width: rem(48px);
   height: rem(48px);
   &.is-mute {
-    background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570887492/Shinta%20Mani%20Wild/general/sound-muted_sxxwst.svg')
+    background: url('https://res.cloudinary.com/whynotearth/image/upload/v1574308918/Shinta%20Mani%20Wild/General/sound-muted_sxxwst_cf2d5o.svg')
       no-repeat center;
   }
   &.has-sound {
-    background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570887492/Shinta%20Mani%20Wild/general/sound-enabled_dwwxaq.svg')
+    background: url('https://res.cloudinary.com/whynotearth/image/upload/v1574308918/Shinta%20Mani%20Wild/General/sound-enabled_dwwxaq_zk1y63.svg')
       no-repeat center;
   }
 }

@@ -65,7 +65,7 @@
                       <!-- <a @click.stop.prevent class="like my-3 ml-auto" href="#">
                         <img
                           class="like-image d-block"
-                          src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569402128/Shinta%20Mani%20Wild/general/icon-like-outline_dlymsz.svg"
+                          src="https://res.cloudinary.com/whynotearth/image/upload/v1574308909/Shinta%20Mani%20Wild/General/icon-like-outline_dlymsz_ma4gp4.svg"
                           alt
                         />
                       </a>-->
@@ -99,7 +99,7 @@
       >
         <img
           class="d-block"
-          src="https://res.cloudinary.com/ddwsbpkzk/image/upload/v1569565108/Shinta%20Mani%20Wild/general/close_zs1pi4.svg"
+          src="https://res.cloudinary.com/whynotearth/image/upload/v1574308908/Shinta%20Mani%20Wild/General/close_zs1pi4_we04hs.svg"
           alt
         />
       </a>
@@ -587,11 +587,11 @@ export default Vue.extend({
     height: rem(56px);
   }
   &.is-mute {
-    background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570887492/Shinta%20Mani%20Wild/general/sound-muted_sxxwst.svg')
+    background: url('https://res.cloudinary.com/whynotearth/image/upload/v1574308918/Shinta%20Mani%20Wild/General/sound-muted_sxxwst_cf2d5o.svg')
       no-repeat center;
   }
   &.has-sound {
-    background: url('https://res.cloudinary.com/ddwsbpkzk/image/upload/v1570887492/Shinta%20Mani%20Wild/general/sound-enabled_dwwxaq.svg')
+    background: url('https://res.cloudinary.com/whynotearth/image/upload/v1574308918/Shinta%20Mani%20Wild/General/sound-enabled_dwwxaq_zk1y63.svg')
       no-repeat center;
   }
 }
