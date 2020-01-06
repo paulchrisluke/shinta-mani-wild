@@ -39,7 +39,8 @@
       @loadeddata="onLoad"
       v-bind="rest"
     >
-      <source :src="transformCloudinaryUrl(source, videoTransformations)" type="video/mp4" />
+      <!-- videoTransformations -->
+      <source :src="transformCloudinaryUrl(source, '')" type="video/mp4" />
     </video>
 
     <!-- paused screen -->
