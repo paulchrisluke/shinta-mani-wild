@@ -36,7 +36,7 @@
 }
 .is-huge-placeholder {
   // 24 + 8 is border-art height and margin
-  height: (0.75 * $huge-font-size) + rem(24px + 8px);
+  height: (0.75 * $huge-font-size) + sass-rem(24px + 8px);
 }
 .text-small-caps {
   font-variant: small-caps;
@@ -77,10 +77,10 @@ body,
   overflow: hidden;
 }
 .container.is-small {
-  max-width: rem($container-small);
+  max-width: sass-rem($container-small);
   @include media-breakpoint-down(md) {
-    padding-left: rem($spacer * 1.5);
-    padding-right: rem($spacer * 1.5);
+    padding-left: sass-rem($spacer * 1.5);
+    padding-right: sass-rem($spacer * 1.5);
   }
 }
 .page {
@@ -143,13 +143,13 @@ body,
 }
 .doodle {
   overflow: hidden;
-  perspective: rem(1504px);
-  max-width: rem(700px);
-  max-height: rem(700px);
+  perspective: sass-rem(1504px);
+  max-width: sass-rem(700px);
+  max-height: sass-rem(700px);
   z-index: -1;
   @include media-breakpoint-down(sm) {
-    max-width: rem(340px);
-    max-height: rem(340px);
+    max-width: sass-rem(340px);
+    max-height: sass-rem(340px);
   }
 }
 .is-doodle-left {
@@ -238,19 +238,19 @@ body,
 
 .page-description {
   .heading-placeholder {
-    height: rem(83px);
+    height: sass-rem(83px);
   }
   .vue-content-placeholders-heading {
     height: 100%;
   }
   .description-placeholder {
-    height: rem(72px);
+    height: sass-rem(72px);
   }
 }
 
 .debug {
   background: $white;
-  padding: 1rem;
+  padding: sass-rem(16px);
   position: absolute;
 }
 

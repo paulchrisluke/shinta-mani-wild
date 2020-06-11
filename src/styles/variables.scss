@@ -32,11 +32,10 @@ $body-bg: $brand-1;
 // $link-hover-color: darken($link-color, 15%);
 
 // spacings
-$grid-gutter-width: rem(16px);
+$grid-gutter-width: 16px;
 $header-height: 80px;
 $header-height-mobile: 40px;
 $container-small: 912px;
-$nav-link-padding-y: rem(4px);
 $caret-vertical-align: 0.1em;
 
 $spacer: 1rem;
@@ -83,7 +82,7 @@ $page-content-zindex: 1;
 $loading-transition-time: 500ms;
 
 // dropdown
-$dropdown-font-size: rem(18px);
+$dropdown-font-size: sass-rem(18px);
 $dropdown-bg: $primary;
 $dropdown-link-color: $brand-2;
 $dropdown-link-hover-color: $brand-2;
@@ -95,7 +94,7 @@ $dropdown-divider-bg: rgba($brand-2, 0.15);
 
 // effects
 $box-shadow-sm: 0px 4px 4px rgba(0, 0, 0, 0.25);
-$box-shadow-sm-top: 0px -4px 4px rgba(0, 0, 0, 0.25); 
+$box-shadow-sm-top: 0px -4px 4px rgba(0, 0, 0, 0.25);
 $box-shadow-md: 0px 9px 24px rgba(0, 0, 0, 0.25);
 $box-shadow-md-top: 0px -9px 24px rgba(0, 0, 0, 0.25);
 $linear-gradient-md: linear-gradient(180deg, rgba(0, 0, 0, 0) 80.56%, #000000 100%);
@@ -131,7 +130,7 @@ $vue-content-placeholders-border-radius: 10px;
 $vue-content-placeholders-line-height: 16px;
 $vue-content-placeholders-spacing: 8px;
 
-/* 
+/*
  * =====================================================
  * IMPORTANT!
  * PLEASE DON'T MODIFY BELOW VARIABLES
